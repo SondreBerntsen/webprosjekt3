@@ -11,7 +11,7 @@
   margin: 25px 25px;
 }
 
-img {
+img.card-img-top {
   height: 320px;
   -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
@@ -20,7 +20,7 @@ img {
   transition: filter 1s;
 }
 
-img:hover {
+img.card-img-top:hover {
   -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
   filter: grayscale(0%);
 }

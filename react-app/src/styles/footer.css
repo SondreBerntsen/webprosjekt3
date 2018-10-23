@@ -1,0 +1,21 @@
+div.footer {
+  display: inline;
+}
+
+footer {
+  height: 55px;
+  bottom: 0;
+  position: relative;
+  background-color: #c089c4;
+  padding: 10px 0px 10px 0px;
+}
+
+p {
+  display: inline-block;
+}
+
+img.socialMediaImg {
+  width: 30px;
+  height: 30px;
+  margin: 0px 10px 0px 40px;
+}
