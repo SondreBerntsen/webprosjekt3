@@ -1,0 +1,26 @@
+.card {
+  width: 18rem;
+}
+
+.contactPerson {
+  display: inline-block;
+  margin-top: 50px;
+}
+
+.contactInfo {
+  margin: 25px 25px;
+}
+
+img {
+  height: 320px;
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+
+  -webkit-transition: filter 1s; /* For Safari 3.1 to 6.0 */
+  transition: filter 1s;
+}
+
+img:hover {
+  -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(0%);
+}

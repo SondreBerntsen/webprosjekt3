@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "../Navbar";
 import ContactPersons from "./ContactPersons.js";
+import "../../styles/contact.css";
 
 class Contact extends Component {
   state = {
@@ -10,7 +11,7 @@ class Contact extends Component {
       adress: "Solsvingen 90",
       building: "Fjell kirke",
       postAdress: "3034",
-      PostAdressName: "DRAMMEN"
+      postAdressName: "DRAMMEN"
     },
     contactPersons: [
       {
@@ -43,14 +44,17 @@ class Contact extends Component {
     return (
       <div>
         <Navbar />
-        <h1> KONTAKT</h1>
-        <ContactPersons contactpersons={this.state.contactPersons} />
-        <p>{contact.name}</p>
-        <p>{contact.organization}</p>
-        <p>{contact.adress}</p>
-        <p>{contact.building}</p>
-        <p>{contact.postAdress}</p>
-        <p>{contact.postAdressName}</p>
+        <div className="row">
+          <ContactPersons contactpersons={this.state.contactPersons} />
+        </div>
+        <div className="contactInfo row">
+          <div className="col-6 offset-3">
+            <p>
+              {contact.name},{contact.organization},{contact.adress},
+              {contact.building},{contact.postAdress},{contact.postAdressName}
+            </p>
+          </div>
+        </div>
       </div>
     );
   }
