@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from "./Navbar";
-import Artists from "./Artists";
+import Navbar from "../Navbar";
+import Artists from "../Artists";
 
 const Home = () => {
   return (

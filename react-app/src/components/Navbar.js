@@ -24,27 +24,27 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/programme">
+              <NavLink className="nav-link" to="/program">
                 Program
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/about">
+              <NavLink className="nav-link" to="/om-oss">
                 Om oss
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/news">
+              <NavLink className="nav-link" to="/nyheter">
                 Nyheter
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/archive">
+              <NavLink className="nav-link" to="/tilbakeblikk">
                 Tilbakeblikk
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/contact">
+              <NavLink className="nav-link" to="/kontakt">
                 Kontakt
               </NavLink>
             </li>

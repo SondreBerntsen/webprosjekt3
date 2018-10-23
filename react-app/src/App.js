@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 //import Navbar from "./components/Navbar";
 import { BrowserRouter, Route } from "react-router-dom";
-import Home from "./components/Home";
-import Programme from "./components/Programme";
-import About from "./components/About";
-import News from "./components/News";
-import Archive from "./components/Archive";
-import Contact from "./components/Contact";
+import Home from "./components/home/Home";
+import Programme from "./components/programme/Programme";
+import About from "./components/about/About";
+import News from "./components/news/News";
+import Review from "./components/review/review";
+import Contact from "./components/contact/Contact";
 
 class App extends Component {
   render() {
@@ -14,11 +14,11 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Route exact path="/" component={Home} />
-          <Route path="/about" component={About} />
-          <Route path="/news" component={News} />
-          <Route path="/archive" component={Archive} />
-          <Route path="/contact" component={Contact} />
-          <Route path="/programme" component={Programme} />
+          <Route path="/om-oss" component={About} />
+          <Route path="/nyheter" component={News} />
+          <Route path="/tilbakeblikk" component={Review} />
+          <Route path="/kontakt" component={Contact} />
+          <Route path="/program" component={Programme} />
         </div>
       </BrowserRouter>
     );

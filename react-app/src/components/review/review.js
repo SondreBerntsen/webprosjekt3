@@ -1,7 +1,7 @@
 import React from "react";
-import Navbar from "./Navbar";
+import Navbar from "../Navbar";
 
-const Archive = () => {
+const Review = () => {
   return (
     <div>
       <Navbar />
@@ -13,4 +13,4 @@ const Archive = () => {
   );
 };
 
-export default Archive;
+export default Review;
