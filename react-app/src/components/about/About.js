@@ -182,7 +182,7 @@ class About extends Component {
         and outputs each report as a list element */
     const reports = this.state.reports.map(report => (
       <li key={report.id}>
-        <a href={report.link} target="_blank">
+        <a href={report.link} target="_blank" rel="noopener noreferrer">
           {report.name}
         </a>
         _{report.language}
@@ -223,21 +223,31 @@ class About extends Component {
       <div>
         <Navbar />
         <div className="container">
-          <h2 className="center">Om festivalen</h2>
-          <h4>Visjon</h4>
-          <p>{this.state.aboutFestival.vision}</p>
-          <p>
-            <strong>{this.state.aboutFestival.greeting}</strong>
-          </p>
-          <h4>Samarbeidspartnere</h4>
-          <p>{this.state.aboutFestival.collabPublicDescr}</p>
-          <ul>{publicCollaborators}</ul>
-          <p>{this.state.aboutFestival.collabLocalDescr}</p>
-          <ul>{localCollaborators}</ul>
-          <h4>Organisering</h4>
-          <p>{this.state.aboutFestival.organization}</p>
-          <h4>Rapporter fra tidligere festivaler</h4>
-          <ul>{reports}</ul>
+          <div className="textblock">
+            <h2 className="center title">Om festivalen</h2>
+          </div>
+          <div className="textblock">
+            <h4>Visjon</h4>
+            <p>{this.state.aboutFestival.vision}</p>
+            <p>
+              <strong>{this.state.aboutFestival.greeting}</strong>
+            </p>
+          </div>
+          <div className="textblock">
+            <h4>Samarbeidspartnere</h4>
+            <p>{this.state.aboutFestival.collabPublicDescr}</p>
+            <ul>{publicCollaborators}</ul>
+            <p>{this.state.aboutFestival.collabLocalDescr}</p>
+            <ul>{localCollaborators}</ul>
+          </div>
+          <div className="textblock">
+            <h4>Organisering</h4>
+            <p>{this.state.aboutFestival.organization}</p>
+          </div>
+          <div className="textblock">
+            <h4>Rapporter fra tidligere festivaler</h4>
+            <ul>{reports}</ul>
+          </div>
         </div>
       </div>
     );

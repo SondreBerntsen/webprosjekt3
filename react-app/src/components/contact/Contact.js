@@ -50,8 +50,8 @@ class Contact extends Component {
         <div className="contactInfo row">
           <div className="col-6 offset-3">
             <p>
-              {contact.name},{contact.organization},{contact.adress},
-              {contact.building},{contact.postAdress},{contact.postAdressName}
+              {contact.name}, {contact.organization}, {contact.adress},{" "}
+              {contact.building}, {contact.postAdress}, {contact.postAdressName}
             </p>
           </div>
         </div>
