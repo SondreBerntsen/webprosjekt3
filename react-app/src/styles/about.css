@@ -1,0 +1,4 @@
+/*to make the \n work correctly in big texts in the state of the component*/
+div {
+  white-space: pre-wrap;
+}
