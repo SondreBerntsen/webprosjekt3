@@ -1,0 +1,50 @@
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+  }
+  .navbar {
+    background-color: #c089c4 !important;
+  }
+  .nav-link {
+    color: white !important;
+    font-size: 20px;
+  
+    padding-right: 20px !important;
+    padding-left: 20px !important;
+  }
+  .nav-link:hover {
+    color: #562482 !important;
+    font-weight: bold;
+  }
+  .center {
+    margin: auto;
+  }
+  .nav-link.active {
+    color: #562482 !important;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  .artistDiv {
+    background-color: pink;
+    height: 200px;
+    position: relative;
+  }
+  .thumbArtist {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+  }
+  .artistName {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+  }
+  .artistDiv:hover {
+    opacity: 0.5;
+  }
+  
