@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import Navbar from "../Navbar";
+import "./about.css";
 
 class About extends Component {
   state = {
     aboutFestival: {
       vision:
-        "Drammen Sacred Music Festival er et møtested for å dele musikk, bilder og fortellinger fra ulike tradisjoner. Vi tror musikk og kunst generelt kan uttrykke menneskets mest grunnleggende lengsler og overstige språklige, nasjonale, kulturelle, ideologiske, rasemessige og religiøse grenser. I konsertene presenterer vi lokale og gjestende artister som har noe viktig på hjertet. Seminarer, foredrag, filmer og workshops er rammen rundt refleksjon, dialog og læring. Drammen-området er kjent for sin internasjonale befolkning og festivalen legger stor vekt på dialog og å involvere ulike grupperinger i festivalen. Festivalens visjon er å legge til rette for møter som berører, beveger og skaper mening, og har ambisjon om å være en sentral festival i dette landskapet. Velkommen til Drammen Sacred Music Festival, 15. – 23. september 2018!",
+        "Drammen Sacred Music Festival er et møtested for å dele musikk, bilder og fortellinger fra ulike tradisjoner. Vi tror musikk og kunst generelt kan uttrykke menneskets mest grunnleggende lengsler og overstige språklige, nasjonale, kulturelle, ideologiske, rasemessige og religiøse grenser. I konsertene presenterer vi lokale og gjestende artister som har noe viktig på hjertet. Seminarer, foredrag, filmer og workshops er rammen rundt refleksjon, dialog og læring.\n\nDrammen-området er kjent for sin internasjonale befolkning og festivalen legger stor vekt på dialog og å involvere ulike grupperinger i festivalen. Festivalens visjon er å legge til rette for møter som berører, beveger og skaper mening, og har ambisjon om å være en sentral festival i dette landskapet.",
+
+      greeting:
+        "Velkommen til Drammen Sacred Music Festival, 15. – 23. september 2018!",
 
       collabPublicDescr:
         "Festivalen kan gjennomføres på grunn av den støtten som gis fra en rekke offentlige instanser. De største er Drammen Kommune Interkultur, Norsk Kulturråd og Buskerud Fylkeskommune.",
@@ -14,7 +18,7 @@ class About extends Component {
         "Like viktig er samarbeidet med lokale institusjoner for gjennomføring av de ulike arrangementene. Festivalen har siden starten vært knyttet til området ved Union og Papirbredden ved Ypsilon. Union Scene er en viktig samarbeidspartner.",
 
       organization:
-        "Drammen og omegn tros- og livssynsforum (DoTL) startet festivalen i 2010 sammen med Drammen kommune, Interkultur. Initiativtakere og pådrivere var Arve Vannebo og Ricardo Sanchez (Drammen kommune Interkultur) og Ivar Flaten (sokneprest Fjell menighet). Fra 2012 har festivalen vært organisert som en forening der DoTL er representert i styret sammen med lokale, regionale og nasjonale samarbeidspartnere. Drammen kommune er en sentral samarbeidspartner i programmering og produksjon. Styret for DSMF består av Sharee Loren, Tal Coleman, Terje-Brun Pedersen, Ingvild Jacobsen, Reidun Svabø og Ivar Flaten som er styreleder. Festivalen har gjennom årene hatt samarbeid med fagpersoner i programarbeidet: Ricardo Sanchez (tidl. produsent Interkultur)Jørgen Nøvik (musiker, billedkunstner m.m),  Svanhild Rohdin (billedkunstner), Fernando Sallum (musiker), Tal Zimra Coleman (musiker), Svein Westad (musiker), Erik Hillestad (Kirkelig Kulturverksted) og Ingebrigt Håker Flaten (musiker). Henrik Melius (Spiritus Mundi, Malmø) og Eli Borchgrevink (Buskerud teaterverksted – tidligere Trap- og Du Store Verden) er eksterne konsulenter og samarbeidspartnere."
+        "Drammen og omegn tros- og livssynsforum (DoTL) startet festivalen i 2010 sammen med Drammen kommune, Interkultur. Initiativtakere og pådrivere var Arve Vannebo og Ricardo Sanchez (Drammen kommune Interkultur) og Ivar Flaten (sokneprest Fjell menighet). Fra 2012 har festivalen vært organisert som en forening der DoTL er representert i styret sammen med lokale, regionale og nasjonale samarbeidspartnere. Drammen kommune er en sentral samarbeidspartner i programmering og produksjon.\n\nStyret for DSMF består av Sharee Loren, Tal Coleman, Terje-Brun Pedersen, Ingvild Jacobsen, Reidun Svabø og Ivar Flaten som er styreleder.\n\nFestivalen har gjennom årene hatt samarbeid med fagpersoner i programarbeidet: Ricardo Sanchez (tidl. produsent Interkultur)Jørgen Nøvik (musiker, billedkunstner m.m),  Svanhild Rohdin (billedkunstner), Fernando Sallum (musiker), Tal Zimra Coleman (musiker), Svein Westad (musiker), Erik Hillestad (Kirkelig Kulturverksted) og Ingebrigt Håker Flaten (musiker). Henrik Melius (Spiritus Mundi, Malmø) og Eli Borchgrevink (Buskerud teaterverksted – tidligere Trap- og Du Store Verden) er eksterne konsulenter og samarbeidspartnere."
     },
 
     collaborators: [
@@ -178,7 +182,10 @@ class About extends Component {
         and outputs each report as a list element */
     const reports = this.state.reports.map(report => (
       <li key={report.id}>
-        <a href={report.link}>{report.name}</a>_{report.language}
+        <a href={report.link} target="_blank">
+          {report.name}
+        </a>
+        _{report.language}
       </li>
     ));
 
@@ -216,17 +223,20 @@ class About extends Component {
       <div>
         <Navbar />
         <div className="container">
-          <h4 className="center">Om festivalen</h4>
-          <h5>Visjon</h5>
+          <h2 className="center">Om festivalen</h2>
+          <h4>Visjon</h4>
           <p>{this.state.aboutFestival.vision}</p>
-          <h5>Samarbeidspartnere</h5>
+          <p>
+            <strong>{this.state.aboutFestival.greeting}</strong>
+          </p>
+          <h4>Samarbeidspartnere</h4>
           <p>{this.state.aboutFestival.collabPublicDescr}</p>
           <ul>{publicCollaborators}</ul>
           <p>{this.state.aboutFestival.collabLocalDescr}</p>
           <ul>{localCollaborators}</ul>
-          <h5>Organisering</h5>
+          <h4>Organisering</h4>
           <p>{this.state.aboutFestival.organization}</p>
-          <h5>Rapporter fra tidligere festivaler</h5>
+          <h4>Rapporter fra tidligere festivaler</h4>
           <ul>{reports}</ul>
         </div>
       </div>
