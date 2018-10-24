@@ -45,6 +45,27 @@ class EventList extends Component {
         img:
           "https://static1.squarespace.com/static/57242faa7da24f738c3b9c32/5b736843352f53e1d56a8215/5b73684840ec9a45a9538c78/1534289997493/_DSC9283.jpg?format=1000w",
         id: 6
+      },
+      {
+        name: "Elisabeth",
+        age: 25,
+        img:
+          "https://static1.squarespace.com/static/57242faa7da24f738c3b9c32/5b736843352f53e1d56a8215/5b73684840ec9a45a9538c78/1534289997493/_DSC9283.jpg?format=1000w",
+        id: 7
+      },
+      {
+        name: "Sondre",
+        age: 25,
+        img:
+          "https://static1.squarespace.com/static/57242faa7da24f738c3b9c32/5b736843352f53e1d56a8215/5b73684840ec9a45a9538c78/1534289997493/_DSC9283.jpg?format=1000w",
+        id: 8
+      },
+      {
+        name: "Mads",
+        age: 25,
+        img:
+          "https://static1.squarespace.com/static/57242faa7da24f738c3b9c32/5b736843352f53e1d56a8215/5b73684840ec9a45a9538c78/1534289997493/_DSC9283.jpg?format=1000w",
+        id: 9
       }
     ]
   };

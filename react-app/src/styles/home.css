@@ -1,5 +1,5 @@
 .artistDiv {
-    height: 200px;
+    height: 160px;
     position: relative;
     margin-top: 20px;
   }
@@ -62,6 +62,63 @@ td:hover{
     border-collapse: collapse;
     border-radius: 15px;
     overflow: hidden;
+}
+.shortHomeTxt{
+    margin: auto;
+    margin-top: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.shortHomeTxt>p{
+    text-align: center;
+    font-size: 18px;
+}
+.boldTxt{
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    font-style: oblique;
+    color:#562482;
+}
+.newsDiv{
+    height: 350px;
+    position: relative;
+    margin-top: 20px;
     
-    
+}
+.newsDiv:hover{
+    opacity: 0.85;
+    cursor: pointer;
+}
+.imgNewsDiv{
+    width: 100%;
+    height: 250px;
+}
+.thumbNewsImg{
+    width: 100%;
+    height: 100%;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    display: block;
+}
+.textNewsDiv{
+    background-color:rgba(224, 218, 223, 0.315);
+    padding:10px;
+}
+.textNewsDiv>h4{
+    margin: 0;
+}
+.dateOnNewsImg{
+    position: absolute;
+    top: 20px;
+    left: 16px;
+    background-color:#ab87ad;
+    color:white;
+    padding:5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.newsTitle{
+    text-align: center;
+    width: 100%;
+    text-decoration: underline;
 }
