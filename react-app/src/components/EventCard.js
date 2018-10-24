@@ -4,27 +4,27 @@ class EventCard extends Component {
   render() {
     return (
       <div className="col-sm-4">
-        <div
-          onMouseOver={this.mouseOverImg.bind(this)}
-          onMouseOut={this.mouseOutImg.bind(this)}
-          className="artistDiv "
-        >
-          <img
-            className="thumbArtist"
-            src={this.props.artistImg}
-            alt="artist"
-          />
-          <div className="overlay"></div>
-          <div id={this.props.artistName}>
-            <p className="shortDescr"></p>
-            <h4 className="artistName" >
-              {this.props.artistName}
-            </h4>
+        <a href="arrangement/1">
+          <div
+            onMouseOver={this.mouseOverImg.bind(this)}
+            onMouseOut={this.mouseOutImg.bind(this)}
+            className="artistDiv "
+          >
+            <img
+              className="thumbArtist"
+              src={this.props.artistImg}
+              alt="artist"
+            />
+            <div className="overlay"></div>
+            <div id={this.props.artistName}>
+              <p className="shortDescr"></p>
+              <h4 className="artistName" >
+                {this.props.artistName}
+              </h4>
+            </div>
           </div>
-
-        </div>
-
-      </div>
+        </a>
+      </div >
     );
   }
   mouseOverImg() {

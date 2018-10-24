@@ -7,6 +7,7 @@ import About from "./components/about/About";
 import News from "./components/news/News";
 import Review from "./components/review/review";
 import Contact from "./components/contact/Contact";
+import Event from "./components/event/Event";
 import Footer from "./components/Footer";
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
           <Route path="/tilbakeblikk" component={Review} />
           <Route path="/kontakt" component={Contact} />
           <Route path="/program" component={Programme} />
+          <Route path="/arrangement/:eventId" component={Event} />
           <Footer />
         </div>
       </BrowserRouter>
