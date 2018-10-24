@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "../Navbar";
 import ContactPersons from "./ContactPersons.js";
+import ContactForm from "./ContactForm.js";
 import "../../styles/contact.css";
 
 class Contact extends Component {
@@ -35,7 +36,7 @@ class Contact extends Component {
     ]
   };
   render() {
-    console.log(this.state.contactPersons);
+    // console.log(this.state.contactPersons);
     // destructuring
     const { contact } = this.state;
 
@@ -45,7 +46,10 @@ class Contact extends Component {
       <div>
         <Navbar />
         <div className="row">
-          <ContactPersons contactpersons={this.state.contactPersons} />
+          <div className="container">
+            <ContactPersons contactpersons={this.state.contactPersons} />
+            <ContactForm />
+          </div>
         </div>
         <div className="contactInfo row">
           <div className="col-6 offset-3">

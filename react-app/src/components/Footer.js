@@ -26,11 +26,11 @@ class Footer extends Component {
     /* The constant socialMediaList iterates through the array socialMedias 
         and outputs the properties we want as a template */
     const { socialMedias } = this.state;
-    console.log({ socialMedias });
+    //console.log({ socialMedias });
     const socialMediaList = socialMedias.map(media => {
       return (
         <div className="footer" key={media.name}>
-          <img className="socialMediaImg" src={media.img} />
+          <img className="socialMediaImg" src={media.img} alt="img" />
           <p>
             <a href={media.link}>{media.name}</a>
           </p>
