@@ -1,9 +1,69 @@
+/*****Home page*****/
+.headerImgDiv{
+    width: 100%;
+    height: 300px;
+    background-color: pink;
+    background: url(../img/header.jpg)
+}
+.newsTitle{
+    text-align: center;
+    width: 100%;
+    text-decoration: underline;
+}
+.shortHomeTxt{
+    margin: auto;
+    margin-top: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.shortHomeTxt>p{
+    text-align: center;
+    font-size: 18px;
+}
+.shortHomeTxtLast{
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    font-style: oblique;
+    color:#562482;
+}
+
+/*****Home Schedule*****/
+
+.buyTicketsBtn{
+    width: 100%;
+    font-size: 22px;
+    margin-top: 20px;
+}
+th{
+    background-color: lightgray;  
+    padding: 5px;
+}
+td, th{
+    padding-left: 10px;
+}
+td{
+    background-color:rgba(224, 218, 223, 0.315);
+}
+td:hover{
+    background-color:rgb(236, 219, 236);
+    padding: 5px;
+    cursor: pointer;
+}
+.tableSchedule{
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+/*****Artist thumbnail list*****/
+
 .artistDiv {
     height: 160px;
     position: relative;
     margin-top: 20px;
   }
-
   .thumbArtist {
     width: 100%;
     height: 100%;
@@ -27,7 +87,6 @@
     border-radius: 15px;
     background-color: #ab87ad;
   }
-
   .shortDescr{
     position: absolute;
     top: 50%;
@@ -36,49 +95,10 @@
     color:white;
     font-size: 14px;
   }
-  .buyTicketsBtn{
-      width: 100%;
-      font-size: 22px;
-      margin-top: 20px;
-  }
-th{
-    background-color: lightgray;  
-    padding: 5px;
-}
-td, th{
-    padding-left: 10px;
-}
-td{
-    background-color:rgba(224, 218, 223, 0.315);
-}
-td:hover{
-    background-color:rgb(236, 219, 236);
-    padding: 5px;
-    cursor: pointer;
-}
-.tableSchedule{
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
-    border-radius: 15px;
-    overflow: hidden;
-}
-.shortHomeTxt{
-    margin: auto;
-    margin-top: 30px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-.shortHomeTxt>p{
-    text-align: center;
-    font-size: 18px;
-}
-.boldTxt{
-    font-weight: bold;
-    text-align: center;
-    width: 100%;
-    font-style: oblique;
-    color:#562482;
-}
+ 
+
+/*****News List*****/
+
 .newsDiv{
     height: 350px;
     position: relative;
@@ -104,9 +124,6 @@ td:hover{
     background-color:rgba(224, 218, 223, 0.315);
     padding:10px;
 }
-.textNewsDiv>h4{
-    margin: 0;
-}
 .dateOnNewsImg{
     position: absolute;
     top: 20px;
@@ -116,9 +133,4 @@ td:hover{
     padding:5px;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-}
-.newsTitle{
-    text-align: center;
-    width: 100%;
-    text-decoration: underline;
 }

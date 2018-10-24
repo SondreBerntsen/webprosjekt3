@@ -1,8 +1,9 @@
+//Component that lists the newscard with the correct data
 import React, { Component } from "react";
 import NewsCard from "./NewsCard.js";
 
 class NewsCards extends Component {
-    state = {
+    state = {//Fix static enn saa lenge
         news: [
             {
                 title: "Sang syng sing",
@@ -51,11 +52,10 @@ class NewsCards extends Component {
                     "https://static1.squarespace.com/static/57242faa7da24f738c3b9c32/5b736843352f53e1d56a8215/5b73684840ec9a45a9538c78/1534289997493/_DSC9283.jpg?format=1000w",
                 id: 5,
                 txt: "Lorem ipsum dolar sit amet, consete advors elit. ut non spaoen axc nucn lackli...",
-            },
-
+            }
         ]
     };
-    render() {
+    render() {//Loops trough all data, and displays it in newsCard
         return this.state.news.map(newsArticle => (
             <NewsCard key={newsArticle.id} title={newsArticle.title} img={newsArticle.img} date={newsArticle.date} txt={newsArticle.txt} />
         ));

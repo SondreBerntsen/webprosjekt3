@@ -1,3 +1,4 @@
+//Component for schedule in home-page
 import React, { Component } from "react";
 
 class HomeSchedule extends Component {
@@ -91,7 +92,8 @@ class HomeSchedule extends Component {
         ]
     };
     render() {
-
+        //Function that stores all the days and all the 
+        //events that are scheduled for the day in a table format
         const listSchedule = this.state.schedule.map(sched => (
             <React.Fragment key={sched.day}>
                 <tr >

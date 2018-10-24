@@ -1,26 +1,25 @@
-import React, { Component } from "react";
+//Newscard component that displays the data
+import React from "react";
 
-class NewsCard extends Component {
-    state = {
-    };
-    render() {
-        return (
-            <div className="col-md-4 newsDiv">
-                <div className="imgNewsDiv">
-                    <img
-                        className="thumbNewsImg"
-                        src={this.props.img}
-                        alt="newsimg"
-                    />
-                    <p className="dateOnNewsImg">{this.props.date}</p>
-                </div>
-                <div className="textNewsDiv">
-                    <h4>{this.props.title}</h4>
-                    <p>{this.props.txt}</p>
-                </div>
+const NewsCard = (props) => {
+
+    return (
+        <div className="col-md-4 newsDiv">
+            <div className="imgNewsDiv">
+                <img
+                    className="thumbNewsImg"
+                    src={props.img}
+                    alt="newsimg"
+                />
+                <p className="dateOnNewsImg">{props.date}</p>
             </div>
-        );
-    }
+            <div className="textNewsDiv">
+                <h5>{props.title}</h5>
+                <p>{props.txt}</p>
+            </div>
+        </div>
+    );
 }
+
 
 export default NewsCard;
