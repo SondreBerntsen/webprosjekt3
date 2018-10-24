@@ -202,6 +202,7 @@ class About extends Component {
           </li>
         );
       }
+      return publicCollaborators;
     });
 
     /* the constant "localCollaborators" iterates through the 
@@ -217,6 +218,7 @@ class About extends Component {
           </li>
         );
       }
+      return localCollaborators;
     });
 
     return (
