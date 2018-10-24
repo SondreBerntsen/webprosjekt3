@@ -1,6 +1,8 @@
 import React from "react";
 import Navbar from "../Navbar";
-import Artists from "../Artists";
+import EventList from "../EventList";
+import HomeSchedule from "./HomeSchedule";
+import "../../styles/home.css";
 
 const Home = () => {
   return (
@@ -10,7 +12,8 @@ const Home = () => {
         <h4 className="center">Home</h4>
         <p>this is home page</p>
         <div className="row">
-          <Artists />
+          <div className="col-3"><HomeSchedule /></div>
+          <div className="col-9"><div className="row"><EventList /></div></div>
         </div>
       </div>
     </div>

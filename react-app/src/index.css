@@ -29,22 +29,5 @@ body {
     font-weight: bold;
     text-decoration: underline;
   }
-  .artistDiv {
-    background-color: pink;
-    height: 200px;
-    position: relative;
-  }
-  .thumbArtist {
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
-  }
-  .artistName {
-    position: absolute;
-    bottom: 8px;
-    left: 16px;
-  }
-  .artistDiv:hover {
-    opacity: 0.5;
-  }
+ 
   

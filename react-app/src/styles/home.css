@@ -1,3 +1,67 @@
-body{
-    margin: 0%;
+.artistDiv {
+    height: 200px;
+    position: relative;
+    margin-top: 20px;
+  }
+
+  .thumbArtist {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    display: block;
+  }
+  .artistName {
+    position: absolute;
+    bottom: 8px;
+    left: 24px;
+    color:white;
+    font-size: 20px;
+  }
+  .overlay {
+    position: absolute;
+    top: 0;
+    left:0;
+    height: 100%;
+    width: 100%;
+    opacity: 0.4;
+    border-radius: 15px;
+    background-color: #ab87ad;
+  }
+
+  .shortDescr{
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-30%, -50%);
+    color:white;
+    font-size: 14px;
+  }
+  .buyTicketsBtn{
+      width: 100%;
+      font-size: 22px;
+      margin-top: 20px;
+  }
+th{
+    background-color: lightgray;  
+    padding: 5px;
+}
+td, th{
+    padding-left: 10px;
+}
+td{
+    background-color:rgba(224, 218, 223, 0.315);
+}
+td:hover{
+    background-color:rgb(236, 219, 236);
+    padding: 5px;
+    cursor: pointer;
+}
+.tableSchedule{
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    border-radius: 15px;
+    overflow: hidden;
+    
+    
 }
