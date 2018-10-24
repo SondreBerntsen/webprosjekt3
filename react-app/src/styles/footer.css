@@ -5,9 +5,10 @@ div.footer {
 footer {
   height: 55px;
   bottom: 0;
-  position: relative;
+  position: absolute;
   background-color: #c089c4;
   padding: 10px 0px 10px 0px;
+  width: 100%;
 }
 
 p {
