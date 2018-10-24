@@ -47,12 +47,20 @@ class Contact extends Component {
         <Navbar />
         <div className="row">
           <div className="container">
-            <ContactPersons contactpersons={this.state.contactPersons} />
+            <div className="col-7 headerText">
+              <h2>Ta gjerne kontakt med oss om du lurer på noe</h2>
+              <hr />
+            </div>
             <ContactForm />
+            <ContactPersons contactpersons={this.state.contactPersons} />
           </div>
         </div>
         <div className="contactInfo row">
           <div className="col-6 offset-3">
+            <p className=" px-3 py-2 rounded text-dark mb-2 d-inline-block">
+              <i className="fa fa-map-marker" />
+            </p>
+
             <p>
               {contact.name}, {contact.organization}, {contact.adress},{" "}
               {contact.building}, {contact.postAdress}, {contact.postAdressName}
