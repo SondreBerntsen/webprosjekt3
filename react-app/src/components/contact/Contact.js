@@ -6,7 +6,7 @@ import "../../styles/contact.css";
 
 class Contact extends Component {
   state = {
-    contact: {
+    contactAdress: {
       name: "Drammen Sacred Music Festival",
       organization: "c/o DOTL",
       adress: "Solsvingen 90",
@@ -38,33 +38,34 @@ class Contact extends Component {
   render() {
     // console.log(this.state.contactPersons);
     // destructuring
-    const { contact } = this.state;
+    const { contactAdress } = this.state;
 
     /*  ContactPersons sends the state as props to our 
         child component "ContactPersons.js. */
     return (
       <div>
         <Navbar />
-        <div className="row">
+        <div className="contact row">
           <div className="container">
-            <div className="col-7 headerText">
+            <div className="contact-header-text col-7">
               <h2>Ta gjerne kontakt med oss om du lurer på noe</h2>
               <hr />
             </div>
             <ContactForm />
             <ContactPersons contactpersons={this.state.contactPersons} />
           </div>
-        </div>
-        <div className="contactInfo row">
-          <div className="col-6 offset-3">
-            <p className=" px-3 py-2 rounded text-dark mb-2 d-inline-block">
-              <i className="fa fa-map-marker" />
-            </p>
+          <div className="col-12">
+            <div className="contact-adress">
+              <span className="px-3 text-dark d-inline-block">
+                <i className="fa fa-map-marker" />
+              </span>
 
-            <p>
-              {contact.name}, {contact.organization}, {contact.adress},{" "}
-              {contact.building}, {contact.postAdress}, {contact.postAdressName}
-            </p>
+              <p>
+                {contactAdress.name}, {contactAdress.organization},{" "}
+                {contactAdress.adress}, {contactAdress.building},{" "}
+                {contactAdress.postAdress}, {contactAdress.postAdressName}
+              </p>
+            </div>
           </div>
         </div>
       </div>
