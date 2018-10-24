@@ -70,6 +70,7 @@ class Programme extends Component {
         <Navbar />
         <div className="container">
           <h4 className="center">program</h4>
+          HORIZONTAL LIST OF DAYS GOES HERE
           {/* Passes days array as props to ProgrammeSchedule */}
           <ProgrammeSchedule days={this.state.days} />
         </div>
@@ -77,6 +78,6 @@ class Programme extends Component {
   
     );
   }
-};
+}
 
 export default Programme;

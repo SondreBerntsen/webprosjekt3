@@ -16,11 +16,10 @@ const ProgrammeSchedule = (props) => {
         ))
       }
     </div>
-  ));
+  ))
   return ( 
     days
-  );
-  
+  )
 }
  
 export default ProgrammeSchedule;
