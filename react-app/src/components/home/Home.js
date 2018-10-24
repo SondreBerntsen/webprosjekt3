@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../Navbar";
 import EventList from "../EventList";
 import HomeSchedule from "./HomeSchedule";
+import NewsCards from "../NewsCards";
 import "../../styles/home.css";
 
 const Home = () => {
@@ -9,11 +10,17 @@ const Home = () => {
     <div>
       <Navbar />
       <div className="container">
-        <h4 className="center">Home</h4>
-        <p>this is home page</p>
+        <div className="shortHomeTxt col-md-8">
+          <p>Drammen Sacred Music Festival bygger broer gjennom kulturopplevelser, hvor lokale, nasjonale og internasjonale aktører fyller programmet med kunst og musikk.</p>
+          <p className="boldTxt">&#x0266A; &#9835; Bli med og la deg berøre! &#x0266A; &#9835;</p>
+        </div>
         <div className="row">
-          <div className="col-3"><HomeSchedule /></div>
-          <div className="col-9"><div className="row"><EventList /></div></div>
+          <div className="col-md-3"><HomeSchedule /></div>
+          <div className="col-md-9"><div className="row"><EventList /></div></div>
+        </div>
+        <div>
+          <h2 className="newsTitle">Nyheter</h2>
+          <div className="row"><NewsCards /></div>
         </div>
       </div>
     </div>
