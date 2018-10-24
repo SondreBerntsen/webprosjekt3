@@ -1,7 +1,6 @@
 import React from 'react';
 
 const MinEventCard = (props) => {
-  console.log(props);
   return (  
     <div className="card">
       <div className="card-body">

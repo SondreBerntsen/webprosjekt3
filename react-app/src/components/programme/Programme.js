@@ -3,6 +3,7 @@ import Navbar from "../Navbar";
 import ProgrammeSchedule from "./ProgrammeSchedule";
 
 class Programme extends Component {
+  //Temporary state while we figure out what to do with redux
   state = {
     days: [
       { id: 1,
@@ -69,6 +70,7 @@ class Programme extends Component {
         <Navbar />
         <div className="container">
           <h4 className="center">program</h4>
+          {/* Passes days array as props to ProgrammeSchedule */}
           <ProgrammeSchedule days={this.state.days} />
         </div>
       </div>
