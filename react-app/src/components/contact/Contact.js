@@ -47,24 +47,23 @@ class Contact extends Component {
         <Navbar />
         <div className="contact row">
           <div className="container">
-            <div className="contact-header-text col-7">
+            <div className="contact-header-text col-sm-12 col-lg-7">
               <h2>Ta gjerne kontakt med oss om du lurer på noe</h2>
               <hr />
             </div>
             <ContactForm />
             <ContactPersons contactpersons={this.state.contactPersons} />
           </div>
-          <div className="col-12">
+          <div className="col-sm-12 col-lg-12">
             <div className="contact-adress">
-              <span className="px-3 text-dark d-inline-block">
-                <i className="fa fa-map-marker" />
-              </span>
-
-              <p>
-                {contactAdress.name}, {contactAdress.organization},{" "}
-                {contactAdress.adress}, {contactAdress.building},{" "}
-                {contactAdress.postAdress}, {contactAdress.postAdressName}
-              </p>
+              <div className="px-3 text-dark ">
+                <i className="fa fa-map-marker d-inline-block" />
+                <p className="text-justify">
+                  {contactAdress.name}, {contactAdress.organization},{" "}
+                  {contactAdress.adress}, {contactAdress.building},{" "}
+                  {contactAdress.postAdress}, {contactAdress.postAdressName}
+                </p>
+              </div>
             </div>
           </div>
         </div>
