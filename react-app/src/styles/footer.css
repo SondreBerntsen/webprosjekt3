@@ -5,7 +5,8 @@ div.footer {
 footer {
   height: 55px;
   bottom: 0;
-  position: absolute;
+  position: static;
+  margin-top: 25px;
   background-color: #c089c4;
   padding: 10px 0px 10px 0px;
   width: 100%;
