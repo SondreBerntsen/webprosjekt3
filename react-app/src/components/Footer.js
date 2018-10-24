@@ -40,7 +40,7 @@ class Footer extends Component {
     // returning the templates sequentially
     return (
       <footer className="footer row">
-        <div className="col-12 offset-2">
+        <div className="col-8 offset-2">
           <span>Følg oss: </span>
           {socialMediaList}
         </div>

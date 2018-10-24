@@ -24,3 +24,8 @@ img.card-img-top:hover {
   -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
   filter: grayscale(0%);
 }
+
+.row {
+  margin-right: 0px;
+  margin-left: 0px;
+}
