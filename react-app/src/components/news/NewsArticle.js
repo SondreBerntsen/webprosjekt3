@@ -8,9 +8,9 @@ class NewsArticle extends Component {
     state = {
         id: null,
         article: {
-            newsTitle: 'something',
-            newsImg: 'something',
-            newsText: 'blablalba'
+            newsTitle: 'Kitten in trouble',
+            newsImg: "https://content.linkedin.com/content/dam/business/talent-solutions/global/en_us/blog/2018/01/unexpected-interview-question-new.jpg",
+            newsText: 'blablalbahoh'
         }
     }
     componentDidMount() {
@@ -22,7 +22,11 @@ class NewsArticle extends Component {
     render() {
         const article = this.state.article ? (
             <div className="container">
-                <p>news</p>
+                <h2>{this.state.article.newsTitle}</h2>
+                <div className="newsImgDiv">
+                    <img src={this.state.article.newsImg} alt="cat" className="imgNewsArticle" />
+                </div>
+                <p>{this.state.article.newsText}</p>
             </div>
         ) : (
                 <div>Error melding her.. video 31</div>
