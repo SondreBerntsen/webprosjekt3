@@ -8,12 +8,13 @@ import News from "./components/news/News";
 import Review from "./components/review/review";
 import Contact from "./components/contact/Contact";
 import Event from "./components/event/Event";
+import NewsArticle from "./components/news/NewsArticle";
 import Footer from "./components/Footer";
 
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
+      <BrowserRouter >
         <div className="App">
           <Route exact path="/" component={Home} />
           <Route path="/om-oss" component={About} />
@@ -22,6 +23,7 @@ class App extends Component {
           <Route path="/kontakt" component={Contact} />
           <Route path="/program" component={Programme} />
           <Route path="/arrangement/:eventId" component={Event} />
+          <Route path="/artikkel/:newsId" component={NewsArticle} />
           <Footer />
         </div>
       </BrowserRouter>

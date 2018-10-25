@@ -100,6 +100,9 @@ td:hover{
  
 
 /*****News List*****/
+.linkArticle:hover{
+    text-decoration: none;
+}
 .newsSection{
     width: 100%;
     min-width: 0;
@@ -129,6 +132,7 @@ td:hover{
 .textNewsDiv{
     background-color:rgba(224, 218, 223, 0.315);
     padding: 10px;
+    color:black;
 }
 .dateOnNewsImg{
     position: absolute;
