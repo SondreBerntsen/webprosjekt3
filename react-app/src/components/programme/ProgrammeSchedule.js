@@ -4,9 +4,9 @@ import MinEventCard from './MinEventCard';
 const ProgrammeSchedule = (props) => {
 
   // Loots days array from props and maps each individual day to a card div
-  const days = props.days.map(day =>(
+  const days = props.days.map(day => (
     <div key={day.id} className="day_card container">
-      <h1>{day.day}</h1>
+      <h4>{day.day} 'dato'</h4>
       { // Loots events array from day object and maps each individual event to a MinEventCard component
         day.events.map(event => (
           <React.Fragment key={event.id}>
@@ -17,9 +17,9 @@ const ProgrammeSchedule = (props) => {
       }
     </div>
   ))
-  return ( 
+  return (
     days
   )
 }
- 
+
 export default ProgrammeSchedule;

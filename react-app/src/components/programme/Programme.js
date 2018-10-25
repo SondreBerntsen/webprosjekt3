@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import Navbar from "../Navbar";
 import ListOfDays from "./ListOfDays";
 import ProgrammeSchedule from "./ProgrammeSchedule";
@@ -7,11 +7,12 @@ class Programme extends Component {
   //Temporary state while we figure out what to do with redux
   state = {
     days: [
-      { id: 1,
+      {
+        id: 1,
         date: 21.09,
         day: "Mandag",
         events: [
-          { 
+          {
             id: 1,
             title: "Ronny og Ronny",
             venue: "Scene 1",
@@ -34,7 +35,7 @@ class Programme extends Component {
           }
         ]
       },
-      { 
+      {
         id: 2,
         date: 21.09,
         day: "Tirsdag",
@@ -65,18 +66,18 @@ class Programme extends Component {
     ]
   }
 
-  render(){
+  render() {
     return (
       <div>
         <Navbar />
         <div className="container">
-          <h4 className="center">program</h4>
+          <h1 className="headingProg">Program</h1>
           <ListOfDays days={this.state.days} />
           {/* Passes days array as props to ProgrammeSchedule */}
           <ProgrammeSchedule days={this.state.days} />
         </div>
       </div>
-  
+
     );
   }
 }

@@ -24,7 +24,7 @@ class App extends Component {
           <Route path="/program" component={Programme} />
           <Route path="/arrangement/:eventId" component={Event} />
           <Route path="/artikkel/:newsId" component={NewsArticle} />
-          <Footer />
+
         </div>
       </BrowserRouter>
     );

@@ -1,7 +1,53 @@
-event{
+/*****Front page program*****/
+.headingProg{
+  text-align: center;
+  margin-top: 50px;
+}
+/*****Event card with info*****/
+.day_card{
+  margin-bottom:50px;
+}
+.event{
   border: 1px solid grey;
   border-radius: 4px;
+  padding-top:5px;
+  padding-bottom:5px;
+  margin-top:10px;
+  margin-bottom:10px;
 }
-event_title, venue_name{
-  display: block;
+.event_title, venue_name{
+  margin:0;
+}
+.event_title{
+  font-weight: bold;
+}
+.venue_name{
+  font-size: 14px;
+  margin-bottom: 0;
+}
+.infoBtn, .buy_ticketBtn{
+  width: 100%;
+}
+.price{
+  color:green;
+}
+.infoEvent{
+  margin-top:3px;
+}
+/****horizontal days*****/
+.horizontal_days{
+  border-top:1px solid gray;
+  border-bottom:1px solid gray;
+  margin-bottom: 50px;
+  margin-top: 25px;
+}
+.horizontal_list_item{
+  padding:5px;
+  margin-left:10px;
+  padding-bottom:0;
+  margin-bottom:3px;
+}
+.horizontal_list_item:hover{
+  font-weight: bold;
+  cursor:pointer;
 }
