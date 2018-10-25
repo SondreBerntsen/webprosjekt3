@@ -1,0 +1,7 @@
+event{
+  border: 1px solid grey;
+  border-radius: 4px;
+}
+event_title, venue_name{
+  display: block;
+}

@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 import Navbar from "../Navbar";
+import ListOfDays from "./ListOfDays";
 import ProgrammeSchedule from "./ProgrammeSchedule";
-
+import "../../styles/programme.css";
 class Programme extends Component {
   //Temporary state while we figure out what to do with redux
   state = {
@@ -70,7 +71,7 @@ class Programme extends Component {
         <Navbar />
         <div className="container">
           <h4 className="center">program</h4>
-          HORIZONTAL LIST OF DAYS GOES HERE
+          <ListOfDays days={this.state.days} />
           {/* Passes days array as props to ProgrammeSchedule */}
           <ProgrammeSchedule days={this.state.days} />
         </div>
