@@ -29,5 +29,16 @@ body {
     font-weight: bold;
     text-decoration: underline;
   }
- 
-  
+ .linkYear{
+   text-align: center;
+   font-size: 18px;
+   font-weight: bold;
+   color:#562482;
+ }
+ .linkYear:hover{
+  font-size: 20px;
+ }
+ .linkYear:active{
+  background-color: white;
+  color:black;
+ }
