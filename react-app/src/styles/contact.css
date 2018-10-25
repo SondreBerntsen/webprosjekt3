@@ -1,13 +1,5 @@
-.row {
-  margin-right: 0px;
-  margin-left: 0px;
-}
-
-.contact-list,
-.contact-person,
-.contact-header-text,
-.contactfprm {
-  display: inline-block;
+html {
+  font-size: 16px;
 }
 
 h3,
@@ -18,13 +10,13 @@ input {
   font-family: "Open Sans", sans-serif;
 }
 
-.contact-header-text {
+.contact-title {
   margin-top: 50px;
   padding: 0px 20px 5px 30px;
 }
 
-.contact-header-text h2 {
-  font-size: 27px;
+.contact-title h2 {
+  font-size: 1.7rem;
 }
 .contact-person {
   margin-top: 10px;
@@ -39,29 +31,27 @@ input {
   margin: 0 auto;
 }
 .contact-adress p {
-  font-size: 18px;
+  font-size: 1.2rem;
 }
 .contact-adress i {
-  font-size: 28px;
+  font-size: 1.7rem;
 }
 .contact-form {
-  float: right;
   top: 50px;
 }
 .card.contact-form-card {
   width: 24rem;
 }
-p.contact-form-header-small-text {
-  font-size: 10px;
+p.contact-form-header-text {
+  font-size: 0.6rem;
 }
 
 textarea.form-control {
   height: 140px;
-  important: !;
 }
 
 .list-group-item p {
-  font-size: 14px;
+  font-size: 0.9rem;
 }
 
 img.contact-card-img {
@@ -79,3 +69,49 @@ img.contact-card-img:hover {
 }
 
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css");
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .container {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  .contact-header-text {
+    padding: 0px 15px 0px 15px;
+  }
+  .contact-form {
+    padding: 0;
+    margin-bottom: 50px;
+  }
+  .contact-form-content {
+    padding: 0;
+  }
+  .contact-form-short-text {
+    margin: 0;
+  }
+  .card.contact-form-card {
+    width: 100%;
+  }
+  .contact-person {
+    padding: 0;
+  }
+  .card.contact-person-card {
+    width: 100%;
+  }
+  .contact-adress {
+    margin: 0;
+    width: 100%;
+  }
+  .contact-adress i {
+    font-size: 1.4rem;
+    width: 50%;
+    margin: 0 auto;
+    padding-bottom: 5px;
+  }
+  .contact-adress p {
+    font-size: 0.8rem;
+    width: 100%;
+    margin: 0 auto;
+  }
+}

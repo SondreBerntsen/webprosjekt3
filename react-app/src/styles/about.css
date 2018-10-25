@@ -4,16 +4,37 @@ div {
 }
 
 h2.title {
-  margin: 25px 0px 25px 0px;
+  margin: 35px 0px 25px 0px;
+  font-size: 40px;
+  font-family: "Open Sans", sans-serif;
 }
 
 h4 {
   margin: 15px 0px 15px 0px;
+  font-family: "Open Sans", sans-serif;
+}
+.textblock p {
+  font-family: "Merriweather", serif;
 }
 
-.textblock {
-  border: 1.4px solid grey;
-  padding: 15px;
-  margin: 15px 0px 15px 0px;
-  border-radius: 5px;
+.about-title {
+  padding: 0px;
+  margin: 15px 0px 40px 0px;
+}
+
+li {
+  list-style: none;
+}
+
+.textblock i {
+  padding: 5px 15px 5px 0px;
+  font-size: 7px;
+}
+
+ul {
+  padding-left: 25px;
+}
+
+ul li {
+  font-size: 14px;
 }

@@ -9,7 +9,10 @@ const ContactList = ({ contactpersons }) => {
       and outputs the properties we want as a template */
   const contactList = contactpersons.map(contact => {
     return (
-      <div className="contact-person col-6" key={contact.id}>
+      <div
+        className="contact-person col-sm-12 col-lg-6 d-inline-block"
+        key={contact.id}
+      >
         <div className="card contact-person-card">
           <img className="contact-card-img" src={contact.image} alt="img" />
           <div className="card-body">
@@ -35,7 +38,11 @@ const ContactList = ({ contactpersons }) => {
     );
   });
   // returning the templates sequentially
-  return <div className="contact-list col-7">{contactList}</div>;
+  return (
+    <div className="contact-list col-sm-12 col-lg-7 d-inline-block">
+      {contactList}
+    </div>
+  );
 };
 
 export default ContactList;

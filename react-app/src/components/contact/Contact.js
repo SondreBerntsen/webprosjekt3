@@ -45,26 +45,25 @@ class Contact extends Component {
     return (
       <div>
         <Navbar />
-        <div className="contact row">
+        <div className="contact row mx-0">
           <div className="container">
-            <div className="contact-header-text col-7">
+            <div className="contact-title col-sm-12 col-lg-7 d-inline-block">
               <h2>Ta gjerne kontakt med oss om du lurer på noe</h2>
               <hr />
             </div>
             <ContactForm />
             <ContactPersons contactpersons={this.state.contactPersons} />
           </div>
-          <div className="col-12">
+          <div className="col-sm-12 col-lg-12">
             <div className="contact-adress">
-              <span className="px-3 text-dark d-inline-block">
-                <i className="fa fa-map-marker" />
-              </span>
-
-              <p>
-                {contactAdress.name}, {contactAdress.organization},{" "}
-                {contactAdress.adress}, {contactAdress.building},{" "}
-                {contactAdress.postAdress}, {contactAdress.postAdressName}
-              </p>
+              <div className="px-3 text-dark ">
+                <i className="fa fa-map-marker d-inline-block float-right float-md-none " />
+                <p className="text-justify">
+                  {contactAdress.name}, {contactAdress.organization},{" "}
+                  {contactAdress.adress}, {contactAdress.building},{" "}
+                  {contactAdress.postAdress}, {contactAdress.postAdressName}
+                </p>
+              </div>
             </div>
           </div>
         </div>

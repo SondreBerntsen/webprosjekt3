@@ -29,7 +29,7 @@ class Footer extends Component {
     //console.log({ socialMedias });
     const socialMediaList = socialMedias.map(media => {
       return (
-        <div className="footer" key={media.name}>
+        <div className="footer position-static" key={media.name}>
           <img className="socialMediaImg" src={media.img} alt="img" />
           <p>
             <a href={media.link}>{media.name}</a>

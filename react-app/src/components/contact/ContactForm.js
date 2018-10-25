@@ -4,9 +4,9 @@ import "../../styles/contact.css";
 class ContactForm extends Component {
   render() {
     return (
-      <div className="contact-form col-5">
-        <div className="row">
-          <div className="col-lg-5 mb-4">
+      <div className="contact-form col-sm-12 col-lg-5 float-right d-inline-block">
+        <div className="row mx-0">
+          <div className="contact-form-content col-sm-12 col-lg-5 mb-4">
             <div className="card contact-form-card border-muted rounded-2">
               <div className="p-0">
                 <div className="bg-muted text-dark text-center py-2">
@@ -19,7 +19,7 @@ class ContactForm extends Component {
                       svar på noe med en gang ikke nøl med å ringe oss!
                     </small>
                   </h6>
-                  <p className="contact-form-header-small-text blockquote-footer m-2">
+                  <p className="contact-form-header-text blockquote-footer m-2">
                     Fyll inn formen under for å sende oss en epost.
                   </p>
                 </div>
