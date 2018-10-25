@@ -71,7 +71,7 @@ class EventList extends Component {
   };
   render() {
     return this.state.artists.map(artist => (
-      <EventCard key={artist.id} artistName={artist.name} artistImg={artist.img} />
+      <EventCard key={artist.id} artistName={artist.name} artistImg={artist.img} artistId={artist.id} />
     ));
   }
 }
