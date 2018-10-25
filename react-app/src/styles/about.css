@@ -9,24 +9,103 @@ h2.title {
   font-family: "Open Sans", sans-serif;
 }
 
+.about-vision p,
+.about-collab p,
+.about-organization p,
+.about-reports p {
+  font-family: "Merriweather", serif;
+}
+
+.reports-eng {
+  float: right;
+  border-left: 1px solid #2f2f2f2b;
+}
+
+.reports-flag {
+  width: 30px;
+  padding: 3px;
+  height: 20px;
+}
+
+.reports-eng a,
+.reports-nor a {
+  color: black;
+}
+
+.reports-eng h6,
+.reports-nor h6 {
+  display: inline-block;
+}
+
+.reports-eng ul,
+.reports-nor ul {
+  padding: 0;
+}
+
+.reports-eng i,
+.reports-nor i {
+  padding-right: 15px;
+  padding-left: 5px;
+  color: grey;
+  font-size: 14px;
+}
+
+.reports-eng li,
+.reports-nor li {
+  padding: 3px 0px 3px 0px;
+}
+
+.reports-eng li:hover,
+.reports-nor li:hover {
+}
+
+.reports-eng a:hover,
+.reports-nor a:hover {
+}
+
+.reports-eng-descr,
+.reports-nor-descr {
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+
+.reports-eng,
+.reports-nor {
+  display: inline-block;
+  background-color: #6d6d6d0f;
+  margin-bottom: 50px;
+}
 h4 {
   margin: 15px 0px 15px 0px;
   font-family: "Open Sans", sans-serif;
 }
-.textblock p {
-  font-family: "Merriweather", serif;
-}
 
-.about-title {
+.title {
   padding: 0px;
-  margin: 15px 0px 40px 0px;
+  margin: 15px 0px 0px 0px;
 }
 
 li {
   list-style: none;
 }
+.about-collab-public {
+  float: left;
+  background-color: #6d6d6d0f;
+}
 
-.textblock i {
+.about-collab-local {
+  background-color: #6d6d6d0f;
+  border-left: 1px solid #2f2f2f2b;
+}
+
+.about-collab-local,
+.about-collab-public {
+  display: inline-block;
+  padding: 15px;
+}
+
+.about-collab-public i,
+.about-collab-local i {
   padding: 5px 15px 5px 0px;
   font-size: 7px;
 }
@@ -37,4 +116,16 @@ ul {
 
 ul li {
   font-size: 14px;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .container {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  .row {
+    margin: 0;
+  }
 }

@@ -178,17 +178,6 @@ class About extends Component {
   };
 
   render() {
-    /*  the constant "reports" iterates through the reports 
-        and outputs each report as a list element */
-    const reports = this.state.reports.map(report => (
-      <li key={report.id}>
-        <a href={report.link} target="_blank" rel="noopener noreferrer">
-          {report.name}
-        </a>
-        _{report.language}
-      </li>
-    ));
-
     /*  the constant "publicCollaborators" iterates through the 
         collaborators and outputs each collaborator that has a 
         type equal to "public" as a list element */
@@ -222,16 +211,46 @@ class About extends Component {
       }
       return localCollaborators;
     });
+    /* the constant "reportsNor" iterates through the 
+      reports and outputs each report that has language 
+      set to "norsk" as a list element */
+    const reportsNor = this.state.reports.map(function(report) {
+      if (report.language === "norsk") {
+        return (
+          <li key={report.id}>
+            <a href={report.link} target="_blank" rel="noopener noreferrer">
+              <i className="fas fa-link" />
+              {report.name}
+            </a>
+          </li>
+        );
+      }
+      return reportsNor;
+    });
+    /* the constant "reportsEng" iterates through the 
+      reports and outputs each report that has language 
+      set to "english" as a list element */
+    const reportsEng = this.state.reports.map(function(report) {
+      if (report.language === "english") {
+        return (
+          <li key={report.id}>
+            <a href={report.link} target="_blank" rel="noopener noreferrer">
+              <i className="fas fa-link" />
+              {report.name}
+            </a>
+          </li>
+        );
+      }
+      return reportsEng;
+    });
 
     return (
       <div>
         <Navbar />
         <div className="container">
-          <div classNme="row">
-            <div className="about-title">
-              <h2 className="center title">Om festivalen</h2> <hr />
-            </div>
-            <div className="textblock">
+          <h2 className="center title">Om festivalen</h2> <hr />
+          <div className="row">
+            <div className="about-vision col-12">
               <h4>Visjon</h4>
               <p>{this.state.aboutFestival.vision}</p>
               <p>
@@ -239,22 +258,52 @@ class About extends Component {
               </p>
               <hr />
             </div>
-            <div className="textblock">
-              <h4>Samarbeidspartnere</h4>
-              <p>{this.state.aboutFestival.collabPublicDescr}</p>
-              <ul>{publicCollaborators}</ul>
-              <p>{this.state.aboutFestival.collabLocalDescr}</p>
-              <ul>{localCollaborators}</ul>
+          </div>
+          <div className="about-collab">
+            <h4>Samarbeidspartnere</h4>
+            <div className="row">
+              <div className="about-collab-public col-sm-12 col-md-6">
+                <p>{this.state.aboutFestival.collabPublicDescr}</p>
+
+                <ul>{publicCollaborators}</ul>
+              </div>
+              <div className="about-collab-local col-sm-12 col-md-6">
+                <p>{this.state.aboutFestival.collabLocalDescr}</p>
+                <ul>{localCollaborators}</ul>
+              </div>
               <hr />
             </div>
-            <div className="textblock">
+          </div>
+          <div className="row">
+            <div className="about-organization col-12">
               <h4>Organisering</h4>
               <p>{this.state.aboutFestival.organization}</p>
               <hr />
             </div>
-            <div className="textblock">
+          </div>
+          <div className="aboutReports row">
+            <div className="about-reports col-12">
               <h4>Rapporter fra tidligere festivaler</h4>
-              <ul>{reports}</ul>
+            </div>
+          </div>
+          <div className="row">
+            <div className="reports-nor col-sm-12 col-md-6">
+              <h6 className="reports-nor-descr">Norske rapporter</h6>{" "}
+              <img
+                alt="norwegian_flag"
+                className="reports-flag"
+                src="http://flags.fmcdn.net/data/flags/w580/no.png"
+              />
+              <ul>{reportsNor}</ul>
+            </div>
+            <div className="reports-eng col-sm-12 col-md-6">
+              <h6 className="reports-eng-descr">Reports in english</h6>{" "}
+              <img
+                alt="norwegian_flag"
+                className="reports-flag"
+                src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Flag_of_Great_Britain_%28English_version%29.png"
+              />
+              <ul>{reportsEng}</ul>
             </div>
           </div>
         </div>

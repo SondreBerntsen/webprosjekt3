@@ -31,10 +31,12 @@ input {
   margin: 0 auto;
 }
 .contact-adress p {
-  font-size: 1.2rem;
+  font-size: 1rem;
+  display: inline-block;
 }
 .contact-adress i {
-  font-size: 1.7rem;
+  font-size: 1.5rem;
+  float: left;
 }
 .contact-form {
   top: 50px;
@@ -52,6 +54,7 @@ textarea.form-control {
 
 .list-group-item p {
   font-size: 0.9rem;
+  display: inline-block;
 }
 
 img.contact-card-img {
