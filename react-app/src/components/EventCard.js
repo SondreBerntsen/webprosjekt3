@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 
 class EventCard extends Component {
   render() {
     return (
       <div className="col-sm-4">
-        <a href="arrangement/1">
+        <Link to={'/arrangement/' + this.props.artistId}>
           <div
             onMouseOver={this.mouseOverImg.bind(this)}
             onMouseOut={this.mouseOutImg.bind(this)}
@@ -23,7 +24,7 @@ class EventCard extends Component {
               </h4>
             </div>
           </div>
-        </a>
+        </Link>
       </div >
     );
   }

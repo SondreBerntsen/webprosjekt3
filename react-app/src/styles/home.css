@@ -100,9 +100,13 @@ td:hover{
  
 
 /*****News List*****/
-
+.newsSection{
+    width: 100%;
+    min-width: 0;
+    margin-top: 50px;
+}
 .newsDiv{
-    height: 350px;
+    height: 400px;
     position: relative;
     margin-top: 20px;
     
@@ -124,7 +128,7 @@ td:hover{
 }
 .textNewsDiv{
     background-color:rgba(224, 218, 223, 0.315);
-    padding:10px;
+    padding: 10px;
 }
 .dateOnNewsImg{
     position: absolute;

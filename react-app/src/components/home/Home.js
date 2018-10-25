@@ -21,7 +21,10 @@ const Home = () => {
           <div className="col-md-3"><HomeSchedule /></div>
           <div className="col-md-9"><div className="row"><EventList /></div></div>
         </div>
-        <div>
+
+      </div>
+      <div className="newsSection">
+        <div className="container">
           <h2 className="newsTitle">Nyheter</h2>
           <div className="row"><NewsCards /></div>
         </div>
