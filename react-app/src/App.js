@@ -9,6 +9,14 @@ import Review from "./components/review/review";
 import Contact from "./components/contact/Contact";
 import Event from "./components/event/Event";
 import NewsArticle from "./components/news/NewsArticle";
+
+// Admin things
+import Admin from "./components/admin/Admin";
+import AdminEvents from "./components/admin/tables/AdminEvents";
+import AdminPosts from './components/admin/tables/AdminPosts';
+import AdminSchedule from './components/admin/tables/AdminSchedule';
+import AdminVenues from './components/admin/tables/AdminVenues';
+
 import Footer from "./components/Footer";
 
 class App extends Component {
@@ -24,6 +32,12 @@ class App extends Component {
           <Route path="/program" component={Programme} />
           <Route path="/arrangement/:eventId" component={Event} />
           <Route path="/artikkel/:newsId" component={NewsArticle} />
+
+          <Route path="/admin" component={Admin} />
+          <Route path="/admin/events" component={AdminEvents} />
+          <Route path="/admin/posts" component={AdminPosts} />
+          <Route path="/admin/schedule" component={AdminSchedule} />
+          <Route path="/admin/venues" component={AdminVenues} />
 
         </div>
       </BrowserRouter>
