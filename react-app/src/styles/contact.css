@@ -2,18 +2,6 @@ html {
   font-size: 16px;
 }
 
-.row {
-  margin-right: 0px;
-  margin-left: 0px;
-}
-
-.contact-list,
-.contact-person,
-.contact-header-text,
-.contactfprm {
-  display: inline-block;
-}
-
 h3,
 h2,
 p,
@@ -22,13 +10,13 @@ input {
   font-family: "Open Sans", sans-serif;
 }
 
-.contact-header-text {
+.contact-title {
   margin-top: 50px;
   padding: 0px 20px 5px 30px;
 }
 
-.contact-header-text h2 {
-  font-size: 1.5rem;
+.contact-title h2 {
+  font-size: 1.7rem;
 }
 .contact-person {
   margin-top: 10px;
@@ -49,19 +37,17 @@ input {
   font-size: 1.7rem;
 }
 .contact-form {
-  float: right;
   top: 50px;
 }
 .card.contact-form-card {
   width: 24rem;
 }
-p.contact-form-header-small-text {
-  font-size: 0.8rem;
+p.contact-form-header-text {
+  font-size: 0.6rem;
 }
 
 textarea.form-control {
   height: 140px;
-  important: !;
 }
 
 .list-group-item p {
@@ -89,9 +75,6 @@ img.contact-card-img:hover {
   .container {
     margin: 0;
     padding: 0;
-    width: 100%;
-  }
-  .contact {
     width: 100%;
   }
   .contact-header-text {
@@ -124,7 +107,6 @@ img.contact-card-img:hover {
     font-size: 1.4rem;
     width: 50%;
     margin: 0 auto;
-    float: right;
     padding-bottom: 5px;
   }
   .contact-adress p {

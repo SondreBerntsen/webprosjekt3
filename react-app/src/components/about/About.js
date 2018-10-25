@@ -198,6 +198,7 @@ class About extends Component {
       if (collaborator.type === "public") {
         return (
           <li key={collaborator.name} collabtype={collaborator.type}>
+            <i className="fas fa-circle" />
             {collaborator.name}
           </li>
         );
@@ -214,6 +215,7 @@ class About extends Component {
       if (collaborator.type === "local") {
         return (
           <li key={collaborator.name} collabtype={collaborator.type}>
+            <i className="far fa-circle" />
             {collaborator.name}
           </li>
         );
@@ -225,30 +227,35 @@ class About extends Component {
       <div>
         <Navbar />
         <div className="container">
-          <div className="textblock">
-            <h2 className="center title">Om festivalen</h2>
-          </div>
-          <div className="textblock">
-            <h4>Visjon</h4>
-            <p>{this.state.aboutFestival.vision}</p>
-            <p>
-              <strong>{this.state.aboutFestival.greeting}</strong>
-            </p>
-          </div>
-          <div className="textblock">
-            <h4>Samarbeidspartnere</h4>
-            <p>{this.state.aboutFestival.collabPublicDescr}</p>
-            <ul>{publicCollaborators}</ul>
-            <p>{this.state.aboutFestival.collabLocalDescr}</p>
-            <ul>{localCollaborators}</ul>
-          </div>
-          <div className="textblock">
-            <h4>Organisering</h4>
-            <p>{this.state.aboutFestival.organization}</p>
-          </div>
-          <div className="textblock">
-            <h4>Rapporter fra tidligere festivaler</h4>
-            <ul>{reports}</ul>
+          <div classNme="row">
+            <div className="about-title">
+              <h2 className="center title">Om festivalen</h2> <hr />
+            </div>
+            <div className="textblock">
+              <h4>Visjon</h4>
+              <p>{this.state.aboutFestival.vision}</p>
+              <p>
+                <strong>{this.state.aboutFestival.greeting}</strong>
+              </p>
+              <hr />
+            </div>
+            <div className="textblock">
+              <h4>Samarbeidspartnere</h4>
+              <p>{this.state.aboutFestival.collabPublicDescr}</p>
+              <ul>{publicCollaborators}</ul>
+              <p>{this.state.aboutFestival.collabLocalDescr}</p>
+              <ul>{localCollaborators}</ul>
+              <hr />
+            </div>
+            <div className="textblock">
+              <h4>Organisering</h4>
+              <p>{this.state.aboutFestival.organization}</p>
+              <hr />
+            </div>
+            <div className="textblock">
+              <h4>Rapporter fra tidligere festivaler</h4>
+              <ul>{reports}</ul>
+            </div>
           </div>
         </div>
       </div>

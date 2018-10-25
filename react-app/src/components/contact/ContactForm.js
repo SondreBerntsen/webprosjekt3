@@ -4,8 +4,8 @@ import "../../styles/contact.css";
 class ContactForm extends Component {
   render() {
     return (
-      <div className="contact-form col-sm-12 col-lg-5">
-        <div className="row">
+      <div className="contact-form col-sm-12 col-lg-5 float-right d-inline-block">
+        <div className="row mx-0">
           <div className="contact-form-content col-sm-12 col-lg-5 mb-4">
             <div className="card contact-form-card border-muted rounded-2">
               <div className="p-0">
