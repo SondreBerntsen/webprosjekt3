@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const NewsCard = (props) => {
 
     return (
-        <div className="col-md-4 newsDiv">
+        <div className="col-sm-6 col-lg-4 newsDiv">
             <Link to={'/artikkel/' + props.id} className="linkArticle">
                 <div>
                     <div className="imgNewsDiv">

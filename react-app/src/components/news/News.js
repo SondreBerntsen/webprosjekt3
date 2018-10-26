@@ -8,9 +8,9 @@ const News = () => {
       <Navbar />
       <div className="container">
         <div className="newsSection">
-          <div className="container">
+          <div className="container mx-auto ">
             <h2 className="newsTitle">Nyheter</h2>
-            <div className="row"><NewsCards /></div>
+            <div className="row "><NewsCards /></div>
           </div>
         </div>
       </div>

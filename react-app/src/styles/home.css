@@ -58,7 +58,9 @@
 }
 
 /*****Artist thumbnail list*****/
-
+#eventsHome{
+    padding-bottom:50px;
+}
 .artistDiv {
     height: 220px;
     position: relative;
@@ -93,3 +95,4 @@
     color:white;
     font-size: 14px;
   }
+  

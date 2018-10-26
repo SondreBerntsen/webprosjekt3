@@ -3,16 +3,13 @@ div.footer {
 }
 
 footer {
-  height: 55px;
+  height: 150px;
   bottom: 0;
-  margin-top: 25px;
-  background-color: #c089c4;
+  background-color:#822a40;
   padding: 10px 0px 10px 0px;
   width: 100%;
-}
-
-p {
-  
+  margin-right:0!important;
+  margin-left:0!important;
 }
 
 img.socialMediaImg {

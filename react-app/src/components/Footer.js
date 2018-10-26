@@ -29,19 +29,17 @@ class Footer extends Component {
     //console.log({ socialMedias });
     const socialMediaList = socialMedias.map(media => {
       return (
-        <div className="footer position-static" key={media.name}>
-          <img className="socialMediaImg" src={media.img} alt="img" />
-          <p>
-            <a href={media.link}>{media.name}</a>
-          </p>
+        <div className="footer col-3 row" key={media.name}>
+          <img className="socialMediaImg " src={media.img} alt="img" />
+          <a className="col-6" href={media.link}>{media.name}</a>
         </div>
       );
     });
     // returning the templates sequentially
     return (
       <footer className="footer row">
-        <div className="col-8 offset-2">
-          <span>Følg oss: </span>
+        <span>Følg oss: </span>
+        <div className="col-8 offset-2 row">
           {socialMediaList}
         </div>
       </footer>
