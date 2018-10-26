@@ -54,14 +54,14 @@ h2.title {
 .reports-nor li {
   padding: 3px 0px 3px 0px;
 }
-
+/**
 .reports-eng li:hover,
 .reports-nor li:hover {
 }
 
 .reports-eng a:hover,
 .reports-nor a:hover {
-}
+}*/
 
 .reports-eng-descr,
 .reports-nor-descr {
