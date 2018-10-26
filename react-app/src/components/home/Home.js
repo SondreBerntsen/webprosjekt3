@@ -13,7 +13,7 @@ const Home = () => {
 
                     <p className="dateHeader">15. - 23. September</p>
                     <div className="row col-md-8 btnHeaderDiv">
-                        <button className="btnHeader btn col-sm-12 col-md-10 col-lg-5">Program</button>
+                        <a href="/program" className="btnHeader btn col-sm-12 col-md-10 col-lg-5">Program</a>
                         <a href="#eventsHome" className="btnHeader btn col-sm-12 col-md-10 col-lg-5">Lineup</a>
                     </div>
                 </div>

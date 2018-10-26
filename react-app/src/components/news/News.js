@@ -7,8 +7,6 @@ const News = () => {
     <div>
       <Navbar />
       <div className="container">
-        <h4 className="center">News</h4>
-        <p>this is news page</p>
         <div className="newsSection">
           <div className="container">
             <h2 className="newsTitle">Nyheter</h2>

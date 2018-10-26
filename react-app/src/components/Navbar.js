@@ -6,6 +6,7 @@ const Navbar = () => {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <img className="logoNav" src={require('../img/logo.png')} alt="logo" />
         <button
           className="navbar-toggler "
           type="button"
