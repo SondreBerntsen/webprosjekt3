@@ -1,7 +1,7 @@
 //news article page
 import React, { Component } from "react";
 import Navbar from "../Navbar";
-import "../../styles/newsArticle.css";
+import "../../styles/news.css";
 
 
 class NewsArticle extends Component {

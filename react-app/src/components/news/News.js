@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../Navbar";
 import NewsCards from "../NewsCards";
-
+import "../../styles/news.css";
 const News = () => {
   return (
     <div>
