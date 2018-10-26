@@ -19,7 +19,6 @@ body {
   }
   .nav-link:hover {
     color: #562482 !important;
-    font-weight: bold;
   }
   .center {
     margin: auto;
@@ -34,9 +33,6 @@ body {
    font-size: 18px;
    font-weight: bold;
    color:#562482;
- }
- .linkYear:hover{
-  font-size: 20px;
  }
  .linkYear:active{
   background-color: white;
