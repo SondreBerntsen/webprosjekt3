@@ -1,4 +1,58 @@
-/*****Home page*****/
+.headerImage{
+     background: url(../img/big_header.jpg);
+     background-attachment: fixed;
+     background-position: center;
+     background-repeat: no-repeat;
+     background-size: 100% 100%;
+     width: 100%;
+     min-height: 100vh;
+     
+}
+.contentHeader{
+    min-height: 300px;
+    min-height:100vh;
+    margin: auto;
+}
+.logoImg{
+    padding-top:80px;
+    display: block;
+    margin:auto;  
+}
+.headerText, .dateHeader{
+    color:white;
+    text-align: center;
+    margin-top:60px;
+    font-size: 18px;
+}
+.headerTextSm{
+    color:white;
+    text-align: center;
+    font-size: 22px;
+}
+.dateHeader{
+    font-size: 30px;
+    font-weight: bold;
+}
+.btnHeader{
+    background-color:  #822a40;
+    color:white;
+    font-size: 24px;
+    margin: auto;
+    border:none;
+}
+.btnHeader:hover{
+    background-color: #e28e6a;
+    color:white;
+    text-decoration: none;
+}
+.btnHeaderDiv{
+    margin: auto;
+    text-align: center;
+}
+
+
+
+/*****Home page***''''''''''''''''''''''''''''''''''''''''''''''''''''''**/
 .headerImgDiv{
     width: 100%;
     height: 300px;
@@ -61,14 +115,13 @@ td:hover{
 /*****Artist thumbnail list*****/
 
 .artistDiv {
-    height: 160px;
+    height: 200px;
     position: relative;
-    margin-top: 20px;
+    margin-top: 30px;
   }
   .thumbArtist {
     width: 100%;
     height: 100%;
-    border-radius: 15px;
     display: block;
   }
   .artistName {
@@ -85,7 +138,6 @@ td:hover{
     height: 100%;
     width: 100%;
     opacity: 0.4;
-    border-radius: 15px;
     background-color: #ab87ad;
   }
   .shortDescr{

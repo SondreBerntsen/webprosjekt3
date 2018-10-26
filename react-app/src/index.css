@@ -2,13 +2,16 @@ body {
     margin: 0;
     padding: 0;
   }
+html{
+  scroll-behavior: smooth;
+}
   
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
       monospace;
   }
   .navbar {
-    background-color: #c089c4 !important;
+    background-color: #822a40 !important;
   }
   .nav-link {
     color: white !important;
@@ -18,13 +21,13 @@ body {
     padding-left: 20px !important;
   }
   .nav-link:hover {
-    color: #562482 !important;
+    color:#e28e6a !important;
   }
-  .center {
-    margin: auto;
+  .navbar-nav{
+    margin-right:60px;
   }
   .nav-link.active {
-    color: #562482 !important;
+    color: #e28e6a !important;
     font-weight: bold;
     text-decoration: underline;
   }
@@ -32,7 +35,7 @@ body {
    text-align: center;
    font-size: 18px;
    font-weight: bold;
-   color:#562482;
+   color:#e28e6a;
  }
  .linkYear:active{
   background-color: white;

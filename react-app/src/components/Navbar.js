@@ -18,7 +18,7 @@ const Navbar = () => {
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav center">
+          <ul className="navbar-nav ml-auto">
             <li className="nav-item">
               <NavLink className="nav-link" exact to="/">
                 Hjem

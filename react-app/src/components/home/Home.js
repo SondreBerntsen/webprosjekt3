@@ -1,36 +1,29 @@
-//Home page
-
 import React from "react";
 import Navbar from "../Navbar";
 import EventList from "../EventList";
-import HomeSchedule from "./HomeSchedule";
-import NewsCards from "../NewsCards";
 import "../../styles/home.css";
 
 const Home = () => {
-  return (
-    <div>
-      <div className="headerImgDiv"></div>
-      <Navbar />
-      <div className="container">
-        <div className="shortHomeTxt col-md-8">
-          <p>Drammen Sacred Music Festival bygger broer gjennom kulturopplevelser, hvor lokale, nasjonale og internasjonale aktører fyller programmet med kunst og musikk.</p>
-          <p className="shortHomeTxtLast">&#x0266A; &#9835; Bli med og la deg berøre! &#x0266A; &#9835;</p>
-        </div>
-        <div className="row">
-          <div className="col-md-3"><HomeSchedule /></div>
-          <div className="col-md-9"><div className="row"><EventList /></div></div>
-        </div>
+    return (
+        <React.Fragment>
+            <Navbar />
+            <div className="headerImage">
+                <div className="container-fluid contentHeader  col-12 col-sm-10 col-lg-8 col-md-8 col-xl-6 ">
+                    <img className="logoImg  col-8 col-sm-6 col-md-6 col-lg-6 col-xl-5" src={require('../../img/logo.png')} />
 
-      </div>
-      <div className="newsSection">
-        <div className="container">
-          <h2 className="newsTitle">Nyheter</h2>
-          <div className="row"><NewsCards /></div>
-        </div>
-      </div>
-    </div>
-  );
+                    <p className="dateHeader">15. - 23. September</p>
+                    <div className="row col-md-8 btnHeaderDiv">
+                        <button className="btnHeader btn col-sm-12 col-md-10 col-lg-5">Program</button>
+                        <a href="#eventsHome" className="btnHeader btn col-sm-12 col-md-10 col-lg-5">Lineup</a>
+                    </div>
+                </div>
+                <div className="container" id="eventsHome">
+                    <div className="row"><EventList /></div>
+                </div>
+            </div>
+        </React.Fragment>
+
+    );
 };
 
 export default Home;
