@@ -31,7 +31,7 @@ const MinEventCard = (props) => {
       </div>
       <div className="col-md-8 infoEvent">
         <div className="row">
-          <p className="time col-md-3">&#128337; {props.event.time}</p>
+          <p className="time col-md-3"><span role="img" aria-label="icon">&#128337;</span> {props.event.time}</p>
           {checkPrice()}
           <div className="col-md-3">
             <button className="btn btn-outline-info infoBtn">Mer info</button>
