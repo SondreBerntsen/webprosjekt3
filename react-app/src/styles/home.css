@@ -6,8 +6,8 @@
      background-size: 100% 100%;
      width: 100%;
      min-height: 100vh;
-     
 }
+
 .contentHeader{
     position:relative;
     min-height: 300px;
@@ -25,13 +25,8 @@
     margin-top:60px;
     font-size: 18px;
 }
-.headerTextSm{
-    color:white;
-    text-align: center;
-    font-size: 22px;
-}
 .dateHeader{
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bold;
 }
 .btnHeader{
@@ -49,12 +44,13 @@
     text-decoration: none;
 }
 .btnHeaderDiv{
-    text-align: center;
-    position: absolute;
+    text-align: center; 
     margin: auto;
-    bottom: 20%;
+    margin-top:10%;
+    /**bottom: 20%;
     left:0;
     right:0;
+    position: absolute;**/
 }
 
 /*****Artist thumbnail list*****/
