@@ -2,6 +2,7 @@
 //mye fix her når database kommer
 import React, { Component } from "react";
 import Navbar from "../Navbar";
+import EventVideo from "./EventVideo";
 import "../../styles/events.css";
 
 
@@ -37,6 +38,7 @@ class Event extends Component {
                 <Navbar />
                 <span> id = {this.state.id}</span>
                 {event}
+                <EventVideo />
             </div>
         )
     }
