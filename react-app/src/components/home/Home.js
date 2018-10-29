@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../Navbar";
 import EventList from "../EventList";
 import "../../styles/home.css";
+import { Link } from "react-router-dom";
 
 const Home = () => {
     return (
@@ -13,7 +14,7 @@ const Home = () => {
                     {/* <p className="headerText">Drammen Sacred Music Festival bygger broer gjennom kulturopplevelser, hvor lokale, nasjonale og internasjonale aktører fyller programmet med kunst og musikk. Bli med og la deg berøre!</p>*/}
                     <p className="dateHeader">15. – 23. September</p>
                     <div className="row col-md-8 btnHeaderDiv">
-                        <a href="/program" className="btnHeader btn col-sm-12 col-md-10 col-lg-5">Program</a>
+                        <Link to="/program" className="btnHeader btn col-sm-12 col-md-10 col-lg-5">Program</Link>
                         <a href="#eventsHome" className="btnHeader btn col-sm-12 col-md-10 col-lg-5">Lineup</a>
                     </div>
                 </div>
