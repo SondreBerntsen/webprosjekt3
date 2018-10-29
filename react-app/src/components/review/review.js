@@ -20,7 +20,7 @@ class Review extends Component {
         caption: "Bitch gettin' told"
       }
     ],
-    body: "There best be paragraph separations here",
+    body: "There best be paragraph separations here. big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text ",
     recordings: [
       {
         id: 1,
@@ -56,6 +56,9 @@ class Review extends Component {
         <div className="container">
           <h4 className="center">Archive</h4>
           <Slider slides={this.state.slides} />
+          <h1>{this.state.year}</h1>
+          {/* We have to regex body output to add paragraphs/headers if we don't do add html tags during input */}
+          <article>{this.state.body}</article>
           <div className="container">
             <EventList />
             <div id="recordingsList">
