@@ -45,8 +45,9 @@ const Navbar = () => {
                 Tilbakeblikk
               </NavLink>
               <div className="dropdown-menu divYearsNav" aria-labelledby="navbarDropdown">
-                <Link className="dropdown-item linkYear" to="/tilbakeblikk">2017</Link>
-                <Link className="dropdown-item linkYear" to="/tilbakeblikk">2016</Link>
+                {/* Map individual years to link things */}
+                <Link className="dropdown-item linkYear" to="/tilbakeblikk/2017">2017</Link>
+                <Link className="dropdown-item linkYear" to="/tilbakeblikk/2016">2016</Link>
               </div>
             </li>
             <li className="nav-item">

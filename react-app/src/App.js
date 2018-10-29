@@ -5,7 +5,7 @@ import Home from "./components/home/Home";
 import Programme from "./components/programme/Programme";
 import About from "./components/about/About";
 import News from "./components/news/News";
-import Review from "./components/review/review";
+import Review from "./components/review/Review";
 import Contact from "./components/contact/Contact";
 import Event from "./components/event/Event";
 import NewsArticle from "./components/news/NewsArticle";
@@ -27,7 +27,7 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route path="/om-oss" component={About} />
           <Route path="/nyheter" component={News} />
-          <Route path="/tilbakeblikk" component={Review} />
+          <Route path="/tilbakeblikk/:reviewId" component={Review} />
           <Route path="/kontakt" component={Contact} />
           <Route path="/program" component={Programme} />
           <Route path="/arrangement/:eventId" component={Event} />
