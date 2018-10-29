@@ -1,17 +1,18 @@
 //EventVideo page
-import React, { Component } from "react";
+import React from "react";
 
 
-class EventVideo extends Component {
+const EventVideo = ({ url }) => {
 
 
-    render() {
-        return (
-            <div>
-                <p>her kommer video</p>
-            </div>
-        )
-    }
+    return (
+        <div>
+            <iframe id="ytplayer" type="text/html" width="640" height="360"
+                src={url}
+            ></iframe>
+        </div>
+    )
+
 }
 
 

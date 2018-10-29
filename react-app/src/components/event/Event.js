@@ -13,7 +13,9 @@ class Event extends Component {
             eventImg: "https://static1.squarespace.com/static/57242faa7da24f738c3b9c32/5b736843352f53e1d56a8215/5b73684840ec9a45a9538c78/1534289997493/_DSC9283.jpg?format=1000w",
             eventTitle: 'ViolinKveld med kattepusene',
             eventDate: 'Mandag 21.09.2018',
-            eventTxt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            eventTxt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            eventVideoURL: "https://www.youtube.com/embed/M7lc1UVf-VE"
+
         }
     }
     componentDidMount() {
@@ -29,6 +31,7 @@ class Event extends Component {
                 <p className="eventDate">{this.state.event.eventDate}</p>
                 <img className="eventImg" src={this.state.event.eventImg} alt="eventimg"></img>
                 <p>{this.state.event.eventTxt}</p>
+                <EventVideo url={this.state.event.eventVideoURL} />
             </div>
         ) : (
                 <div>Error melding her.. fix video 31</div>
@@ -38,7 +41,7 @@ class Event extends Component {
                 <Navbar />
                 <span> id = {this.state.id}</span>
                 {event}
-                <EventVideo />
+
             </div>
         )
     }
