@@ -1,13 +1,16 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+
 
 class AdminEvents extends Component {
-  state = {  }
-  render() { 
-    return ( 
-      <div className="container">
+  state = {}
+  render() {
+    return (
+
+      <div className="container tablesAdmin col-md-9">
         <h1>This is the AdminEvents page</h1>
       </div>
-     );
+
+    );
   }
 }
 

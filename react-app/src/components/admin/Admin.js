@@ -1,12 +1,16 @@
 import React, { Component } from "react";
+import AdminTopNav from './AdminTopNav';
 import AdminNav from './AdminNav';
+import "../../styles/adminNav.css";
 
 class Admin extends Component {
   render() {
     return (
-      <AdminNav />
+      <React.Fragment>
+        <AdminTopNav />
+        <AdminNav className="adminNav" />
+      </React.Fragment>
     );
   }
 }
-
 export default Admin;

@@ -10,7 +10,7 @@ html{
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
       monospace;
   }
-  .navbar {
+  .navbarFront, .navTopAdmin {
     background-color: #822a40 !important;
   }
   .logoNav{
@@ -20,7 +20,6 @@ html{
   .nav-link {
     color: white !important;
     font-size: 20px;
-  
     padding-right: 20px !important;
     padding-left: 20px !important;
   }

@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import AdminScheduleItem from '../AdminScheduleItem';
 
+
 class AdminSchedule extends Component {
-  state = { 
+  state = {
     days: [
       {
         id: 1,
@@ -126,10 +127,11 @@ class AdminSchedule extends Component {
       }
 
     ]
-   }
-  render() { 
-    return ( 
-      <div className="container">
+  }
+  render() {
+    return (
+
+      <div className="container tablesAdmin">
         <h1>This is the AdminSchedule page</h1>
         {
           this.state.days.map(day => (
@@ -144,7 +146,8 @@ class AdminSchedule extends Component {
           ))
         }
       </div>
-     );
+
+    );
   }
 }
 

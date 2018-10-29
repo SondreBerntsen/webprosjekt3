@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import AdminVenuesItem from '../AdminVenuesItem'
 
 class AdminVenues extends Component {
-  state = { 
+  state = {
     venues: [
       {
         id: 1,
@@ -23,10 +23,11 @@ class AdminVenues extends Component {
         capacity: 0 // Let's say 0 means public space/free entry/don't care how many show up
       }
     ]
-   }
-  render() { 
-    return ( 
-      <div className="container">
+  }
+  render() {
+    return (
+
+      <div className="container tablesAdmin">
         <h1>This is the AdminVenues page</h1>
         {
           this.state.venues.map(venue => (
@@ -36,7 +37,8 @@ class AdminVenues extends Component {
           ))
         }
       </div>
-     )
+
+    )
   }
 }
 
