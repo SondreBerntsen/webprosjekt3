@@ -13,16 +13,16 @@ import NewsArticle from "./components/news/NewsArticle";
 // Admin things
 import Admin from "./components/admin/Admin";
 import AdminEvents from "./components/admin/tables/AdminEvents";
-import AdminPosts from './components/admin/tables/AdminPosts';
-import AdminSchedule from './components/admin/tables/AdminSchedule';
-import AdminVenues from './components/admin/tables/AdminVenues';
+import AdminPosts from "./components/admin/tables/AdminPosts";
+import AdminSchedule from "./components/admin/tables/AdminSchedule";
+import AdminVenues from "./components/admin/tables/AdminVenues";
 
 import Footer from "./components/Footer";
 
 class App extends Component {
   render() {
     return (
-      <BrowserRouter >
+      <BrowserRouter>
         <div className="App">
           <Route exact path="/" component={Home} />
           <Route path="/om-oss" component={About} />
@@ -38,7 +38,6 @@ class App extends Component {
           <Route path="/admin/posts" component={AdminPosts} />
           <Route path="/admin/schedule" component={AdminSchedule} />
           <Route path="/admin/venues" component={AdminVenues} />
-
         </div>
       </BrowserRouter>
     );
