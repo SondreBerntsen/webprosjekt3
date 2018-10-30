@@ -51,7 +51,7 @@ class AdminSchedule extends Component {
         date: "21.09",
         events: [
           {
-            id: 1,
+            id: 4,
             day: 2,
             title: "This guy doing something",
             venue: "This place",
@@ -62,7 +62,7 @@ class AdminSchedule extends Component {
             infoText: "qwerty mc. lorem"
           },
           {
-            id: 2,
+            id: 5,
             day: 2,
             title: "Some other guy doing something",
             venue: "Another place",
@@ -73,7 +73,7 @@ class AdminSchedule extends Component {
             infoText: "qwerty mc. lorem"
           },
           {
-            id: 3,
+            id: 6,
             day: 2,
             title: "Dance w/ music on and such",
             venue: "By the beach or smth",
@@ -91,7 +91,7 @@ class AdminSchedule extends Component {
         date: "22.09",
         events: [
           {
-            id: 1,
+            id: 7,
             day: 3,
             title: "This guy doing something",
             venue: "This place",
@@ -102,7 +102,7 @@ class AdminSchedule extends Component {
             infoText: "qwerty mc. lorem"
           },
           {
-            id: 2,
+            id: 8,
             day: 3,
             title: "Some other guy doing something",
             venue: "Another place",
@@ -113,7 +113,7 @@ class AdminSchedule extends Component {
             infoText: "qwerty mc. lorem"
           },
           {
-            id: 3,
+            id: 9,
             day: 3,
             title: "Dance w/ music on and such",
             venue: "By the beach or smth",
@@ -132,11 +132,11 @@ class AdminSchedule extends Component {
     return (
 
       <div className="container tablesAdmin col-md-9 col-lg-10">
-        <h1>This is the AdminSchedule page</h1>
+
         {
           this.state.days.map(day => (
-            <div key={day.id}>
-              <h2>{day.day} {day.date}</h2>
+            <div className="containerScheduleElements" key={day.id}>
+              <h2 className="dayDateTitleSchedule">{day.day} {day.date}</h2>
               {
                 day.events.map(event => (
                   <AdminScheduleItem key={event.id} event={event} />

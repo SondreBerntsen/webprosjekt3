@@ -25,8 +25,8 @@ class AdminVenues extends Component {
     return (
 
       <div className="container tablesAdmin col-md-9 col-lg-10">
-        <button className=" newItemBtn btn btn-info btn-sm" type="button" data-toggle="collapse" data-target='#newVenueForm' aria-expanded="false" aria-controls='newVenueForm'>Create new venue</button>
-        <div className=" newVenueFormDiv col-md-12 collapse" id="newVenueForm">
+        <button className=" createNewBtn btn btn-info btn-sm" type="button" data-toggle="collapse" data-target='#newVenueForm' aria-expanded="false" aria-controls='newVenueForm'>Create new venue</button>
+        <div className=" collapseForm col-md-12 collapse" id="newVenueForm">
           <form className="col-md-6 col-lg-4">
             <div className="form-group">
               <label>Address</label>

@@ -13,22 +13,21 @@
     margin-bottom: 20px;
 }
 
-/*****Venue***/
-.newVenueFormDiv{
+.collapseForm{
     background-color: #d5e0e2;
     margin-bottom: 20px;
     padding:20px;
 }
-.newItemBtn{
+.createNewBtn{
     margin-bottom:20px;
 }
-.venueCard{
+.elementCardAdmin{
     background-color:#efefef;
     padding: 10px;
     padding-top:20px;
     margin-bottom: 20px;
 }
-.btnVenue{
+.btnInElementAdmin{
     float: right;
     margin-left: 10px;
 }
@@ -36,3 +35,11 @@
     font-weight: bold;
 }
 
+/**Schedule**/
+.dayDateTitleSchedule{
+    margin-bottom: 20px;
+    color:#822a40;
+}
+.containerScheduleElements{
+    margin-bottom: 60px;
+}
