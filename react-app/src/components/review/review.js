@@ -10,21 +10,28 @@ class Review extends Component {
       {
         id: 1,
         img:
-          "https://static1.squarespace.com/static/57242faa7da24f738c3b9c32/5b736843352f53e1d56a8215/5b73684840ec9a45a9538c78/1534289997493/_DSC9283.jpg?format=1000w",
-        title: "Big Dick Cat",
+          "https://i.imgur.com/5iA7eFe.png",
+        title: "Violin Grill, sitting on a bench.",
         caption:
           "This cat is so hung it's hard for him to even prowl along the hardwood floors because them planks have splinters"
       },
       {
         id: 2,
         img:
-          "https://i.kinja-img.com/gawker-media/image/upload/s--nBFK8XCY--/c_scale,fl_progressive,q_80,w_800/zzpo5oucegaa7clwzvn6.jpg",
-        title: "Asobi Balldown",
+          "https://i.imgur.com/bUMoAu6.png",
+        title: "B.A.M.F. playing some Ukulele",
+        caption: "Bitch gettin' told"
+      },
+      {
+        id: 3,
+        img:
+          "https://i.imgur.com/zcLcbPK.png",
+        title: "Generic ass concert dude man",
         caption: "Bitch gettin' told"
       }
     ],
     body:
-      "There best be paragraph separations here. big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text big dick text ",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet arcu eu erat pretium ullamcorper et eu mauris. Etiam a ante eros. Maecenas interdum mi aliquam leo malesuada vulputate. Integer eleifend erat in ligula pharetra euismod. Duis purus dolor, pretium eget feugiat eu, tempus id mi. Pellentesque ut ultrices orci. Sed quis rutrum metus. Suspendisse potenti. Praesent ac sapien sed tortor feugiat tempor. Vivamus ac orci vel felis pulvinar imperdiet. Etiam laoreet felis nibh, non semper metus rhoncus non. Quisque lobortis molestie dolor, fringilla maximus ligula dapibus in.",
     recordings: [
       {
         id: 1,
