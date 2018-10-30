@@ -45,10 +45,3 @@
 .linkTxt.active{
     font-weight: bold;
 }
-/***Move this***/
-.tablesAdmin{
-    min-height: 100vh;
-    padding:30px;
-    float: right;
-    margin-top:75px;
-}

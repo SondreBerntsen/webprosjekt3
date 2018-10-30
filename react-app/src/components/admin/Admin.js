@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AdminTopNav from './AdminTopNav';
 import AdminNav from './AdminNav';
 import "../../styles/adminNav.css";
+import "../../styles/adminTables.css";
 
 class Admin extends Component {
   render() {

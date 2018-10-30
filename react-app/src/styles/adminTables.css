@@ -1,0 +1,38 @@
+.tablesAdmin{
+    min-height: 100vh;
+    padding:30px;
+    float: right;
+    margin-top:75px;
+}
+.editScheduleItem{
+    background-color:#f4f4f4;
+    padding: 20px;
+    margin-top:0;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+/*****Venue***/
+.newVenueFormDiv{
+    background-color: #d5e0e2;
+    margin-bottom: 20px;
+    padding:20px;
+}
+.newItemBtn{
+    margin-bottom:20px;
+}
+.venueCard{
+    background-color:#efefef;
+    padding: 10px;
+    padding-top:20px;
+    margin-bottom: 20px;
+}
+.btnVenue{
+    float: right;
+    margin-left: 10px;
+}
+.smallHeading{
+    font-weight: bold;
+}
+
