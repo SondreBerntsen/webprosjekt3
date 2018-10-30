@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 class AdminNav extends Component {
   render() {
     return (
-      <nav className="navbar navbar-expand-lg  navbar-dark adminSideBarNav col-md-3">
+      <nav className="navbar navbar-expand-lg  navbar-dark adminSideBarNav col-md-3 col-lg-2">
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>

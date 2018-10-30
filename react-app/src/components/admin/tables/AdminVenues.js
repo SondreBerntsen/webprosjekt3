@@ -27,7 +27,7 @@ class AdminVenues extends Component {
   render() {
     return (
 
-      <div className="container tablesAdmin">
+      <div className="container tablesAdmin col-md-9 col-lg-10">
         <h1>This is the AdminVenues page</h1>
         {
           this.state.venues.map(venue => (

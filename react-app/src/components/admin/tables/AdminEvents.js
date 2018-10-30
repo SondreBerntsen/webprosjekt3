@@ -6,7 +6,7 @@ class AdminEvents extends Component {
   render() {
     return (
 
-      <div className="container tablesAdmin col-md-9">
+      <div className="container tablesAdmin col-md-9 col-lg-10">
         <h1>This is the AdminEvents page</h1>
       </div>
 

@@ -1,11 +1,12 @@
 .adminSideBarNav{
-    background-color: rgb(92, 91, 91);
+    background-color: rgb(88, 88, 88);
     padding-top:30px;
     display: block;
     min-height: 20px;
     margin-top:75px;
     min-height: 100vh;
     float: left;
+    position: fixed;
 }
 /***Her leker ragnhild med til hun ikke vet hva er... men det funker kanskje***/
 /****https://stackoverflow.com/questions/21076922/bootstrap-how-to-collapse-navbar-earlier/26433031***/
@@ -22,6 +23,7 @@
         min-height: 75px;
         padding:0;
         padding:20px;
+        position: relative;
     }
     .tablesAdmin{
         min-width: 100%;
@@ -49,5 +51,4 @@
     padding:30px;
     float: right;
     margin-top:75px;
-    background-color: pink;
 }

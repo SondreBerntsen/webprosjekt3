@@ -131,7 +131,7 @@ class AdminSchedule extends Component {
   render() {
     return (
 
-      <div className="container tablesAdmin">
+      <div className="container tablesAdmin col-md-9 col-lg-10">
         <h1>This is the AdminSchedule page</h1>
         {
           this.state.days.map(day => (
