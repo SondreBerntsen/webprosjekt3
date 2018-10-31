@@ -9,7 +9,7 @@ class ContactForm extends Component {
           <div className="contact-form-content col-sm-12 col-lg-5 mb-4">
             <div className="card contact-form-card border-muted rounded-2">
               <div className="p-0">
-                <div className="bg-muted text-dark text-center py-2">
+                <div className="bg-muted text-dark text-center py-2 contactFormText">
                   <h3>
                     <i className="fa fa-envelope" /> Skriv til oss
                   </h3>
@@ -26,9 +26,8 @@ class ContactForm extends Component {
               </div>
               <div className="card-body p-3">
                 <div className="form-group">
-                  <label>Ditt navn</label>
                   <div className="input-group">
-                    <div className="input-group-addon bg-light">
+                    <div className="input-group-addon">
                       <i className="fa fa-user text-dark" />
                     </div>
                     <input
@@ -40,9 +39,8 @@ class ContactForm extends Component {
                   </div>
                 </div>
                 <div className="form-group">
-                  <label>Din email</label>
                   <div className="input-group mb-2 mb-sm-0">
-                    <div className="input-group-addon bg-light">
+                    <div className="input-group-addon">
                       <i className="fa fa-envelope text-dark" />
                     </div>
                     <input
@@ -54,9 +52,8 @@ class ContactForm extends Component {
                   </div>
                 </div>
                 <div className="form-group">
-                  <label>Emne</label>
                   <div className="input-group mb-2 mb-sm-0">
-                    <div className="input-group-addon bg-light">
+                    <div className="input-group-addon">
                       <i className="fa fa-tag prefix text-dark" />
                     </div>
                     <input
@@ -68,9 +65,8 @@ class ContactForm extends Component {
                   </div>
                 </div>
                 <div className="form-group">
-                  <label>Melding</label>
                   <div className="input-group mb-2 mb-sm-0">
-                    <div className="input-group-addon bg-light">
+                    <div className="input-group-addon">
                       <i className="fa fa-pencil text-dark" />
                     </div>
                     <textarea className="form-control" />
