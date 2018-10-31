@@ -118,3 +118,12 @@ img.contact-card-img:hover {
     margin: 0 auto;
   }
 }
+
+.input-group-addon {
+  margin: 5px 18px 0px 0px;
+  background-color: #FFFFFF;
+}
+
+.contactFormText {
+  margin: 14px 45px 6px 45px;
+}
