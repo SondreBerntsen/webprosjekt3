@@ -1,7 +1,7 @@
 import React from "react";
 
 const AdminUser = (props) => {
-  let {user: {id, userName, hashedPass, type}} = props;
+  let {user: {id, userName, email, hashedPass, type}} = props;
   return ( 
     <React.Fragment>
       <div>
@@ -21,6 +21,14 @@ const AdminUser = (props) => {
               <label>Username</label>
               <input type="text" defaultValue={userName} className="form-control" />
             </div>
+          </div>
+          <div className="form-row">
+            <div className="form-group col-md-6">
+              <label>Email</label>
+              <input type="email" defaultValue={email} className="form-control" />
+            </div>
+          </div>
+          <div className="form-row">
             <div className="form-group col-md-6">
               <label>Password</label>
               <input type="password" defaultValue={hashedPass} className="form-control" />
@@ -33,7 +41,7 @@ const AdminUser = (props) => {
           <div className="form-row">
             <div className="form-group col-md-6">
               <label>Type</label>
-              {/* This should be a dropdown with available user types, OR a checklist of operations the user will be allowed to perform */}
+              {/* This should be a dropdown with available user types, OR a checklist of operations the user will be granted access to */}
               <input type="text" defaultValue={type} className="form-control" />
             </div>
           </div>

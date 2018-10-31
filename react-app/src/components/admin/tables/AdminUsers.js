@@ -29,7 +29,7 @@ class AdminUsers extends Component {
             <div className="form-row">
               <div className="form-group col-md-6">
                 <label>Username</label>
-                <input type="text" className="form-control" placeholder="Enter event title" />
+                <input type="text" className="form-control" placeholder="username123" />
               </div>
             </div>
             <div className="form-row">
@@ -44,28 +44,16 @@ class AdminUsers extends Component {
             </div>
             <div className="form-row">
               <div className="form-group col-md-6">
-                <label>Price</label>
-                <input type="number" className="form-control" />
+                <label>Email</label>
+                <input type="email" className="form-control" placeholder="address@gmail.com" />
               </div>
-              <div className="form-group col-md-6">
-                <label>Youtube link</label>
-                <input type="text" className="form-control" />
-              </div>
-
             </div>
             <div className="form-row">
               <div className="form-group col-md-6">
-                <label>Image</label>
-                <input type="file" className="form-control" />
+                {/* This should be a dropdown with available user types, OR a checklist of operations the user will be granted access to */}
+                <label>User type OR checklist of operations</label>
+                <input type="text" className="form-control" placeholder="not sure wat" />
               </div>
-              <div className="form-group col-md-6">
-                <label>Thumbnail</label>
-                <input type="file" className="form-control" />
-              </div>
-            </div>
-            <div className="form-group">
-              <label>Descrition</label>
-              <textarea type="text" className="form-control" />
             </div>
             <button type="submit" className="btn btn-info btn-sm">Submit</button>
           </form>
