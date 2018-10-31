@@ -2,6 +2,7 @@
 //mye fix her når database kommer
 import React, { Component } from "react";
 import Navbar from "../Navbar";
+import Footer from "../Footer";
 import MinEventCard from "../programme/MinEventCard";
 import EventVideo from "./EventVideo";
 import "../../styles/events.css";
@@ -22,7 +23,7 @@ class Event extends Component {
 
     event: {
       eventImg:
-        "https://static1.squarespace.com/static/57242faa7da24f738c3b9c32/5b736843352f53e1d56a8215/5b73684840ec9a45a9538c78/1534289997493/_DSC9283.jpg?format=1000w",
+        "https://i.pinimg.com/originals/d4/c1/9d/d4c19ddddebb9f8f7e327a9754fc5c40.jpg",
       eventTitle: "ViolinKveld med kattepusene",
       eventDate: "Mandag 21.09.2018",
       eventTxt:
@@ -40,8 +41,11 @@ class Event extends Component {
     //console.log(this.state.id);
     const event = this.state.event ? (
       <div className="container">
-        <h2>{this.state.event.eventTitle}</h2>
+        <h2 className="event-title">{this.state.event.eventTitle}</h2>
+
         <p className="eventDate">{this.state.event.eventDate}</p>
+        <hr />
+
         <EventVideo
           url={this.state.event.eventVideoURL}
           title={this.state.event.eventTitle}
@@ -50,15 +54,16 @@ class Event extends Component {
 
         <MinEventCard key={this.state.id} event={this.state.events[0]} />
 
-        <p>{this.state.event.eventTxt}</p>
+        <p className="event-text">{this.state.event.eventTxt}</p>
       </div>
     ) : (
-        <div>Error melding her.. fix video 31</div>
-      );
+      <div>Error melding her.. fix video 31</div>
+    );
     return (
       <div>
         <Navbar />
         {event}
+        <Footer />
       </div>
     );
   }

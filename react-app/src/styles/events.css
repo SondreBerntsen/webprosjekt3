@@ -1,8 +1,24 @@
-.eventDate{
-    font-style: italic;
+.eventDate {
+  font-style: italic;
+  font-size: 14px;
+  font-family: "Merriweather", serif;
+  margin-bottom: 0px;
 }
-.eventImg{
-    max-height: 350px;
-    display: block;
-    margin-bottom: 20px;
+
+h2.event-title {
+  margin: 35px 0px 5px 0px;
+  font-size: 40px;
+  font-family: "Open Sans", sans-serif;
+}
+
+p.event-text {
+  font-family: "Merriweather", serif;
+  margin-top: 25px;
+}
+
+hr {
+  margin-top: 0px;
+  margin-bottom: 50px;
+  height: 0.2px;
+  background-color: black;
 }
