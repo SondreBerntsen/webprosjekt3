@@ -5,9 +5,8 @@ import React from "react";
 import "../../styles/eventvideo.css";
 
 const EventVideo = props => {
-  const url = `https://www.youtube.com/embed/${
-    props.url
-  }?feature=oembed&autoplay=1&hd=1`;
+  const url = props.url;
+
   const videoElements = document.querySelectorAll(".js-video");
   const activeClass = "is-active";
   const loadingClass = "is-loading";
@@ -57,14 +56,25 @@ const EventVideo = props => {
 
     return div.firstChild;
   }
+  /*  
+    Adds the url to the full YouTube link
+    Is only executed if event has a YouTube url
+  */
+  function fullUrl() {
+    const fullUrl = `https://www.youtube.com/embed/${
+      props.url
+      }?feature=oembed&autoplay=1&hd=1`;
+    return (fullUrl);
+  }
   /*checks if event has youtube link or not*/
   const hasVideo =
     url !== "" ? (
+
       /*if event has youtube link*/
-      <div>
+      < div >
         <div
           className="Video js-video"
-          data-url={url}
+          data-url={fullUrl()}
           data-class="Video-iframe"
           data-width="1280"
           data-height="720"
@@ -88,27 +98,21 @@ const EventVideo = props => {
             </svg>
           </div>
         </div>
-      </div>
+      </div >
     ) : (
-      /*if the event has no youtube link*/
-      <div>
-        <div data-width="1280" data-height="720">
-          <div className="Video-wrap js-videoWrap">
-            <img
-              className="Video-placeholder js-videoPlaceholder"
-              src={this.props.placeholderImage}
-              alt=""
-            />
-            <svg
-              className="Video-playButton"
-              viewBox="0 0 136 198"
-              width="50"
-              height="80"
-            />
+        /*if the event has no youtube link*/
+        <div>
+          <div data-width="1280" data-height="720">
+            <div className="Video-wrap js-videoWrap">
+              <img
+                className="Video-placeholder js-videoPlaceholder"
+                src={props.placeholderImage}
+                alt=""
+              />
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
 
   return <div>{hasVideo}</div>;
 };
