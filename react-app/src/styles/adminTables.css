@@ -43,3 +43,8 @@
 .containerScheduleElements{
     margin-bottom: 60px;
 }
+/**Post**/
+.newsImgEdit{
+    max-height: 100px;
+    margin-bottom: 20px;
+}

@@ -38,11 +38,11 @@ const AdminVenuesItem = (props) => {
         <form className="col-md-6 col-lg-4">
           <div className="form-group">
             <label>Address</label>
-            <input type="text" className="form-control" />
+            <input type="text" className="form-control" defaultValue={props.venue.address} />
           </div>
           <div className="form-group">
             <label>Capacity</label>
-            <input type="number" class="form-control" />
+            <input type="number" class="form-control" defaultValue={props.venue.capacity} />
           </div>
           <button type="submit" class="btn btn-info btn-sm">Edit</button>
         </form>

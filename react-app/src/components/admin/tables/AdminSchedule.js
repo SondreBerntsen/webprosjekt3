@@ -16,7 +16,7 @@ class AdminSchedule extends Component {
             title: "This guy doing something",
             venue: "This place",
             time: "20:00",
-            date: "20.09",
+            date: "2018-09-20",
             price: "100",
             availability: "Very few spots left", //idk about this
             infoText: "qwerty mc. lorem"
@@ -27,7 +27,7 @@ class AdminSchedule extends Component {
             title: "Some other guy doing something",
             venue: "Another place",
             time: "21:00",
-            date: "20.09",
+            date: "2018-09-20",
             price: "250",
             availability: "Lots of spots left", //idk about this
             infoText: "qwerty mc. lorem"
@@ -38,7 +38,7 @@ class AdminSchedule extends Component {
             title: "Dance w/ music on and such",
             venue: "By the beach or smth",
             time: "20:00",
-            date: "20.09",
+            date: "2018-09-20",
             price: "0",
             availability: "Public property", //idk about this
             infoText: "qwerty mc. lorem"
@@ -56,7 +56,7 @@ class AdminSchedule extends Component {
             title: "This guy doing something",
             venue: "This place",
             time: "20:00",
-            date: "21.09",
+            date: "2018-09-20",
             price: "100",
             availability: "Very few spots left", //idk about this
             infoText: "qwerty mc. lorem"
@@ -67,7 +67,7 @@ class AdminSchedule extends Component {
             title: "Some other guy doing something",
             venue: "Another place",
             time: "21:00",
-            date: "21.09",
+            date: "2018-09-20",
             price: "250",
             availability: "Lots of spots left", //idk about this
             infoText: "qwerty mc. lorem"
@@ -78,7 +78,7 @@ class AdminSchedule extends Component {
             title: "Dance w/ music on and such",
             venue: "By the beach or smth",
             time: "20:00",
-            date: "21.09",
+            date: "2018-09-20",
             price: "0",
             availability: "Public property", //idk about this
             infoText: "qwerty mc. lorem"
@@ -96,7 +96,7 @@ class AdminSchedule extends Component {
             title: "This guy doing something",
             venue: "This place",
             time: "20:00",
-            date: "22.09",
+            date: "2018-09-20",
             price: "100",
             availability: "Very few spots left", //idk about this
             infoText: "qwerty mc. lorem"
@@ -107,7 +107,7 @@ class AdminSchedule extends Component {
             title: "Some other guy doing something",
             venue: "Another place",
             time: "21:00",
-            date: "22.09",
+            date: "2018-09-20",
             price: "250",
             availability: "Lots of spots left", //idk about this
             infoText: "qwerty mc. lorem"
@@ -118,7 +118,7 @@ class AdminSchedule extends Component {
             title: "Dance w/ music on and such",
             venue: "By the beach or smth",
             time: "20:00",
-            date: "22.09",
+            date: "2018-09-20",
             price: "0",
             availability: "Public property", //idk about this
             infoText: "qwerty mc. lorem"

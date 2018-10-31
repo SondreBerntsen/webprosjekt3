@@ -14,7 +14,7 @@ const AdminScheduleItem = (props) => {
     availability: "Very few spots left", //idk about this
     infoText: "qwerty mc. lorem"
   */
-  let { event: { id, title, venue, time, price, availability } } = props;
+  let { event: { id, title, venue, time, price, date } } = props;
 
   return (
     <React.Fragment>
@@ -35,21 +35,21 @@ const AdminScheduleItem = (props) => {
           <div className="form-row">
             <div className="form-group col-md-6">
               <label>Address</label>
-              <input type="text" className="form-control" />
+              <input type="text" className="form-control" defaultValue={venue} />
             </div>
             <div className="form-group col-md-6">
               <label>Price</label>
-              <input type="number" class="form-control" />
+              <input type="number" class="form-control" defaultValue={price} />
             </div>
           </div>
           <div className="form-row">
             <div className="form-group col-md-6">
               <label>Time</label>
-              <input type="time" class="form-control" />
+              <input type="time" class="form-control" defaultValue={time} />
             </div>
             <div className="form-group col-md-6">
               <label>Date</label>
-              <input type="date" class="form-control" />
+              <input type="date" class="form-control" defaultValue={date} />
             </div>
           </div>
 
