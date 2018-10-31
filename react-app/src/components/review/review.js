@@ -37,17 +37,17 @@ class Review extends Component {
       {
         id: 1,
         title: "Mongy Dickins",
-        link: "youtube link i guess"
+        link: "https://i.imgur.com/OGRdkCu.mp4"
       },
       {
         id: 2,
         title: "Top Mongol",
-        link: "youtube link i guess"
+        link: "https://i.imgur.com/OGRdkCu.mp4"
       },
       {
         id: 3,
         title: "Mongrel Mountaineers",
-        link: "youtube link i guess"
+        link: "https://i.imgur.com/OGRdkCu.mp4"
       }
     ]
   };
@@ -66,19 +66,21 @@ class Review extends Component {
       <div>
         <Navbar />
         <div className="container">
-          <h4 className="center">Archive</h4>
           <Slider slides={this.state.slides} />
           <h1 className="yearHeading">{this.state.year}</h1>
           {/* We have to regex body output to add paragraphs/headers if we don't do add html tags during input */}
           <article>{this.state.body}</article>
           <div className="container">
-            <EventList />
+            <div className="row">
+              <EventList />
+            </div>
+            <h3 className="recordingsTitle">Tidligere liveopptak</h3>
             <div id="recordingsList">
               {this.state.recordings.map(link => (
-                <div key={link.id}>
-                  <h3>{link.title}</h3>
-                  <p>{link.link}</p>
-                </div>
+                <React.Fragment key={link.id}>
+                <h5>{link.title}</h5>
+                  <a href={link.link} className="pTagRecordings">{link.link}</a>
+                </React.Fragment>
               ))}
             </div>
           </div>
