@@ -5,8 +5,8 @@
   font-size: 3.5em;
 }
 
-hr {
-  margin-top: 1rem;
+.hrHeight {
+  margin-top: 2.7rem;
   margin-bottom: 1rem;
   border: 0;
   border-top: 1px solid rgba(0,0,0,.1);

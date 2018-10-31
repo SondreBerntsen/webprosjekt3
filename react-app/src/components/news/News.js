@@ -9,7 +9,7 @@ const News = () => {
       <div className="container">
         <div className="newsSection">
           <div className="container mx-auto ">
-            <h2 className="newsTitle">Nyheter</h2>
+            <h2 className="pageTitle">Nyheter</h2><hr className="hrHeight" />
             <div className="row "><NewsCards /></div>
           </div>
         </div>

@@ -248,7 +248,7 @@ class About extends Component {
       <div>
         <Navbar />
         <div className="container">
-          <h2 className="center title">Om festivalen</h2> <hr />
+          <h2 className="center pageTitle">Om festivalen</h2> <hr />
           <div className="row">
             <div className="about-vision col-12">
               <h4>Visjon</h4>

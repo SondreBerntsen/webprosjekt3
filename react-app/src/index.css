@@ -37,6 +37,12 @@ p {
   font-style: normal;
 }
 
+.pageTitle{
+  text-align: center;
+  margin-top: 50px;
+  font-size: 3.5em;
+}
+
 /*         END OF FONTEROOS        */
 /* ------------------------------- */
 

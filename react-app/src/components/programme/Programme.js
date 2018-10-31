@@ -71,7 +71,7 @@ class Programme extends Component {
       <div>
         <Navbar />
         <div className="container">
-          <h2 className="center title">Program</h2><hr />
+          <h2 className="center pageTitle">Program</h2><hr className="hrHeight" />
           <ListOfDays days={this.state.days} />
           {/* Passes days array as props to ProgrammeSchedule */}
           <ProgrammeSchedule days={this.state.days} />
