@@ -2,7 +2,21 @@
 .headingProg{
   text-align: center;
   margin-top: 50px;
+  font-size: 3.5em;
 }
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0,0,0,.1);
+}
+
+.title {
+  padding: 0px;
+  margin: 15px 0px 0px 0px;
+}
+
 /*****Event card with info*****/
 .day_card{
   margin-bottom:50px;
@@ -36,7 +50,6 @@
 }
 /****horizontal days*****/
 .horizontal_days{
-  border-top:1px solid gray;
   border-bottom:1px solid gray;
   margin-bottom: 50px;
   margin-top: 25px;

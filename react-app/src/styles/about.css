@@ -4,16 +4,9 @@ div {
 }
 
 h2.title {
-  margin: 35px 0px 25px 0px;
-  font-size: 40px;
-  font-family: "Open Sans", sans-serif;
-}
-
-.about-vision p,
-.about-collab p,
-.about-organization p,
-.about-reports p {
-  font-family: "Merriweather", serif;
+  font-size: 3.5em;
+  text-align: center;
+  margin-top: 50px;
 }
 
 .reports-eng {
@@ -74,10 +67,6 @@ h2.title {
   display: inline-block;
   background-color: #6d6d6d0f;
   margin-bottom: 50px;
-}
-h4 {
-  margin: 15px 0px 15px 0px;
-  font-family: "Open Sans", sans-serif;
 }
 
 .title {

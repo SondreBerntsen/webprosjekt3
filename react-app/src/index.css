@@ -1,7 +1,45 @@
+/* FONTEROOS */
 body {
     margin: 0;
     padding: 0;
+    font-family: myriad-pro, sans-serif;
+    font-weight: 300;
+    font-style: normal;
   }
+
+h1 {
+  font-family: balboa, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h2 {
+  font-family: balboa, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h3 {
+  font-family: balboa, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h4 {
+  font-family: myriad-pro, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+p {
+  font-family: myriad-pro, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/*         END OF FONTEROOS        */
+/* ------------------------------- */
+
 html{
   scroll-behavior: smooth;
 }
@@ -44,3 +82,6 @@ html{
   background-color: white;
   color:black;
  }
+
+
+
