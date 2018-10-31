@@ -16,7 +16,7 @@ p.event-text {
   margin-top: 25px;
 }
 
-hr {
+hr.event-hr {
   margin-top: 0px;
   margin-bottom: 50px;
   height: 0.2px;

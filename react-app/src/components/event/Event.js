@@ -44,7 +44,7 @@ class Event extends Component {
         <h2 className="event-title">{this.state.event.eventTitle}</h2>
 
         <p className="eventDate">{this.state.event.eventDate}</p>
-        <hr />
+        <hr className="event-hr" />
 
         <EventVideo
           url={this.state.event.eventVideoURL}
