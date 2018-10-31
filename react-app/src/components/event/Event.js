@@ -3,7 +3,7 @@
 import React, { Component } from "react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
-import MinEventCard from "../programme/MinEventCard";
+import ScheduleItem from "../ScheduleItem";
 import EventVideo from "./EventVideo";
 import "../../styles/events.css";
 
@@ -52,13 +52,13 @@ class Event extends Component {
           placeholderImage={this.state.event.eventImg}
         />
 
-        <MinEventCard key={this.state.id} event={this.state.events[0]} />
+        <ScheduleItem key={this.state.id} event={this.state.events[0]} />
 
         <p className="event-text">{this.state.event.eventTxt}</p>
       </div>
     ) : (
-      <div>Error melding her.. fix video 31</div>
-    );
+        <div>Error melding her.. fix video 31</div>
+      );
     return (
       <div>
         <Navbar />

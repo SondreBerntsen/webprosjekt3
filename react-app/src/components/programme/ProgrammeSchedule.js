@@ -1,5 +1,5 @@
 import React from 'react';
-import MinEventCard from './MinEventCard';
+import ScheduleItem from '../ScheduleItem';
 
 const ProgrammeSchedule = (props) => {
 
@@ -11,7 +11,7 @@ const ProgrammeSchedule = (props) => {
         day.events.map(event => (
           <React.Fragment key={event.id}>
             {/* Passes event data as props to MinEventCard */}
-            <MinEventCard key={event.id} event={event} />
+            <ScheduleItem key={event.id} event={event} />
           </React.Fragment>
         ))
       }
