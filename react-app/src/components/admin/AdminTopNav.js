@@ -7,28 +7,12 @@ const AdminTopNav = () => {
         <nav className="navbar navbar-expand-lg fixed-top navTopAdmin navbar-dark">
             <div className="container-fluid">
                 <Link to="/"><img className="logoNav" src={require('../../img/logo.png')} alt="logo" /></Link>
-                <button
-                    className="navbar-toggler "
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#navbarNavAdmin"
-                    aria-controls="navbarNavAdmin"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                    <span className="navbar-toggler-icon" />
-                </button>
-                <div className="collapse navbar-collapse " id="navbarNavAdmin">
+                <div id="navbarNavAdmin">
                     <ul className="navbar-nav ml-auto">
-                        <li className="nav-item">
-                            <NavLink className="nav-link" exact to="/admin">
-                                Profile
-                        </NavLink>
-                        </li>
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/admin/events">
                                 Login
-                        </NavLink>
+                            </NavLink>
                         </li>
                     </ul>
                 </div>
