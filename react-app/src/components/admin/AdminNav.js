@@ -14,27 +14,37 @@ class AdminNav extends Component {
             <li className=" nav-item linkToHome">
               <NavLink className="linkTxt" exact to="/">
                 Vis nettsted
-            </NavLink>
+              </NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="linkTxt" to="/admin/events">
                 Events
-            </NavLink>
+              </NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="linkTxt" to="/admin/venues">
                 Venues
-            </NavLink>
+              </NavLink>
             </li>
             <li className="nav-item" >
               <NavLink className="linkTxt" to="/admin/schedule">
                 Schedule
-            </NavLink>
+              </NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="linkTxt" to="/admin/posts">
                 Posts
-            </NavLink>
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="linkTxt" to="/admin/general">
+                General
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="linkTxt" to="/admin/users">
+                Users
+              </NavLink>
             </li>
           </ul>
         </div>

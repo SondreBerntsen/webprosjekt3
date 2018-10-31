@@ -16,6 +16,8 @@ import AdminEvents from "./components/admin/tables/AdminEvents";
 import AdminPosts from "./components/admin/tables/AdminPosts";
 import AdminSchedule from "./components/admin/tables/AdminSchedule";
 import AdminVenues from "./components/admin/tables/AdminVenues";
+import AdminGeneral from "./components/admin/tables/AdminGeneral";
+import AdminUsers from "./components/admin/tables/AdminUsers";
 
 import Footer from "./components/Footer";
 
@@ -38,6 +40,8 @@ class App extends Component {
           <Route path="/admin/posts" component={AdminPosts} />
           <Route path="/admin/schedule" component={AdminSchedule} />
           <Route path="/admin/venues" component={AdminVenues} />
+          <Route path="/admin/general" component={AdminGeneral} />
+          <Route path="/admin/users" component={AdminUsers} />
         </div>
       </BrowserRouter>
     );
