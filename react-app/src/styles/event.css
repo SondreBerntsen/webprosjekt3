@@ -1,4 +1,4 @@
-.eventDate {
+.event-date {
   font-style: italic;
   font-size: 14px;
   font-family: "Merriweather", serif;
@@ -21,4 +21,12 @@ hr.event-hr {
   margin-bottom: 50px;
   height: 0.2px;
   background-color: black;
+}
+.event-scedule-item {
+  margin: 0;
+  border: 1px solid grey;
+  border-radius: 4px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
 }

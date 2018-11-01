@@ -15,12 +15,14 @@ const ScheduleItem = props => {
               <p className="time col-md-3">
                 <span role="img" aria-label="icon">
                   &#128337;
-            </span>{" "}
+                </span>{" "}
                 {props.event.time}
               </p>
               {checkPrice()}
               <div className="col-md-3">
-                <button className="btn btn-outline-info infoBtn">Mer info</button>
+                <button className="btn btn-outline-info infoBtn">
+                  Mer info
+                </button>
               </div>
             </div>
           </div>
@@ -28,17 +30,17 @@ const ScheduleItem = props => {
       );
     } else {
       return (
-        <div className="event row">
+        <div className="event-scedule-item row">
           <div className="col-md-4">
             <p className="event_title">{props.event.title}</p>
             <p className="venue_name">{props.event.venue}</p>
           </div>
           <div className="col-md-8 infoEvent">
             <div className="row">
-              <p className="time col-md-3">
+              <p className="time col">
                 <span role="img" aria-label="icon">
                   &#128337;
-            </span>{" "}
+                </span>{" "}
                 {props.event.time}
               </p>
               {checkPrice()}
@@ -71,9 +73,7 @@ const ScheduleItem = props => {
     }
   }
 
-  return (
-    <div>{checkUrl()}</div>
-  );
+  return <div>{checkUrl()}</div>;
 };
 
 export default ScheduleItem;
