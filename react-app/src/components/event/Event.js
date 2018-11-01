@@ -65,18 +65,14 @@ class Event extends Component {
     const event = this.state.event ? (
       <div className="container">
         <h2 className="event-title">{this.state.event.eventTitle}</h2>
-
         <p className="event-date">{this.state.event.eventDate}</p>
-
         <hr className="event-hr" />
-
         {this.showScheduleItem()}
         <EventVideo
           url={this.state.event.eventVideoURL}
           title={this.state.event.eventTitle}
           placeholderImage={this.state.event.eventImg}
         />
-
         <p className="event-text">{this.state.event.eventTxt}</p>
       </div>
     ) : (
