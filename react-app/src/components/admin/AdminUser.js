@@ -1,57 +1,55 @@
 import React from "react";
 
 const AdminUser = (props) => {
-  let {user: {id, userName, email, hashedPass, type}} = props;
-  return ( 
+  let { user: { id, userName, email, hashedPass, type } } = props;
+  return (
     <React.Fragment>
       <div>
         <div className="elementCardAdmin row">
-          <p className="col-md-4"><span className="smallHeading">{userName}</span></p>
+          <p className="col-md-10"><span className="smallHeading">{userName}</span></p>
           <div className="col-md-2">
-            <button className="btn  btn-secondary btnInElementAdmin btn-sm  " type="button" data-toggle="collapse" data-target={'#userForm' + id} aria-expanded="false" aria-controls={'userForm' + id}>Edit</button>
             <button className="btn btn-sm btn-danger btnInElementAdmin">Delete</button>
+            <button className="btn  btn-secondary btnInElementAdmin btn-sm  " type="button" data-toggle="collapse" data-target={'#userForm' + id} aria-expanded="false" aria-controls={'userForm' + id}>Edit</button>
+
           </div>
         </div>
       </div>
 
       <div className="collapse editScheduleItem" id={'userForm' + id}>
-        <form className="col-md-8 col-lg-6">
-          <div className="form-row">
-            <div className="form-group col-md-6">
-              <label>Username</label>
-              <input type="text" defaultValue={userName} className="form-control" />
-            </div>
+        <form className="col-md-6 col-lg-4">
+          <div className="form-group ">
+            <label>Username</label>
+            <input type="text" defaultValue={userName} className="form-control" />
           </div>
-          <div className="form-row">
-            <div className="form-group col-md-6">
-              <label>Email</label>
-              <input type="email" defaultValue={email} className="form-control" />
-            </div>
+          <div className="form-group ">
+            <label>Email</label>
+            <input type="email" defaultValue={email} className="form-control" />
           </div>
-          <div className="form-row">
-            <div className="form-group col-md-6">
-              <label>Password</label>
-              <input type="password" defaultValue={hashedPass} className="form-control" />
-            </div>
-            <div className="form-group col-md-6">
-              <label>Repeat password</label>
-              <input type="password" defaultValue={hashedPass} className="form-control" />
-            </div>
+          <div className="form-group ">
+            <label>Password</label>
+            <input type="password" defaultValue={hashedPass} className="form-control" />
           </div>
-          <div className="form-row">
-            <div className="form-group col-md-6">
-              <label>Type</label>
-              {/* This should be a dropdown with available user types, OR a checklist of operations the user will be granted access to */}
-              <input type="text" defaultValue={type} className="form-control" />
-            </div>
+          <div className="form-group ">
+            <label>Repeat password</label>
+            <input type="password" defaultValue={hashedPass} className="form-control" />
           </div>
+          <div className="form-group ">
+            <label>Type</label>
+            {/*Lag funksjon her fix*/}
+            <select className="form-control custom-select" >
+              <option selected={type}>{type}</option>
+              <option value="Admin">Admin</option>
+              <option value="journalist">journalist</option>
+            </select>
+          </div>
+
 
           <button type="submit" className="btn btn-info btn-sm">Save</button>
         </form>
       </div>
 
     </React.Fragment>
-   );
+  );
 }
- 
+
 export default AdminUser;

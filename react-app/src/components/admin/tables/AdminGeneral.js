@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import AdminContactPerson from "../AdminContactPerson";
 
 class AdminGeneral extends Component {
@@ -41,14 +41,14 @@ class AdminGeneral extends Component {
       ]
     }
   };
-  render() { 
-    return (  
+  render() {
+    return (
       <div className="container tablesAdmin col-md-9 col-lg-10">
         <div>
           <div>
             <h2>Static text</h2>
             <div className="elementCardAdmin row">
-              <p className="col-md-4"><span className="smallHeading">HOME: header pitch</span></p>
+              <p className="col-md-10"><span className="smallHeading">HOME: header pitch</span></p>
               <div className="col-md-2">
                 <button className="btn btn-secondary btnInElementAdmin btn-sm" type="button" data-toggle="collapse" data-target="#headerPitchForm" aria-expanded="false" aria-controls="headerPitchForm">Edit</button>
               </div>
@@ -56,9 +56,10 @@ class AdminGeneral extends Component {
             <div className="collapse editScheduleItem" id="headerPitchForm">
               <form className="col-md-8 col-lg-6">
                 <div className="form-row">
-                  <div className="form-group col-md-6">
+                  <div className="form-group col-md-12">
                     <label>Pitch</label>
-                    <input type="text" defaultValue={this.state.home.pitch} className="form-control" />
+                    <textarea className="form-control">{this.state.home.pitch}</textarea>
+
                   </div>
                 </div>
                 <button type="submit" className="btn btn-info btn-sm">Save</button>
@@ -66,7 +67,7 @@ class AdminGeneral extends Component {
             </div>
 
             <div className="elementCardAdmin row">
-              <p className="col-md-4"><span className="smallHeading">ABOUT: vision text</span></p>
+              <p className="col-md-10"><span className="smallHeading">ABOUT: vision text</span></p>
               <div className="col-md-2">
                 <button className="btn btn-secondary btnInElementAdmin btn-sm" type="button" data-toggle="collapse" data-target="#visionTextForm" aria-expanded="false" aria-controls="visionTextForm">Edit</button>
               </div>
@@ -74,9 +75,9 @@ class AdminGeneral extends Component {
             <div className="collapse editScheduleItem" id="visionTextForm">
               <form className="col-md-8 col-lg-6">
                 <div className="form-row">
-                  <div className="form-group col-md-6">
+                  <div className="form-group col-md-12">
                     <label>Vision</label>
-                    <input type="text" defaultValue={this.state.about.visionText} className="form-control" />
+                    <textarea className="form-control">{this.state.about.visionText}</textarea>
                   </div>
                 </div>
                 <button type="submit" className="btn btn-info btn-sm">Save</button>
@@ -84,7 +85,7 @@ class AdminGeneral extends Component {
             </div>
 
             <div className="elementCardAdmin row">
-              <p className="col-md-4"><span className="smallHeading">ABOUT: organization text</span></p>
+              <p className="col-md-10"><span className="smallHeading">ABOUT: organization text</span></p>
               <div className="col-md-2">
                 <button className="btn btn-secondary btnInElementAdmin btn-sm" type="button" data-toggle="collapse" data-target="#organizationTextForm" aria-expanded="false" aria-controls="organizationTextForm">Edit</button>
               </div>
@@ -92,9 +93,9 @@ class AdminGeneral extends Component {
             <div className="collapse editScheduleItem" id="organizationTextForm">
               <form className="col-md-8 col-lg-6">
                 <div className="form-row">
-                  <div className="form-group col-md-6">
+                  <div className="form-group col-md-12">
                     <label>Vision</label>
-                    <input type="text" defaultValue={this.state.about.organizationText} className="form-control" />
+                    <textarea className="form-control">{this.state.about.organizationText}</textarea>
                   </div>
                 </div>
                 <button type="submit" className="btn btn-info btn-sm">Save</button>
@@ -102,7 +103,7 @@ class AdminGeneral extends Component {
             </div>
 
             <div className="elementCardAdmin row">
-              <p className="col-md-4"><span className="smallHeading">COTNACT: address information</span></p>
+              <p className="col-md-10"><span className="smallHeading">COTNACT: address information</span></p>
               <div className="col-md-2">
                 <button className="btn btn-secondary btnInElementAdmin btn-sm" type="button" data-toggle="collapse" data-target="#addressForm" aria-expanded="false" aria-controls="addressForm">Edit</button>
               </div>
@@ -110,42 +111,42 @@ class AdminGeneral extends Component {
             <div className="collapse editScheduleItem" id="addressForm">
               <form className="col-md-8 col-lg-6">
                 <div className="form-row">
-                  <div className="form-group col-md-6">
+                  <div className="form-group col-md-8">
                     <label>Name</label>
                     <input type="text" defaultValue={this.state.contact.contactAddress.name} className="form-control" />
                   </div>
                 </div>
                 <div className="form-row">
-                  <div className="form-group col-md-6">
+                  <div className="form-group col-md-8">
                     <label>Organization</label>
-                    <input type="text"  defaultValue={this.state.contact.contactAddress.organization} className="form-control" />
+                    <input type="text" defaultValue={this.state.contact.contactAddress.organization} className="form-control" />
                   </div>
                 </div>
                 <div className="form-row">
-                  <div className="form-group col-md-6">
+                  <div className="form-group col-md-8">
                     <label>Address</label>
-                    <input type="text"  defaultValue={this.state.contact.contactAddress.address} className="form-control" />
+                    <input type="text" defaultValue={this.state.contact.contactAddress.address} className="form-control" />
                   </div>
                 </div>
                 <div className="form-row">
-                  <div className="form-group col-md-6">
+                  <div className="form-group col-md-8">
                     <label>Building</label>
-                    <input type="text"  defaultValue={this.state.contact.contactAddress.building} className="form-control" />
+                    <input type="text" defaultValue={this.state.contact.contactAddress.building} className="form-control" />
                   </div>
                 </div>
                 <div className="form-row">
-                  <div className="form-group col-md-6">
+                  <div className="form-group col-md-8">
                     <label>Area code</label>
-                    <input type="text"  defaultValue={this.state.contact.contactAddress.areaCode} className="form-control" />
+                    <input type="text" defaultValue={this.state.contact.contactAddress.areaCode} className="form-control" />
                   </div>
                 </div>
                 <div className="form-row">
-                  <div className="form-group col-md-6">
+                  <div className="form-group col-md-8">
                     <label>City</label>
-                    <input type="text"  defaultValue={this.state.contact.contactAddress.city} className="form-control" />
+                    <input type="text" defaultValue={this.state.contact.contactAddress.city} className="form-control" />
                   </div>
                 </div>
-                
+
                 <button type="submit" className="btn btn-info btn-sm">Save</button>
               </form>
             </div>
@@ -161,11 +162,11 @@ class AdminGeneral extends Component {
               }
             </div>
           </div>
-          
+
         </div>
       </div>
     );
   }
 }
- 
+
 export default AdminGeneral;

@@ -30,13 +30,14 @@ const AdminPostItem = (props) => {
                     />
                     <div className="form-group">
                         <label>News Text</label>
-                        <textarea class="form-control">{props.post.newsText}</textarea>
+                        <textarea id="textareaNews" class="form-control">{props.post.newsText}</textarea>
                     </div>
                     <button type="submit" class="btn btn-info btn-sm">Edit</button>
                 </form>
             </div>
         </React.Fragment>
     )
+
 }
 
 export default AdminPostItem;
