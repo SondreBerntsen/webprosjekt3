@@ -37,7 +37,7 @@ const ScheduleItem = props => {
           </div>
           <div className="col-md-8 infoEvent">
             <div className="row">
-              <p className="time col">
+              <p className="time col-md-6">
                 <span role="img" aria-label="icon">
                   &#128337;
                 </span>{" "}
@@ -66,14 +66,14 @@ const ScheduleItem = props => {
     } else {
       return (
         <React.Fragment>
-          <p className="price col-md-3">"GRATIS"</p>
+          <p className="price col-md-3">GRATIS</p>
           <span className="col-md-3" />
         </React.Fragment>
       );
     }
   }
 
-  return <div>{checkUrl()}</div>;
+  return <div className="mb-3">{checkUrl()}</div>;
 };
 
 export default ScheduleItem;

@@ -63,15 +63,14 @@ const EventVideo = props => {
   function fullUrl() {
     const fullUrl = `https://www.youtube.com/embed/${
       props.url
-      }?feature=oembed&autoplay=1&hd=1`;
-    return (fullUrl);
+    }?feature=oembed&autoplay=1&hd=1`;
+    return fullUrl;
   }
   /*checks if event has youtube link or not*/
   const hasVideo =
     url !== "" ? (
-
       /*if event has youtube link*/
-      < div >
+      <div>
         <div
           className="Video js-video"
           data-url={fullUrl()}
@@ -98,21 +97,21 @@ const EventVideo = props => {
             </svg>
           </div>
         </div>
-      </div >
+      </div>
     ) : (
-        /*if the event has no youtube link*/
-        <div>
-          <div data-width="1280" data-height="720">
-            <div className="Video-wrap js-videoWrap">
-              <img
-                className="Video-placeholder js-videoPlaceholder"
-                src={props.placeholderImage}
-                alt=""
-              />
-            </div>
+      /*if the event has no youtube link*/
+      <div>
+        <div data-width="1280" data-height="720">
+          <div className="Video-wrap js-videoWrap">
+            <img
+              className="Video-placeholder js-videoPlaceholder"
+              src={props.placeholderImage}
+              alt=""
+            />
           </div>
         </div>
-      );
+      </div>
+    );
 
   return <div>{hasVideo}</div>;
 };

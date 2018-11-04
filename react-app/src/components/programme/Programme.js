@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "../Navbar";
+import Footer from "../Footer";
 import ListOfDays from "./ListOfDays";
 import ProgrammeSchedule from "./ProgrammeSchedule";
 import "../../styles/programme.css";
@@ -64,20 +65,21 @@ class Programme extends Component {
         ]
       }
     ]
-  }
+  };
 
   render() {
     return (
       <div>
         <Navbar />
         <div className="container">
-          <h2 className="center pageTitle">Program</h2><hr className="hrHeight" />
+          <h2 className="center pageTitle">Program</h2>
+          <hr className="hrHeight" />
           <ListOfDays days={this.state.days} />
           {/* Passes days array as props to ProgrammeSchedule */}
           <ProgrammeSchedule days={this.state.days} />
         </div>
+        <Footer />
       </div>
-
     );
   }
 }

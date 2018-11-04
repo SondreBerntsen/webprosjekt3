@@ -43,4 +43,11 @@ hr.event-hr {
   p.event-date {
     padding: 5px 15px;
   }
+  .event-scedule-item {
+    border: none;
+    background-color: #822a4017;
+  }
+  hr.event-hr {
+    margin-bottom: 25px;
+  }
 }
