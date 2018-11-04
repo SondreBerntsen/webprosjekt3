@@ -27,7 +27,7 @@ class Footer extends Component {
     const { socialMedias } = this.state;
     const socialMediaList = socialMedias.map(media => {
       return (
-        <div className="social-media col" key={media.name}>
+        <div className="social-media col-sm-12 col-md-3" key={media.name}>
           <a href={media.link}>
             <i className={media.icon} />
             <p>{media.name}</p>
@@ -38,10 +38,12 @@ class Footer extends Component {
     // returning the templates sequentially
     return (
       <footer className="footer row">
-        <div className="col-2">
+        <div className="col-md-4 col-sm-12">
           <p className="copyright">Copyright @ Drammen Sacred</p>
         </div>
-        <div className="col-8 offset-1 row">{socialMediaList}</div>
+        <div className="col-sm-12 col-md-6 mr-md-2">
+          <div className="row">{socialMediaList}</div>
+        </div>
       </footer>
     );
   }
