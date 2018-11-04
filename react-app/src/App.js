@@ -10,7 +10,7 @@ import Contact from "./components/contact/Contact";
 import Event from "./components/event/Event";
 import NewsArticle from "./components/news/NewsArticle";
 
-// Admin things
+// Admin components
 import Admin from "./components/admin/Admin";
 import AdminEvents from "./components/admin/tables/AdminEvents";
 import AdminPosts from "./components/admin/tables/AdminPosts";
@@ -18,8 +18,9 @@ import AdminSchedule from "./components/admin/tables/AdminSchedule";
 import AdminVenues from "./components/admin/tables/AdminVenues";
 import AdminGeneral from "./components/admin/tables/AdminGeneral";
 import AdminUsers from "./components/admin/tables/AdminUsers";
+import AdminReview from "./components/admin/tables/AdminReview";
+import AdminSettings from "./components/admin/tables/AdminSettings";
 
-import Footer from "./components/Footer";
 
 class App extends Component {
   render() {
@@ -42,6 +43,8 @@ class App extends Component {
           <Route path="/admin/venues" component={AdminVenues} />
           <Route path="/admin/general" component={AdminGeneral} />
           <Route path="/admin/users" component={AdminUsers} />
+          <Route path="/admin/review" component={AdminReview} />
+          <Route path="/admin/settings" component={AdminSettings} />
         </div>
       </BrowserRouter>
     );
