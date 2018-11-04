@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ScheduleItem = props => {
   // Outputs "More info" div only if the user is on Programme page
@@ -20,9 +21,12 @@ const ScheduleItem = props => {
               </p>
               {checkPrice()}
               <div className="col-md-3">
-                <button className="btn btn-outline-info infoBtn">
+                <Link
+                  to={"/arrangement/" + props.event.id}
+                  className="btn infoBtn btn-outline-info col-sm-12 col-md-10"
+                >
                   Mer info
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -50,6 +54,7 @@ const ScheduleItem = props => {
       );
     }
   }
+
   // Outputs "buy tickets" div only if the event is not free
   function checkPrice() {
     if (props.event.price !== 0) {
