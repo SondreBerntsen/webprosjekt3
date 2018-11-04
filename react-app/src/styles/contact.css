@@ -37,6 +37,8 @@ input {
 .contact-adress i {
   font-size: 1.5rem;
   float: left;
+  padding-right: 10px;
+  color: #822a40;
 }
 .contact-form {
   top: 50px;
@@ -98,6 +100,7 @@ img.contact-card-img:hover {
   }
   .contact-person {
     padding: 0;
+    margin-bottom: 30px;
   }
   .card.contact-person-card {
     width: 100%;
@@ -108,20 +111,21 @@ img.contact-card-img:hover {
   }
   .contact-adress i {
     font-size: 1.4rem;
-    width: 50%;
-    margin: 0 auto;
+    width: 100%;
+    text-align: center;
     padding-bottom: 5px;
   }
   .contact-adress p {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     width: 100%;
-    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 35px;
   }
 }
 
 .input-group-addon {
   margin: 5px 18px 0px 0px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
 .contactFormText {

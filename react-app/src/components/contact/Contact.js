@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "../Navbar";
+import Footer from "../Footer";
 import ContactPersons from "./ContactPersons.js";
 import ContactForm from "./ContactForm.js";
 import "../../styles/contact.css";
@@ -57,8 +58,8 @@ class Contact extends Component {
           <div className="col-sm-12 col-lg-12">
             <div className="contact-adress">
               <div className="px-3 text-dark ">
-                <i className="fa fa-map-marker d-inline-block float-right float-md-none " />
-                <p className="text-justify">
+                <i className="fa fa-map-marker d-inline-block float-md-none " />
+                <p>
                   {contactAdress.name}, {contactAdress.organization},{" "}
                   {contactAdress.adress}, {contactAdress.building},{" "}
                   {contactAdress.postAdress}, {contactAdress.postAdressName}
@@ -67,6 +68,7 @@ class Contact extends Component {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }
