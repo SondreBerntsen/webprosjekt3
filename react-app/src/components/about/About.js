@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "../Navbar";
+import Footer from "../Footer";
 import "../../styles/about.css";
 
 class About extends Component {
@@ -253,9 +254,7 @@ class About extends Component {
             <div className="about-vision col-12">
               <h4>Visjon</h4>
               <p>{this.state.aboutFestival.vision}</p>
-              <p>
-                <strong>{this.state.aboutFestival.greeting}</strong>
-              </p>
+              <p className="greeting">{this.state.aboutFestival.greeting}</p>
               <hr />
             </div>
           </div>
@@ -307,6 +306,7 @@ class About extends Component {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

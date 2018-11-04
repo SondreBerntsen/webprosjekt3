@@ -47,14 +47,6 @@ h2.title {
 .reports-nor li {
   padding: 3px 0px 3px 0px;
 }
-/**
-.reports-eng li:hover,
-.reports-nor li:hover {
-}
-
-.reports-eng a:hover,
-.reports-nor a:hover {
-}*/
 
 .reports-eng-descr,
 .reports-nor-descr {
@@ -106,6 +98,10 @@ ul {
 ul li {
   font-size: 14px;
 }
+p.greeting {
+  font-weight: 800;
+  text-align: center;
+}
 
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
@@ -116,5 +112,20 @@ ul li {
   }
   .row {
     margin: 0;
+  }
+  .about-collab h4 {
+    padding-left: 15px;
+  }
+
+  .about-collab ul {
+    padding-left: 5px;
+  }
+  .reports-eng,
+  .reports-nor {
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+  h4 {
+    margin-top: 15px;
   }
 }
