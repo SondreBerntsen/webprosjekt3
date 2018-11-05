@@ -54,6 +54,10 @@ html{
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
       monospace;
   }
+
+/* NAVBAR */
+/*--------*/
+
   .navbarFront, .navTopAdmin {
     background-color: #822a40 !important;
   }
@@ -80,14 +84,47 @@ html{
   }
  .linkYear{
    text-align: center;
-   font-size: 18px;
-   font-weight: bold;
-   color:#e28e6a;
+   font-size: 20px;
+   color:#FFFFFF;
  }
  .linkYear:active{
   background-color: white;
   color:black;
  }
 
+ .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 8.8rem;
+  padding: .5rem 0;
+  margin-top: 13px;
+  font-size: 1rem;
+  color: #212529;
+  text-align: left;
+  list-style: none;
+  background-color: #822a40;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: .25rem;
+}
+
+@media only screen and (max-width: 1000px) {
+
+  .dropdown-item {
+    text-align: left;
+  }
+
+  .dropdown-menu{
+    margin-left: 18px;
+  }
+
+  .dropdown-menu.show {
+    display: inline-block;
+  }
+}
 
 
