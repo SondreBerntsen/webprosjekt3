@@ -24,8 +24,8 @@ class NewsArticle extends Component {
         const article = this.state.article ? (
             <div className="container">
                 <div className="vh-80">
-                    <h2 className="newsTitle">{this.state.article.newsTitle}</h2>
-                    <hr className="newsHr" />
+                    <h2 className="pageTitle">{this.state.article.newsTitle}</h2>
+                    <hr className="hrHeight" />
                     <div className="row newsArticle">
                         <div className="newsImgDiv col-md-6">
                             <img src={this.state.article.newsImg} alt="cat" className="imgNewsArticle" />
@@ -40,7 +40,7 @@ class NewsArticle extends Component {
         return (
             <div>
                 <Navbar />
-                <span> id = {this.state.id}</span>
+                {/*  <span> id = {this.state.id}</span>*/}
                 {article}
                 <Footer />
             </div>
