@@ -63,6 +63,6 @@
     margin-bottom: 45px;
 }
 
-.newsArticle {
-    height: 60vh;
+.vh-80 {
+    min-height: 80vh;
 }

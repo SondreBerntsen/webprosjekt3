@@ -23,13 +23,15 @@ class NewsArticle extends Component {
     render() {
         const article = this.state.article ? (
             <div className="container">
-                <h2 className="newsTitle">{this.state.article.newsTitle}</h2>
-                <hr className="newsHr" />
-                <div className="row newsArticle">
-                    <div className="newsImgDiv col-md-6">
-                        <img src={this.state.article.newsImg} alt="cat" className="imgNewsArticle" />
+                <div className="vh-80">
+                    <h2 className="newsTitle">{this.state.article.newsTitle}</h2>
+                    <hr className="newsHr" />
+                    <div className="row newsArticle">
+                        <div className="newsImgDiv col-md-6">
+                            <img src={this.state.article.newsImg} alt="cat" className="imgNewsArticle" />
+                        </div>
+                        <div className="col-md-6"> <p>{this.state.article.newsText}</p></div>
                     </div>
-                    <div className="col-md-6"> <p>{this.state.article.newsText}</p></div>
                 </div>
             </div>
         ) : (
