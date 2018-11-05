@@ -66,3 +66,10 @@
 .vh-80 {
     min-height: 80vh;
 }
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .newsImgDiv{
+        padding: 0;
+    }
+  }
