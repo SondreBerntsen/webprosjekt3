@@ -6,6 +6,16 @@ import "../../styles/live.css";
 
 class Live extends Component {
 
+    /*
+    
+    LIVE VIDEO
+
+    LIVE FEED
+    
+    LISTE OVER PLANLAGTE LIVE STREAMS
+    
+    */
+
 
     render() {
         return (
