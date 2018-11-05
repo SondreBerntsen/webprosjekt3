@@ -2,7 +2,6 @@
 
 //https://codepen.io/vincentorback/pen/KaqbLK
 import React from "react";
-import "../../styles/eventvideo.css";
 
 const EventVideo = props => {
   const url = props.url;
@@ -63,7 +62,7 @@ const EventVideo = props => {
   function fullUrl() {
     const fullUrl = `https://www.youtube.com/embed/${
       props.url
-    }?feature=oembed&autoplay=1&hd=1`;
+      }?feature=oembed&autoplay=1&hd=1`;
     return fullUrl;
   }
   /*checks if event has youtube link or not*/
@@ -99,19 +98,19 @@ const EventVideo = props => {
         </div>
       </div>
     ) : (
-      /*if the event has no youtube link*/
-      <div>
-        <div data-width="1280" data-height="720">
-          <div className="Video-wrap js-videoWrap">
-            <img
-              className="Video-placeholder js-videoPlaceholder"
-              src={props.placeholderImage}
-              alt=""
-            />
+        /*if the event has no youtube link*/
+        <div>
+          <div data-width="1280" data-height="720">
+            <div className="Video-wrap js-videoWrap">
+              <img
+                className="Video-placeholder js-videoPlaceholder"
+                src={props.placeholderImage}
+                alt=""
+              />
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
 
   return <div>{hasVideo}</div>;
 };
