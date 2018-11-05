@@ -67,6 +67,17 @@ venue_name {
   cursor: pointer;
 }
 
+/* Spacing between buttons "kjøp billet" and "mer info" */
+.buttonDiv {
+  padding-left: 0px;
+}
+
+/* Space between event details and border around the scheduleItem*/
+
+.eventDetails {
+  width: 109%;
+}
+
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
   .time {
@@ -89,4 +100,12 @@ venue_name {
     margin: 35px 0px;
     text-align: center;
   }
+
+  .eventDetails {
+    width: 100%;
+  }
+
+  .buttonDiv {
+    padding-left: 15px;
+}
 }

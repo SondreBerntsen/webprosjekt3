@@ -12,7 +12,7 @@ const ScheduleItem = props => {
             <p className="venue_name">{props.event.venue}</p>
           </div>
           <div className="col-md-8 infoEvent">
-            <div className="row">
+            <div className="row eventDetails">
               <p className="time col-md-3">
                 <span role="img" aria-label="icon">
                   &#128337;
@@ -20,7 +20,7 @@ const ScheduleItem = props => {
                 {props.event.time}
               </p>
               {checkPrice()}
-              <div className="col-md-3">
+              <div className="col-md-3 buttonDiv">
                 <Link
                   to={"/arrangement/" + props.event.id}
                   className="btn infoBtn btn-outline-info col-sm-12 col-md-10"
