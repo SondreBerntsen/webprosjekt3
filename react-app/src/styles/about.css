@@ -105,9 +105,6 @@ p.greeting {
 
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
-  .container {
-    width: 100%;
-  }
   .row {
     margin: 0;
   }
