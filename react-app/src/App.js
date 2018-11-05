@@ -7,6 +7,7 @@ import About from "./components/about/About";
 import News from "./components/news/News";
 import Review from "./components/review/Review";
 import Contact from "./components/contact/Contact";
+import Live from "./components/live/Live";
 import Event from "./components/event/Event";
 import NewsArticle from "./components/news/NewsArticle";
 
@@ -33,6 +34,7 @@ class App extends Component {
           <Route path="/tilbakeblikk/:reviewId" component={Review} />
           <Route path="/kontakt" component={Contact} />
           <Route path="/program" component={Programme} />
+          <Route path="/live" component={Live} />
           <Route path="/arrangement/:eventId" component={Event} />
           <Route path="/artikkel/:newsId" component={NewsArticle} />
 

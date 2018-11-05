@@ -31,6 +31,11 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li className="nav-item">
+              <NavLink className="nav-link" to="/live">
+                Live
+              </NavLink>
+            </li>
+            <li className="nav-item">
               <NavLink className="nav-link" to="/om-oss">
                 Om oss
               </NavLink>
