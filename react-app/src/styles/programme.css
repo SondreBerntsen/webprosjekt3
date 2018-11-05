@@ -42,7 +42,7 @@ venue_name {
 }
 .infoBtn,
 .buy_ticketBtn {
-  width: 100%;
+  width: auto;
 }
 .price {
   color: green;

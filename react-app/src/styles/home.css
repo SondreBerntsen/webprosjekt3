@@ -1,11 +1,9 @@
-.headerImage{
-     background: url(../img/big_header.jpg);
-     background-attachment: fixed;
-     background-position: center;
-     background-repeat: no-repeat;
-     background-size: 100% 100%;
-     width: 100%;
-     min-height: 100vh;
+.headerImage {
+    background: url(/static/media/big_header.c3357e1d.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .contentHeader{
