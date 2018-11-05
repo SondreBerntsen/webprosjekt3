@@ -27,7 +27,7 @@ class NewsArticle extends Component {
                     <h2 className="pageTitle">{this.state.article.newsTitle}</h2>
                     <hr className="hrHeight" />
                     <div className="row newsArticle">
-                        <div className="newsImgDiv col-md-6">
+                        <div className="col-md-6">
                             <img src={this.state.article.newsImg} alt="cat" className="imgNewsArticle" />
                         </div>
                         <div className="newsText col-md-6"> <p>{this.state.article.newsText}</p></div>
