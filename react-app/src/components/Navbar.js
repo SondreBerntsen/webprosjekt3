@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light navbarFront">
-        <img className="logoNav" src={require('../img/logo.png')} alt="logo" />
+        <Link to="/"><img className="logoNav" src={require('../img/logo.png')} alt="logo" /></Link>
         <button
           className="navbar-toggler "
           type="button"
@@ -58,7 +58,7 @@ const Navbar = () => {
           </ul>
         </div>
       </nav>
-    </div>
+    </div >
   );
 };
 export default Navbar;
