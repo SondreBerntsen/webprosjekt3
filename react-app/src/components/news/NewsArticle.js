@@ -11,7 +11,7 @@ class NewsArticle extends Component {
         article: {
             newsTitle: 'Kitten in trouble',
             newsImg: "https://www.drammensacred.no/wp-content/uploads/2018/09/BJM_6287-1-960x639.jpg",
-            newsText: 'Det ble en spektakulær åpning av årets Drammen Sacred Music Festival da gruppa Cloudlight Fire Tribe med dj og 5 flammesjonglører holdt sitt fantastiske show på Strømsø torg lørdag kveld.\n\nFestivalens styreleder Ivar Flaten ønsket velkommen til festivalen, som har program hver dag gjennom hele uka fram til avslutningskonsert med Solveig Sletthjell i Filadelfiakirken søndag 23. september.\n\n Stor og små flokket seg rundt på torget mens performance-kunstnerene fra Cloudlight danset og sjonglerte med ulike typer fakler til dj´ens egenproduserte tribal beats.'
+            newsText: 'Det ble en spektakulær åpning av årets Drammen Sacred Music Festival da gruppa Cloudlight Fire Tribe med dj og 5 flammesjonglører holdt sitt fantastiske show på Strømsø torg lørdag kveld.\n\nFestivalens styreleder Ivar Flaten ønsket velkommen til festivalen, som har program hver dag gjennom hele uka fram til avslutningskonsert med Solveig Sletthjell i Filadelfiakirken søndag 23. september.\n\nStor og små flokket seg rundt på torget mens performance-kunstnerene fra Cloudlight danset og sjonglerte med ulike typer fakler til dj´ens egenproduserte tribal beats.'
         }
     }
     componentDidMount() {
@@ -30,7 +30,7 @@ class NewsArticle extends Component {
                         <div className="newsImgDiv col-md-6">
                             <img src={this.state.article.newsImg} alt="cat" className="imgNewsArticle" />
                         </div>
-                        <div className="col-md-6"> <p>{this.state.article.newsText}</p></div>
+                        <div className="newsText col-md-6"> <p>{this.state.article.newsText}</p></div>
                     </div>
                 </div>
             </div>
