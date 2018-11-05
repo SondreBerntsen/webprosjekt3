@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "../Navbar";
+import Footer from "../Footer";
 import EventList from "../EventList";
 import Slider from "./Slider";
 import "../../styles/review.css";
@@ -85,6 +86,7 @@ class Review extends Component {
                         </div>
                     </div>
                 </div>
+                <Footer />
             </div>
         );
     }

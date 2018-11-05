@@ -1,6 +1,7 @@
 //news article page
 import React, { Component } from "react";
 import Navbar from "../Navbar";
+import Footer from "../Footer";
 import "../../styles/news.css";
 
 
@@ -36,6 +37,7 @@ class NewsArticle extends Component {
                 <Navbar />
                 <span> id = {this.state.id}</span>
                 {article}
+                <Footer />
             </div>
         )
     }

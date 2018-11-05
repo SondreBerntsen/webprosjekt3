@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../Navbar";
+import Footer from "../Footer";
 import NewsCards from "../NewsCards";
 import "../../styles/news.css";
 const News = () => {
@@ -14,6 +15,7 @@ const News = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
 
   );
