@@ -10,8 +10,8 @@ class NewsArticle extends Component {
         id: null,
         article: {
             newsTitle: 'Kitten in trouble',
-            newsImg: "https://content.linkedin.com/content/dam/business/talent-solutions/global/en_us/blog/2018/01/unexpected-interview-question-new.jpg",
-            newsText: 'blablalbahoh'
+            newsImg: "https://www.drammensacred.no/wp-content/uploads/2018/09/BJM_6287-1-960x639.jpg",
+            newsText: 'Det ble en spektakulær åpning av årets Drammen Sacred Music Festival da gruppa Cloudlight Fire Tribe med dj og 5 flammesjonglører holdt sitt fantastiske show på Strømsø torg lørdag kveld.\n\nFestivalens styreleder Ivar Flaten ønsket velkommen til festivalen, som har program hver dag gjennom hele uka fram til avslutningskonsert med Solveig Sletthjell i Filadelfiakirken søndag 23. september.\n\n Stor og små flokket seg rundt på torget mens performance-kunstnerene fra Cloudlight danset og sjonglerte med ulike typer fakler til dj´ens egenproduserte tribal beats.'
         }
     }
     componentDidMount() {
@@ -23,11 +23,14 @@ class NewsArticle extends Component {
     render() {
         const article = this.state.article ? (
             <div className="container">
-                <h2>{this.state.article.newsTitle}</h2>
-                <div className="newsImgDiv">
-                    <img src={this.state.article.newsImg} alt="cat" className="imgNewsArticle" />
+                <h2 className="newsTitle">{this.state.article.newsTitle}</h2>
+                <hr className="newsHr" />
+                <div className="row newsArticle">
+                    <div className="newsImgDiv col-md-6">
+                        <img src={this.state.article.newsImg} alt="cat" className="imgNewsArticle" />
+                    </div>
+                    <div className="col-md-6"> <p>{this.state.article.newsText}</p></div>
                 </div>
-                <p>{this.state.article.newsText}</p>
             </div>
         ) : (
                 <div>Error melding her.. video 31</div>
