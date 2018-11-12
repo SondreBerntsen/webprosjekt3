@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 class EventCard extends Component {
   render() {
     return (
-      <div className=" col-sm-6 col-md-4">
+      <div className=" col-sm-6 col-md-6 col-lg-4">
         <Link to={'/arrangement/' + this.props.artistId}>
           <div
             onMouseOver={this.mouseOverImg.bind(this)}
