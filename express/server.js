@@ -1,6 +1,22 @@
 const express = require('express');
-const app = express();
 const mysql = require('mysql');
+
+// Create connection
+const db = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'drammensacred'
+})
+
+// Connect
+db.connect((err) => {
+if(err){
+  return err;
+}
+});
+
+const app = express();
 
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); //Whichever port my react app is running on
@@ -11,20 +27,6 @@ app.use(function(req, res, next) {
 
 const SELECT_ALL_EVENTS_QUERY = 'SELECT * FROM events';
 
-// Create connection
-const conn = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'drammensacred'
-})
-
-// Connect
-db.connect((err) => {
-  if(err){
-    return err;
-  }
-});
 
 app.get('/', (req, res) => {
     res.send('Idk what goes here')
