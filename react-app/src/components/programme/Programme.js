@@ -66,6 +66,28 @@ class Programme extends Component {
       }
     ]
   };
+  
+  componentDidMount() {
+    let date = new Date();
+    let year = date.getFullYear();
+    let self = this;
+    /*
+    fetch("/programme", {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: year
+    })
+      .then(function(response) {
+        if (response.err) {
+          console.log(err);
+        }
+        return response.json()
+      ) //Evetche å e ska jørr heå, den e rø
+      .then(data => self.setState({ days : data }));
+    */
+  }
 
   render() {
     return (
