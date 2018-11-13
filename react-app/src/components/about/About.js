@@ -5,127 +5,11 @@ import "../../styles/about.css";
 
 class About extends Component {
   state = {
-    aboutFestival: {
-      vision:
-        "Drammen Sacred Music Festival er et møtested for å dele musikk, bilder og fortellinger fra ulike tradisjoner. Vi tror musikk og kunst generelt kan uttrykke menneskets mest grunnleggende lengsler og overstige språklige, nasjonale, kulturelle, ideologiske, rasemessige og religiøse grenser. I konsertene presenterer vi lokale og gjestende artister som har noe viktig på hjertet. Seminarer, foredrag, filmer og workshops er rammen rundt refleksjon, dialog og læring.\n\nDrammen-området er kjent for sin internasjonale befolkning og festivalen legger stor vekt på dialog og å involvere ulike grupperinger i festivalen. Festivalens visjon er å legge til rette for møter som berører, beveger og skaper mening, og har ambisjon om å være en sentral festival i dette landskapet.",
+    generalInfo: [],
+    partners: [],
+    festivalReports1: [],
 
-      greeting:
-        "Velkommen til Drammen Sacred Music Festival, 15. – 23. september 2018!",
-
-      collabPublicDescr:
-        "Festivalen kan gjennomføres på grunn av den støtten som gis fra en rekke offentlige instanser. De største er Drammen Kommune Interkultur, Norsk Kulturråd og Buskerud Fylkeskommune.",
-
-      collabLocalDescr:
-        "Like viktig er samarbeidet med lokale institusjoner for gjennomføring av de ulike arrangementene. Festivalen har siden starten vært knyttet til området ved Union og Papirbredden ved Ypsilon. Union Scene er en viktig samarbeidspartner.",
-
-      organization:
-        "Drammen og omegn tros- og livssynsforum (DoTL) startet festivalen i 2010 sammen med Drammen kommune, Interkultur. Initiativtakere og pådrivere var Arve Vannebo og Ricardo Sanchez (Drammen kommune Interkultur) og Ivar Flaten (sokneprest Fjell menighet). Fra 2012 har festivalen vært organisert som en forening der DoTL er representert i styret sammen med lokale, regionale og nasjonale samarbeidspartnere. Drammen kommune er en sentral samarbeidspartner i programmering og produksjon.\n\nStyret for DSMF består av Sharee Loren, Tal Coleman, Terje-Brun Pedersen, Ingvild Jacobsen, Reidun Svabø og Ivar Flaten som er styreleder.\n\nFestivalen har gjennom årene hatt samarbeid med fagpersoner i programarbeidet: Ricardo Sanchez (tidl. produsent Interkultur)Jørgen Nøvik (musiker, billedkunstner m.m),  Svanhild Rohdin (billedkunstner), Fernando Sallum (musiker), Tal Zimra Coleman (musiker), Svein Westad (musiker), Erik Hillestad (Kirkelig Kulturverksted) og Ingebrigt Håker Flaten (musiker). Henrik Melius (Spiritus Mundi, Malmø) og Eli Borchgrevink (Buskerud teaterverksted – tidligere Trap- og Du Store Verden) er eksterne konsulenter og samarbeidspartnere."
-    },
-
-    collaborators: [
-      {
-        name: "Drammen kommune Interkultur",
-        type: "public"
-      },
-      {
-        name: "Norsk Kulturråd",
-        type: "public"
-      },
-      {
-        name: "Drammen prosti / Fjell menighet",
-        type: "public"
-      },
-      {
-        name: "Buskerud fylkeskommune",
-        type: "public"
-      },
-      {
-        name: "Kulturdepartementet",
-        type: "public"
-      },
-      {
-        name: "Tunsberg bispedømmekontor",
-        type: "public"
-      },
-      {
-        name: "Drammen kirkelige fellesråd",
-        type: "public"
-      },
-      {
-        name: "Kari Ulleberg",
-        type: "public"
-      },
-      {
-        name: "Drammen kommune Interkultur",
-        type: "local"
-      },
-      {
-        name: "Papirbredden AS",
-        type: "local"
-      },
-      {
-        name: "Comfort Hotel Union Brygge",
-        type: "local"
-      },
-      {
-        name: "Drammen Filmklubb",
-        type: "local"
-      },
-      {
-        name: "Mangfoldhuset, Drammen",
-        type: "local"
-      },
-      {
-        name: "Drammen og omegn tros- og livssynsforum (DoTL)",
-        type: "local"
-      },
-      {
-        name: "Introduksjonssenteret",
-        type: "local"
-      },
-      {
-        name: "Biblioteket i Drammen",
-        type: "local"
-      },
-      {
-        name: "Tunsberg bispedømmeråd",
-        type: "local"
-      },
-      {
-        name: "Drammen kirkelige fellesråd",
-        type: "local"
-      },
-      {
-        name: "Fjell menighetsråd",
-        type: "local"
-      },
-      {
-        name: "Strømsø menighetsråd",
-        type: "local"
-      },
-      {
-        name: "Strømsgodset menighetsråd",
-        type: "local"
-      },
-      {
-        name: "Bragernes menighetsråd",
-        type: "local"
-      },
-      {
-        name: "Byen vår Drammen",
-        type: "local"
-      },
-      {
-        name: "Buskerud Innvandrerråd",
-        type: "local"
-      },
-      {
-        name: "Byavisa Drammen",
-        type: "local"
-      }
-    ],
-
-    reports: [
+    festivalReports: [
       {
         id: "1",
         name: "festivalrapport 2012",
@@ -179,60 +63,67 @@ class About extends Component {
   };
 
   componentDidMount() {
-    this.getGeneralFromDB();
+    this.getGeneralInfo();
+    this.getPartners();
+    this.getFestivalReports();
   }
 
-  getGeneralFromDB() {
-    /* fetch('http://localhost:4100/about')
-       .then((resp) => resp.json())
-       .then(function (myJson) {
-         console.log(myJson);
-         return (myJson);
-       })*/
-    //this.setState({ generalInfo: this.myJson });
+  getGeneralInfo = _ => {
+    fetch(`http://localhost:4100/generalinfo`)
+      .then(response => response.json())
+      .then(response => this.setState({ generalInfo: response.data[0] }))
+      .catch(err => console.error(err));
+  };
 
-  }
+  getPartners = _ => {
+    fetch(`http://localhost:4100/partners`)
+      .then(response => response.json())
+      .then(response => this.setState({ partners: response.data }))
+      .catch(err => console.error(err));
+  };
 
+  getFestivalReports = _ => {
+    fetch(`http://localhost:4100/festivalreports`)
+      .then(response => response.json())
+      .then(response => this.setState({ festivalReports1: response.data }))
+      .catch(err => console.error(err));
+  };
   render() {
-
+    console.log(this.state.festivalReports);
     //console.log(this.state.generalInfo);
     /*  the constant "publicCollaborators" iterates through the 
         collaborators and outputs each collaborator that has a 
         type equal to "public" as a list element */
-    const publicCollaborators = this.state.collaborators.map(function (
-      collaborator
-    ) {
-      if (collaborator.type === "public") {
+    const officialPartners = this.state.partners.map(function(partner) {
+      if (partner.type === "official") {
         return (
-          <li key={collaborator.name} collabtype={collaborator.type}>
+          <li key={partner.id} collabtype={partner.type}>
             <i className="fas fa-circle" />
-            {collaborator.name}
+            {partner.partner_name}
           </li>
         );
       }
-      return publicCollaborators;
+      return officialPartners;
     });
 
     /* the constant "localCollaborators" iterates through the 
       collaborators and outputs each collaborator that has a 
       type equal to "local" as a list element */
-    const localCollaborators = this.state.collaborators.map(function (
-      collaborator
-    ) {
-      if (collaborator.type === "local") {
+    const privatePartners = this.state.partners.map(function(partner) {
+      if (partner.type === "private") {
         return (
-          <li key={collaborator.name} collabtype={collaborator.type}>
+          <li key={partner.id} collabtype={partner.type}>
             <i className="far fa-circle" />
-            {collaborator.name}
+            {partner.partner_name}
           </li>
         );
       }
-      return localCollaborators;
+      return privatePartners;
     });
     /* the constant "reportsNor" iterates through the 
       reports and outputs each report that has language 
       set to "norsk" as a list element */
-    const reportsNor = this.state.reports.map(function (report) {
+    const reportsNor = this.state.festivalReports.map(function(report) {
       if (report.language === "norsk") {
         return (
           <li key={report.id}>
@@ -248,7 +139,7 @@ class About extends Component {
     /* the constant "reportsEng" iterates through the 
       reports and outputs each report that has language 
       set to "english" as a list element */
-    const reportsEng = this.state.reports.map(function (report) {
+    const reportsEng = this.state.festivalReports.map(function(report) {
       if (report.language === "english") {
         return (
           <li key={report.id}>
@@ -270,8 +161,11 @@ class About extends Component {
           <div className="row">
             <div className="about-vision col-12">
               <h4>Visjon</h4>
-              <p>{this.state.aboutFestival.vision}</p>
-              <p className="greeting">{this.state.aboutFestival.greeting}</p>
+              <p>{this.state.generalInfo.vison_txt}</p>
+              <p className="greeting">
+                Velkommen til Drammen Sacred Music Festival,{" "}
+                {this.state.generalInfo.dateHeader_txt}
+              </p>
               <hr />
             </div>
           </div>
@@ -279,13 +173,13 @@ class About extends Component {
             <h4>Samarbeidspartnere</h4>
             <div className="row">
               <div className="about-collab-public col-sm-12 col-md-6">
-                <p>{this.state.aboutFestival.collabPublicDescr}</p>
+                <p>{this.state.generalInfo.partner_txt_official}</p>
 
-                <ul>{publicCollaborators}</ul>
+                <ul>{officialPartners}</ul>
               </div>
               <div className="about-collab-local col-sm-12 col-md-6">
-                <p>{this.state.aboutFestival.collabLocalDescr}</p>
-                <ul>{localCollaborators}</ul>
+                <p>{this.state.generalInfo.partner_txt_private}</p>
+                <ul>{privatePartners}</ul>
               </div>
               <hr />
             </div>
@@ -293,7 +187,7 @@ class About extends Component {
           <div className="row">
             <div className="about-organization col-12">
               <h4>Organisering</h4>
-              <p>{this.state.aboutFestival.organization}</p>
+              <p>{this.state.generalInfo.organization_txt}</p>
               <hr />
             </div>
           </div>
