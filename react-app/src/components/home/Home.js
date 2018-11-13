@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 const Home = () => {
     let date = new Date();
     let year = date.getFullYear();
+
     return (
         <React.Fragment>
             <Navbar />

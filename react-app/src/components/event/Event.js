@@ -76,8 +76,8 @@ class Event extends Component {
         <p className="event-text">{this.state.event.eventTxt}</p>
       </div>
     ) : (
-      <div>Error melding her.. fix video 31</div>
-    );
+        <div>Error melding her.. fix video 31</div>
+      );
     return (
       <div>
         <Navbar />
