@@ -178,11 +178,28 @@ class About extends Component {
     ]
   };
 
+  componentDidMount() {
+    this.getGeneralFromDB();
+  }
+
+  getGeneralFromDB() {
+    /* fetch('http://localhost:4100/about')
+       .then((resp) => resp.json())
+       .then(function (myJson) {
+         console.log(myJson);
+         return (myJson);
+       })*/
+    //this.setState({ generalInfo: this.myJson });
+
+  }
+
   render() {
+
+    //console.log(this.state.generalInfo);
     /*  the constant "publicCollaborators" iterates through the 
         collaborators and outputs each collaborator that has a 
         type equal to "public" as a list element */
-    const publicCollaborators = this.state.collaborators.map(function(
+    const publicCollaborators = this.state.collaborators.map(function (
       collaborator
     ) {
       if (collaborator.type === "public") {
@@ -199,7 +216,7 @@ class About extends Component {
     /* the constant "localCollaborators" iterates through the 
       collaborators and outputs each collaborator that has a 
       type equal to "local" as a list element */
-    const localCollaborators = this.state.collaborators.map(function(
+    const localCollaborators = this.state.collaborators.map(function (
       collaborator
     ) {
       if (collaborator.type === "local") {
@@ -215,7 +232,7 @@ class About extends Component {
     /* the constant "reportsNor" iterates through the 
       reports and outputs each report that has language 
       set to "norsk" as a list element */
-    const reportsNor = this.state.reports.map(function(report) {
+    const reportsNor = this.state.reports.map(function (report) {
       if (report.language === "norsk") {
         return (
           <li key={report.id}>
@@ -231,7 +248,7 @@ class About extends Component {
     /* the constant "reportsEng" iterates through the 
       reports and outputs each report that has language 
       set to "english" as a list element */
-    const reportsEng = this.state.reports.map(function(report) {
+    const reportsEng = this.state.reports.map(function (report) {
       if (report.language === "english") {
         return (
           <li key={report.id}>
