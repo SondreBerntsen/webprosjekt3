@@ -1,0 +1,52 @@
+.liveContent {
+  background-color: #822a4014;
+  padding: 15px;
+  border-radius: 5px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  box-shadow: 7px 7px 8px #80808047;
+}
+
+.subTitle {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.YTLive {
+  width: 400px;
+  height: 220px;
+  float: right;
+}
+
+h4.videoTitle {
+  margin-bottom: 35px;
+  font-size: 20px;
+}
+
+.nextLiveStream {
+  background-color: #822a4014;
+  padding: 15px;
+  border-radius: 5px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  box-shadow: 7px 7px 8px #80808047;
+}
+
+span.readMoreText {
+  padding-left: 5px;
+}
+
+h5.upcomingStreamTitle {
+  margin: 0;
+}
+
+.upcomingStream {
+  margin-bottom: 75px;
+  margin-top: 40px;
+}
+
+.liveVideos {
+  margin-bottom: 75px;
+  margin-top: 40px;
+}
