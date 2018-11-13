@@ -1,7 +1,4 @@
-const express = require('express');
 const mysql = require('mysql');
-
-
 
 const db = mysql.createConnection({
     host: 'localhost',
@@ -14,7 +11,7 @@ db.connect((err) => {
     if (err) {
         return err;
     } else {
-        console.log('Dette gikk jo');
+        console.log('You are connected to the database');
     }
 });
 
