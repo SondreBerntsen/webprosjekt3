@@ -69,6 +69,11 @@ class EventList extends Component {
       }
     ]
   };
+
+  componentDidMount() {
+    let year = this.props.year;
+    console.log(year);
+  }
   render() {
     return this.state.artists.map(artist => (
       <EventCard key={artist.id} artistName={artist.name} artistImg={artist.img} artistId={artist.id} />

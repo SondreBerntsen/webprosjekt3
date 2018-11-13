@@ -6,6 +6,8 @@ import "../../styles/home.css";
 import { Link } from "react-router-dom";
 
 const Home = () => {
+    let date = new Date();
+    let year = date.getFullYear();
     return (
         <React.Fragment>
             <Navbar />
@@ -20,7 +22,7 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="container mx-auto" id="eventsHome">
-                    <div className="row "><EventList /></div>
+                    <div className="row "><EventList year={year} /></div>
                 </div>
             </div>
             <Footer />
