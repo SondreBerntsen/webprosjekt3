@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
 
 app.get('/programme', (req, res) => {
   let year = 2018
-  let EVENTS_SQL = `SELECT events.id, events.title, events.time, events.date, events.price, events.v_id, venues.address FROM events, venues WHERE venues.id=events.v_id AND YEAR(events.date)=${year}`
+  let EVENTS_SQL = `SELECT events.id, events.title, events.time, events.date, events.price, events.v_id, venues.address FROM events, venues WHERE venues.id=events.v_id AND YEAR(events.date)=${year} ORDER BY events.date`
 
   db.query(EVENTS_SQL, (err, results) => {
     if(err) throw err

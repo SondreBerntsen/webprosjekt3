@@ -5,72 +5,13 @@ import ListOfDays from "./ListOfDays";
 import ProgrammeSchedule from "./ProgrammeSchedule";
 import "../../styles/programme.css";
 class Programme extends Component {
-  //Temporary state while we figure out what to do with redux
-  state = {
-    days: [
-      {
-        id: 1,
-        date: 21.09,
-        day: "Mandag",
-        events: [
-          {
-            id: 1,
-            title: "Ronny og Ronny",
-            venue: "Scene 1",
-            time: "20:00",
-            price: "NOK 100,-"
-          },
-          {
-            id: 2,
-            title: "Den andre artisten",
-            venue: "Hjemme hos Mads",
-            time: "21:00",
-            price: 0
-          },
-          {
-            id: 3,
-            title: "Den personen som var kul",
-            venue: "Kulgaten 2a",
-            time: "21:00",
-            price: "NOK 230,-"
-          }
-        ]
-      },
-      {
-        id: 2,
-        date: 21.09,
-        day: "Tirsdag",
-        events: [
-          {
-            id: 1,
-            title: "Ronny og Ronny",
-            venue: "Scene 1",
-            time: "20:00",
-            price: "NOK 100,-"
-          },
-          {
-            id: 2,
-            title: "Den andre artisten",
-            venue: "Hjemme hos Mads",
-            time: "21:00",
-            price: 0
-          },
-          {
-            id: 3,
-            title: "Den personen som var kul",
-            venue: "Kulgaten 2a",
-            time: "21:00",
-            price: "NOK 230,-"
-          }
-        ]
-      }
-    ]
-  };
-  
+ state = {
+    days: []
+ }
+
   componentDidMount() {
     let date = new Date();
-    let year = date.getFullYear()
-    //let self = this
+    let year = date.getFullYear() //use this instead of hardcoding year value in express file somehow
     this.getJson()
   }
 
@@ -85,11 +26,9 @@ class Programme extends Component {
       })
   }
   structureJson = (json) => {
-    console.log(json)
     let days = []
 
     for(let i = 0; i < json.length; i++){
-    
       //Populates event with values from json object
       let event = {}
       event.id = json[i].id
@@ -112,13 +51,37 @@ class Programme extends Component {
         //create date object and push it into days array
         let date = {}
         date.date = json[i].date
-        date.day = new Date(json[i].date).getDay() //figure out later
+        let weekDay = new Date(json[i].date).getDay() //Creates a numeric value representing the week day of that date
+
+        //Sets weekDay to a string value based on its numeric value
+        switch(weekDay) {
+          case 0: 
+            weekDay = 'Søndag'
+            break
+          case 1: 
+            weekDay = 'Mandag'
+            break
+          case 2: 
+            weekDay = 'Tirsdag'
+            break
+          case 3: 
+            weekDay = 'Onsdag'
+            break
+          case 4: 
+            weekDay = 'Torsdag'
+            break
+          case 5: 
+            weekDay = 'Fredag'
+            break
+          case 6:
+            weekDay = 'Lørdag'
+        }
+        date.day = weekDay
         date.events = [event]
         days.push(date)
-        date = {}
       }
     }
-    console.log(days)
+    this.setState({days: days})
   }
   render() {
     return (
