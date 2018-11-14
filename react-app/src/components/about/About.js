@@ -7,94 +7,40 @@ class About extends Component {
   state = {
     generalInfo: [],
     partners: [],
-    festivalReports1: [],
-
-    festivalReports: [
-      {
-        id: "1",
-        name: "festivalrapport 2012",
-        link:
-          "http://w134760-www.php5.dittdomene.no/wp-content/uploads/2015/08/DSMF_12_rapport_lo2012.pdf",
-        language: "norsk"
-      },
-      {
-        id: "2",
-        name: "festivalrapport 2013",
-        link:
-          "http://w134760-www.php5.dittdomene.no/wp-content/uploads/2015/08/DSMF_Rapport_lo2013.pdf",
-        language: "norsk"
-      },
-      {
-        id: "3",
-        name: "festivalrapport 2013",
-        link:
-          "http://w134760-www.php5.dittdomene.no/wp-content/uploads/2015/08/DSMF_Report_lo2013.pdf",
-        language: "english"
-      },
-      {
-        id: "4",
-        name: "festivalrapport 2014",
-        link:
-          "http://w134760-www.php5.dittdomene.no/wp-content/uploads/2015/08/DSMF_Rapport-final-31.10.14.pdf",
-        language: "norsk"
-      },
-      {
-        id: "5",
-        name: "festivalrapport 2015",
-        link:
-          "http://w134760-www.php5.dittdomene.no/wp-content/uploads/2015/06/DSMF-Report-2015.pdf",
-        language: "norsk"
-      },
-      {
-        id: "6",
-        name: "festivalrapport 2016",
-        link:
-          "http://www.drammensacred.no/wp-content/uploads/2015/06/DSMF_Rapport2016.pdf",
-        language: "norsk"
-      },
-      {
-        id: "7",
-        name: "festivalrapport 2017",
-        link:
-          "https://www.drammensacred.no/wp-content/uploads/2018/07/Rapport-DSMF-2017_norsk-1.pdf",
-        language: "norsk"
-      }
-    ]
+    festivalReports: []
   };
 
   componentDidMount() {
-    this.getGeneralInfo();
+    /*this.getGeneralInfo();
     this.getPartners();
-    this.getFestivalReports();
+    this.getFestivalReports();*/
   }
 
-  getGeneralInfo = _ => {
-    fetch(`http://localhost:4100/generalinfo`)
+  /*getGeneralInfo = _ => {
+    fetch(`http://localhost:5000/about`)
       .then(response => response.json())
       .then(response => this.setState({ generalInfo: response.data[0] }))
-      .catch(err => console.error(err));
-  };
+      .catch(err => console.error(err));*/
 
-  getPartners = _ => {
-    fetch(`http://localhost:4100/partners`)
+
+  /*getPartners = _ => {
+    fetch(`http://localhost:5000/partners`)
       .then(response => response.json())
       .then(response => this.setState({ partners: response.data }))
       .catch(err => console.error(err));
-  };
+  };*/
 
-  getFestivalReports = _ => {
-    fetch(`http://localhost:4100/festivalreports`)
-      .then(response => response.json())
-      .then(response => this.setState({ festivalReports1: response.data }))
-      .catch(err => console.error(err));
-  };
+  /* getFestivalReports = _ => {
+     fetch(`http://localhost:5000/festivalreports`)
+       .then(response => response.json())
+       .then(response => this.setState({ festivalReports: response.data }))
+       .catch(err => console.error(err));
+   };*/
   render() {
-    console.log(this.state.festivalReports);
-    //console.log(this.state.generalInfo);
     /*  the constant "publicCollaborators" iterates through the 
         collaborators and outputs each collaborator that has a 
         type equal to "public" as a list element */
-    const officialPartners = this.state.partners.map(function(partner) {
+    const officialPartners = this.state.partners.map(function (partner) {
       if (partner.type === "official") {
         return (
           <li key={partner.id} collabtype={partner.type}>
@@ -109,7 +55,7 @@ class About extends Component {
     /* the constant "localCollaborators" iterates through the 
       collaborators and outputs each collaborator that has a 
       type equal to "local" as a list element */
-    const privatePartners = this.state.partners.map(function(partner) {
+    const privatePartners = this.state.partners.map(function (partner) {
       if (partner.type === "private") {
         return (
           <li key={partner.id} collabtype={partner.type}>
@@ -123,13 +69,13 @@ class About extends Component {
     /* the constant "reportsNor" iterates through the 
       reports and outputs each report that has language 
       set to "norsk" as a list element */
-    const reportsNor = this.state.festivalReports.map(function(report) {
-      if (report.language === "norsk") {
+    const reportsNor = this.state.festivalReports.map(function (report) {
+      if (report.language === "no") {
         return (
           <li key={report.id}>
             <a href={report.link} target="_blank" rel="noopener noreferrer">
               <i className="fas fa-link" />
-              {report.name}
+              {report.title}
             </a>
           </li>
         );
@@ -139,13 +85,13 @@ class About extends Component {
     /* the constant "reportsEng" iterates through the 
       reports and outputs each report that has language 
       set to "english" as a list element */
-    const reportsEng = this.state.festivalReports.map(function(report) {
-      if (report.language === "english") {
+    const reportsEng = this.state.festivalReports.map(function (report) {
+      if (report.language === "en") {
         return (
           <li key={report.id}>
             <a href={report.link} target="_blank" rel="noopener noreferrer">
               <i className="fas fa-link" />
-              {report.name}
+              {report.title}
             </a>
           </li>
         );
@@ -161,7 +107,7 @@ class About extends Component {
           <div className="row">
             <div className="about-vision col-12">
               <h4>Visjon</h4>
-              <p>{this.state.generalInfo.vison_txt}</p>
+              <p>{this.state.generalInfo.vision_txt}</p>
               <p className="greeting">
                 Velkommen til Drammen Sacred Music Festival,{" "}
                 {this.state.generalInfo.dateHeader_txt}
