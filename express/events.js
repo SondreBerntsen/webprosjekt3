@@ -1,8 +1,6 @@
 const express = require('express');
-const cors = require("cors");
 var db = require('./db');
 const events = express.Router();
-events.use(cors());
 
 //Gets all events in a given year
 events.get("/", (req, res) => {
