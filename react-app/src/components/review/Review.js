@@ -52,16 +52,13 @@ class Review extends Component {
             }
         ]
     };
-    /*
-    e skjønnå ikkje den heå, men tok den fra Event.js siden vi sikkert trenger noe liknende her
-  
+
     componentDidMount() {
-      let year = this.props.match.params.watwatwat;
-      this.setState({
-          year: year
-      })
+        let year = this.props.match.params.watwatwat;
+        this.setState({
+            year: year
+        })
     }
-  */
     render() {
         return (
             <div>

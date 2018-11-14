@@ -8,6 +8,7 @@ var events = require('./events')
 var partners = require('./partners')
 var festivalreports = require('./festivalreports')
 var about = require('./about')
+var review = require('./review')
 
 app.get("/", (req, res) => {
   res.send("jille greiå");
@@ -18,6 +19,7 @@ app.use('/events', events)
 app.use('/partners', partners)
 app.use('/festivalreports', festivalreports)
 app.use('/about', about)
+app.use('/review', review)
 
 const port = 5000;
 
