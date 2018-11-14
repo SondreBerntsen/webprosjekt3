@@ -7,7 +7,7 @@ import "../../styles/review.css";
 
 class Review extends Component {
     state = {
-        year: "2018",
+        year: "2017",
         slides: [
             {
                 id: 1,
@@ -69,11 +69,11 @@ class Review extends Component {
                 <div className="container">
                     <Slider slides={this.state.slides} />
                     <h1 className="yearHeading">{this.state.year}</h1>
-                    {/* We have to regex body output to add paragraphs/headers if we don't do add html tags during input */}
+                    {/*  fix We have to regex body output to add paragraphs/headers if we don't do add html tags during input */}
                     <article>{this.state.body}</article>
                     <div className="container">
                         <div className="row">
-                            <EventList />
+                            <EventList year={this.state.year} />
                         </div>
                         <h3 className="recordingsTitle">Tidligere liveopptak</h3>
                         <div id="recordingsList">

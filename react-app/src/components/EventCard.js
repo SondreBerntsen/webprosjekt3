@@ -5,7 +5,7 @@ class EventCard extends Component {
   render() {
     return (
       <div className=" col-sm-6 col-md-6 col-lg-4">
-        <Link to={'/arrangement/' + this.props.artistId}>
+        <Link to={'/arrangement/' + this.props.eventId}>
           <div
             onMouseOver={this.mouseOverImg.bind(this)}
             onMouseOut={this.mouseOutImg.bind(this)}
@@ -13,14 +13,14 @@ class EventCard extends Component {
           >
             <img
               className="thumbArtist"
-              src={this.props.artistImg}
+              src={require('../uploadedImg/' + this.props.imgPath + '/' + this.props.eventId)}
               alt="artist"
             />
             <div className="overlay"></div>
-            <div id={this.props.artistName}>
+            <div id={'eventCard' + this.props.eventId}>
               <p className="shortDescr"></p>
               <h4 className="artistName" >
-                {this.props.artistName}
+                {this.props.eventTitle}
               </h4>
             </div>
           </div>
@@ -29,16 +29,15 @@ class EventCard extends Component {
     );
   }
   mouseOverImg() {
-    const id = this.props.artistName;//fix denne må endres til artisId 
-    document.getElementById(id).firstChild.innerHTML = "Bli med på en konsert du aldri har sett makan til";
+    const id = 'eventCard' + this.props.eventId;
+    document.getElementById(id).firstChild.innerHTML = this.props.eventTitle;
     document.getElementById(id).firstChild.nextSibling.innerHTML = "";
     document.getElementById(id).previousSibling.style.backgroundColor = "black";
-    //document.getElementById('bla').classList.remove("overlay");
   }
   mouseOutImg() {
-    const id = this.props.artistName;
+    const id = 'eventCard' + this.props.eventId;
     document.getElementById(id).firstChild.innerHTML = "";
-    document.getElementById(id).firstChild.nextSibling.innerHTML = id;
+    document.getElementById(id).firstChild.nextSibling.innerHTML = this.props.eventTitle;
     document.getElementById(id).previousSibling.style.backgroundColor = "";
   }
 }
