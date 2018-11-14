@@ -5,6 +5,9 @@ app.use(cors())
 
 var programme = require('./programme')
 var events = require('./events')
+var partners = require('./partners')
+var festivalreports = require('./festivalreports')
+var about = require('./about')
 
 app.get("/", (req, res) => {
   res.send("jille greiå");
@@ -12,6 +15,9 @@ app.get("/", (req, res) => {
 
 app.use('/programme', programme)
 app.use('/events', events)
+app.use('/partners', partners)
+app.use('/festivalreports', festivalreports)
+app.use('/about', about)
 
 const port = 5000;
 

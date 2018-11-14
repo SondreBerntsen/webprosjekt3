@@ -1,11 +1,13 @@
 const express = require('express');
 var db = require('./db');
-const about = express.Router();
+const partners = express.Router();
 
-const SELECT_ALL_GENERAL_QUERY = "SELECT * FROM general";
+const SELECT_ALL_PARTNERS_QUERY = "SELECT * FROM partners";
 
-about.get("/", (req, res) => {
-    db.query(SELECT_ALL_GENERAL_QUERY, (err, results) => {
+
+
+partners.get("/", (req, res) => {
+    db.query(SELECT_ALL_PARTNERS_QUERY, (err, results) => {
         if (err) {
             return res.send(err);
         } else {
@@ -16,4 +18,5 @@ about.get("/", (req, res) => {
     });
 });
 
-module.exports = about
+
+module.exports = partners
