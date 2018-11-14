@@ -5,7 +5,7 @@ const events = express.Router();
 //Gets all events in a given year
 events.get("/", (req, res) => {
     const { year } = req.query;
-    const SELECT_ALL_EVENTS_QUERY = `SELECT id, title, thumbnail_path FROM events where year(date)='${year}'`;
+    const SELECT_ALL_EVENTS_QUERY = `SELECT id, title, img_path FROM events where year(date)='${year}'`;
     db.query(SELECT_ALL_EVENTS_QUERY, (err, results) => {
         if (err) {
             return res.send(err);

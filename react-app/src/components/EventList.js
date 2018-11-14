@@ -19,7 +19,7 @@ class EventList extends Component {
 
   render() {
     return this.state.events.map(event => (
-      < EventCard key={event.id} eventTitle={event.title} imgPath={event.thumbnail_path} eventId={event.id} />
+      < EventCard key={event.id} eventTitle={event.title} imgPath={event.img_path} eventId={event.id} />
     ));
   }
 }
