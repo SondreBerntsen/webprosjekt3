@@ -1,5 +1,4 @@
 const mysql = require('mysql');
-
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -14,6 +13,5 @@ db.connect((err) => {
         console.log('You are connected to the database');
     }
 });
-
 
 module.exports = db;

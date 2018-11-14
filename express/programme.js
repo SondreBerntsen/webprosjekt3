@@ -1,8 +1,6 @@
 const express = require('express');
-const cors = require("cors");
 var db = require('./db');
 const programme = express.Router()
-programme.use(cors())
 
 programme.get('/', (req, res) => {
   let year = 2018
