@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 13. Nov, 2018 20:15 PM
--- Server-versjon: 10.1.26-MariaDB
--- PHP Version: 7.1.9
+-- Generation Time: 14. Nov, 2018 14:58 PM
+-- Server-versjon: 10.1.29-MariaDB
+-- PHP Version: 7.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -97,9 +97,23 @@ INSERT INTO `events` (`id`, `title`, `text`, `time`, `date`, `price`, `youtube_l
 
 CREATE TABLE `festival_reports` (
   `id` int(11) NOT NULL,
-  `language` enum('no','en') COLLATE utf8_bin NOT NULL,
-  `file` text COLLATE utf8_bin
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `title` varchar(255) DEFAULT NULL,
+  `language` enum('no','en') NOT NULL,
+  `link` text
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dataark for tabell `festival_reports`
+--
+
+INSERT INTO `festival_reports` (`id`, `title`, `language`, `link`) VALUES
+(1, 'festivalrapport 2012', 'no', 'http://w134760-www.php5.dittdomene.no/wp-content/uploads/2015/08/DSMF_12_rapport_lo2012.pdf'),
+(2, 'festivalrapport 2013', 'no', 'http://w134760-www.php5.dittdomene.no/wp-content/uploads/2015/08/DSMF_Rapport_lo2013.pdf'),
+(3, 'festival report 2013', 'en', 'http://w134760-www.php5.dittdomene.no/wp-content/uploads/2015/08/DSMF_Report_lo2013.pdf'),
+(4, 'festivalrapport 2014', 'no', 'http://w134760-www.php5.dittdomene.no/wp-content/uploads/2015/08/DSMF_Rapport-final-31.10.14.pdf'),
+(5, 'festivalrapport 2015', 'no', 'http://w134760-www.php5.dittdomene.no/wp-content/uploads/2015/06/DSMF-Report-2015.pdf'),
+(6, 'festivalrapport 2016', 'no', 'http://www.drammensacred.no/wp-content/uploads/2015/06/DSMF_Rapport2016.pdf'),
+(7, 'festivalrapport 2017', 'no', 'https://www.drammensacred.no/wp-content/uploads/2018/07/Rapport-DSMF-2017_norsk-1.pdf');
 
 -- --------------------------------------------------------
 
@@ -113,7 +127,7 @@ CREATE TABLE `general` (
   `dateHeader_txt` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `inactiveHeader_txt` text COLLATE utf8_bin,
   `livestream_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `vison_txt` text COLLATE utf8_bin,
+  `vision_txt` text COLLATE utf8_bin,
   `partner_txt_official` text COLLATE utf8_bin,
   `partner_txt_private` text COLLATE utf8_bin,
   `organization_txt` text COLLATE utf8_bin
@@ -123,7 +137,7 @@ CREATE TABLE `general` (
 -- Dataark for tabell `general`
 --
 
-INSERT INTO `general` (`id`, `pitch`, `dateHeader_txt`, `inactiveHeader_txt`, `livestream_id`, `vison_txt`, `partner_txt_official`, `partner_txt_private`, `organization_txt`) VALUES
+INSERT INTO `general` (`id`, `pitch`, `dateHeader_txt`, `inactiveHeader_txt`, `livestream_id`, `vision_txt`, `partner_txt_official`, `partner_txt_private`, `organization_txt`) VALUES
 ('1', 'Drammen Sacred Music Festival bygger broer gjennom kulturopplevelser, hvor lokale, nasjonale og internasjonale aktører fyller programmet med kunst og musikk. Bli med og la deg berøre!', '15.-23. SEPTEMBER', 'Jeg veit ikke hva som skal inn her.', NULL, 'Drammen Sacred Music Festival er et møtested for å dele musikk, bilder og fortellinger fra ulike tradisjoner. Vi tror musikk og kunst generelt kan uttrykke menneskets mest grunnleggende lengsler og overstige språklige, nasjonale, kulturelle, ideologiske, rasemessige og religiøse grenser. I konsertene presenterer vi lokale og gjestende artister som har noe viktig på hjertet. Seminarer, foredrag, filmer og workshops er rammen rundt refleksjon, dialog og læring.\r\n\r\nDrammen-området er kjent for sin internasjonale befolkning og festivalen legger stor vekt på dialog og å involvere ulike grupperinger i festivalen. Festivalens visjon er å legge til rette for møter som berører, beveger og skaper mening, og har ambisjon om å være en sentral festival i dette landskapet.', 'Festivalen kan gjennomføres på grunn av den støtten som gis fra en rekke offentlige instanser. De største er Drammen Kommune Interkultur, Norsk Kulturråd og Buskerud Fylkeskommune.', 'Like viktig er samarbeidet med lokale institusjoner for gjennomføring av de ulike arrangementene. Festivalen har siden starten vært knyttet til området ved Union og Papirbredden ved Ypsilon. Union Scene er en viktig samarbeidspartner.', 'Drammen og omegn tros- og livssynsforum (DoTL) startet festivalen i 2010 sammen med Drammen kommune, Interkultur. Initiativtakere og pådrivere var Arve Vannebo og Ricardo Sanchez (Drammen kommune Interkultur) og Ivar Flaten (sokneprest Fjell menighet). Fra 2012 har festivalen vært organisert som en forening der DoTL er representert i styret sammen med lokale, regionale og nasjonale samarbeidspartnere. Drammen kommune er en sentral samarbeidspartner i programmering og produksjon.\r\n\r\nStyret for DSMF består av Sharee Loren, Tal Coleman, Terje-Brun Pedersen, Ingvild Jacobsen, Reidun Svabø og Ivar Flaten som er styreleder.\r\n\r\nFestivalen har gjennom årene hatt samarbeid med fagpersoner i programarbeidet: Ricardo Sanchez (tidl. produsent Interkultur)Jørgen Nøvik (musiker, billedkunstner m.m),  Svanhild Rohdin (billedkunstner), Fernando Sallum (musiker), Tal Zimra Coleman (musiker), Svein Westad (musiker), Erik Hillestad (Kirkelig Kulturverksted) og Ingebrigt Håker Flaten (musiker). Henrik Melius (Spiritus Mundi, Malmø) og Eli Borchgrevink (Buskerud teaterverksted – tidligere Trap- og Du Store Verden) er eksterne konsulenter og samarbeidspartnere.');
 
 -- --------------------------------------------------------
@@ -434,7 +448,7 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `festival_reports`
 --
 ALTER TABLE `festival_reports`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `images`
