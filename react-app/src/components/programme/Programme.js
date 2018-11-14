@@ -69,26 +69,57 @@ class Programme extends Component {
   
   componentDidMount() {
     let date = new Date();
-    let year = date.getFullYear();
-    let self = this;
-    /*
-    fetch("/programme", {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      data: year
-    })
-      .then(function(response) {
-        if (response.err) {
-          console.log(err);
-        }
-        return response.json()
-      ) //Evetche å e ska jørr heå, den e rø
-      .then(data => self.setState({ days : data }));
-    */
+    let year = date.getFullYear()
+    //let self = this
+    this.getJson()
   }
 
+  getJson = () => {
+    fetch('http://localhost:5000/programme')
+      .then(response => response.json())
+      .then(({data}) => {
+        this.structureJson(data)
+      })
+      .catch(err => {
+        throw(err)
+      })
+  }
+  structureJson = (json) => {
+    console.log(json)
+    let days = []
+
+    for(let i = 0; i < json.length; i++){
+    
+      //Populates event with values from json object
+      let event = {}
+      event.id = json[i].id
+      event.title = json[i].title
+      event.venue = json[i].address
+      event.time = json[i].time 
+      event.price = json[i].price
+
+      //Check if date in json object already exists in days array
+      let dateExists = false
+      for(let j = 0; j < days.length; j++){
+        if(json[i].date === days[j].date){ // If date matches existing date
+          //shove object with event data into that date's event array
+          days[j].events.push(event)
+          dateExists = true
+          break;
+        }
+      }
+      if(dateExists === false){ //If date does not exist in dates array
+        //create date object and push it into days array
+        let date = {}
+        date.date = json[i].date
+        date.day = new Date(json[i].date).getDay() //figure out later
+        date.events = [event]
+        days.push(date)
+        date = {}
+      }
+    }
+    console.log(days)
+  }
   render() {
     return (
       <div>
