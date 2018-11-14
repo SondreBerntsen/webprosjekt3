@@ -11,11 +11,9 @@ class EventList extends Component {
   }
   getEventList = _ => {
     let year = this.props.year;
-    console.log({ year });
     fetch(`http://localhost:4000/events?year=` + year)
       .then(response => response.json())
       .then(response => this.setState({ events: response.data }))
-      .then(response => console.log(response.data))
       .catch(err => console.log(err));
   };
 
