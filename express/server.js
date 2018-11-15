@@ -11,6 +11,7 @@ var festivalreports = require("./festivalreports");
 var about = require("./about");
 var review = require("./review");
 var contactpersons = require("./contactpersons");
+var event = require("./event")
 
 app.get("/", (req, res) => {
   res.send("jille greiå");
@@ -24,6 +25,7 @@ app.use("/festivalreports", festivalreports);
 app.use("/about", about);
 app.use("/review", review);
 app.use("/contactpersons", contactpersons);
+app.use("/event", event);
 
 const port = 5000;
 

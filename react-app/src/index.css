@@ -111,7 +111,20 @@ html{
   border: 1px solid rgba(0,0,0,.15);
   border-radius: .25rem;
 }
-
+/****Error div***/
+.errorDiv{
+  min-height: 70vh;
+  margin-top: 40px;
+  text-align: center;
+  color:gray;
+  
+}
+.sadSmilyError{
+  font-size: 100px;
+}
+.txt404{
+  font-size: 60px;
+}
 @media only screen and (max-width: 1000px) {
 
   .dropdown-item {

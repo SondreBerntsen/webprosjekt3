@@ -10,7 +10,7 @@ import "../../styles/event.css";
 class Event extends Component {
   state = {
     id: null,
-
+    eventData: [{ id: '', title: '', text: '', img_path: '', date: '', youtube_link: '', payment_link: '', address: '' }],
     events: [
       {
         eventid: 1,
@@ -34,10 +34,19 @@ class Event extends Component {
   };
   componentDidMount() {
     let id = this.props.match.params.eventId;
-    this.setState({
-      id: id
-    });
+    this.getEventData(id);
   }
+  componentDidMount() {
+    let id = this.props.match.params.eventId;
+    this.getEventData(id);
+    window.scrollTo(0, 0);
+  }
+  getEventData = (id) => {
+    fetch(`http://localhost:5000/event?id=` + id)
+      .then(response => response.json())
+      .then(response => this.setState({ eventData: response }))
+      .catch(err => console.log(err));
+  };
   showScheduleItem() {
     let str = this.state.events[0].date;
     // splitting the date string
@@ -57,15 +66,15 @@ class Event extends Component {
     // if the date of the event has passed or is today..
     if (givenDate > currentDate || givenDate === currentDate) {
       // ..we output the ScheduleItem component for the event.
-      return <ScheduleItem key={this.state.id} event={this.state.events[0]} />;
+      return <ScheduleItem key={this.state.id} event={this.state.eventData[0]} />;
     }
   }
 
   render() {
-    const event = this.state.event ? (
+    const event = this.state.eventData[0] ? (
       <div className="container">
-        <h2 className="event-title">{this.state.event.eventTitle}</h2>
-        <p className="event-date">{this.state.event.eventDate}</p>
+        <h2 className="event-title">{this.state.eventData[0].title}</h2>
+        <p className="event-date">{this.state.eventData[0].date}</p>
         <hr className="event-hr" />
         {this.showScheduleItem()}
         <EventVideo
@@ -73,10 +82,15 @@ class Event extends Component {
           title={this.state.event.eventTitle}
           placeholderImage={this.state.event.eventImg}
         />
-        <p className="event-text">{this.state.event.eventTxt}</p>
+        <p className="event-text">{this.state.eventData[0].text}</p>
       </div>
     ) : (
-        <div>Error melding her.. fix video 31</div>
+        <div class="errorDiv container">
+          <h1 class="sadSmilyError">&#x2639;</h1>
+          <h1 class="txt404">404</h1>
+          <h3>Page not found</h3>
+          <p>The page you are looking for doesn't exist or an other error occured.</p>
+        </div>
       );
     return (
       <div>
