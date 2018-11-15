@@ -4,7 +4,7 @@ import "../../styles/contact.css";
 /*  A functional component with contactpersons 
     from props as the parameter */
 
-const ContactList = ({ contactpersons }) => {
+const ContactPersons = ({ contactpersons }) => {
   /* The constant contactList iterates through the array contactpersons 
       and outputs the properties we want as a template */
   const contactList = contactpersons.map(contact => {
@@ -14,10 +14,14 @@ const ContactList = ({ contactpersons }) => {
         key={contact.id}
       >
         <div className="card contact-person-card">
-          <img className="contact-card-img" src={contact.image} alt="img" />
+          <img
+            className="contact-card-img"
+            src={contact.img_path + "/" + contact.id}
+            alt="img"
+          />
           <div className="card-body">
             <h5 className="card-title">{contact.name}</h5>
-            <p className="card-text">{contact.profession}</p>
+            <p className="card-text">{contact.role}</p>
           </div>
           <ul className="list-group list-group-flush">
             <li className="list-group-item">
@@ -30,7 +34,7 @@ const ContactList = ({ contactpersons }) => {
               <span className=" px-2 py-2 rounded text-dark mb-2 d-inline-block">
                 <i className="fa fa-phone" />
               </span>
-              <p>{contact.phoneNumber}</p>
+              <p>{contact.phone}</p>
             </li>
           </ul>
         </div>
@@ -45,4 +49,4 @@ const ContactList = ({ contactpersons }) => {
   );
 };
 
-export default ContactList;
+export default ContactPersons;

@@ -15,26 +15,16 @@ class Contact extends Component {
       postAdress: "3034",
       postAdressName: "DRAMMEN"
     },
-    contactPersons: [
-      {
-        id: "1",
-        name: "Ivar Flaten",
-        image:
-          "http://w134760-www.php5.dittdomene.no/wp-content/uploads/2015/07/Ivar.png",
-        profession: "Produsent og festival-gründer",
-        phoneNumber: "41545849",
-        email: "director@drammensacred.no"
-      },
-      {
-        id: "2",
-        name: "Reidun Svabø",
-        image:
-          "http://www.drammensacred.no/wp-content/uploads/2017/06/14797268_1126727614042424_159417209_n-e1497259971949.jpg",
-        profession: "Styreleder og festivalkoordinator",
-        phoneNumber: "93294512",
-        email: "director@drammensacred.no"
-      }
-    ]
+    contactPersons: []
+  };
+  componentDidMount() {
+    this.getContactPersons();
+  }
+  getContactPersons = _ => {
+    fetch(`http://localhost:5000/contactpersons`)
+      .then(response => response.json())
+      .then(response => this.setState({ contactPersons: response.data }))
+      .catch(err => console.error(err));
   };
   render() {
     // console.log(this.state.contactPersons);

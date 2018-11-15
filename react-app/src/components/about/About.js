@@ -11,36 +11,36 @@ class About extends Component {
   };
 
   componentDidMount() {
-    /*this.getGeneralInfo();
+    this.getGeneralInfo();
     this.getPartners();
-    this.getFestivalReports();*/
+    this.getFestivalReports();
   }
 
-  /*getGeneralInfo = _ => {
+  getGeneralInfo = _ => {
     fetch(`http://localhost:5000/about`)
       .then(response => response.json())
       .then(response => this.setState({ generalInfo: response.data[0] }))
-      .catch(err => console.error(err));*/
+      .catch(err => console.error(err));
+  };
 
-
-  /*getPartners = _ => {
+  getPartners = _ => {
     fetch(`http://localhost:5000/partners`)
       .then(response => response.json())
       .then(response => this.setState({ partners: response.data }))
       .catch(err => console.error(err));
-  };*/
+  };
 
-  /* getFestivalReports = _ => {
-     fetch(`http://localhost:5000/festivalreports`)
-       .then(response => response.json())
-       .then(response => this.setState({ festivalReports: response.data }))
-       .catch(err => console.error(err));
-   };*/
+  getFestivalReports = _ => {
+    fetch(`http://localhost:5000/festivalreports`)
+      .then(response => response.json())
+      .then(response => this.setState({ festivalReports: response.data }))
+      .catch(err => console.error(err));
+  };
   render() {
     /*  the constant "publicCollaborators" iterates through the 
         collaborators and outputs each collaborator that has a 
         type equal to "public" as a list element */
-    const officialPartners = this.state.partners.map(function (partner) {
+    const officialPartners = this.state.partners.map(function(partner) {
       if (partner.type === "official") {
         return (
           <li key={partner.id} collabtype={partner.type}>
@@ -55,7 +55,7 @@ class About extends Component {
     /* the constant "localCollaborators" iterates through the 
       collaborators and outputs each collaborator that has a 
       type equal to "local" as a list element */
-    const privatePartners = this.state.partners.map(function (partner) {
+    const privatePartners = this.state.partners.map(function(partner) {
       if (partner.type === "private") {
         return (
           <li key={partner.id} collabtype={partner.type}>
@@ -68,8 +68,8 @@ class About extends Component {
     });
     /* the constant "reportsNor" iterates through the 
       reports and outputs each report that has language 
-      set to "norsk" as a list element */
-    const reportsNor = this.state.festivalReports.map(function (report) {
+      set to "no" as a list element */
+    const reportsNor = this.state.festivalReports.map(function(report) {
       if (report.language === "no") {
         return (
           <li key={report.id}>
@@ -84,8 +84,8 @@ class About extends Component {
     });
     /* the constant "reportsEng" iterates through the 
       reports and outputs each report that has language 
-      set to "english" as a list element */
-    const reportsEng = this.state.festivalReports.map(function (report) {
+      set to "en" as a list element */
+    const reportsEng = this.state.festivalReports.map(function(report) {
       if (report.language === "en") {
         return (
           <li key={report.id}>

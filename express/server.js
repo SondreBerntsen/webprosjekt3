@@ -1,25 +1,27 @@
-const express = require('express')
-const cors = require('cors')
-const app = express()
-app.use(cors())
+const express = require("express");
+const cors = require("cors");
+const app = express();
+app.use(cors());
 
-var programme = require('./programme')
-var events = require('./events')
-var partners = require('./partners')
-var festivalreports = require('./festivalreports')
-var about = require('./about')
-var review = require('./review')
+var programme = require("./programme");
+var events = require("./events");
+var partners = require("./partners");
+var festivalreports = require("./festivalreports");
+var about = require("./about");
+var review = require("./review");
+var contactpersons = require("./contactpersons");
 
 app.get("/", (req, res) => {
   res.send("jille greiå");
 });
 
-app.use('/programme', programme)
-app.use('/events', events)
-app.use('/partners', partners)
-app.use('/festivalreports', festivalreports)
-app.use('/about', about)
-app.use('/review', review)
+app.use("/programme", programme);
+app.use("/events", events);
+app.use("/partners", partners);
+app.use("/festivalreports", festivalreports);
+app.use("/about", about);
+app.use("/review", review);
+app.use("/contactpersons", contactpersons);
 
 const port = 5000;
 
