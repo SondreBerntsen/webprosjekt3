@@ -22,15 +22,15 @@
   margin-bottom: 50px;
 }
 .event {
-  border: 1px solid grey;
   border-radius: 4px;
   padding-top: 5px;
   padding-bottom: 5px;
   margin-top: 10px;
   margin-bottom: 10px;
+  background-color: #6d6d6d0f;
 }
 .event_title,
-venue_name {
+.venue_name {
   margin: 0;
 }
 .event_title {
@@ -52,19 +52,32 @@ venue_name {
 }
 /****horizontal days*****/
 .horizontal_days {
-  border-bottom: 1px solid gray;
   margin-bottom: 50px;
   margin-top: 25px;
+  background-color: #822a40;
+  border-radius: 5px;
+  margin: 30px 0 80px 0;
+  padding: 0px;
 }
 .horizontal_list_item {
-  padding: 5px;
-  margin-left: 10px;
-  padding-bottom: 0;
-  margin-bottom: 3px;
+  padding: 15px;
+  padding-left: 20px;
+  padding-bottom: 15px;
+  margin-bottom: 0;
+  color: #FFFFFF;
+  font-family: balboa, sans-serif;
+  font-weight: 100;
+  font-style: normal;
+  font-size: 1.5rem;
+  display: block;
 }
 .horizontal_list_item:hover {
-  font-weight: bold;
+  background-color: #d33960;
   cursor: pointer;
+}
+
+.programDayLink {
+  text-decoration: none !important;
 }
 
 /* Spacing between buttons "kjøp billet" and "mer info" */

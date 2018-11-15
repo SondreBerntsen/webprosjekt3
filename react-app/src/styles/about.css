@@ -105,9 +105,6 @@ p.greeting {
 
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
-  .row {
-    margin: 0;
-  }
   .about-collab h4 {
     padding-left: 15px;
   }
