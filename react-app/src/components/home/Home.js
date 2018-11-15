@@ -37,30 +37,38 @@ class Home extends Component{
     let date = new Date();
     let year = date.getFullYear();
     this.setState({year: year, content: content})
-    console.log(this.state)
+  }
+  checkAnniversary = () => {
+    if(this.state.content.anniversary === true){
+      return(
+        <div className="row col-md-8 btnHeaderDiv">
+          <Link to="/tilbakeblikk/10ar" className="btnHeader btn col-sm-12 col-md-10 col-lg-5">De siste 10 årene!</Link>
+        </div>
+      )
+    }
   }
 
   render(){
     return (
       <React.Fragment>
-          <Navbar />
-          <div className="headerImage">
-              <div className="container-fluid contentHeader  col-12 col-sm-10 col-lg-8 col-md-8 col-xl-6 ">
-                  <img className="logoImg  col-8 col-sm-6 col-md-6 col-lg-6 col-xl-5" src={require('../../img/logo.png')} alt="logo" />
-                  {/* <p className="headerText">Drammen Sacred Music Festival bygger broer gjennom kulturopplevelser, hvor lokale, nasjonale og internasjonale aktører fyller programmet med kunst og musikk. Bli med og la deg berøre!</p>*/}
-                  <p className="dateHeader">{this.state.content.date}</p>
-                  <div className="row col-md-8 btnHeaderDiv">
-                      <Link to="/program" className="btnHeader btn col-sm-12 col-md-10 col-lg-5">Program</Link>
-                      <a href="#eventsHome" className="btnHeader btn col-sm-12 col-md-10 col-lg-5">Lineup</a>
-                  </div>
-              </div>
-              <div className="container mx-auto" id="eventsHome">
-                  <div className="row "><EventList year={this.state.year} /></div>
-              </div>
+        <Navbar />
+        <div className="headerImage">
+          <div className="container-fluid contentHeader  col-12 col-sm-10 col-lg-8 col-md-8 col-xl-6 ">
+            <img className="logoImg  col-8 col-sm-6 col-md-6 col-lg-6 col-xl-5" src={require('../../img/logo.png')} alt="logo" />
+            {/* <p className="headerText">{this.state.content.pitch}</p>*/}
+            <p className="dateHeader">{this.state.content.date}</p>
+            {this.checkAnniversary()}
+            <div className="row col-md-8 btnHeaderDiv">
+              <Link to="/program" className="btnHeader btn col-sm-12 col-md-10 col-lg-5">Program</Link>
+              <a href="#eventsHome" className="btnHeader btn col-sm-12 col-md-10 col-lg-5">Lineup</a>
+            </div>
           </div>
-          <Footer />
+          <div className="container mx-auto" id="eventsHome">
+            <div className="row "><EventList year={this.state.year} /></div>
+          </div>
+        </div>
+        <Footer />
       </React.Fragment>
-
     )
   }
 }
