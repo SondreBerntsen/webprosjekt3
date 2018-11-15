@@ -55,7 +55,6 @@ class Review extends Component {
     };
     componentDidMount() {
         this.getReviewData();
-
         console.log(window.location.pathname.split("/").pop());
     }
     getReviewData = _ => {
