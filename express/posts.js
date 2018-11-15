@@ -4,7 +4,13 @@ const posts = express.Router();
 
 posts.get("/", (req, res) => {
     const { year } = req.query;
-    const SELECT_ALL_POSTS_QUERY = `SELECT id, title, text, img_path, date FROM posts WHERE year(date)='${year}'`;
+    let SELECT_ALL_POSTS_QUERY;
+    if (year) {
+        SELECT_ALL_POSTS_QUERY = `SELECT id, title, text, img_path, date FROM posts WHERE year(date)='${year}'`;
+    } else {
+        SELECT_ALL_POSTS_QUERY = `SELECT id, title, text, img_path, date FROM posts WHERE year(date)=2018`;
+    }
+
     db.query(SELECT_ALL_POSTS_QUERY, (err, results) => {
         if (err) {
             return res.send(err);

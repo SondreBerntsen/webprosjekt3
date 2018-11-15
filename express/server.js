@@ -14,6 +14,7 @@ var review = require("./review");
 var contactpersons = require("./contactpersons");
 var event = require("./event")
 var posts = require("./posts")
+var newsArticle = require("./newsArticle")
 
 app.get("/", (req, res) => {
   res.send("jille greiå");
@@ -30,6 +31,7 @@ app.use("/review", review);
 app.use("/contactpersons", contactpersons);
 app.use("/event", event);
 app.use("/posts", posts);
+app.use("/newsArticle", newsArticle);
 
 const port = 5000;
 

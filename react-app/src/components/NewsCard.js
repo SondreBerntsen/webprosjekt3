@@ -12,13 +12,14 @@ const NewsCard = (props) => {
                         <img
                             className="thumbNewsImg"
                             src={props.img}
+                            src={require('../uploadedImg/' + props.img + '/' + props.id)}
                             alt="newsimg"
                         />
                         <p className="dateOnNewsImg">{props.date}</p>
                     </div>
                     <div className="textNewsDiv">
                         <h5>{props.title}</h5>
-                        <p>{props.txt}</p>
+                        <p>{props.txt.slice(0, 100)}...</p>
                     </div>
                 </div>
             </Link>
