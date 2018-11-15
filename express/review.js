@@ -4,15 +4,13 @@ const review = express.Router();
 
 
 review.get("/", (req, res) => {
-    const { yearReview } = req.query;
-    const SELECT_REVIEW_QUERY = `SELECT id, year, text FROM review where year='${yearReview}'`;
+    const { year } = req.query;
+    const SELECT_REVIEW_QUERY = `SELECT id, year, text FROM review where year='${year}'`;
     db.query(SELECT_REVIEW_QUERY, (err, results) => {
         if (err) {
             return res.send(err);
         } else {
-            return res.json({
-                data: results
-            });
+            return res.json(results);
         }
     });
 });

@@ -3,11 +3,14 @@ import EventCard from "./EventCard.js";
 
 class EventList extends Component {
   state = {
-    events: []
+    events: [],
+    year: ''
   };
 
   componentDidMount() {
+    this.setState({ year: this.props.year });
     this.getEventList();
+    console.log(this.props.year);
   }
   getEventList = _ => {
     let year = this.props.year;

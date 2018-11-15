@@ -7,7 +7,8 @@ import "../../styles/review.css";
 
 class Review extends Component {
     state = {
-        year: "2017",
+        reviewData: [{ id: "", year: "", text: "" }],
+        year: '',
         slides: [
             {
                 id: 1,
@@ -52,25 +53,35 @@ class Review extends Component {
             }
         ]
     };
-
     componentDidMount() {
-        let year = this.props.match.params.watwatwat;
-        this.setState({
-            year: year
-        })
+        this.getReviewData();
+
+        console.log(window.location.pathname.split("/").pop());
     }
+    getReviewData = _ => {
+        let year = window.location.pathname.split("/").pop();
+        fetch(`http://localhost:5000/review?year=` + year)
+            .then(response => response.json())
+            .then(response => this.setState({ reviewData: response }))
+            .catch(err => console.log(err));
+        this.setState({ year: year });
+    };
+
     render() {
+        let x = window.location.pathname.split("/").pop();
+        console.log(this.state.year);
+
         return (
             <div>
                 <Navbar />
                 <div className="container">
                     <Slider slides={this.state.slides} />
-                    <h1 className="yearHeading">{this.state.year}</h1>
+                    <h1 className="yearHeading">{this.state.reviewData[0].year}</h1>
                     {/*  fix We have to regex body output to add paragraphs/headers if we don't do add html tags during input */}
-                    <article>{this.state.body}</article>
+                    <article>{this.state.reviewData[0].text}</article>
                     <div className="container">
                         <div className="row">
-                            <EventList year={this.state.year} />
+                            {this.state.reviewData[0].year != '' ? <EventList year={this.state.reviewData[0].year} /> : null}
                         </div>
                         <h3 className="recordingsTitle">Tidligere liveopptak</h3>
                         <div id="recordingsList">
