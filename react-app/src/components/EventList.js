@@ -9,11 +9,14 @@ class EventList extends Component {
 
   componentDidMount() {
     this.setState({ year: this.props.year });
-    this.getEventList();
+    this.getEventList(this.props.year);
     console.log(this.props.year);
   }
-  getEventList = _ => {
-    let year = this.props.year;
+  componentWillReceiveProps(nextProps) {
+    this.getEventList(nextProps.year)
+  }
+
+  getEventList = (year) => {
     fetch(`http://localhost:5000/events?year=` + year)
       .then(response => response.json())
       .then(response => this.setState({ events: response.data }))
