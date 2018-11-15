@@ -55,8 +55,13 @@ class Review extends Component {
     };
     componentDidMount() {
         this.getReviewData();
-        console.log(window.location.pathname.split("/").pop());
     }
+  
+    componentWillReceiveProps(){
+      this.getReviewData()
+      this.setState(this.state)
+    }
+    
     getReviewData = _ => {
         let year = window.location.pathname.split("/").pop();
         fetch(`http://localhost:5000/review?year=` + year)
@@ -67,9 +72,6 @@ class Review extends Component {
     };
 
     render() {
-        let x = window.location.pathname.split("/").pop();
-        console.log(this.state.year);
-
         return (
             <div>
                 <Navbar />
