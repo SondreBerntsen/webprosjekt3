@@ -19,7 +19,6 @@ class Navbar extends Component {
   }
   
   render(){
-    let path = "/tilbakeblikk/"
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light navbarFront">
         <Link to="/"><img className="logoNav" src={require('../img/logo.png')} alt="logo" /></Link>
@@ -68,7 +67,7 @@ class Navbar extends Component {
               <div className="dropdown-menu divYearsNav" aria-labelledby="navbarDropdown">
                 {
                   this.state.prevYears.map(year => (
-                    <Link key={year.year} className="dropdown-item linkYear" to={path+year.year}>{year.year}</Link>
+                    <Link key={year.year} className="dropdown-item linkYear" to={"/tilbakeblikk/"+year.year}>{year.year}</Link>
                   ))
                 }
               </div>

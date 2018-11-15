@@ -50,7 +50,7 @@ class Programme extends Component {
       if(dateExists === false){ //If date does not exist in dates array
         //create date object and push it into days array
         let date = {}
-        date.date = json[i].date
+        date.date = json[i].date // regex this
         let weekDay = new Date(json[i].date).getDay() //Creates a numeric value representing the week day of that date
 
         //Sets weekDay to a string value based on its numeric value
