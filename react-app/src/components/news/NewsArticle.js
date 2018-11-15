@@ -7,6 +7,7 @@ import "../../styles/news.css";
 
 class NewsArticle extends Component {
     state = {
+        newsData: [{ id: '', title: '', text: '', date: '', img_path: '' }],
         id: null,
         article: {
             newsTitle: 'Kitten in trouble',
@@ -19,28 +20,40 @@ class NewsArticle extends Component {
         this.setState({
             id: id
         })
+        this.getReviewData(id);
     }
+    getReviewData = (id) => {
+        fetch(`http://localhost:5000/newsArticle?id=` + id)
+            .then(response => response.json())
+            .then(response => this.setState({ newsData: response }))
+            .catch(err => console.log(err));
+    };
     render() {
-        const article = this.state.article ? (
+        const article = this.state.newsData[0] ? (
             <div className="container">
                 <div className="vh-80">
-                    <h2 className="pageTitle">{this.state.article.newsTitle}</h2>
+                    <h2 className="pageTitle">{this.state.newsData[0].title}</h2>
                     <hr className="hrHeight" />
                     <div className="row newsArticle">
                         <div className="col-md-6">
-                            <img src={this.state.article.newsImg} alt="cat" className="imgNewsArticle" />
+                            {/*If img_path does not exist don't load image*/}
+                            {this.state.newsData[0].img_path != '' ? <img src={require('../../uploadedImg/' + this.state.newsData[0].img_path + '/' + this.state.newsData[0].id)} alt="img" className="imgNewsArticle" /> : null}
                         </div>
-                        <div className="newsText col-md-6"> <p>{this.state.article.newsText}</p></div>
+                        <div className="newsText col-md-6"> <p>{this.state.newsData[0].text}</p></div>
                     </div>
                 </div>
             </div>
         ) : (
-                <div>Error melding her.. video 31</div>
+                < div class="errorDiv container" >
+                    <h1 class="sadSmilyError">&#x2639;</h1>
+                    <h1 class="txt404">404</h1>
+                    <h3>Page not found</h3>
+                    <p>The page you are looking for doesn't exist or an other error occured.</p>
+                </div >
             )
         return (
             <div>
                 <Navbar />
-                {/*  <span> id = {this.state.id}</span>*/}
                 {article}
                 <Footer />
             </div>
