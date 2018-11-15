@@ -4,6 +4,7 @@ const app = express();
 app.use(cors());
 
 var navbar = require("./navbar");
+var home = require("./home")
 var programme = require("./programme");
 var events = require("./events");
 var partners = require("./partners");
@@ -17,6 +18,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/navbar", navbar);
+app.use("/home", home);
 app.use("/programme", programme);
 app.use("/events", events);
 app.use("/partners", partners);
