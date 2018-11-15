@@ -1,10 +1,26 @@
-import React from "react";
+import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 
-const Navbar = () => {
-  return (
-    <div>
+class Navbar extends Component {
+  state = {
+    prevYears: []
+  }
+
+  componentDidMount = () => {
+    fetch('http://localhost:5000/navbar')
+      .then(response => response.json())
+      .then(({data}) => {
+        this.setState({prevYears: data})
+      })
+      .catch(err => {
+        throw(err)
+      })
+  }
+  
+  render(){
+    let path = "/tilbakeblikk/"
+    return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light navbarFront">
         <Link to="/"><img className="logoNav" src={require('../img/logo.png')} alt="logo" /></Link>
         <button
@@ -16,7 +32,7 @@ const Navbar = () => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon" />
+        <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ml-auto">
@@ -50,9 +66,11 @@ const Navbar = () => {
                 Tilbakeblikk
               </NavLink>
               <div className="dropdown-menu divYearsNav" aria-labelledby="navbarDropdown">
-                {/* Map individual years to link things */}
-                <Link className="dropdown-item linkYear" to="/tilbakeblikk/2017">2017</Link>
-                <Link className="dropdown-item linkYear" to="/tilbakeblikk/2016">2016</Link>
+                {
+                  this.state.prevYears.map(year => (
+                    <Link key={year.year} className="dropdown-item linkYear" to={path+year.year}>{year.year}</Link>
+                  ))
+                }
               </div>
             </li>
             <li className="nav-item">
@@ -63,7 +81,7 @@ const Navbar = () => {
           </ul>
         </div>
       </nav>
-    </div >
-  );
+    );
+  }
 };
 export default Navbar;

@@ -3,6 +3,7 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 
+var navbar = require("./navbar");
 var programme = require("./programme");
 var events = require("./events");
 var partners = require("./partners");
@@ -15,6 +16,7 @@ app.get("/", (req, res) => {
   res.send("jille greiå");
 });
 
+app.use("/navbar", navbar);
 app.use("/programme", programme);
 app.use("/events", events);
 app.use("/partners", partners);
