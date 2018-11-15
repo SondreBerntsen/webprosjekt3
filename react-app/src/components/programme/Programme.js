@@ -4,14 +4,15 @@ import Footer from "../Footer";
 import ListOfDays from "./ListOfDays";
 import ProgrammeSchedule from "./ProgrammeSchedule";
 import "../../styles/programme.css";
+
 class Programme extends Component {
  state = {
     days: []
  }
 
   componentDidMount() {
-    let date = new Date();
-    let year = date.getFullYear() //use this instead of hardcoding year value in express file somehow
+    //let date = new Date();
+    //let year = date.getFullYear() //use this instead of hardcoding year value in express file somehow
     this.getJson()
   }
 
@@ -25,22 +26,26 @@ class Programme extends Component {
         throw(err)
       })
   }
+
   structureJson = (json) => {
     let days = []
 
     for(let i = 0; i < json.length; i++){
+      
       //Populates event with values from json object
       let event = {}
       event.id = json[i].id
       event.title = json[i].title
       event.venue = json[i].address
-      event.time = json[i].time 
+      event.time = this.fixTimeString(json[i].time) //Calls fixTimeString function and stores return value
       event.price = json[i].price
 
+      let eventDate = this.fixDateString(json[i].date) //Calls fixDateString function and stores return value
+      
       //Check if date in json object already exists in days array
       let dateExists = false
       for(let j = 0; j < days.length; j++){
-        if(json[i].date === days[j].date){ // If date matches existing date
+        if(eventDate === days[j].date){ // If date matches existing date
           //shove object with event data into that date's event array
           days[j].events.push(event)
           dateExists = true
@@ -50,7 +55,7 @@ class Programme extends Component {
       if(dateExists === false){ //If date does not exist in dates array
         //create date object and push it into days array
         let date = {}
-        date.date = json[i].date // regex this
+        date.date = eventDate
         let weekDay = new Date(json[i].date).getDay() //Creates a numeric value representing the week day of that date
 
         //Sets weekDay to a string value based on its numeric value
@@ -82,6 +87,20 @@ class Programme extends Component {
       }
     }
     this.setState({days: days})
+    console.log(this.state)
+  }
+
+  //Gets default MySQL date value and converts it to Norwegian standard day/month structure
+  fixDateString = (string) => {
+    let match = string.match(/\d{4}-(\d{2})-(\d{2})/)
+    let returnString = match[2]+"/"+match[1]
+    return(returnString)
+  }
+  //Gets default MySQL time value and converts it to "minutes:seconds" only 
+  fixTimeString = (string) => {
+    let match = string.match(/(\d{2}:\d{2}):/)
+    let returnString = match[1]
+    return(returnString)
   }
   render() {
     return (

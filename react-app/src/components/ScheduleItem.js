@@ -60,7 +60,7 @@ const ScheduleItem = props => {
     if (props.event.price !== 0) {
       return (
         <React.Fragment>
-          <p className="price col-md-3">{props.event.price}</p>
+          <p className="price col-md-3">{"kr " + props.event.price + ".-"}</p>
           <div className=" col-md-3">
             <button className="btn btn-outline-success buy_ticketBtn">
               Kjøp billetter

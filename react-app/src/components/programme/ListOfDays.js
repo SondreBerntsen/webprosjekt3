@@ -5,7 +5,7 @@ const listOfDays = (props) => {
     <div className="container horizontal_days row">
       {
         props.days.map(day => (
-          <a href={"#"+day.date}><p key={day.date} className="horizontal_list_item">{day.day}</p></a>
+          <a key={day.date} href={"#"+day.date}><p className="horizontal_list_item">{day.day}</p></a>
         ))
       }
     </div>
