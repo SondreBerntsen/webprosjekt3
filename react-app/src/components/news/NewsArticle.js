@@ -8,12 +8,7 @@ import "../../styles/news.css";
 class NewsArticle extends Component {
     state = {
         newsData: [{ id: '', title: '', text: '', date: '', img_path: '' }],
-        id: null,
-        article: {
-            newsTitle: 'Kitten in trouble',
-            newsImg: "https://www.drammensacred.no/wp-content/uploads/2018/09/BJM_6287-1-960x639.jpg",
-            newsText: 'Det ble en spektakulær åpning av årets Drammen Sacred Music Festival da gruppa Cloudlight Fire Tribe med dj og 5 flammesjonglører holdt sitt fantastiske show på Strømsø torg lørdag kveld.\n\nFestivalens styreleder Ivar Flaten ønsket velkommen til festivalen, som har program hver dag gjennom hele uka fram til avslutningskonsert med Solveig Sletthjell i Filadelfiakirken søndag 23. september.\n\nStor og små flokket seg rundt på torget mens performance-kunstnerene fra Cloudlight danset og sjonglerte med ulike typer fakler til dj´ens egenproduserte tribal beats.'
-        }
+        id: null
     }
     componentDidMount() {
         let id = this.props.match.params.newsId;
