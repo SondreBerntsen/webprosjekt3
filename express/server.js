@@ -17,6 +17,7 @@ var posts = require("./posts");
 var newsArticle = require("./newsArticle");
 var newsYearList = require("./newsYearList");
 var scheduledLiveStream = require("./scheduledLiveStream");
+var contactAdress = require("./contactAdress");
 
 app.get("/", (req, res) => {
   res.send("jille greiå");
@@ -36,6 +37,7 @@ app.use("/posts", posts);
 app.use("/newsArticle", newsArticle);
 app.use("/newsYearList", newsYearList);
 app.use("/scheduledLiveStream", scheduledLiveStream);
+app.use("/contactAdress", contactAdress);
 
 const port = 5000;
 

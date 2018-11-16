@@ -7,19 +7,29 @@ import "../../styles/contact.css";
 
 class Contact extends Component {
   state = {
-    contactAdress: {
-      name: "Drammen Sacred Music Festival",
-      organization: "c/o DOTL",
-      adress: "Solsvingen 90",
-      building: "Fjell kirke",
-      postAdress: "3034",
-      postAdressName: "DRAMMEN"
-    },
-    contactPersons: []
+    contactPersons: [],
+    contactAdress: [
+      {
+        name: "",
+        organization_type: "",
+        area_code: "",
+        city: "",
+        building_name: "",
+        adress: ""
+      }
+    ]
   };
+
   componentDidMount() {
     this.getContactPersons();
+    this.getContactAdress();
   }
+  getContactAdress = _ => {
+    fetch(`http://localhost:5000/contactAdress`)
+      .then(response => response.json())
+      .then(response => this.setState({ contactAdress: response.data }))
+      .catch(err => console.error(err));
+  };
   getContactPersons = _ => {
     fetch(`http://localhost:5000/contactpersons`)
       .then(response => response.json())
@@ -27,8 +37,8 @@ class Contact extends Component {
       .catch(err => console.error(err));
   };
   render() {
-    // console.log(this.state.contactPersons);
     // destructuring
+    const { contactPersons } = this.state;
     const { contactAdress } = this.state;
 
     /*  ContactPersons sends the state as props to our 
@@ -43,16 +53,16 @@ class Contact extends Component {
               <hr />
             </div>
             <ContactForm />
-            <ContactPersons contactpersons={this.state.contactPersons} />
+            <ContactPersons contactpersons={contactPersons} />
           </div>
           <div className="col-sm-12 col-lg-12">
             <div className="contact-adress">
               <div className="px-3 text-dark ">
                 <i className="fa fa-map-marker d-inline-block float-md-none " />
                 <p>
-                  {contactAdress.name}, {contactAdress.organization},{" "}
-                  {contactAdress.adress}, {contactAdress.building},{" "}
-                  {contactAdress.postAdress}, {contactAdress.postAdressName}
+                  {contactAdress[0].name}, {contactAdress[0].organization_type},{" "}
+                  {contactAdress[0].adress}, {contactAdress[0].building_name},{" "}
+                  {contactAdress[0].area_code}, {contactAdress[0].city}
                 </p>
               </div>
             </div>
