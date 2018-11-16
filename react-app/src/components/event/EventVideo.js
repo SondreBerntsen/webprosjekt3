@@ -10,7 +10,6 @@ const EventVideo = props => {
   const activeClass = "is-active";
   const loadingClass = "is-loading";
   const videoWrapSelector = ".js-videoWrap";
-  const videoPlaceholderSelector = ".js-videoPlaceholder";
 
   function loadVideo(event) {
     let video = event.currentTarget;
@@ -18,7 +17,6 @@ const EventVideo = props => {
     video.classList.add(activeClass, loadingClass);
 
     let wrap = video.querySelector(videoWrapSelector);
-    let placeholder = video.querySelector(videoPlaceholderSelector);
     let videoUrl = video.getAttribute("data-url");
     let videoClasses = video.getAttribute("data-class");
 
@@ -59,7 +57,7 @@ const EventVideo = props => {
   function fullUrl() {
     const fullUrl = `https://www.youtube.com/embed/${
       props.vidurl
-      }?feature=oembed&autoplay=1&hd=1`;
+    }?feature=oembed&autoplay=1&hd=1`;
     return fullUrl;
   }
 
@@ -80,7 +78,13 @@ const EventVideo = props => {
               {props.title}
             </a>
 
-            {props.imgpath != '' ? <img src={require(`../../uploadedImg/eventImg/${props.id}`)} alt="img" className="Video-placeholder js-videoPlaceholder" /> : null}
+            {props.imgpath !== "" ? (
+              <img
+                src={require(`../../uploadedImg/eventImg/${props.id}`)}
+                alt="img"
+                className="Video-placeholder js-videoPlaceholder"
+              />
+            ) : null}
 
             <svg
               className="Video-playButton"
@@ -94,15 +98,21 @@ const EventVideo = props => {
         </div>
       </div>
     ) : (
-        /*if the event has no youtube link*/
-        <div>
-          <div data-width="1280" data-height="720">
-            <div className="Video-wrap js-videoWrap">
-              {props.imgpath != '' ? <img src={require(`../../uploadedImg/eventImg/${props.id}`)} alt="img" className="Video-placeholder js-videoPlaceholder" /> : null}
-            </div>
+      /*if the event has no youtube link*/
+      <div>
+        <div data-width="1280" data-height="720">
+          <div className="Video-wrap js-videoWrap">
+            {props.imgpath !== "" ? (
+              <img
+                src={require(`../../uploadedImg/eventImg/${props.id}`)}
+                alt="img"
+                className="Video-placeholder js-videoPlaceholder"
+              />
+            ) : null}
           </div>
         </div>
-      );
+      </div>
+    );
 
   return <div>{hasVideo}</div>;
 };

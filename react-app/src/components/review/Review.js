@@ -7,9 +7,9 @@ import "../../styles/review.css";
 
 class Review extends Component {
   state = {
-    year: '',
+    year: "",
     reviewData: {
-      text: ''
+      text: ""
     },
     recordings: [],
     slides: []
@@ -18,22 +18,22 @@ class Review extends Component {
     this.getData();
   }
 
-  componentWillReceiveProps(){
-    this.getData()
-    this.setState(this.state)
+  componentWillReceiveProps() {
+    this.getData();
+    this.setState(this.state);
   }
-  
+
   getData = _ => {
     let year = this.props.match.params.reviewId;
     fetch(`http://localhost:5000/review?year=` + year)
       .then(response => response.json())
       .then(response => {
-        let data = {}
-        data.year = year
-        data.reviewData = response.data.reviewData[0]
-        data.slides = response.data.slides
-        data.recordings = response.data.recordings
-        this.setState(data)
+        let data = {};
+        data.year = year;
+        data.reviewData = response.data.reviewData[0];
+        data.slides = response.data.slides;
+        data.recordings = response.data.recordings;
+        this.setState(data);
       })
       .catch(err => console.log(err));
   };
@@ -48,14 +48,18 @@ class Review extends Component {
           <article>{this.state.reviewData.text}</article>
           <div className="container">
             <div className="row">
-              {this.state.year != '' ? <EventList year={this.state.year} /> : null}
+              {this.state.year !== "" ? (
+                <EventList year={this.state.year} />
+              ) : null}
             </div>
             <h3 className="recordingsTitle">Tidligere liveopptak</h3>
             <div id="recordingsList">
               {this.state.recordings.map(link => (
                 <React.Fragment key={link.id}>
                   <h5>{link.name}</h5>
-                  <a href={link.link} className="pTagRecordings">{link.link}</a>
+                  <a href={link.link} className="pTagRecordings">
+                    {link.link}
+                  </a>
                 </React.Fragment>
               ))}
             </div>

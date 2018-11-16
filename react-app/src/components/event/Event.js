@@ -10,7 +10,18 @@ import "../../styles/event.css";
 class Event extends Component {
   state = {
     id: null,
-    eventData: [{ id: '', title: '', text: '', img_path: '', date: '', youtube_link: '', payment_link: '', address: '' }],
+    eventData: [
+      {
+        id: "",
+        title: "",
+        text: "",
+        img_path: "",
+        date: "",
+        youtube_link: "",
+        payment_link: "",
+        address: ""
+      }
+    ],
     yt_vid: [],
     events: [
       {
@@ -29,32 +40,24 @@ class Event extends Component {
     window.scrollTo(0, 0);
   }
 
-
-  getEventData = (id) => {
+  getEventData = id => {
     fetch(`http://localhost:5000/event?id=` + id)
       .then(response => response.json())
       .then(response => this.setState({ eventData: response }))
       .then(response => this.getYTID(response))
       .catch(err => console.log(err));
-
   };
 
   getYTID() {
-
     if (this.state.eventData[0].youtube_link !== null) {
       let yt_link = this.state.eventData[0].youtube_link;
-      var regex = new RegExp('(?<=v=)()(.*$)');
+      var regex = new RegExp("(?<=v=)()(.*$)");
       var yt_vid = regex.exec(yt_link)[0];
-      return (this.setState(
-        { yt_vid: yt_vid })
-      );
+      return this.setState({ yt_vid: yt_vid });
     } else {
-      return (this.setState(
-        { yt_vid: "" })
-      );
+      return this.setState({ yt_vid: "" });
     }
   }
-
 
   showScheduleItem() {
     let str = this.state.events[0].date;
@@ -75,14 +78,15 @@ class Event extends Component {
     // if the date of the event has passed or is today..
     if (givenDate > currentDate || givenDate === currentDate) {
       // ..we output the ScheduleItem component for the event.
-      return <ScheduleItem key={this.state.id} event={this.state.eventData[0]} />;
+      return (
+        <ScheduleItem key={this.state.id} event={this.state.eventData[0]} />
+      );
     }
   }
 
   render() {
     const event = this.state.eventData[0] ? (
-
-      < div className="container" >
+      <div className="container">
         <h2 className="event-title">{this.state.eventData[0].title}</h2>
         <p className="event-date">{this.state.eventData[0].date}</p>
         <hr className="event-hr" />
@@ -94,15 +98,17 @@ class Event extends Component {
           id={this.state.eventData[0].id}
         />
         <p className="event-text">{this.state.eventData[0].text}</p>
-      </div >
+      </div>
     ) : (
-        <div class="errorDiv container">
-          <h1 class="sadSmilyError">&#x2639;</h1>
-          <h1 class="txt404">404</h1>
-          <h3>Page not found</h3>
-          <p>The page you are looking for doesn't exist or an other error occured.</p>
-        </div>
-      );
+      <div className="errorDiv container">
+        <h1 className="sadSmilyError">&#x2639;</h1>
+        <h1 className="txt404">404</h1>
+        <h3>Page not found</h3>
+        <p>
+          The page you are looking for doesn't exist or an other error occured.
+        </p>
+      </div>
+    );
     return (
       <div>
         <Navbar />

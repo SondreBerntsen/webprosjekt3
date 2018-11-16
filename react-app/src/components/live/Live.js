@@ -62,7 +62,6 @@ class Live extends Component {
   getScheduledLiveStreams() {
     this.state.scheduledLiveStreams = this.state.scheduledEvents.filter(
       scheduledEvent => {
-        console.log(scheduledEvent);
         // TODO: Endre til true hvis det er det som det kommer som
         return scheduledEvent.livestream === 1;
       }
@@ -72,7 +71,6 @@ class Live extends Component {
   /*  gets the live video data from the YouTube channel
       and outputs the live video(s) + its information   */
   getLiveVideos = () => {
-    console.log("getLiveVideos called");
     fetch(
       `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${
         this.state.channelId
@@ -131,14 +129,11 @@ class Live extends Component {
   };
 
   noCurrentStream() {
-    console.log("noCurrentStream called");
     let videoData = "there is no videodata";
     this.setState({ videoData: videoData });
   }
 
   render() {
-    console.log("render called");
-    console.log(this.state.scheduledLiveStreams);
     return (
       <div>
         <Navbar />
