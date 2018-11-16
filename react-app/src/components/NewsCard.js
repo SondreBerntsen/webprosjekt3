@@ -12,7 +12,7 @@ const NewsCard = (props) => {
                         <img
                             className="thumbNewsImg"
                             src={props.img}
-                            src={require('../uploadedImg/' + props.img + '/' + props.id)}
+                            src={require('../uploadedImg/postImg/' + props.id)}
                             alt="newsimg"
                         />
                         <p className="dateOnNewsImg">{props.date}</p>
