@@ -4,19 +4,18 @@ import EventCard from "./EventCard.js";
 class EventList extends Component {
   state = {
     events: [],
-    year: ''
+    year: ""
   };
 
   componentDidMount() {
     this.setState({ year: this.props.year });
     this.getEventList(this.props.year);
-    console.log(this.props.year);
   }
   componentWillReceiveProps(nextProps) {
-    this.getEventList(nextProps.year)
+    this.getEventList(nextProps.year);
   }
 
-  getEventList = (year) => {
+  getEventList = year => {
     fetch(`http://localhost:5000/events?year=` + year)
       .then(response => response.json())
       .then(response => this.setState({ events: response.data }))
@@ -25,7 +24,7 @@ class EventList extends Component {
 
   render() {
     return this.state.events.map(event => (
-      < EventCard key={event.id} eventTitle={event.title} eventId={event.id} />
+      <EventCard key={event.id} eventTitle={event.title} eventId={event.id} />
     ));
   }
 }
