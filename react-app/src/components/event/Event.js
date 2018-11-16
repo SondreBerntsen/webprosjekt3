@@ -19,20 +19,11 @@ class Event extends Component {
         date: "",
         youtube_link: "",
         payment_link: "",
-        address: ""
+        address: "",
+        price: ""
       }
     ],
-    yt_vid: [],
-    events: [
-      {
-        eventid: 1,
-        title: "ViolinKveld med kattepusene",
-        venue: "Scene 1",
-        time: "20:00",
-        price: "NOK 100,-",
-        date: "27.09.2019"
-      }
-    ]
+    yt_vid: []
   };
   componentDidMount() {
     let id = this.props.match.params.eventId;
@@ -60,19 +51,7 @@ class Event extends Component {
   }
 
   showScheduleItem() {
-    let str = this.state.events[0].date;
-    // splitting the date string
-    let res = str.split(".");
-    let d = res[0];
-    let m = res[1];
-    let y = res[2];
-    /*  puts the date into a format that automatically converts 
-        to the full date data. This makes it possible to easily 
-        compare our givenDate to the currentDate 
-          example: Fri Sep 27 2019 02:00:00 GMT+0200 
-                   (sentraleuropeisk sommertid)  
-    */
-    let givenDate = y + "-" + m + "-" + d;
+    let givenDate = this.state.eventData[0].date;
     let currentDate = new Date();
     givenDate = new Date(givenDate);
     // if the date of the event has passed or is today..

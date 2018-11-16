@@ -33,19 +33,20 @@ const ScheduleItem = props => {
         </div>
       );
     } else {
+      /* for event component*/
       return (
         <div className="event-schedule-item row">
           <div className="col-md-4">
             <p className="event_title">{props.event.title}</p>
-            <p className="venue_name">{props.event.venue}</p>
+            <p className="venue_name">{props.event.address}</p>
           </div>
           <div className="col-md-8 infoEvent">
             <div className="row">
               <p className="time col-md-6">
                 <span role="img" aria-label="icon">
                   &#128337;
-                </span>{" "}
-                {props.event.time}
+                </span>
+                {props.event.time} {props.event.date}
               </p>
               {checkPrice()}
             </div>
@@ -61,10 +62,15 @@ const ScheduleItem = props => {
       return (
         <React.Fragment>
           <p className="price col-md-3">{"kr " + props.event.price + ".-"}</p>
-          <div className=" col-md-3">
-            <button className="btn btn-outline-success buy_ticketBtn">
+          <div className="col-md-3 buttonDiv">
+            <a
+              href={props.event.payment_link}
+              className="btn btn-outline-success buy_ticketBtn col-sm-12 col-md-10"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Kjøp billetter
-            </button>
+            </a>
           </div>
         </React.Fragment>
       );

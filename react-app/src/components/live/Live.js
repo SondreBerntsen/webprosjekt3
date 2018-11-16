@@ -9,63 +9,21 @@ import ScheduledLiveStream from "./ScheduledLiveStream.js";
 class Live extends Component {
   state = {
     videoData: [],
-    lessMoreText: [],
     API_KEY: "AIzaSyDgh0qAGY0pn7fOQ3TnJW0XHeKtLjNcRHU",
     channelId: "UCLA_DiR1FfKNvjuUpBHmylQ",
-
-    scheduledEvents: [
-      {
-        id: 1,
-        date: "2018-09-10",
-        livestream: 1,
-        time: "15:00:00",
-        text:
-          "Vintermåne er ei gruppe som starta sitt samarbeid Consequat nisi sit magna esse commodo consectetur eu adipisicing in voluptate nisi nostrud velit. Mollit cupidatat consectetur et laborum sit cupidatat",
-        title: "Vi streamer Live fra Pluto"
-      },
-      {
-        id: 2,
-        date: "2018-09-10",
-        time: "15:00:00",
-        livestream: 0,
-        text:
-          "Vintersol er ei gruppe som starta sitt samarbeid Consequat nisi sit magna esse commodo consectetur eu adipisicing in voluptate nisi nostrud velit. Mollit cupidatat consectetur et laborum sit cupidatat",
-        title: "Vi streamer Live fra Solen"
-      },
-      {
-        id: 3,
-        date: "2018-09-10",
-        time: "15:00:00",
-        livestream: 1,
-        text:
-          "Vinterpluto er ei gruppe som starta sitt samarbeid Consequat nisi sit magna esse commodo consectetur eu adipisicing in voluptate nisi nostrud velit. Mollit cupidatat consectetur et laborum sit cupidatat",
-        title: "Vi streamer Live fra Saturn"
-      },
-      {
-        id: 4,
-        date: "2018-09-10",
-        time: "15:00:00",
-        livestream: 0,
-        text:
-          "Vintermåne er ei gruppe som starta sitt samarbeid Consequat nisi sit magna esse commodo consectetur eu adipisicing in voluptate nisi nostrud velit. Mollit cupidatat consectetur et laborum sit cupidatat",
-        title: "Vi streamer Live fra Neptun"
-      }
-    ],
     scheduledLiveStreams: []
   };
 
   componentDidMount() {
-    this.getLiveVideos();
     this.getScheduledLiveStreams();
+    this.getLiveVideos();
   }
 
   getScheduledLiveStreams() {
-    this.setState({
-      scheduledLiveStream: this.state.scheduledEvents.filter(scheduledEvent => {
-        // TODO: Endre til true hvis det er det som det kommer som
-        return scheduledEvent.livestream === 1;
-      })
-    });
+    fetch(`http://localhost:5000/scheduledLiveStream?=1`)
+      .then(response => response.json())
+      .then(response => this.setState({ scheduledLiveStreams: response }))
+      .catch(err => console.log(err));
   }
 
   /*  gets the live video data from the YouTube channel
@@ -76,7 +34,7 @@ class Live extends Component {
         this.state.channelId
       }&eventType=live&type=video&key=${
         this.state.API_KEY
-      }&enablejsapi=1&origin=http://localhost:3000`
+      }&enablejsapi=1&origin=https://localhost:3000`
     )
       .then(function(response) {
         return response.json(); // pass the data as promise to next then block
@@ -153,7 +111,9 @@ class Live extends Component {
                 ScheduledLiveStreams={this.state.scheduledLiveStreams}
               />
             ) : (
-              <p className="info">Det er ingen ...</p>
+              <p className="noScheduledLiveStreams">
+                Det er ingen planlagte live sendinger enda..
+              </p>
             )}
           </div>
         </div>

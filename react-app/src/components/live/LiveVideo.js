@@ -5,12 +5,6 @@ import YouTube from "react-youtube";
 import ReadMoreAndLess from "react-read-more-less";
 
 const LiveVideo = props => {
-  const opts = {
-    playerVars: {
-      // https://developers.google.com/youtube/player_parameters
-      autoplay: 0
-    }
-  };
   return (
     <div className="row liveContent" key={props.liveVideoData.id}>
       <div className="col-sm-12 col-md-6 liveInfo">
@@ -29,7 +23,6 @@ const LiveVideo = props => {
           className="YTLive"
           apiKey={props.apikey}
           videoId={props.liveVideoData.id} // The YouTube video ID
-          opts={opts}
         />
       </div>
     </div>

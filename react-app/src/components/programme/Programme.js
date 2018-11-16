@@ -36,6 +36,7 @@ class Programme extends Component {
       event.id = json[i].id;
       event.title = json[i].title;
       event.venue = json[i].address;
+      event.payment_link = json[i].payment_link;
       event.time = this.fixTimeString(json[i].time); //Calls fixTimeString function and stores return value
       event.price = json[i].price;
 
