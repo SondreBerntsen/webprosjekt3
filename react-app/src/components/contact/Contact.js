@@ -31,7 +31,7 @@ class Contact extends Component {
       .catch(err => console.error(err));
   };
   getContactPersons = _ => {
-    fetch(`http://localhost:5000/contactpersons`)
+    fetch(`http://localhost:5000/contactPersons`)
       .then(response => response.json())
       .then(response => this.setState({ contactPersons: response.data }))
       .catch(err => console.error(err));
