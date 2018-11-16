@@ -10,18 +10,18 @@ class Navbar extends Component {
   componentDidMount = () => {
     fetch('http://localhost:5000/navbar')
       .then(response => response.json())
-      .then(({data}) => {
-        this.setState({prevYears: data})
+      .then(({ data }) => {
+        this.setState({ prevYears: data })
       })
       .catch(err => {
-        throw(err)
+        throw (err)
       })
   }
-  
-  render(){
+
+  render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light navbarFront">
-        <Link to="/"><img className="logoNav" src={require('../img/logo.png')} alt="logo" /></Link>
+        <NavLink to="/"><img className="logoNav" src={require('../img/logo.png')} alt="logo" /></NavLink>
         <button
           className="navbar-toggler "
           type="button"
@@ -31,7 +31,7 @@ class Navbar extends Component {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-        <span className="navbar-toggler-icon" />
+          <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ml-auto">
@@ -67,7 +67,7 @@ class Navbar extends Component {
               <div className="dropdown-menu divYearsNav" aria-labelledby="navbarDropdown">
                 {
                   this.state.prevYears.map(year => (
-                    <Link key={year.year} className="dropdown-item linkYear" to={"/tilbakeblikk/"+year.year}>{year.year}</Link>
+                    <Link key={year.year} className="dropdown-item linkYear" to={"/tilbakeblikk/" + year.year}>{year.year}</Link>
                   ))
                 }
               </div>

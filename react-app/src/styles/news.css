@@ -1,4 +1,8 @@
 /*****News List*****/
+.newsYearLink{
+    font-size: 22px;
+    color:black;
+}
 .linkArticle:hover{
     text-decoration: none;
 }
