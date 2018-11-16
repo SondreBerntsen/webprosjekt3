@@ -16,7 +16,7 @@ const ContactPersons = ({ contactpersons }) => {
         <div className="card contact-person-card">
           <img
             className="contact-card-img"
-            src={contact.img_path + "/" + contact.id}
+            src={require("../../uploadedImg/" + contact.img_path + "/" + contact.id)}
             alt="img"
           />
           <div className="card-body">
