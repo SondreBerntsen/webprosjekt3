@@ -30,7 +30,7 @@ class News extends Component {
               <div className="newsYearLinks">
                 {this.state.years.map(function (year) {
                   return (
-                    <Link class="btn newsYearLink" to={'/nyheter/' + year.year} key={year.year}>{year.year}</Link>
+                    <Link className="btn newsYearLink" to={'/nyheter/' + year.year} key={year.year}>{year.year}</Link>
                   );
                 })}
               </div>
