@@ -1,17 +1,6 @@
 import React from 'react';
 
 const Slider = (props) => {
-  /*
-  Props example:
-  slides: [
-      {
-        id: 1,
-        img: "linkToImage",
-        title: "Big Dick Cat",
-        caption: "This cat is so hung it's hard for him to even prowl along the hardwood floors because them planks have splinters"
-      }, ...
-    ]
-  */
   return ( 
     <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
       <ol className="carousel-indicators">
@@ -35,7 +24,7 @@ const Slider = (props) => {
             let checkIndex = (slide.id === 1 ? "carousel-item active" : "carousel-item")
             return(
             <div key={slide.id} className={checkIndex}>
-              <img className="d-block w-100" src={slide.img} alt={slide.title} />
+              <img className="d-block w-100" src={require(`../../uploadedImg/sliderImg/${slide.id}`)} alt={slide.title} />
               <div className="carousel-caption d-none d-md-block">
                 <h5>{slide.title}</h5>
                 <p>{slide.caption}</p>
