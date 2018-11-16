@@ -7,13 +7,25 @@ class NewsCards extends Component {
         newsData: [],
     };
     componentDidMount() {
-        this.getNewsList();
+        let path = window.location.pathname.split("/").pop();
+        this.getNewsList(path);
     }
-    getNewsList = () => {
-        fetch(`http://localhost:5000/posts`)
-            .then(response => response.json())
-            .then(response => this.setState({ newsData: response }))
-            .catch(err => console.log(err));
+    componentWillReceiveProps() {
+        let path = window.location.pathname.split("/").pop();
+        this.getNewsList(path);
+    }
+    getNewsList = (path) => {
+        if (isNaN(path)) {
+            fetch(`http://localhost:5000/posts`)
+                .then(response => response.json())
+                .then(response => this.setState({ newsData: response }))
+                .catch(err => console.log(err));
+        } else {
+            fetch(`http://localhost:5000/posts?year=` + path)
+                .then(response => response.json())
+                .then(response => this.setState({ newsData: response }))
+                .catch(err => console.log(err));
+        }
     };
 
 

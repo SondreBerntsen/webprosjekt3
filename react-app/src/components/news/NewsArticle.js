@@ -8,13 +8,9 @@ import "../../styles/news.css";
 class NewsArticle extends Component {
     state = {
         newsData: [{ id: '', title: '', text: '', date: '', img_path: '' }],
-        id: null
     }
     componentDidMount() {
         let id = this.props.match.params.newsId;
-        this.setState({
-            id: id
-        })
         this.getReviewData(id);
     }
     getReviewData = (id) => {
@@ -32,7 +28,7 @@ class NewsArticle extends Component {
                     <div className="row newsArticle">
                         <div className="col-md-6">
                             {/*If img_path does not exist don't load image*/}
-                            {this.state.newsData[0].img_path != '' ? <img src={require('../../uploadedImg/' + this.state.newsData[0].img_path + '/' + this.state.newsData[0].id)} alt="img" className="imgNewsArticle" /> : null}
+                            {this.state.newsData[0].img_path != '' ? <img src={require('../../uploadedImg/postImg/' + this.state.newsData[0].id)} alt="img" className="imgNewsArticle" /> : null}
                         </div>
                         <div className="newsText col-md-6"> <p>{this.state.newsData[0].text}</p></div>
                     </div>
