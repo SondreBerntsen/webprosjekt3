@@ -60,12 +60,12 @@ class Live extends Component {
   }
 
   getScheduledLiveStreams() {
-    this.state.scheduledLiveStreams = this.state.scheduledEvents.filter(
-      scheduledEvent => {
+    this.setState({
+      scheduledLiveStream: this.state.scheduledEvents.filter(scheduledEvent => {
         // TODO: Endre til true hvis det er det som det kommer som
         return scheduledEvent.livestream === 1;
-      }
-    );
+      })
+    });
   }
 
   /*  gets the live video data from the YouTube channel
