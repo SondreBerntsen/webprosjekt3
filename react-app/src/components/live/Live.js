@@ -12,46 +12,67 @@ class Live extends Component {
     lessMoreText: [],
     API_KEY: "AIzaSyDgh0qAGY0pn7fOQ3TnJW0XHeKtLjNcRHU",
     channelId: "UCLA_DiR1FfKNvjuUpBHmylQ",
-    // *fix* denne dataen kommer fra feil plass. skal sjekke event tabel og se på enum til livestreamgreia
-    scheduledLiveStreams: [
+
+    scheduledEvents: [
       {
         id: 1,
-        dateTime: "2018-11-20 13:20:23",
-        title: "Vi streamer Live fra Pluto",
-        description:
-          "Consequat nisi sit magna esse commodo consectetur eu adipisicing in voluptate nisi nostrud velit. Mollit cupidatat consectetur et laborum sit cupidatat cillum officia non ut ex."
+        date: "2018-09-10",
+        livestream: 1,
+        time: "15:00:00",
+        text:
+          "Vintermåne er ei gruppe som starta sitt samarbeid Consequat nisi sit magna esse commodo consectetur eu adipisicing in voluptate nisi nostrud velit. Mollit cupidatat consectetur et laborum sit cupidatat",
+        title: "Vi streamer Live fra Pluto"
       },
       {
         id: 2,
-        dateTime: "2018-11-19 15:30:21",
-        title: "Vi streamer Live fra Mars",
-        description:
-          "Anim incididunt dolore consequat commodo. Occaecat laborum nulla ut anim magna ea proident sunt. Tempor tempor excepteur et aliquip aute cupidatat ad et mollit aliqua anim dfs fdf sd df df df d ffdfsfsdfsdf."
+        date: "2018-09-10",
+        time: "15:00:00",
+        livestream: 0,
+        text:
+          "Vintersol er ei gruppe som starta sitt samarbeid Consequat nisi sit magna esse commodo consectetur eu adipisicing in voluptate nisi nostrud velit. Mollit cupidatat consectetur et laborum sit cupidatat",
+        title: "Vi streamer Live fra Solen"
       },
       {
         id: 3,
-        dateTime: "2018-11-18 13:34:12",
-        title: "Vi streamer Live fra Saturn",
-        description:
-          "Duis labore do enim proident dolore dolor ex laborum officia ipsum reprehenderit. Exercitation sint eiusmod nulla ipsum duis reprehenderit commodo anim incididunt"
+        date: "2018-09-10",
+        time: "15:00:00",
+        livestream: 1,
+        text:
+          "Vinterpluto er ei gruppe som starta sitt samarbeid Consequat nisi sit magna esse commodo consectetur eu adipisicing in voluptate nisi nostrud velit. Mollit cupidatat consectetur et laborum sit cupidatat",
+        title: "Vi streamer Live fra Saturn"
       },
       {
         id: 4,
-        dateTime: "2018-11-18 13:40:12",
-        title: "Vi streamer Live fra Neptun",
-        description:
-          "Do ex anim quis voluptate esse velit qui sint Lorem. Aliqua in duis occaecat amet."
+        date: "2018-09-10",
+        time: "15:00:00",
+        livestream: 0,
+        text:
+          "Vintermåne er ei gruppe som starta sitt samarbeid Consequat nisi sit magna esse commodo consectetur eu adipisicing in voluptate nisi nostrud velit. Mollit cupidatat consectetur et laborum sit cupidatat",
+        title: "Vi streamer Live fra Neptun"
       }
-    ]
+    ],
+    scheduledLiveStreams: []
   };
 
   componentDidMount() {
     this.getLiveVideos();
+    this.getScheduledLiveStreams();
+  }
+
+  getScheduledLiveStreams() {
+    this.state.scheduledLiveStreams = this.state.scheduledEvents.filter(
+      scheduledEvent => {
+        console.log(scheduledEvent);
+        // TODO: Endre til true hvis det er det som det kommer som
+        return scheduledEvent.livestream === 1;
+      }
+    );
   }
 
   /*  gets the live video data from the YouTube channel
       and outputs the live video(s) + its information   */
   getLiveVideos = () => {
+    console.log("getLiveVideos called");
     fetch(
       `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${
         this.state.channelId
@@ -110,11 +131,14 @@ class Live extends Component {
   };
 
   noCurrentStream() {
-    // let videoData = "there is no videodata";
-    this.setState({ videoData: this.videoData });
+    console.log("noCurrentStream called");
+    let videoData = "there is no videodata";
+    this.setState({ videoData: videoData });
   }
 
   render() {
+    console.log("render called");
+    console.log(this.state.scheduledLiveStreams);
     return (
       <div>
         <Navbar />
@@ -125,11 +149,18 @@ class Live extends Component {
             Vi streamer live til tider blablabla. Her kan du se live videoer fra
             festivalen. se som vi koser oss
           </h3>
-
           <div className="liveVideos">{this.state.videoData}</div>
-          <ScheduledLiveStream
-            ScheduledLiveStreams={this.state.scheduledLiveStreams}
-          />
+          <div className="upcomingStreams">
+            <h3 className="subTitle">Neste live sending</h3>
+            <hr className="hr-height" />
+            {this.state.scheduledLiveStreams.length > 0 ? (
+              <ScheduledLiveStream
+                ScheduledLiveStreams={this.state.scheduledLiveStreams}
+              />
+            ) : (
+              <p className="info">Det er ingen ...</p>
+            )}
+          </div>
         </div>
         <Footer />
       </div>
