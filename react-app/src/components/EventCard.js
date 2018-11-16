@@ -13,7 +13,7 @@ class EventCard extends Component {
           >
             <img
               className="thumbArtist"
-              src={require('../uploadedImg/' + this.props.imgPath + '/' + this.props.eventId)}
+              src={require('../uploadedImg/eventImg/' + this.props.eventId)}
               alt="artist"
             />
             <div className="overlay"></div>

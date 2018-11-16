@@ -31,7 +31,7 @@ class NewsCards extends Component {
 
     render() {//Loops trough all data, and displays it in newsCard
         return this.state.newsData.map(newsArticle => (
-            <NewsCard key={newsArticle.id} title={newsArticle.title} img={newsArticle.img_path} date={newsArticle.date} txt={newsArticle.text} id={newsArticle.id} />
+            <NewsCard key={newsArticle.id} title={newsArticle.title} date={newsArticle.date} txt={newsArticle.text} id={newsArticle.id} />
         ));
     }
 }
