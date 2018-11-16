@@ -8,50 +8,11 @@ import "../../styles/review.css";
 class Review extends Component {
   state = {
     year: '',
-    reviewData: [{ id: "", year: "", text: "" }],
-    slides: [
-      {
-        id: 1,
-        img:
-          "https://i.imgur.com/5iA7eFe.png",
-        title: "Violin Grill, sitting on a bench.",
-        caption:
-          "This cat is so hung it's hard for him to even prowl along the hardwood floors because them planks have splinters"
-      },
-      {
-        id: 2,
-        img:
-          "https://i.imgur.com/bUMoAu6.png",
-        title: "B.A.M.F. playing some Ukulele",
-        caption: "Bitch gettin' told"
-      },
-      {
-        id: 3,
-        img:
-          "https://i.imgur.com/zcLcbPK.png",
-        title: "Generic ass concert dude man",
-        caption: "Bitch gettin' told"
-      }
-    ],
-    body:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit amet arcu eu erat pretium ullamcorper et eu mauris. Etiam a ante eros. Maecenas interdum mi aliquam leo malesuada vulputate. Integer eleifend erat in ligula pharetra euismod. Duis purus dolor, pretium eget feugiat eu, tempus id mi. Pellentesque ut ultrices orci. Sed quis rutrum metus. Suspendisse potenti. Praesent ac sapien sed tortor feugiat tempor. Vivamus ac orci vel felis pulvinar imperdiet. Etiam laoreet felis nibh, non semper metus rhoncus non. Quisque lobortis molestie dolor, fringilla maximus ligula dapibus in.",
-    recordings: [
-      {
-        id: 1,
-        title: "Mongy Dickins",
-        link: "https://i.imgur.com/OGRdkCu.mp4"
-      },
-      {
-        id: 2,
-        title: "Top Mongol",
-        link: "https://i.imgur.com/OGRdkCu.mp4"
-      },
-      {
-        id: 3,
-        title: "Mongrel Mountaineers",
-        link: "https://i.imgur.com/OGRdkCu.mp4"
-      }
-    ]
+    reviewData: {
+      text: ''
+    },
+    recordings: [],
+    slides: []
   };
   componentDidMount() {
     this.getData();
@@ -69,7 +30,7 @@ class Review extends Component {
       .then(response => {
         let data = {}
         data.year = year
-        data.reviewData = response.data.reviewData
+        data.reviewData = response.data.reviewData[0]
         data.slides = response.data.slides
         data.recordings = response.data.recordings
         this.setState(data)
