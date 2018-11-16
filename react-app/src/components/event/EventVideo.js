@@ -4,7 +4,7 @@
 import React from "react";
 
 const EventVideo = props => {
-  const url = props.url;
+  const url = props.vidurl;
 
   const videoElements = document.querySelectorAll(".js-video");
   const activeClass = "is-active";
@@ -33,9 +33,6 @@ const EventVideo = props => {
 
     iframe.onload = () => {
       video.classList.remove(loadingClass);
-      window.setTimeout(() => {
-        placeholder.parentNode.removeChild(placeholder);
-      });
     };
 
     wrap.appendChild(iframe);
@@ -61,10 +58,11 @@ const EventVideo = props => {
   */
   function fullUrl() {
     const fullUrl = `https://www.youtube.com/embed/${
-      props.url
+      props.vidurl
       }?feature=oembed&autoplay=1&hd=1`;
     return fullUrl;
   }
+
   /*checks if event has youtube link or not*/
   const hasVideo =
     url !== "" ? (
@@ -81,11 +79,9 @@ const EventVideo = props => {
             <a className="Video-title" href="full-url-goes-here">
               {props.title}
             </a>
-            <img
-              className="Video-placeholder js-videoPlaceholder"
-              src={props.placeholderImage}
-              alt=""
-            />
+
+            {props.imgpath != '' ? <img src={require(`../../uploadedImg/eventImg/${props.id}`)} alt="img" className="Video-placeholder js-videoPlaceholder" /> : null}
+
             <svg
               className="Video-playButton"
               viewBox="0 0 136 198"
@@ -102,11 +98,7 @@ const EventVideo = props => {
         <div>
           <div data-width="1280" data-height="720">
             <div className="Video-wrap js-videoWrap">
-              <img
-                className="Video-placeholder js-videoPlaceholder"
-                src={props.placeholderImage}
-                alt=""
-              />
+              {props.imgpath != '' ? <img src={require(`../../uploadedImg/eventImg/${props.id}`)} alt="img" className="Video-placeholder js-videoPlaceholder" /> : null}
             </div>
           </div>
         </div>

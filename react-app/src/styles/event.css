@@ -22,13 +22,18 @@ hr.event-hr {
   height: 0.2px;
   background-color: black;
 }
-.event-scedule-item {
+.event-schedule-item {
   margin: 0;
-  border: 1px solid grey;
   border-radius: 4px;
   padding-top: 5px;
   padding-bottom: 5px;
   margin-bottom: 10px;
+  border-radius: 4px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #6d6d6d0f;
 }
 
 /****EVENT VIDEO*******/
@@ -174,9 +179,10 @@ hr.event-hr {
   p.event-date {
     padding: 5px 15px;
   }
-  .event-scedule-item {
+  .event-schedule-item {
     border: none;
     background-color: #822a4017;
+    
   }
   hr.event-hr {
     margin-bottom: 25px;

@@ -11,6 +11,7 @@ class Event extends Component {
   state = {
     id: null,
     eventData: [{ id: '', title: '', text: '', img_path: '', date: '', youtube_link: '', payment_link: '', address: '' }],
+    yt_vid: [],
     events: [
       {
         eventid: 1,
@@ -20,33 +21,41 @@ class Event extends Component {
         price: "NOK 100,-",
         date: "27.09.2019"
       }
-    ],
-
-    event: {
-      eventImg:
-        "https://i.pinimg.com/originals/d4/c1/9d/d4c19ddddebb9f8f7e327a9754fc5c40.jpg",
-      eventTitle: "ViolinKveld med kattepusene",
-      eventDate: "Mandag 27.09.2019",
-      eventTxt:
-        "Her har Ragnhild en etterlengtet kveld med kattepusene, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      eventVideoURL: "Y2HJpa0FU88"
-    }
+    ]
   };
-  componentDidMount() {
-    let id = this.props.match.params.eventId;
-    this.getEventData(id);
-  }
   componentDidMount() {
     let id = this.props.match.params.eventId;
     this.getEventData(id);
     window.scrollTo(0, 0);
   }
+
+
   getEventData = (id) => {
     fetch(`http://localhost:5000/event?id=` + id)
       .then(response => response.json())
       .then(response => this.setState({ eventData: response }))
+      .then(response => this.getYTID(response))
       .catch(err => console.log(err));
+
   };
+
+  getYTID() {
+
+    if (this.state.eventData[0].youtube_link !== null) {
+      let yt_link = this.state.eventData[0].youtube_link;
+      var regex = new RegExp('(?<=v=)()(.*$)');
+      var yt_vid = regex.exec(yt_link)[0];
+      return (this.setState(
+        { yt_vid: yt_vid })
+      );
+    } else {
+      return (this.setState(
+        { yt_vid: "" })
+      );
+    }
+  }
+
+
   showScheduleItem() {
     let str = this.state.events[0].date;
     // splitting the date string
@@ -72,18 +81,20 @@ class Event extends Component {
 
   render() {
     const event = this.state.eventData[0] ? (
-      <div className="container">
+
+      < div className="container" >
         <h2 className="event-title">{this.state.eventData[0].title}</h2>
         <p className="event-date">{this.state.eventData[0].date}</p>
         <hr className="event-hr" />
         {this.showScheduleItem()}
         <EventVideo
-          url={this.state.event.eventVideoURL}
-          title={this.state.event.eventTitle}
-          placeholderImage={this.state.event.eventImg}
+          vidurl={this.state.yt_vid}
+          title={this.state.eventData[0].title}
+          imgpath={this.state.eventData[0].img_path}
+          id={this.state.eventData[0].id}
         />
         <p className="event-text">{this.state.eventData[0].text}</p>
-      </div>
+      </div >
     ) : (
         <div class="errorDiv container">
           <h1 class="sadSmilyError">&#x2639;</h1>

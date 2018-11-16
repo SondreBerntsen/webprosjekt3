@@ -34,7 +34,7 @@ const ScheduleItem = props => {
       );
     } else {
       return (
-        <div className="event-scedule-item row">
+        <div className="event-schedule-item row">
           <div className="col-md-4">
             <p className="event_title">{props.event.title}</p>
             <p className="venue_name">{props.event.venue}</p>
