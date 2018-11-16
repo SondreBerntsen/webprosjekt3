@@ -11,30 +11,25 @@ const ScheduledLiveStream = props => {
           <h5 className="upcomingStreamTitle">{nextLive.title}</h5>
         </div>
         <div className="col-2">
-          <span>{nextLive.dateTime}</span>
+          <span>
+            {nextLive.date} {nextLive.time}
+          </span>
         </div>
         <div className="col-7">
           <ReadMoreAndLess
-            //ref={this.ReadMore}
             className="read-more-content"
             charLimit={70}
             readMoreText="Les mer"
             readLessText="Les mindre"
           >
-            {nextLive.description}
+            {nextLive.text}
           </ReadMoreAndLess>
         </div>
       </div>
     );
   });
 
-  return (
-    <div className="upcomingStreams">
-      <h3 className="subTitle">Hello upcoming streams</h3>
-      <hr className="hr-height" />
-      <div className="upcomingStream">{nextLiveStream}</div>
-    </div>
-  );
+  return <div className="upcomingStream">{nextLiveStream}</div>;
 };
 
 export default ScheduledLiveStream;
