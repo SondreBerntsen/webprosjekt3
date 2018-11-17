@@ -20,27 +20,7 @@ class AdminGeneral extends Component {
         building: "Fjell kirke",
         areaCode: "3034",
         city: "DRAMMEN"
-      },
-      contactPersonsx: [
-        {
-          id: "1",
-          name: "Ivar Flaten",
-          image:
-            "http://w134760-www.php5.dittdomene.no/wp-content/uploads/2015/07/Ivar.png",
-          profession: "Produsent og festival-gründer",
-          phone: "41545849",
-          email: "director@drammensacred.no"
-        },
-        {
-          id: "2",
-          name: "Reidun Svabø",
-          image:
-            "http://www.drammensacred.no/wp-content/uploads/2017/06/14797268_1126727614042424_159417209_n-e1497259971949.jpg",
-          profession: "Styreleder og festivalkoordinator",
-          phone: "93294512",
-          email: "director@drammensacred.no"
-        }
-      ]
+      }
     }
   };
   componentDidMount() {

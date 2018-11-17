@@ -21,6 +21,7 @@ var contactAdress = require("./contactAdress");
 var venues = require("./venues");
 var eventList = require("./eventList");
 var eventYearList = require("./eventYearList");
+var adminUsers = require("./adminUsers");
 
 app.get("/", (req, res) => {
   res.send("jille greiå");
@@ -44,6 +45,7 @@ app.use("/contactAdress", contactAdress);
 app.use("/venues", venues);
 app.use("/eventList", eventList);
 app.use("/eventYearList", eventYearList);
+app.use("/adminUsers", adminUsers);
 
 const port = 5000;
 
