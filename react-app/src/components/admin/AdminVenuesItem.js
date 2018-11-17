@@ -1,28 +1,4 @@
-import React from "react"
-import {FormValidation} from "calidation"
-//import {isRequired, isNumber} from "calidators"
-
-const config = {
-  // List the requirements for each field.
-  // https://github.com/selbekk/calidators for reference
-  address: {
-    isRequired: "Skriv inn addresse"
-  },
-  capacity: {
-    isRequired: "Skriv inn antall plasser",
-    isNumber: "Skriv inn kun tall"
-  }
-}
-
-const onSubmit = ({fields, errors, isValid}) => {
-  if(isValid){
-    //submit form I guess
-    console.log(fields.address)
-    console.log(fields.capacity)
-  }else{
-    console.log("Not everything is gucc: ", errors)
-  }
-}
+import React from "react";
 
 const AdminVenuesItem = props => {
 
@@ -63,38 +39,27 @@ const AdminVenuesItem = props => {
         </div>
       </div>
       <div className="editScheduleItem collapse" id={"venue" + props.venue.id}>
-
-        <FormValidation 
-          className="col-md-6 col-lg-4"
-          config={config}
-          onSubmit={onSubmit}
-        >
-          {({errors, submitted}) => (
-            <>
-              <div className="form-group">
-                <label>Address</label>
-                <input
-                  name="address"
-                  className="form-control"
-                  defaultValue={props.venue.address}
-                />
-                {errors && <span>{errors.address}</span>}
-              </div>
-              <div className="form-group">
-                <label>Capacity</label>
-                <input
-                  name="capacity"
-                  className="form-control"
-                  defaultValue={props.venue.capacity}
-                />
-                {submitted && errors && <span>{errors.capacity}</span>}
-              </div>
-              <button type="submit" className="btn btn-info btn-sm">
-                Edit
-              </button>
-            </>
-          )}
-        </FormValidation>
+        <form className="col-md-6 col-lg-4">
+          <div className="form-group">
+            <label>Address</label>
+            <input
+              type="text"
+              className="form-control"
+              defaultValue={props.venue.address}
+            />
+          </div>
+          <div className="form-group">
+            <label>Capacity</label>
+            <input
+              type="number"
+              className="form-control"
+              defaultValue={props.venue.capacity}
+            />
+          </div>
+          <button type="submit" className="btn btn-info btn-sm">
+            Edit
+          </button>
+        </form>
       </div>
     </React.Fragment>
   );
