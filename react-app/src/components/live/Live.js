@@ -31,12 +31,12 @@ class Live extends Component {
   getLiveVideos = () => {
     fetch(
       `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${
-        this.state.channelId
+      this.state.channelId
       }&eventType=live&type=video&key=${
-        this.state.API_KEY
+      this.state.API_KEY
       }&enablejsapi=1&origin=https://localhost:3000`
     )
-      .then(function(response) {
+      .then(function (response) {
         return response.json(); // pass the data as promise to next then block
       })
       .then(data => {
@@ -51,10 +51,10 @@ class Live extends Component {
                 so we can access the full description of the video  */
             return fetch(
               `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${
-                this.state.API_KEY
+              this.state.API_KEY
               }`
             )
-              .then(function(response) {
+              .then(function (response) {
                 return response.json();
               })
               .then(data => {
@@ -75,7 +75,7 @@ class Live extends Component {
                   videoData: this.state.videoData.concat(videoData)
                 });
               })
-              .catch(function(error) {
+              .catch(function (error) {
                 console.log("Request failed", error);
               });
           });
@@ -111,10 +111,10 @@ class Live extends Component {
                 ScheduledLiveStreams={this.state.scheduledLiveStreams}
               />
             ) : (
-              <p className="noScheduledLiveStreams">
-                Det er ingen planlagte live sendinger enda..
+                <p className="noScheduledLiveStreams">
+                  Det er ingen planlagte live sendinger enda..
               </p>
-            )}
+              )}
           </div>
         </div>
         <Footer />
