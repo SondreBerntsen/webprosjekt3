@@ -3,23 +3,17 @@ import AdminVenuesItem from "../AdminVenuesItem";
 
 class AdminVenues extends Component {
   state = {
-    venues: [
-      {
-        id: 1,
-        address: "Cool place X", // Probably need only name or address, not both
-        capacity: 100
-      },
-      {
-        id: 2,
-        address: "Cool place Y", // Probably need only name or address, not both
-        capacity: 75
-      },
-      {
-        id: 3,
-        address: "Cool place Z", // Probably need only name or address, not both
-        capacity: 0 // Let's say 0 means public space/free entry/don't care how many show up
-      }
-    ]
+    venues: [{ id: '', address: '', capacity: '' }]
+  };
+  componentDidMount() {
+    this.getVenueList();
+  }
+  getVenueList = _ => {
+    {/*sends a fetch request to get all the venues and updates the state*/ }
+    fetch(`http://localhost:5000/venues`)
+      .then(response => response.json())
+      .then(response => this.setState({ venues: response }))
+      .catch(err => console.log(err));
   };
   render() {
     return (
@@ -53,6 +47,7 @@ class AdminVenues extends Component {
             </button>
           </form>
         </div>
+        {/*Mapping out all of the venues in the array*/}
         {this.state.venues.map(venue => (
           <div key={venue.id}>
             <AdminVenuesItem venue={venue} />

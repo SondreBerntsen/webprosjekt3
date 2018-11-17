@@ -10,7 +10,7 @@ const AdminVenuesItem = props => {
   */
 
   function checkCapacity() {
-    if (props.venue.capacity === 0) {
+    if (props.venue.capacity === null) {
       return <p className="col-lg-4">Unlimited/Public property </p>;
     } else {
       return (
