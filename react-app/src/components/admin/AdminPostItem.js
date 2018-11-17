@@ -1,6 +1,7 @@
 import React from "react";
 
 const AdminPostItem = props => {
+
   return (
     <React.Fragment>
       <div className="elementCardAdmin row">
@@ -40,13 +41,17 @@ const AdminPostItem = props => {
             <label>Image</label>
             <input type="file" className="form-control" />
           </div>
-          <img className="newsImgEdit " src={props.post.img} alt="newsImg" />
+          {/*If postid is not set no not try to display images*/}
+          {props.post.id !== "" ?
+            (<img className="newsImgEdit "
+              src={require('../../uploadedImg/postImg/' + props.post.id)}
+              alt="newsImg" />) : null}
           <div className="form-group">
             <label>News Text</label>
             <textarea
               id="textareaNews"
               className="form-control"
-              defaultValue={props.post.newsText}
+              defaultValue={props.post.text}
             />
           </div>
           <button type="submit" className="btn btn-info btn-sm">

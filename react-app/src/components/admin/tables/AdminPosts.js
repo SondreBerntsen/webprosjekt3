@@ -1,65 +1,42 @@
 import React, { Component } from "react";
 import AdminPostItem from "../AdminPostItem";
+import { Link } from "react-router-dom";
 
 class AdminPosts extends Component {
   state = {
-    posts: [
-      {
-        id: 1,
-        title: "Merlin1",
-        newsText:
-          "These are the brand new adventures of Merlin, the legendary sorcerer as a young man, when he was just a servant to young Prince Arthur on the royal court of Camelot, who has soon become his best friend, and turned Arthur into a great king and a legend.",
-        date: "2018-07-22",
-        img:
-          "https://www.drammensacred.no/wp-content/uploads/2018/07/Vinterma%CC%8Ane-960x654.jpg"
-      },
-      {
-        id: 2,
-        title: "Merlin2",
-        newsText:
-          "These are the brand new adventures of Merlin, the legendary sorcerer as a young man, when he was just a servant to young Prince Arthur on the royal court of Camelot, who has soon become his best friend, and turned Arthur into a great king and a legend.",
-        date: "2018-07-22",
-        img:
-          "https://www.drammensacred.no/wp-content/uploads/2018/07/Vinterma%CC%8Ane-960x654.jpg"
-      },
-      {
-        id: 3,
-        title: "Merlin3",
-        newsText:
-          "These are the brand new adventures of Merlin, the legendary sorcerer as a young man, when he was just a servant to young Prince Arthur on the royal court of Camelot, who has soon become his best friend, and turned Arthur into a great king and a legend.",
-        date: "2018-07-22",
-        img:
-          "https://www.drammensacred.no/wp-content/uploads/2018/07/Vinterma%CC%8Ane-960x654.jpg"
-      },
-      {
-        id: 4,
-        title: "Merlin4",
-        newsText:
-          "These are the brand new adventures of Merlin, the legendary sorcerer as a young man, when he was just a servant to young Prince Arthur on the royal court of Camelot, who has soon become his best friend, and turned Arthur into a great king and a legend.",
-        date: "2018-07-22",
-        img:
-          "https://www.drammensacred.no/wp-content/uploads/2018/07/Vinterma%CC%8Ane-960x654.jpg"
-      },
-      {
-        id: 5,
-        title: "Merlin5",
-        newsText:
-          "These are the brand new adventures of Merlin, the legendary sorcerer as a young man, when he was just a servant to young Prince Arthur on the royal court of Camelot, who has soon become his best friend, and turned Arthur into a great king and a legend.",
-        date: "2018-07-22",
-        img:
-          "https://www.drammensacred.no/wp-content/uploads/2018/07/Vinterma%CC%8Ane-960x654.jpg"
-      },
-      {
-        id: 6,
-        title: "Merlin6",
-        newsText:
-          "These are the brand new adventures of Merlin, the legendary sorcerer as a young man, when he was just a servant to young Prince Arthur on the royal court of Camelot, who has soon become his best friend, and turned Arthur into a great king and a legend.",
-        date: "2018-07-22",
-        img:
-          "https://www.drammensacred.no/wp-content/uploads/2018/07/Vinterma%CC%8Ane-960x654.jpg"
-      }
-    ]
+    posts: [{ id: '', title: '', text: '', date: '' }],
+    years: []
   };
+  componentDidMount() {
+    let path = this.props.match.params.year;
+    this.getPostList(path);
+    this.getYearList();
+  }
+  componentWillReceiveProps() {
+    let path = this.props.match.params.year;
+    this.getPostList(path);
+  }
+  getYearList = _ => {
+    fetch(`http://localhost:5000/newsYearList`)
+      .then(response => response.json())
+      .then(response => this.setState({ years: response }))
+      .catch(err => console.log(err));
+  };
+  getPostList = path => {
+    if (isNaN(path)) {
+      fetch(`http://localhost:5000/posts`)
+        .then(response => response.json())
+        .then(response => this.setState({ posts: response }))
+        .catch(err => console.log(err));
+    } else {
+      fetch(`http://localhost:5000/posts?year=` + path)
+        .then(response => response.json())
+        .then(response => this.setState({ posts: response }))
+        .catch(err => console.log(err));
+    }
+
+  };
+
   render() {
     return (
       <div className="container tablesAdmin col-md-9 col-lg-10">
@@ -73,6 +50,17 @@ class AdminPosts extends Component {
         >
           Create new post
         </button>
+        {this.state.years.map(function (year) {
+          return (
+            <Link
+              className="btn"
+              to={"/admin/posts/" + year.year}
+              key={year.year}
+            >
+              {year.year}
+            </Link>
+          );
+        })}
         <div className="collapseForm col-12 collapse" id="newPostForm">
           <form className="col-md-8 col-lg-6">
             <div className="form-row">

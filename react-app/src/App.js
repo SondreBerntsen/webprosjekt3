@@ -41,7 +41,8 @@ class App extends Component {
 
           <Route path="/admin" component={Admin} />
           <Route path="/admin/events" component={AdminEvents} />
-          <Route path="/admin/posts" component={AdminPosts} />
+          <Route exact path="/admin/posts" component={AdminPosts} />
+          <Route path="/admin/posts/:year" component={AdminPosts} />
           <Route path="/admin/schedule" component={AdminSchedule} />
           <Route path="/admin/venues" component={AdminVenues} />
           <Route path="/admin/general" component={AdminGeneral} />
