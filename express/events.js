@@ -6,6 +6,7 @@ const events = express.Router();
 events.get("/", (req, res) => {
     const { year } = req.query;
     const SELECT_ALL_EVENTS_QUERY = `SELECT id, title FROM events WHERE year(date)='${year}'`;
+
     db.query(SELECT_ALL_EVENTS_QUERY, (err, results) => {
         if (err) {
             return res.send(err);
