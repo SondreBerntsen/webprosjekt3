@@ -40,27 +40,38 @@ class AdminPosts extends Component {
   render() {
     return (
       <div className="container tablesAdmin col-md-9 col-lg-10">
-        <button
-          className=" createNewBtn btn btn-info btn-sm"
-          type="button"
-          data-toggle="collapse"
-          data-target="#newPostForm"
-          aria-expanded="false"
-          aria-controls="newPostForm"
-        >
-          Create new post
-        </button>
-        {this.state.years.map(function (year) {
-          return (
-            <Link
-              className="btn"
-              to={"/admin/posts/" + year.year}
-              key={year.year}
+        <div className="row">
+          <div className='col-md-4'>
+            <button
+              className=" createNewBtn btn btn-info btn-sm"
+              type="button"
+              data-toggle="collapse"
+              data-target="#newPostForm"
+              aria-expanded="false"
+              aria-controls="newPostForm"
             >
-              {year.year}
-            </Link>
-          );
-        })}
+              Create new post
+            </button>
+          </div>
+          <div className="col-md-8">
+            <div className="float-right">
+              {this.state.years.map(function (year) {
+                return (
+                  <Link
+                    className="btn ml-1 mr-1"
+                    to={"/admin/posts/" + year.year}
+                    key={year.year}
+                  >
+                    {year.year}
+                  </Link>
+                );
+              })}
+            </div>
+
+          </div>
+        </div>
+
+
         <div className="collapseForm col-12 collapse" id="newPostForm">
           <form className="col-md-8 col-lg-6">
             <div className="form-row">

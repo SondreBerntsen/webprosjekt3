@@ -39,27 +39,38 @@ class AdminEvents extends Component {
     return (
       <React.Fragment>
         <div className="container tablesAdmin col-md-9 col-lg-10">
-          <button
-            className="createNewBtn btn btn-sm btn-info"
-            type="button"
-            data-toggle="collapse"
-            data-target="#newEventForm"
-            aria-expanded="false"
-            aria-controls="newEventForm"
-          >
-            Opprett arrangement
-          </button>
-          {this.state.years.map(function (year) {
-            return (
-              <Link
-                className="btn"
-                to={"/admin/events/" + year.year}
-                key={year.year}
+          <div className="row">
+            <div className="col-md-4">
+              <button
+                className="createNewBtn btn btn-sm btn-info"
+                type="button"
+                data-toggle="collapse"
+                data-target="#newEventForm"
+                aria-expanded="false"
+                aria-controls="newEventForm"
               >
-                {year.year}
-              </Link>
-            );
-          })}
+                Opprett arrangement
+            </button>
+            </div>
+            <div className="col-md-8 ">
+              <div className="float-right">
+                {this.state.years.map(function (year) {
+                  return (
+                    <Link
+                      className="btn ml-1 mr-1"
+                      to={"/admin/events/" + year.year}
+                      key={year.year}
+                    >
+                      {year.year}
+                    </Link>
+                  );
+                })}
+              </div>
+
+            </div>
+          </div>
+
+
           <div className="collapseForm col-12 collapse" id="newEventForm">
             <form className="col-md-8 col-lg-6">
               <div className="form-row">
