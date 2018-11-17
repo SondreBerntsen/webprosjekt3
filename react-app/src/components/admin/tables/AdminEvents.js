@@ -1,40 +1,39 @@
 import React, { Component } from "react";
 import AdminEventItem from "../AdminEventItem";
+import { Link } from "react-router-dom";
 
 class AdminEvents extends Component {
   state = {
-    events: [
-      {
-        id: 1,
-        title: "Cool event title",
-        date: "2018-07-22",
-        time: "20:00",
-        price: "200",
-        linkYoutube: "https://www.youtube.com/watch?v=z3U0udLH974",
-        linkToTickets: "https://www.ticketmaster.com/",
-        img:
-          "https://www.drammensacred.no/wp-content/uploads/2018/07/Vinterma%CC%8Ane-960x654.jpg",
-        thumbnail:
-          "https://www.drammensacred.no/wp-content/uploads/2018/07/Vinterma%CC%8Ane-960x654.jpg",
-        descr:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      },
-      {
-        id: 2,
-        title: "Cool event title 2",
-        date: "2018-07-22",
-        time: "20:00",
-        price: "200",
-        linkYoutube: "https://www.youtube.com/watch?v=z3U0udLH974",
-        linkToTickets: "https://www.ticketmaster.com/",
-        img:
-          "https://www.drammensacred.no/wp-content/uploads/2018/07/Vinterma%CC%8Ane-960x654.jpg",
-        thumbnail:
-          "https://www.drammensacred.no/wp-content/uploads/2018/07/Vinterma%CC%8Ane-960x654.jpg",
-        descr:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      }
-    ]
+    events: [{ id: '', title: '', text: '', date: '', time: '', price: '', youtube_link: '', payment_link: '', livestream: '' }],
+    years: []
+  };
+  componentDidMount() {
+    let path = this.props.match.params.year;
+    this.getEventList(path);
+    this.getEventYears();
+  }
+  componentWillUpdate() {
+    let path = this.props.match.params.year;
+    this.getEventList(path);
+  }
+  getEventYears = _ => {
+    fetch(`http://localhost:5000/eventYearList`)
+      .then(response => response.json())
+      .then(response => this.setState({ years: response }))
+      .catch(err => console.log(err));
+  }
+  getEventList = path => {
+    if (isNaN(path)) {
+      fetch(`http://localhost:5000/eventList`)
+        .then(response => response.json())
+        .then(response => this.setState({ events: response }))
+        .catch(err => console.log(err));
+    } else {
+      fetch(`http://localhost:5000/eventList?year=` + path)
+        .then(response => response.json())
+        .then(response => this.setState({ events: response }))
+        .catch(err => console.log(err));
+    }
   };
   render() {
     return (
@@ -48,41 +47,50 @@ class AdminEvents extends Component {
             aria-expanded="false"
             aria-controls="newEventForm"
           >
-            Create new event
+            Opprett arrangement
           </button>
+          {this.state.years.map(function (year) {
+            return (
+              <Link
+                className="btn"
+                to={"/admin/events/" + year.year}
+                key={year.year}
+              >
+                {year.year}
+              </Link>
+            );
+          })}
           <div className="collapseForm col-12 collapse" id="newEventForm">
             <form className="col-md-8 col-lg-6">
               <div className="form-row">
                 <div className="form-group col-md-6">
-                  <label>Title</label>
+                  <label>Tittel</label>
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="Enter event title"
                   />
                 </div>
                 <div className="form-group col-md-6">
-                  <label>Link to tickets</label>
+                  <label>Link til betaling</label>
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="Enter link"
                   />
                 </div>
               </div>
               <div className="form-row">
                 <div className="form-group col-md-6">
-                  <label>Date</label>
+                  <label>Dato</label>
                   <input type="date" className="form-control" />
                 </div>
                 <div className="form-group col-md-6">
-                  <label>Time</label>
+                  <label>Tid</label>
                   <input type="time" className="form-control" />
                 </div>
               </div>
               <div className="form-row">
                 <div className="form-group col-md-6">
-                  <label>Price</label>
+                  <label>Pris</label>
                   <input type="number" className="form-control" />
                 </div>
                 <div className="form-group col-md-6">
@@ -92,11 +100,7 @@ class AdminEvents extends Component {
               </div>
               <div className="form-row">
                 <div className="form-group col-md-6">
-                  <label>Image</label>
-                  <input type="file" className="form-control" />
-                </div>
-                <div className="form-group col-md-6">
-                  <label>Thumbnail</label>
+                  <label>Bilde</label>
                   <input type="file" className="form-control" />
                 </div>
               </div>
@@ -109,7 +113,7 @@ class AdminEvents extends Component {
                   value="option1"
                 />
                 <label className="form-check-label" htmlFor="inlineRadio1">
-                  Planned Livestream
+                  Planlagt Livestream
                 </label>
               </div>
               <div className="form-check form-check-inline">
@@ -122,15 +126,15 @@ class AdminEvents extends Component {
                   value="option2"
                 />
                 <label className="form-check-label" htmlFor="inlineRadio2">
-                  No livestream
+                  Ingen planlagt livestream
                 </label>
               </div>
               <div className="form-group">
-                <label>Description</label>
+                <label>Beskrivelse</label>
                 <textarea type="text" className="form-control" />
               </div>
               <button type="submit" className="btn btn-info btn-sm">
-                Submit
+                Send
               </button>
             </form>
           </div>

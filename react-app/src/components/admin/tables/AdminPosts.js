@@ -12,7 +12,7 @@ class AdminPosts extends Component {
     this.getPostList(path);
     this.getYearList();
   }
-  componentWillReceiveProps() {
+  componentWillUpdate() {
     let path = this.props.match.params.year;
     this.getPostList(path);
   }

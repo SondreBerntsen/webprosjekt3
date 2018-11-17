@@ -5,14 +5,14 @@ const AdminEventItem = props => {
     <React.Fragment>
       <div className="elementCardAdmin row">
         <p className="col-lg-5">
-          <span className="smallHeading">Title: </span> {props.event.title}
+          <span className="smallHeading">Tittel: </span> {props.event.title}
         </p>
         <p className="col-lg-4">
-          <span className="smallHeading">Date: </span> {props.event.date}
+          <span className="smallHeading">Dato: </span> {props.event.date}
         </p>
         <div className="col-lg-3">
           <button className="btn btn-sm btn-danger btnInElementAdmin">
-            Delete
+            Slett
           </button>
           <button
             className="btn  btn-secondary btnInElementAdmin btn-sm"
@@ -22,23 +22,35 @@ const AdminEventItem = props => {
             aria-expanded="false"
             aria-controls={"event" + props.event.id}
           >
-            Edit
+            Rediger
           </button>
         </div>
       </div>
       <div className="editScheduleItem collapse" id={"event" + props.event.id}>
         <form className="col-md-8 col-lg-6">
           <div className="form-group">
-            <label>Title</label>
+            <label>Tittel</label>
             <input
               type="text"
               className="form-control"
               defaultValue={props.event.title}
             />
           </div>
+          <div className="form-group">
+            <label>Bilde</label>
+            <input
+              type="file"
+              className="form-control"
+
+            />
+          </div>
+          {props.event.id !== "" ?
+            (<img className="eventImgEdit "
+              src={require('../../uploadedImg/eventImg/' + props.event.id)}
+              alt="eventImg" />) : null}
           <div className="form-row">
             <div className="form-group col-md-6">
-              <label>Date</label>
+              <label>Dato</label>
               <input
                 type="date"
                 className="form-control"
@@ -46,7 +58,7 @@ const AdminEventItem = props => {
               />
             </div>
             <div className="form-group col-md-6">
-              <label>Time</label>
+              <label>Tid</label>
               <input
                 type="time"
                 className="form-control"
@@ -60,28 +72,28 @@ const AdminEventItem = props => {
               <input
                 type="text"
                 className="form-control"
-                defaultValue={props.event.linkYoutube}
+                defaultValue={props.event.youtube_link}
               />
             </div>
             <div className="form-group col-md-6">
-              <label>Link to payment</label>
+              <label>Link til betaling</label>
               <input
                 type="text"
                 className="form-control"
-                defaultValue={props.event.linkToTickets}
+                defaultValue={props.event.payment_link}
               />
             </div>
           </div>
           <div className="form-group">
-            <label>Event description</label>
+            <label>Beskrivelse</label>
             <textarea
               id="textareaNews"
               className="form-control"
-              defaultValue={props.event.descr}
+              defaultValue={props.event.text}
             />
           </div>
           <button type="submit" className="btn btn-info btn-sm">
-            Edit
+            Rediger
           </button>
         </form>
       </div>
