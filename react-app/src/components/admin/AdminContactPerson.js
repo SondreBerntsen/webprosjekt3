@@ -2,9 +2,8 @@ import React from "react";
 
 const AdminContactPerson = props => {
   let {
-    contact: { id, name, image, profession, phone, email }
+    contact: { id, name, role, phone, email }
   } = props;
-  console.log(image);
   return (
     <React.Fragment>
       <div className="elementCardAdmin row">
@@ -33,21 +32,20 @@ const AdminContactPerson = props => {
               <input type="text" defaultValue={name} className="form-control" />
             </div>
             <div className="form-group col-md-6">
-              <label> Image</label>
-              <input type="file" className="form-control" />
-            </div>
-          </div>
-          <div className="form-row">
-            <div className="form-group col-md-6">
               <label>Profession</label>
               <input
                 type="text"
-                defaultValue={profession}
+                defaultValue={role}
                 className="form-control"
               />
             </div>
+
+          </div>
+          <div className="form-row">
+
             <div className="form-group col-md-6">
               <label>Phone</label>
+              {}
               <input
                 type="number"
                 defaultValue={phone}
@@ -63,7 +61,16 @@ const AdminContactPerson = props => {
               />
             </div>
           </div>
-
+          <div className="form-row">
+            <div className="form-group col-md-12">
+              <label> Image</label>
+              <input type="file" className="form-control" />
+            </div>
+            {id !== "" ?
+              (<img className="contactImgEdit "
+                src={require('../../uploadedImg/contactPersonImg/' + id)}
+                alt="contactpersonImg" />) : null}
+          </div>
           <button type="submit" className="btn btn-info btn-sm">
             Save
           </button>

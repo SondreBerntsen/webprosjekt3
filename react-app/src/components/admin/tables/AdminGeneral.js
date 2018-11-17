@@ -11,6 +11,7 @@ class AdminGeneral extends Component {
       organizationText:
         "Vi er skikkelig flinke til å organisere dritt fordi vi har masse kule folk og bla"
     },
+    contactPersons: [],
     contact: {
       contactAddress: {
         name: "Drammen Sacred Music Festival",
@@ -20,7 +21,7 @@ class AdminGeneral extends Component {
         areaCode: "3034",
         city: "DRAMMEN"
       },
-      contactPersons: [
+      contactPersonsx: [
         {
           id: "1",
           name: "Ivar Flaten",
@@ -42,7 +43,17 @@ class AdminGeneral extends Component {
       ]
     }
   };
+  componentDidMount() {
+    this.getContactList();
+  }
+  getContactList = _ => {
+    fetch(`http://localhost:5000/contactPersons`)
+      .then(response => response.json())
+      .then(response => this.setState({ contactPersons: response.data }))
+      .catch(err => console.log(err));
+  };
   render() {
+    console.log(this.state.contactPersons);
     return (
       <div className="container tablesAdmin col-md-9 col-lg-10">
         <div>
@@ -246,7 +257,7 @@ class AdminGeneral extends Component {
           <div>
             <h2>Contact persons</h2>
             <div>
-              {this.state.contact.contactPersons.map(contact => (
+              {this.state.contactPersons.map(contact => (
                 <AdminContactPerson key={contact.id} contact={contact} />
               ))}
             </div>
