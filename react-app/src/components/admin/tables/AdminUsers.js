@@ -1,9 +1,10 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import AdminUser from "../AdminUser";
 
 class AdminUsers extends Component {
-  state = { 
-    users: [
+  state = {
+    users: [],
+    usersx: [
       {
         id: 1,
         userName: "mongol",
@@ -19,9 +20,18 @@ class AdminUsers extends Component {
         type: "somethingelseidk"
       }
     ]
-   }
-  render() { 
-    return ( 
+  }
+  componentDidMount() {
+    this.getUserList();
+  }
+  getUserList = _ => {
+    fetch(`http://localhost:5000/adminUsers`)
+      .then(response => response.json())
+      .then(response => this.setState({ users: response }))
+      .catch(err => console.log(err));
+  };
+  render() {
+    return (
       <div className="container tablesAdmin col-md-9 col-lg-10">
         <button className="createNewBtn btn btn-sm btn-info" type="button" data-toggle="collapse" data-target='#newUserForm' aria-expanded="false" aria-controls='newUserForm'>Create new user</button>
         <div className="collapseForm col-12 collapse" id="newUserForm">
@@ -64,8 +74,8 @@ class AdminUsers extends Component {
           ))
         }
       </div>
-     );
+    );
   }
 }
- 
+
 export default AdminUsers;

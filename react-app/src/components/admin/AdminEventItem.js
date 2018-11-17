@@ -48,13 +48,14 @@ const AdminEventItem = props => {
             (<img className="eventImgEdit "
               src={require('../../uploadedImg/eventImg/' + props.event.id)}
               alt="eventImg" />) : null}
+
           <div className="form-row">
             <div className="form-group col-md-6">
               <label>Dato</label>
               <input
                 type="date"
                 className="form-control"
-                defaultValue={props.event.date}
+                defaultValue={props.event.date}//fix
               />
             </div>
             <div className="form-group col-md-6">
@@ -66,6 +67,8 @@ const AdminEventItem = props => {
               />
             </div>
           </div>
+
+
           <div className="form-row">
             <div className="form-group col-md-6">
               <label>Youtube link</label>

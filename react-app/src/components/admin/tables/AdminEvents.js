@@ -5,12 +5,14 @@ import { Link } from "react-router-dom";
 class AdminEvents extends Component {
   state = {
     events: [{ id: '', title: '', text: '', date: '', time: '', price: '', youtube_link: '', payment_link: '', livestream: '' }],
-    years: []
+    years: [],
+    mostRecentYear: true
   };
   componentDidMount() {
     let path = this.props.match.params.year;
     this.getEventList(path);
     this.getEventYears();
+
   }
   componentWillUpdate() {
     let path = this.props.match.params.year;
@@ -19,8 +21,20 @@ class AdminEvents extends Component {
   getEventYears = _ => {
     fetch(`http://localhost:5000/eventYearList`)
       .then(response => response.json())
-      .then(response => this.setState({ years: response }))
+      .then(response => this.setState({ years: response }, () => { this.getMostRecentYear() }))
       .catch(err => console.log(err));
+  }
+  //fix var litt bortreist da dette ble laget
+  getMostRecentYear() {
+    let years = [];
+    this.state.years.map(year => (
+      years.push(year.year)
+    ));
+    if (this.props.match.params.year < Math.max(...years)) {
+      this.setState({ mostRecentYear: false })
+    } else {
+      this.setState({ mostRecentYear: true })
+    }
   }
   getEventList = path => {
     if (isNaN(path)) {
@@ -151,7 +165,7 @@ class AdminEvents extends Component {
           </div>
           {this.state.events.map(event => (
             <div key={event.id}>
-              <AdminEventItem event={event} />
+              <AdminEventItem event={event} mostRecentYear={this.state.mostRecentYear} />
             </div>
           ))}
         </div>

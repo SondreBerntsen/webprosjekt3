@@ -2,18 +2,18 @@ import React from "react";
 
 const AdminUser = props => {
   let {
-    user: { id, userName, email, hashedPass, type }
+    user: { id, name, email, password, type }
   } = props;
   return (
     <React.Fragment>
       <div>
         <div className="elementCardAdmin row">
           <p className="col-md-10">
-            <span className="smallHeading">{userName}</span>
+            <span className="smallHeading">{name}</span>
           </p>
           <div className="col-md-2">
             <button className="btn btn-sm btn-danger btnInElementAdmin">
-              Delete
+              Slett
             </button>
             <button
               className="btn  btn-secondary btnInElementAdmin btn-sm  "
@@ -23,7 +23,7 @@ const AdminUser = props => {
               aria-expanded="false"
               aria-controls={"userForm" + id}
             >
-              Edit
+              Rediger
             </button>
           </div>
         </div>
@@ -32,30 +32,30 @@ const AdminUser = props => {
       <div className="collapse editScheduleItem" id={"userForm" + id}>
         <form className="col-md-6 col-lg-4">
           <div className="form-group ">
-            <label>Username</label>
+            <label>Navn</label>
             <input
               type="text"
-              defaultValue={userName}
+              defaultValue={name}
               className="form-control"
             />
           </div>
           <div className="form-group ">
-            <label>Email</label>
+            <label>Epost</label>
             <input type="email" defaultValue={email} className="form-control" />
           </div>
           <div className="form-group ">
-            <label>Password</label>
+            <label>Passord</label>
             <input
               type="password"
-              defaultValue={hashedPass}
+              defaultValue={password}
               className="form-control"
             />
           </div>
           <div className="form-group ">
-            <label>Repeat password</label>
+            <label>Gjenta passord</label>
             <input
               type="password"
-              defaultValue={hashedPass}
+              defaultValue={password}
               className="form-control"
             />
           </div>
@@ -63,14 +63,15 @@ const AdminUser = props => {
             <label>Type</label>
             {/*Lag funksjon her fix*/}
             <select className="form-control custom-select">
-              <option defaultValue={type} />
-              <option defaultValue="Admin">Admin</option>
-              <option defaultValue="journalist">journalist</option>
+              <option defaultValue={type}>{type}</option>
+              {type !== "admin" ?
+                <option defaultValue="admin">admin</option>
+                : <option defaultValue="journalist">journalist</option>
+              }
             </select>
           </div>
-
           <button type="submit" className="btn btn-info btn-sm">
-            Save
+            Rediger
           </button>
         </form>
       </div>
