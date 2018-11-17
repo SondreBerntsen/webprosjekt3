@@ -3,7 +3,7 @@ var db = require("./db");
 const scheduledLiveStream = express.Router();
 
 scheduledLiveStream.get("/", (req, res) => {
-  const SELECT_SCHEDULED_LIVE_STREAM_QUERY = `SELECT id, title, text, time, date FROM events where livestream=1`;
+  const SELECT_SCHEDULED_LIVE_STREAM_QUERY = `SELECT id, title, text, time, date FROM events where livestream=1 AND date >= CURDATE();`;
   db.query(SELECT_SCHEDULED_LIVE_STREAM_QUERY, (err, results) => {
     if (err) {
       return res.send(err);
