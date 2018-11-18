@@ -43,6 +43,8 @@ venues.post("/update", (req, res) => {
   db.query(UPDATE_QUERY, (err, results) => {
     if (err) {
       return res.send(err);
+    }else{
+      return res.json()
     }
   });
  

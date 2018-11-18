@@ -13,17 +13,16 @@ class AdminVenuesItem extends Component {
   }
   handleSubmit = (e) => {
     e.preventDefault() 
-
-    let data = {
+    let body = {
       id: this.state.id,
       address: this.state.address,
       capacity: this.state.capacity
     }
-    fetch('http://localhost:5000/venues/update', {
+    fetch(`http://localhost:5000/venues/update`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(data)
-    }).then(response => console.log(response.json()))
+      body: JSON.stringify(body)
+    })
     .then(_ => {
       this.setState({status: 'edited'})
       //display some checkmark icon
@@ -55,7 +54,7 @@ class AdminVenuesItem extends Component {
       return (
         <p className="col-lg-4">
           <span className="smallHeading">Capacity: </span>
-          {this.props.venue.capacity}
+          {this.state.capacity}
         </p>
       );
     }
