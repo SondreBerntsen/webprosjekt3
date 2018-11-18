@@ -9,7 +9,7 @@ class AdminVenues extends Component {
     this.getVenueList();
   }
   getVenueList = _ => {
-    {/*sends a fetch request to get all the venues and updates the state*/ }
+    //sends a fetch request to get all the venues and updates the state
     fetch(`http://localhost:5000/venues`)
       .then(response => response.json())
       .then(response => this.setState({ venues: response }))
