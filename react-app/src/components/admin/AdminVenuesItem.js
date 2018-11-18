@@ -14,9 +14,19 @@ class AdminVenuesItem extends Component {
   handleSubmit = (e) => {
     e.preventDefault() 
 
-    fetch(`http://localhost:5000/venues/update?id=${this.state.id}&address=${this.state.address}$capacity=${this.state.capacity}`)
+    let data = {
+      id: this.state.id,
+      address: this.state.address,
+      capacity: this.state.capacity
+    }
+    fetch('http://localhost:5000/venues/update', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data)
+    }).then(response => console.log(response.json()))
     .then(_ => {
       this.setState({status: 'edited'})
+      //display some checkmark icon
       console.log(this.state)
     })
     .catch( err => console.log(err))
@@ -29,6 +39,7 @@ class AdminVenuesItem extends Component {
         break;
       case 'capacity':
         this.setState({capacity: e.target.value})
+        break;
       default:
     }
   }
