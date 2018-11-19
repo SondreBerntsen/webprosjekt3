@@ -6,7 +6,7 @@ class AdminVenues extends Component {
     venues: [{ id: '', address: '', capacity: '' }]
   };
   componentDidMount() {
-    this.getVenueList();
+    this.getVenueList()
   }
   getVenueList = _ => {
     //sends a fetch request to get all the venues and updates the state
@@ -15,6 +15,23 @@ class AdminVenues extends Component {
       .then(response => this.setState({ venues: response }))
       .catch(err => console.log(err));
   };
+  handleSubmit = (e) => {
+    e.preventDefault() 
+    let body = {
+      address: this.refs.createVenueAddress.value,
+      capacity: this.refs.createVenueCapacity.value
+    }
+    console.log(body)
+    fetch(`http://localhost:5000/venues/add`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(body)
+    })
+    .then(_ => {
+      this.getVenueList()
+    })
+    .catch( err => console.log(err))
+  }
   render() {
     return (
       <div className="container tablesAdmin col-md-9 col-lg-10">
@@ -33,6 +50,7 @@ class AdminVenues extends Component {
             <div className="form-group">
               <label>Address</label>
               <input
+                ref="createVenueAddress"
                 type="text"
                 className="form-control"
                 placeholder="Enter address"
@@ -40,9 +58,13 @@ class AdminVenues extends Component {
             </div>
             <div className="form-group">
               <label>Capacity</label>
-              <input type="number" className="form-control" />
+              <input 
+                ref="createVenueCapacity"
+                type="number" 
+                className="form-control" 
+              />
             </div>
-            <button type="submit" className="btn btn-info btn-sm">
+            <button onClick={this.handleSubmit} type="submit" className="btn btn-info btn-sm">
               Submit
             </button>
           </form>

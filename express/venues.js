@@ -17,12 +17,12 @@ venues.get("/", (req, res) => {
   });
 });
 
-venues.get("/add", (req, res) => {
-  const {address, capacity} = req.query
+venues.post("/add", (req, res) => {
+  const {address, capacity} = req.body
 
   const INSERT_QUERY = `
     INSERT INTO venues (address, capacity) 
-    VALUES ('${address}', ${capacity}))`
+    VALUES ('${address}', ${capacity})`
   db.query(INSERT_QUERY, (err, results) => {
     if (err) {
       return res.send(err);
@@ -51,7 +51,7 @@ venues.post("/update", (req, res) => {
 });
 
 venues.get("/delete", (req, res) => {
-  const {id} = req.query
+  const {id} = req.body
 
   const DELETE_QUERY = `DELETE FROM venues WHERE venues.id = ${id}`
   db.query(DELETE_QUERY, (err, results) => {
