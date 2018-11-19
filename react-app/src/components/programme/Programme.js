@@ -12,7 +12,7 @@ class Programme extends Component {
 
   componentDidMount() {
     //let date = new Date();
-    //let year = date.getFullYear() //use this instead of hardcoding year value in express file somehow
+    //let year = date.getFullYear(); //use this instead of hardcoding year value in express file somehow
     this.getJson();
   }
 
@@ -111,11 +111,13 @@ class Programme extends Component {
       <div>
         <Navbar />
         <div className="container">
-          <h2 className="center pageTitle">Program</h2>
-          <hr className="hrHeight" />
-          <ListOfDays days={this.state.days} />
-          {/* Passes days array as props to ProgrammeSchedule */}
-          <ProgrammeSchedule days={this.state.days} />
+          <div className="vh-85">
+            <h2 className="center pageTitle">Program</h2>
+            <hr className="hrHeight" />
+            <ListOfDays days={this.state.days} />
+            {/* Passes days array as props to ProgrammeSchedule */}
+            <ProgrammeSchedule days={this.state.days} />
+          </div>
         </div>
         <Footer />
       </div>

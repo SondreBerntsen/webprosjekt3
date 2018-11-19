@@ -21,7 +21,7 @@ class NewsArticle extends Component {
   render() {
     const article = this.state.newsData[0] ? (
       <div className="container">
-        <div className="vh-80">
+        <div className="vh-85">
           <h2 className="pageTitle">{this.state.newsData[0].title}</h2>
           <hr className="hrHeight" />
           <div className="row newsArticle">

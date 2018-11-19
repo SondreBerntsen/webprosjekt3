@@ -22,25 +22,27 @@ class News extends Component {
       <div>
         <Navbar />
         <div className="container">
-          <div className="newsSection">
-            <div className="container mx-auto ">
-              <h2 className="pageTitle">Nyheter</h2>
-              <hr className="hrHeight" />
-              <div className="newsYearLinks">
-                {this.state.years.map(function(year) {
-                  return (
-                    <Link
-                      className="btn newsYearLink"
-                      to={"/nyheter/" + year.year}
-                      key={year.year}
-                    >
-                      {year.year}
-                    </Link>
-                  );
-                })}
-              </div>
-              <div className="row ">
-                <NewsCards />
+          <div className="vh-85">
+            <div className="newsSection">
+              <div className="container mx-auto ">
+                <h2 className="pageTitle">Nyheter</h2>
+                <hr className="hrHeight" />
+                <div className="newsYearLinks">
+                  {this.state.years.map(function(year) {
+                    return (
+                      <Link
+                        className="btn newsYearLink"
+                        to={"/nyheter/" + year.year}
+                        key={year.year}
+                      >
+                        {year.year}
+                      </Link>
+                    );
+                  })}
+                </div>
+                <div className="row ">
+                  <NewsCards />
+                </div>
               </div>
             </div>
           </div>
