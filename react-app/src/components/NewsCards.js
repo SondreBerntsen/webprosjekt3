@@ -10,7 +10,7 @@ class NewsCards extends Component {
     let path = window.location.pathname.split("/").pop();
     this.getNewsList(path);
   }
-  componentWillReceiveProps() {
+  componentWillUpdate() {
     let path = window.location.pathname.split("/").pop();
     this.getNewsList(path);
   }

@@ -98,7 +98,9 @@ class AdminEvents extends Component {
                 <div className="form-group col-md-6">
                   <label>Link til betaling</label>
                   <input
-                    type="text"
+                    type="url"
+                    pattern="https?://.+"
+                    title="Inkluder http://"
                     className="form-control"
                   />
                 </div>
