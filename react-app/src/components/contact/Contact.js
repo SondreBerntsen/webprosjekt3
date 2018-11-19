@@ -8,16 +8,7 @@ import "../../styles/contact.css";
 class Contact extends Component {
   state = {
     contactPersons: [],
-    contactAdress: [
-      {
-        name: "",
-        organization_type: "",
-        area_code: "",
-        city: "",
-        building_name: "",
-        adress: ""
-      }
-    ]
+    contactAddress: []
   };
 
   componentDidMount() {
@@ -25,9 +16,9 @@ class Contact extends Component {
     this.getContactAdress();
   }
   getContactAdress = _ => {
-    fetch(`http://localhost:5000/contactAdress`)
+    fetch(`http://localhost:5000/contactAddress`)
       .then(response => response.json())
-      .then(response => this.setState({ contactAdress: response.data }))
+      .then(response => this.setState({ contactAddress: response[0].address }))
       .catch(err => console.error(err));
   };
   getContactPersons = _ => {
@@ -39,7 +30,7 @@ class Contact extends Component {
   render() {
     // destructuring
     const { contactPersons } = this.state;
-    const { contactAdress } = this.state;
+    const { contactAddress } = this.state;
 
     /*  ContactPersons sends the state as props to our 
         child component "ContactPersons.js. */
@@ -60,9 +51,7 @@ class Contact extends Component {
               <div className="px-3 text-dark ">
                 <i className="fa fa-map-marker d-inline-block float-md-none " />
                 <p>
-                  {contactAdress[0].name}, {contactAdress[0].organization_type},{" "}
-                  {contactAdress[0].adress}, {contactAdress[0].building_name},{" "}
-                  {contactAdress[0].area_code}, {contactAdress[0].city}
+                  {contactAddress}
                 </p>
               </div>
             </div>

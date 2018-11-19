@@ -8,15 +8,14 @@ import ScheduledLiveStream from "./ScheduledLiveStream.js";
 
 class Live extends Component {
   state = {
+    livestream: [{ API_KEY: "", livestream_id: "" }],
     videoData: [],
-    API_KEY: "AIzaSyDgh0qAGY0pn7fOQ3TnJW0XHeKtLjNcRHU",
-    channelId: "UCLA_DiR1FfKNvjuUpBHmylQ",
     scheduledLiveStreams: []
   };
 
   componentDidMount() {
     this.getScheduledLiveStreams();
-    this.getLiveVideos();
+    this.getLivestreams();
   }
 
   getScheduledLiveStreams() {
@@ -26,14 +25,23 @@ class Live extends Component {
       .catch(err => console.log(err));
   }
 
+
+  getLivestreams() {
+    fetch(`http://localhost:5000/livestream`)
+      .then(response => response.json())
+      .then(response => this.setState({ livestream: response.data }))
+      .then(response => this.getLiveVideos(response))
+      .catch(err => console.log(err));
+  }
+
   /*  gets the live video data from the YouTube channel
       and outputs the live video(s) + its information   */
   getLiveVideos = () => {
     fetch(
       `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${
-      this.state.channelId
+      this.state.livestream[0].livestream_id
       }&eventType=live&type=video&key=${
-      this.state.API_KEY
+      this.state.livestream[0].YouTube_API_KEY
       }&enablejsapi=1&origin=https://localhost:3000`
     )
       .then(function (response) {
@@ -51,7 +59,7 @@ class Live extends Component {
                 so we can access the full description of the video  */
             return fetch(
               `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${
-              this.state.API_KEY
+              this.state.livestream[0].YouTube_API_KEY
               }`
             )
               .then(function (response) {
@@ -99,8 +107,7 @@ class Live extends Component {
           <h1 className="pageTitle">Live</h1>
           <hr className="hrHeight" />
           <h3 className="subTitle">
-            Vi streamer live til tider blablabla. Her kan du se live videoer fra
-            festivalen. se som vi koser oss
+            Live fra Drammen Sacred
           </h3>
           <div className="liveVideos">{this.state.videoData}</div>
           <div className="upcomingStreams">

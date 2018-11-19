@@ -19,13 +19,15 @@ var posts = require("./posts");
 var newsArticle = require("./newsArticle");
 var newsYearList = require("./newsYearList");
 var scheduledLiveStream = require("./scheduledLiveStream");
-var contactAdress = require("./contactAdress");
+var contactAddress = require("./contactAddress");
 var venues = require("./venues");
 var eventList = require("./eventList");
 var eventYearList = require("./eventYearList");
 var adminUsers = require("./adminUsers");
+var livestream = require("./livestream");
 
 app.get("/", (req, res) => {
+  /*fix*/
   res.send("jille greiå");
 });
 
@@ -43,11 +45,12 @@ app.use("/posts", posts);
 app.use("/newsArticle", newsArticle);
 app.use("/newsYearList", newsYearList);
 app.use("/scheduledLiveStream", scheduledLiveStream);
-app.use("/contactAdress", contactAdress);
+app.use("/contactAddress", contactAddress);
 app.use("/venues", venues);
 app.use("/eventList", eventList);
 app.use("/eventYearList", eventYearList);
 app.use("/adminUsers", adminUsers);
+app.use("/livestream", livestream);
 
 const port = 5000;
 
