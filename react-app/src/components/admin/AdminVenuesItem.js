@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-
+import swal from 'sweetalert-react'
 class AdminVenuesItem extends Component {
   state = {
     id: '',
@@ -48,9 +48,31 @@ class AdminVenuesItem extends Component {
     }
   }
   handleDelete = _ => {
-    console.log('blabla')
-    // some module with "are you SUUUUUUURE you want to delete? ://///"
-    // then that has button w/ onclick actually delete, which is this function
+    swal({
+      title: "Er du sikker?",
+      text: "Om denne slettes så slettes også programelementer med dette stedet",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        /*
+        fetch(`http://localhost:5000/venues/delete`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({id: this.state.id})
+        })
+        .then(_ => {
+          // Somehow update parent list
+        })
+        .catch( err => console.log(err))
+        */
+        swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+        });
+      }
+    });
   }
   checkCapacity = () => {
     if (this.props.venue.capacity === null) {
@@ -75,7 +97,9 @@ class AdminVenuesItem extends Component {
           </p>
           {this.checkCapacity()}
           <div className="col-lg-3">
-            <button onClick={this.handleDelete} className="btn btn-sm btn-danger btnInElementAdmin">
+            <button 
+              onClick={this.handleDelete} 
+              className="btn btn-sm btn-danger btnInElementAdmin">
               Delete
             </button>
             <button
