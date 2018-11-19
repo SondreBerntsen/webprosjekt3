@@ -10,6 +10,7 @@ class AdminVenuesItem extends Component {
 
   componentDidMount(){
     this.setState({...this.state} = this.props.venue)
+    console.log(this.props.venue.id)
   }
   handleSubmit = (e) => {
     e.preventDefault() 
@@ -25,8 +26,10 @@ class AdminVenuesItem extends Component {
     })
     .then(_ => {
       this.setState({status: 'edited'})
-      //display some checkmark icon
-      console.log(this.state)
+      this.refs.address.innerHTML = this.state.address
+      this.refs.capacity.innerHTML = this.state.capacity
+      this.refs.addressIcon.innerHTML = ""
+      this.refs.capacityIcon.innerHTML = ""
     })
     .catch( err => console.log(err))
   }
@@ -35,9 +38,11 @@ class AdminVenuesItem extends Component {
     switch (e.target.name){
       case 'address': 
         this.setState({address: e.target.value})
+        this.refs.addressIcon.innerHTML = "&#9998;"	
         break;
       case 'capacity':
         this.setState({capacity: e.target.value})
+        this.refs.capacityIcon.innerHTML = "&#9998;"
         break;
       default:
     }
@@ -54,7 +59,7 @@ class AdminVenuesItem extends Component {
       return (
         <p className="col-lg-4">
           <span className="smallHeading">Capacity: </span>
-          {this.state.capacity}
+          <span ref="capacity" >{this.props.venue.capacity}</span>
         </p>
       );
     }
@@ -65,7 +70,8 @@ class AdminVenuesItem extends Component {
       <React.Fragment>
         <div className="elementCardAdmin row">
           <p className="col-lg-5">
-            <span className="smallHeading">Address: </span> {this.state.address}
+            <span className="smallHeading">Address: </span> 
+            <span ref="address" >{this.props.venue.address}</span>
           </p>
           {this.checkCapacity()}
           <div className="col-lg-3">
@@ -96,6 +102,7 @@ class AdminVenuesItem extends Component {
                 defaultValue={this.props.venue.address}
                 onChange={this.handleChange}
               />
+              <span className="editIcon" ref="addressIcon"></span>
             </div>
             <div className="form-group">
               <label>Capacity</label>
@@ -107,6 +114,7 @@ class AdminVenuesItem extends Component {
                 onChange={this.handleChange}
                 
               />
+              <span className="editIcon" ref="capacityIcon"></span>
             </div>
             <button type="submit" className="btn btn-info btn-sm">
               Edit
