@@ -4,19 +4,27 @@ import { Link } from "react-router-dom";
 
 class AdminEvents extends Component {
   state = {
-    events: [{ id: '', title: '', text: '', date: '', time: '', price: '', youtube_link: '', payment_link: '', livestream: '' }],
+    events: [{ id: '', title: '', text: '', date: '2018-12-11T23:00:00.000Z', time: '', price: '', youtube_link: '', payment_link: '', livestream: '' }],
     years: [],
+    venues: [{ id: '', address: '', capacity: '' }],
     mostRecentYear: true
   };
   componentDidMount() {
     let path = this.props.match.params.year;
     this.getEventList(path);
     this.getEventYears();
+    this.getVenues();
 
   }
   componentWillUpdate() {
     let path = this.props.match.params.year;
     this.getEventList(path);
+  }
+  getVenues = _ => {
+    fetch(`http://localhost:5000/venues`)
+      .then(response => response.json())
+      .then(response => this.setState({ venues: response }))
+      .catch(err => console.log(err));
   }
   getEventYears = _ => {
     fetch(`http://localhost:5000/eventYearList`)
@@ -57,7 +65,6 @@ class AdminEvents extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-
     const data = new FormData();
     data.append('title', this.refs.createEventTitle.value);
     data.append('text', this.refs.createEventText.value);
@@ -68,7 +75,6 @@ class AdminEvents extends Component {
     data.append('payment_link', this.refs.createEventPayment.value);
     data.append('img', this.refs.createEventImg.files[0]);
 
-    console.log(...data)
 
     fetch(`http://localhost:5000/event/add`, {
       method: 'POST',
@@ -85,6 +91,7 @@ class AdminEvents extends Component {
       .catch(err => console.log(err))
   }
   render() {
+
     return (
       <React.Fragment>
         <div className="container tablesAdmin col-md-9 col-lg-10">
@@ -187,6 +194,18 @@ class AdminEvents extends Component {
                     ref="createEventImg"
                   />
                 </div>
+                <div className="form-group col-md-6">
+                  <label>Adresse</label>
+                  <select className="form-control custom-select">
+                    <option></option>
+                    {this.state.venues.map(function (venue) {
+                      return (
+                        <option key={venue.id} value={venue.id}>{venue.address}</option>
+                      );
+                    })}
+                  </select>
+                </div>
+
               </div>
               <div className="form-check form-check-inline">
                 <input

@@ -1,5 +1,4 @@
 import React from "react";
-import { fstat } from "fs";
 
 const AdminEventItem = props => {
   return (
@@ -52,7 +51,8 @@ const AdminEventItem = props => {
 
           <div className="form-row">
             <div className="form-group col-md-6">
-              <label>Dato</label>
+              {console.log(new Date(props.event.date).toDateString())}
+              <label>Dato </label>
               <input
                 type="date"
                 className="form-control"
