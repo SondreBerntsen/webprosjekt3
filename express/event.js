@@ -14,4 +14,19 @@ event.get("/", (req, res) => {
     });
 });
 
+event.post("/add", (req, res) => {
+    const { title, text, time, date, price, youtube_link, payment_link } = req.body
+
+    const INSERT_QUERY = `
+      INSERT INTO events (title, text, time, date, price, youtube_link, payment_link) 
+      VALUES ('${title}', '${text}', '${time}', '${date}', ${price}, '${youtube_link}', '${payment_link}' )`
+    db.query(INSERT_QUERY, (err, results) => {
+        if (err) {
+            return res.status(400).send("Database not updated");
+        } else {
+            return res.json(results);
+        }
+    });
+});
+
 module.exports = event

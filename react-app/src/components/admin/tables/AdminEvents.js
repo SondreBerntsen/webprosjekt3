@@ -49,6 +49,39 @@ class AdminEvents extends Component {
         .catch(err => console.log(err));
     }
   };
+  formAfterSubmit = _ => {
+    document.getElementById("eventForm").reset();
+    document.getElementById('toggleFormBtn').click();
+    document.getElementById("alertDB").style.visibility = 'visible';
+  }
+  handleSubmit = (e) => {
+    e.preventDefault();
+
+    let body = {
+      title: this.refs.createEventTitle.value,
+      text: this.refs.createEventText.value,
+      time: this.refs.createEventTime.value,
+      date: this.refs.createEventDate.value,
+      price: this.refs.createEventPrice.value,
+      youtube_link: this.refs.createEventYoutube.value,
+      payment_link: this.refs.createEventPayment.value
+    }
+    console.log(body)
+    fetch(`http://localhost:5000/event/add`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    })
+      .then(function (response) {
+        if (response.status >= 400) {
+          throw alert('oh no');
+        }
+      })
+      .then(_ => {
+        this.formAfterSubmit();
+      })
+      .catch(err => console.log(err))
+  }
   render() {
     return (
       <React.Fragment>
@@ -57,6 +90,7 @@ class AdminEvents extends Component {
             <div className="col-md-4">
               <button
                 className="createNewBtn btn btn-sm btn-info"
+                id="toggleFormBtn"
                 type="button"
                 data-toggle="collapse"
                 data-target="#newEventForm"
@@ -83,16 +117,15 @@ class AdminEvents extends Component {
 
             </div>
           </div>
-
-
           <div className="collapseForm col-12 collapse" id="newEventForm">
-            <form className="col-md-8 col-lg-6">
+            <form onSubmit={this.handleSubmit} className="col-md-8 col-lg-6" id="eventForm">
               <div className="form-row">
                 <div className="form-group col-md-6">
                   <label>Tittel</label>
                   <input
                     type="text"
                     className="form-control"
+                    ref="createEventTitle"
                   />
                 </div>
                 <div className="form-group col-md-6">
@@ -102,27 +135,44 @@ class AdminEvents extends Component {
                     pattern="https?://.+"
                     title="Inkluder http://"
                     className="form-control"
+                    ref="createEventPayment"
                   />
                 </div>
               </div>
               <div className="form-row">
                 <div className="form-group col-md-6">
                   <label>Dato</label>
-                  <input type="date" className="form-control" />
+                  <input
+                    type="date"
+                    className="form-control"
+                    ref="createEventDate"
+                  />
                 </div>
                 <div className="form-group col-md-6">
                   <label>Tid</label>
-                  <input type="time" className="form-control" />
+                  <input
+                    type="time"
+                    className="form-control"
+                    ref="createEventTime"
+                  />
                 </div>
               </div>
               <div className="form-row">
                 <div className="form-group col-md-6">
                   <label>Pris</label>
-                  <input type="number" className="form-control" />
+                  <input
+                    type="number"
+                    className="form-control"
+                    ref="createEventPrice"
+                  />
                 </div>
                 <div className="form-group col-md-6">
                   <label>Youtube link</label>
-                  <input type="text" className="form-control" />
+                  <input
+                    type="text"
+                    className="form-control"
+                    ref="createEventYoutube"
+                  />
                 </div>
               </div>
               <div className="form-row">
@@ -158,7 +208,14 @@ class AdminEvents extends Component {
               </div>
               <div className="form-group">
                 <label>Beskrivelse</label>
-                <textarea type="text" className="form-control" />
+                <textarea
+                  type="text"
+                  className="form-control"
+                  ref="createEventText"
+                />
+              </div>
+              <div className="alert alert-danger" id="alertDB" role="alert" hidden>
+                <strong>Noe gikk galt. Databasen ble ikke oppdatert.</strong>
               </div>
               <button type="submit" className="btn btn-info btn-sm">
                 Send

@@ -1,4 +1,5 @@
 import React from "react";
+import { fstat } from "fs";
 
 const AdminEventItem = props => {
   return (
@@ -44,7 +45,7 @@ const AdminEventItem = props => {
 
             />
           </div>
-          {props.event.id !== "" ?
+          {('../../uploadedImg/eventImg/' + props.event.id).exists ?
             (<img className="eventImgEdit "
               src={require('../../uploadedImg/eventImg/' + props.event.id)}
               alt="eventImg" />) : null}
