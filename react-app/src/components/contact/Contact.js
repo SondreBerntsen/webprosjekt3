@@ -39,20 +39,20 @@ class Contact extends Component {
         <Navbar />
         <div className="contact row mx-0">
           <div className="container">
-            <div className="contact-title col-sm-12 col-lg-7 d-inline-block">
-              <h2>Ta gjerne kontakt med oss om du lurer på noe</h2>
-              <hr />
+            <div className="vh-85">
+              <div className="contact-title col-sm-12 col-lg-7 d-inline-block">
+                <h2>Ta gjerne kontakt med oss om du lurer på noe</h2>
+                <hr />
+              </div>
+              <ContactForm />
+              <ContactPersons contactpersons={contactPersons} />
             </div>
-            <ContactForm />
-            <ContactPersons contactpersons={contactPersons} />
-          </div>
-          <div className="col-sm-12 col-lg-12">
-            <div className="contact-adress">
-              <div className="px-3 text-dark ">
-                <i className="fa fa-map-marker d-inline-block float-md-none " />
-                <p>
-                  {contactAddress}
-                </p>
+            <div className="col-sm-12 col-lg-12">
+              <div className="contact-adress">
+                <div className="px-3 text-dark ">
+                  <i className="fa fa-map-marker d-inline-block float-md-none " />
+                  <p>{contactAddress}</p>
+                </div>
               </div>
             </div>
           </div>

@@ -11,20 +11,25 @@ class Programme extends Component {
   };
 
   componentDidMount() {
-    //let date = new Date();
-    //let year = date.getFullYear() //use this instead of hardcoding year value in express file somehow
-    this.getJson();
+    let date = new Date();
+    let year = date.getFullYear(); //use this instead of hardcoding year value in express file somehow
+    this.getJson(year);
   }
 
-  getJson = () => {
-    fetch("http://localhost:5000/programme")
-      .then(response => response.json())
-      .then(({ data }) => {
-        this.structureJson(data);
-      })
-      .catch(err => {
-        throw err;
-      });
+  getJson = year=> {
+    let body = {year: year}
+    fetch('http://localhost:5000/programme', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(body)
+    })
+    .then(response => response.json())
+    .then(({ data }) => {
+      this.structureJson(data);
+    })
+    .catch(err => {
+      throw err;
+    });
   };
 
   structureJson = json => {
@@ -111,11 +116,13 @@ class Programme extends Component {
       <div>
         <Navbar />
         <div className="container">
-          <h2 className="center pageTitle">Program</h2>
-          <hr className="hrHeight" />
-          <ListOfDays days={this.state.days} />
-          {/* Passes days array as props to ProgrammeSchedule */}
-          <ProgrammeSchedule days={this.state.days} />
+          <div className="vh-85">
+            <h2 className="center pageTitle">Program</h2>
+            <hr className="hrHeight" />
+            <ListOfDays days={this.state.days} />
+            {/* Passes days array as props to ProgrammeSchedule */}
+            <ProgrammeSchedule days={this.state.days} />
+          </div>
         </div>
         <Footer />
       </div>

@@ -66,26 +66,31 @@ class Event extends Component {
   render() {
     const event = this.state.eventData[0] ? (
       <div className="container">
-        <h2 className="event-title">{this.state.eventData[0].title}</h2>
-        <p className="event-date">{this.state.eventData[0].date}</p>
-        <hr className="event-hr" />
-        {this.showScheduleItem()}
-        <EventVideo
-          vidurl={this.state.yt_vid}
-          title={this.state.eventData[0].title}
-          imgpath={this.state.eventData[0].img_path}
-          id={this.state.eventData[0].id}
-        />
-        <p className="event-text">{this.state.eventData[0].text}</p>
+        <div className="vh-85">
+          <h2 className="event-title">{this.state.eventData[0].title}</h2>
+          <p className="event-date">{this.state.eventData[0].date}</p>
+          <hr className="event-hr" />
+          {this.showScheduleItem()}
+          <EventVideo
+            vidurl={this.state.yt_vid}
+            title={this.state.eventData[0].title}
+            imgpath={this.state.eventData[0].img_path}
+            id={this.state.eventData[0].id}
+          />
+          <p className="event-text">{this.state.eventData[0].text}</p>
+        </div>
       </div>
     ) : (
       <div className="errorDiv container">
-        <h1 className="sadSmilyError">&#x2639;</h1>
-        <h1 className="txt404">404</h1>
-        <h3>Page not found</h3>
-        <p>
-          The page you are looking for doesn't exist or an other error occured.
-        </p>
+        <div className="vh-85">
+          <h1 className="sadSmilyError">&#x2639;</h1>
+          <h1 className="txt404">404</h1>
+          <h3>Page not found</h3>
+          <p>
+            The page you are looking for doesn't exist or an other error
+            occured.
+          </p>
+        </div>
       </div>
     );
     return (

@@ -1,27 +1,32 @@
 import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
 
-
 class Navbar extends Component {
   state = {
     prevYears: []
-  }
+  };
 
   componentDidMount = () => {
-    fetch('http://localhost:5000/navbar')
+    fetch("http://localhost:5000/navbar")
       .then(response => response.json())
       .then(({ data }) => {
-        this.setState({ prevYears: data })
+        this.setState({ prevYears: data });
       })
       .catch(err => {
-        throw (err)
-      })
-  }
+        throw err;
+      });
+  };
 
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light navbarFront">
-        <NavLink to="/"><img className="logoNav" src={require('../img/logo.png')} alt="logo" /></NavLink>
+        <NavLink to="/">
+          <img
+            className="logoNav"
+            src={require("../img/logo.png")}
+            alt="logo"
+          />
+        </NavLink>
         <button
           className="navbar-toggler "
           type="button"
@@ -51,26 +56,41 @@ class Navbar extends Component {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/om-oss">
-                Om oss
-              </NavLink>
-            </li>
-            <li className="nav-item">
               <NavLink className="nav-link" to="/nyheter">
                 Nyheter
               </NavLink>
             </li>
             <li className="nav-item dropdown">
-              <NavLink className="nav-link dropdown-toggle" to="/tilbakeblikk" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <NavLink
+                className="nav-link dropdown-toggle"
+                to="/tilbakeblikk"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
                 Tilbakeblikk
               </NavLink>
-              <div className="dropdown-menu divYearsNav" aria-labelledby="navbarDropdown">
-                {
-                  this.state.prevYears.map(year => (
-                    <Link key={year.year} className="dropdown-item linkYear" to={"/tilbakeblikk/" + year.year}>{year.year}</Link>
-                  ))
-                }
+              <div
+                className="dropdown-menu divYearsNav"
+                aria-labelledby="navbarDropdown"
+              >
+                {this.state.prevYears.map(year => (
+                  <Link
+                    key={year.year}
+                    className="dropdown-item linkYear"
+                    to={"/tilbakeblikk/" + year.year}
+                  >
+                    {year.year}
+                  </Link>
+                ))}
               </div>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/om-oss">
+                Om oss
+              </NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/kontakt">
@@ -82,5 +102,5 @@ class Navbar extends Component {
       </nav>
     );
   }
-};
+}
 export default Navbar;

@@ -1,11 +1,11 @@
 /* FONTEROOS */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: myriad-pro, sans-serif;
-    font-weight: 300;
-    font-style: normal;
-  }
+  margin: 0;
+  padding: 0;
+  font-family: myriad-pro, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
 
 h1 {
   font-family: balboa, sans-serif;
@@ -37,7 +37,7 @@ p {
   font-style: normal;
 }
 
-.pageTitle{
+.pageTitle {
   text-align: center;
   margin-top: 50px;
   font-size: 3.5em;
@@ -46,53 +46,54 @@ p {
 /*         END OF FONTEROOS        */
 /* ------------------------------- */
 
-html{
+html {
   scroll-behavior: smooth;
 }
-  
-  code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-      monospace;
-  }
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
 
 /* NAVBAR */
 /*--------*/
 
-  .navbarFront, .navTopAdmin {
-    background-color: #822a40 !important;
-  }
-  .logoNav{
-    height: 60px;
-    margin-left: 20px;
-  }
-  .nav-link {
-    color: white !important;
-    font-size: 20px;
-    padding-right: 20px !important;
-    padding-left: 20px !important;
-  }
-  .nav-link:hover {
-    color:#e28e6a !important;
-  }
-  .navbar-nav{
-    margin-right:60px;
-  }
-  .nav-link.active {
-    color: #e28e6a !important;
-    font-weight: bold;
-    text-decoration: underline;
-  }
- .linkYear{
-   text-align: center;
-   font-size: 20px;
-   color:#FFFFFF;
- }
- .linkYear:active{
+.navbarFront,
+.navTopAdmin {
+  background-color: #822a40 !important;
+}
+.logoNav {
+  height: 60px;
+  margin-left: 20px;
+}
+.nav-link {
+  color: white !important;
+  font-size: 20px;
+  padding-right: 20px !important;
+  padding-left: 20px !important;
+}
+.nav-link:hover {
+  color: #e28e6a !important;
+}
+.navbar-nav {
+  margin-right: 60px;
+}
+.nav-link.active {
+  color: #e28e6a !important;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.linkYear {
+  text-align: center;
+  font-size: 20px;
+  color: #ffffff;
+}
+.linkYear:active {
   background-color: white;
-  color:black;
- }
+  color: black;
+}
 
- .dropdown-menu {
+.dropdown-menu {
   position: absolute;
   top: 100%;
   left: 0;
@@ -100,7 +101,7 @@ html{
   display: none;
   float: left;
   min-width: 8.8rem;
-  padding: .5rem 0;
+  padding: 0.5rem 0;
   margin-top: 13px;
   font-size: 1rem;
   color: #212529;
@@ -108,30 +109,28 @@ html{
   list-style: none;
   background-color: #822a40;
   background-clip: padding-box;
-  border: 1px solid rgba(0,0,0,.15);
-  border-radius: .25rem;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
 }
 /****Error div***/
-.errorDiv{
+.errorDiv {
   min-height: 70vh;
   margin-top: 40px;
   text-align: center;
-  color:gray;
-  
+  color: gray;
 }
-.sadSmilyError{
+.sadSmilyError {
   font-size: 100px;
 }
-.txt404{
+.txt404 {
   font-size: 60px;
 }
 @media only screen and (max-width: 1000px) {
-
   .dropdown-item {
     text-align: left;
   }
 
-  .dropdown-menu{
+  .dropdown-menu {
     margin-left: 18px;
   }
 
@@ -140,4 +139,8 @@ html{
   }
 }
 
+/*****footer***/
 
+.vh-85 {
+  min-height: 85vh;
+}

@@ -25,7 +25,6 @@ class Live extends Component {
       .catch(err => console.log(err));
   }
 
-
   getLivestreams() {
     fetch(`http://localhost:5000/livestream`)
       .then(response => response.json())
@@ -39,16 +38,16 @@ class Live extends Component {
   getLiveVideos = () => {
     fetch(
       `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${
-      this.state.livestream[0].livestream_id
+        this.state.livestream[0].livestream_id
       }&eventType=live&type=video&key=${
-      this.state.livestream[0].YouTube_API_KEY
+        this.state.livestream[0].YouTube_API_KEY
       }&enablejsapi=1&origin=https://localhost:3000`
     )
-      .then(function (response) {
+      .then(function(response) {
         return response.json(); // pass the data as promise to next then block
       })
       .then(data => {
-        let currentLive = data.pageInfo.resultsPerPage;
+        let currentLive = data.pageInfo.totalResults;
         // if there are live videos streaming on the YouTube channel..
         if (currentLive !== 0) {
           // .. it maps through the data..
@@ -59,10 +58,10 @@ class Live extends Component {
                 so we can access the full description of the video  */
             return fetch(
               `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${
-              this.state.livestream[0].YouTube_API_KEY
+                this.state.livestream[0].YouTube_API_KEY
               }`
             )
-              .then(function (response) {
+              .then(function(response) {
                 return response.json();
               })
               .then(data => {
@@ -83,45 +82,46 @@ class Live extends Component {
                   videoData: this.state.videoData.concat(videoData)
                 });
               })
-              .catch(function (error) {
+              .catch(function(error) {
                 console.log("Request failed", error);
               });
           });
           //if there are no current live streams on the channel.
         } else {
-          this.noCurrentStream();
+          let videoData = (
+            <div className="noLivestreams">
+              <p>Det er ingen live sendinger for øyeblikket..</p>
+            </div>
+          );
+          this.setState({ videoData: videoData });
         }
       });
   };
-
-  noCurrentStream() {
-    let videoData = "there is no videodata";
-    this.setState({ videoData: videoData });
-  }
 
   render() {
     return (
       <div>
         <Navbar />
         <div className="container">
-          <h1 className="pageTitle">Live</h1>
-          <hr className="hrHeight" />
-          <h3 className="subTitle">
-            Live fra Drammen Sacred
-          </h3>
-          <div className="liveVideos">{this.state.videoData}</div>
-          <div className="upcomingStreams">
-            <h3 className="subTitle">Neste live sending</h3>
-            <hr className="hr-height" />
-            {this.state.scheduledLiveStreams.length > 0 ? (
-              <ScheduledLiveStream
-                ScheduledLiveStreams={this.state.scheduledLiveStreams}
-              />
-            ) : (
-                <p className="noScheduledLiveStreams">
-                  Det er ingen planlagte live sendinger enda..
-              </p>
+          <div className="vh-85">
+            <h1 className="pageTitle">Live</h1>
+
+            <hr className="hrHeight" />
+
+            <h3 className="subTitle">Live fra Drammen Sacred</h3>
+            <div className="liveVideos">{this.state.videoData}</div>
+            <div className="upcomingStreams">
+              <h3 className="subTitle">Neste live sending</h3>
+              {this.state.scheduledLiveStreams.length > 0 ? (
+                <ScheduledLiveStream
+                  ScheduledLiveStreams={this.state.scheduledLiveStreams}
+                />
+              ) : (
+                <div className="noLivestreams">
+                  <p>Det er ingen planlagte live sendinger enda..</p>
+                </div>
               )}
+            </div>
           </div>
         </div>
         <Footer />
