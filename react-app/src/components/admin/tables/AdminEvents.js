@@ -57,20 +57,22 @@ class AdminEvents extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    let body = {
-      title: this.refs.createEventTitle.value,
-      text: this.refs.createEventText.value,
-      time: this.refs.createEventTime.value,
-      date: this.refs.createEventDate.value,
-      price: this.refs.createEventPrice.value,
-      youtube_link: this.refs.createEventYoutube.value,
-      payment_link: this.refs.createEventPayment.value
-    }
-    console.log(body)
+
+    const data = new FormData();
+    data.append('title', this.refs.createEventTitle.value);
+    data.append('text', this.refs.createEventText.value);
+    data.append('time', this.refs.createEventTime.value);
+    data.append('date', this.refs.createEventDate.value);
+    data.append('price', this.refs.createEventPrice.value);
+    data.append('youtube_link', this.refs.createEventYoutube.value);
+    data.append('payment_link', this.refs.createEventPayment.value);
+    data.append('img', this.refs.createEventImg.files[0]);
+
+    console.log(...data)
+
     fetch(`http://localhost:5000/event/add`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
+      body: data
     })
       .then(function (response) {
         if (response.status >= 400) {
@@ -124,6 +126,7 @@ class AdminEvents extends Component {
                   <label>Tittel</label>
                   <input
                     type="text"
+                    name='title'
                     className="form-control"
                     ref="createEventTitle"
                   />
@@ -178,7 +181,11 @@ class AdminEvents extends Component {
               <div className="form-row">
                 <div className="form-group col-md-6">
                   <label>Bilde</label>
-                  <input type="file" className="form-control" />
+                  <input
+                    type="file"
+                    className="form-control"
+                    ref="createEventImg"
+                  />
                 </div>
               </div>
               <div className="form-check form-check-inline">
