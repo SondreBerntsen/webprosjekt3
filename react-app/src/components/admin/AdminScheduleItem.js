@@ -52,7 +52,7 @@ class AdminScheduleItem extends Component {
       price: this.state.price,
       date: this.state.date
     }
-    /*
+
     fetch(`http://localhost:5000/programme/update`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -66,10 +66,12 @@ class AdminScheduleItem extends Component {
       this.refs.time.innerHTML = this.state.time
       this.refs.date.innerHTML = this.state.date
       this.refs.addressIcon.innerHTML = ""
-      this.refs.capacityIcon.innerHTML = ""
+      this.refs.timeIcon.innerHTML = ""
+      this.refs.priceIcon.innerHTML = ""
+      this.refs.dateIcon.innerHTML = ""
     })
     .catch( err => console.log(err))
-    */
+
   }
   render(){
     return (
