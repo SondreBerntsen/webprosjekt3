@@ -24,15 +24,15 @@ class Programme extends Component {
       body: JSON.stringify(body)
     })
     .then(response => response.json())
-    .then(({ data }) => {
-      this.structureJson(data);
+    .then((response) => {
+      this.mapDays(response);
     })
     .catch(err => {
       throw err;
     });
   };
 
-  structureJson = json => {
+  mapDays = json => {
     let days = [];
 
     for (let i = 0; i < json.length; i++) {
