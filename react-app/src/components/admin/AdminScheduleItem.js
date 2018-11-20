@@ -15,7 +15,7 @@ class AdminScheduleItem extends Component {
   }
   componentDidMount(){
     this.setState({...this.state} = this.props.event)
-    console.log(this.props.event)
+    //console.log(this.props.event)
   } 
   
   handleChange = (e) => {
