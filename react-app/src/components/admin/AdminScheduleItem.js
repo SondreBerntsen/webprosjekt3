@@ -15,6 +15,7 @@ class AdminScheduleItem extends Component {
   }
   componentDidMount(){
     this.setState({...this.state} = this.props.event)
+    console.log(this.props.event)
   } 
   
   handleChange = (e) => {
@@ -43,35 +44,37 @@ class AdminScheduleItem extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-
+    console.log(this.state)
     let body = {
       id: this.state.id,
       title: this.state.title,
       venue: this.state.venue.id,
       time: this.state.time + ':00',
       price: this.state.price,
-      date: this.state.date
+      date: this.state.date //.replace(/[/]/g, ' ')
     }
-
+    console.log(body)
+    
     fetch(`http://localhost:5000/programme/update`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(body)
     })
-    .then(_ => {
+    .then((response) => {
+      response.json()
       this.setState({status: 'edited'})
       this.refs.title.innerHTML = this.state.title
       this.refs.address.innerHTML = this.state.venue.address
       this.refs.price.innerHTML = this.state.price
       this.refs.time.innerHTML = this.state.time
       this.refs.date.innerHTML = this.state.date
-      this.refs.addressIcon.innerHTML = ""
+      this.refs.venueIcon.innerHTML = ""
       this.refs.timeIcon.innerHTML = ""
       this.refs.priceIcon.innerHTML = ""
       this.refs.dateIcon.innerHTML = ""
+      console.log(this.state)
     })
     .catch( err => console.log(err))
-
   }
   render(){
     return (
@@ -113,8 +116,9 @@ class AdminScheduleItem extends Component {
             </p>
           </div>
         </div>
+
         <div className="collapse editScheduleItem" id={"scheduleItemForm" + this.props.event.id}>
-          <form className="col-md-8 col-lg-8">
+          <form className="col-md-8 col-lg-8" onSubmit={this.handleSubmit}>
             <div className="form-row">
               <div className="form-group col-md-6">
                 <label>Address</label>
@@ -157,7 +161,7 @@ class AdminScheduleItem extends Component {
                 <span className="editIcon col-md-2" ref="timeIcon"></span>
               </div>
               <div className="form-group col-md-6">
-                <label>Date (DD/MM/YYYY)</label>
+                <label>Date (DD/MM/YY)</label>
                 <input 
                   type="text"
                   name="date"

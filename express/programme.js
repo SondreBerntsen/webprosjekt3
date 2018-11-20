@@ -10,8 +10,8 @@ programme.post("/", (req, res) => {
   db.query(SELECT, (err, results) => {
     if (err) res.send(err);
     return res.json(results);
-  });
-});
+  })
+})
 
 programme.post('/update', (req, res) => {
   const {id, title, time, date, price, venue} = req.body
@@ -20,12 +20,27 @@ programme.post('/update', (req, res) => {
     UPDATE events
     SET 
       title = '${title}', 
-      time =  ${time},
-      date= STR_TO_DATE(${date}, %d/%m/%y), 
+      time =  '${time}',
+      date= STR_TO_DATE('${date}', '%d/%m/%y'), 
       price = ${price}, 
       v_id = ${venue}
-    WHERE id = ${title}
+    WHERE id = ${id}
   `
+  db.query(UPDATE, (err, results) => {
+    if (err) res.send(err);
+    return res.json(results);
+  });
 })
 
 module.exports = programme;
+
+/*
+UPDATE events
+    SET 
+      title = 'Waed blabla', 
+      time =  '16:00',
+      date= STR_TO_DATE('11/09/18', '%d/%m/%y'), 
+      price = 123123123, 
+      v_id = 6
+    WHERE id = 2
+*/

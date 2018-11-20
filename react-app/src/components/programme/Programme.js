@@ -4,6 +4,7 @@ import Footer from "../Footer";
 import ListOfDays from "./ListOfDays";
 import ProgrammeSchedule from "./ProgrammeSchedule";
 import "../../styles/programme.css";
+import {fixTimeString, fixDateString} from '../Functions'
 
 class Programme extends Component {
   state = {
@@ -42,10 +43,10 @@ class Programme extends Component {
       event.title = json[i].title;
       event.venue = json[i].address;
       event.payment_link = json[i].payment_link;
-      event.time = this.fixTimeString(json[i].time); //Calls fixTimeString function and stores return value
+      event.time = fixTimeString(json[i].time); //Calls fixTimeString function and stores return value
       event.price = json[i].price;
 
-      let eventDate = this.fixDateString(json[i].date); //Calls fixDateString function and stores return value
+      let eventDate = fixDateString(json[i].date); //Calls fixDateString function and stores return value
 
       //Check if date in json object already exists in days array
       let dateExists = false;
@@ -99,18 +100,6 @@ class Programme extends Component {
     this.setState({ days: days });
   };
 
-  //Gets default MySQL date value and converts it to Norwegian standard day/month structure
-  fixDateString = string => {
-    let match = string.match(/\d{4}-(\d{2})-(\d{2})/);
-    let returnString = match[2] + "/" + match[1];
-    return returnString;
-  };
-  //Gets default MySQL time value and converts it to "minutes:seconds" only
-  fixTimeString = string => {
-    let match = string.match(/(\d{2}:\d{2}):/);
-    let returnString = match[1];
-    return returnString;
-  };
   render() {
     return (
       <div>

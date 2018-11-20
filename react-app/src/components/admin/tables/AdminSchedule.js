@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AdminScheduleItem from '../AdminScheduleItem';
+import {fixTimeString, fixDateString} from '../../Functions'
 
 
 class AdminSchedule extends Component {
@@ -47,14 +48,15 @@ class AdminSchedule extends Component {
     for (let i = 0; i < json.length; i++) {
       //Populates event with values from json object
       let event = {};
-      event.id = json[i].id;
-      event.title = json[i].title;
-      event.venue = json[i].address;
-      event.payment_link = json[i].payment_link;
-      event.time = json[i].time; //Calls fixTimeString function and stores return value
-      event.price = json[i].price;
+      event.id = json[i].id
+      event.title = json[i].title
+      event.venue = json[i].address
+      event.payment_link = json[i].payment_link
+      event.time = fixTimeString(json[i].time) //Calls fixTimeString function and stores return value
+      event.price = json[i].price
+      event.date = fixDateString(json[i].date)
 
-      let eventDate = json[i].date; //Calls fixDateString function and stores return value
+      let eventDate = fixDateString(json[i].date); //Calls fixDateString function and stores return value
 
       //Check if date in json object already exists in days array
       let dateExists = false;
