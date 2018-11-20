@@ -9,7 +9,7 @@ programme.post("/", (req, res) => {
 
   db.query(PROGRAMME_SQL, (err, results) => {
     if (err) res.send(err);
-    return res.json({ data: results });
+    return res.json(results);
   });
 });
 

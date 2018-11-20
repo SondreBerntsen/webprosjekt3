@@ -4,16 +4,28 @@ import AdminScheduleItem from '../AdminScheduleItem';
 
 class AdminSchedule extends Component {
   state = {
-    days: []
+    days: [],
+    venues: []
   };
 
   componentDidMount() {
-    let date = new Date();
-    let year = date.getFullYear()
-    this.getJson(year);
+    this.getVenues()
   }
 
-  getJson = year => {
+  getVenues = _ => {
+    fetch('http://localhost:5000/venues')
+    .then(response => response.json())
+    .then((response) => {
+      this.getProgramme(response)
+    })
+    .catch(err => {
+      throw err;
+    })
+  }
+
+  getProgramme = (venues) => {
+    let date = new Date()
+    let year = date.getFullYear()
     let body = {year: year}
     fetch('http://localhost:5000/programme', {
       method: 'POST',
@@ -21,15 +33,15 @@ class AdminSchedule extends Component {
       body: JSON.stringify(body)
     })
     .then(response => response.json())
-    .then(({ data }) => {
-      this.mapDays(data);
+    .then((response) => {
+      this.mapDays(response, venues);
     })
     .catch(err => {
       throw err;
     });
   };
 
-  mapDays = json => {
+  mapDays = (json, venues) => {
     let days = [];
 
     for (let i = 0; i < json.length; i++) {
@@ -93,18 +105,18 @@ class AdminSchedule extends Component {
         days.push(date);
       }
     }
-    this.setState({ days: days });
+    this.setState({ days: days, venues: venues });
   };
   render() {
     return (
       <div className="container tablesAdmin col-md-9 col-lg-10">
         {
           this.state.days.map(day => (
-            <div className="containerScheduleElements" key={day.id}>
+            <div className="containerScheduleElements" key={day.date}>
               <h2 className="dayDateTitleSchedule">{day.day} {day.date}</h2>
               {
                 day.events.map(event => (
-                  <AdminScheduleItem key={event.id} event={event} />
+                  <AdminScheduleItem key={event.id} event={event} venues={this.state.venues} />
                 ))
               }
             </div>
