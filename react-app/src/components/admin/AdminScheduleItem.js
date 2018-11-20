@@ -4,7 +4,10 @@ class AdminScheduleItem extends Component {
   state = {
     id: '', 
     title: '', 
-    venue: '', 
+    venue: {
+      id: '',
+      address: ''
+    }, 
     time: '', 
     price: '', 
     date: '',
@@ -18,7 +21,8 @@ class AdminScheduleItem extends Component {
     this.setState({status: 'editing'})
     switch (e.target.name){
       case 'venue': 
-        this.setState({venue: e.currentTarget.value})
+        let venue = e.target.value.split('&&&')
+        this.setState({venue: {id: venue[0], address: venue[1]}})
         this.refs.venueIcon.innerHTML = "&#9998;"	
         break;
       case 'time': 
@@ -37,27 +41,43 @@ class AdminScheduleItem extends Component {
     }
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault()
+
+    let body = {
+      id: this.state.id,
+      title: this.state.title,
+      venue: this.state.venue.id,
+      time: this.state.time + ':00',
+      price: this.state.price,
+      date: this.state.date
+    }
+    /*
+    fetch(`http://localhost:5000/programme/update`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(body)
+    })
+    .then(_ => {
+      this.setState({status: 'edited'})
+      this.refs.title.innerHTML = this.state.title
+      this.refs.address.innerHTML = this.state.venue.address
+      this.refs.price.innerHTML = this.state.price
+      this.refs.time.innerHTML = this.state.time
+      this.refs.date.innerHTML = this.state.date
+      this.refs.addressIcon.innerHTML = ""
+      this.refs.capacityIcon.innerHTML = ""
+    })
+    .catch( err => console.log(err))
+    */
+  }
   render(){
     return (
       <React.Fragment>
         <div className="elementCardAdmin">
-          <h3 className="col-lg-12">{this.props.event.title}</h3>
-          <div className="col-md-12 row">
-            <p className="col-lg-12">
-              <span className="smallHeading">Address: </span> 
-              <span ref="address" >{this.props.event.venue}</span>
-            </p>
-          </div>
-          <div className="col-md-12 row">
-            <p className="col-md-3">
-              <span className="smallHeading">Tid: </span>
-              <span ref="time" >{this.props.event.time}</span>
-            </p>
-            <p className="col-md-7">
-              <span className="smallHeading">Pris: </span>
-              <span ref="price" >kr. {this.props.event.price}.-</span>
-            </p>
-            <div className="col-md-2">
+          <div className="row">
+            <h3 className="col-md-10 col-sm-10" ref="title">{this.props.event.title}</h3>
+            <div className="col-md-2 col-sm-2">
               <button
                 className="btn  btn-secondary btnInElementAdmin btn-sm  "
                 type="button"
@@ -69,7 +89,26 @@ class AdminScheduleItem extends Component {
                 Edit
               </button>
             </div>
-            {/*<p>{availability}</p>*/}
+          </div>
+          <div className="col-md-12 row">
+            <p className="col-lg-12">
+              <span className="smallHeading">Address: </span> 
+              <span ref="address" >{this.props.event.venue}</span>
+            </p>
+          </div>
+          <div className="col-md-12 row">
+            <p className="col-md-3">
+              <span className="smallHeading">Tid: </span>
+              <span ref="time" >{this.props.event.time}</span>
+            </p>
+            <p className="col-md-3">
+              <span className="smallHeading">Dato: </span>
+              <span ref="date">{this.props.event.date}</span>
+            </p>
+            <p className="col-md-6">
+              <span className="smallHeading">Pris: </span>
+              <span ref="price" >kr. {this.props.event.price}.-</span>
+            </p>
           </div>
         </div>
         <div className="collapse editScheduleItem" id={"scheduleItemForm" + this.props.event.id}>
@@ -77,28 +116,18 @@ class AdminScheduleItem extends Component {
             <div className="form-row">
               <div className="form-group col-md-6">
                 <label>Address</label>
-                <div className="dropdown">
-                  <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Velg fra liste
-                  </button>
-                  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <select name="venue" className="inputDropdown" onChange={this.handleChange}>
                     {
-                      this.props.venues.map((venue, index) => (
-                        <div
-                          key={venue.id}
-                          name="venue"
-                          className="dropdown-item"
-                          value={venue.address}
-                          onClick={this.handleChange}
+                      this.props.venues.map((venue) => (
+                        <option 
+                          key={venue.id} 
+                          value={venue.id + '&&&' + venue.address}
                         >
-                          <h5>{venue.address}</h5>
-                          <p>Plass til ca. {venue.capacity}</p>
-                          {(this.props.venues.length !== index + 1) && <hr />}
-                        </div>
+                          {venue.address}{!venue.capacity ? " (ute/offentlig sted)" : ` (plass til ca. ${venue.capacity})`}
+                        </option>
                       ))
                     }
-                  </div>
-                </div>
+                    </select>
                 <span className="editIcon col-md-2" ref="venueIcon"></span>
               </div>
               <div className="form-group col-md-6">
@@ -115,9 +144,9 @@ class AdminScheduleItem extends Component {
             </div>
             <div className="form-row">
               <div className="form-group col-md-6">
-                <label>Time</label>
+                <label>Time (HH:MM)</label>
                 <input 
-                  type="time"
+                  type="text"
                   name="time"
                   className="form-control" 
                   defaultValue={this.props.event.time}
@@ -126,9 +155,9 @@ class AdminScheduleItem extends Component {
                 <span className="editIcon col-md-2" ref="timeIcon"></span>
               </div>
               <div className="form-group col-md-6">
-                <label>Date</label>
+                <label>Date (DD/MM/YYYY)</label>
                 <input 
-                  type="date"
+                  type="text"
                   name="date"
                   className="form-control" 
                   defaultValue={this.props.event.date}
