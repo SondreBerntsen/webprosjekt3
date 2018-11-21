@@ -6,20 +6,13 @@ class Slider extends Component{
   }
   componentDidMount = () => {
     this.setState(this.props)
-    console.log(this.props)
   }
 
   static getDerivedStateFromProps(nextProps, prevState){
     if(nextProps.slides !== prevState.slides){
-      console.log("New props")
-      console.log(nextProps.slides)
       return {slides: nextProps.slides};
     }
-    else{
-      console.log("Props are the same?")
-      console.log(nextProps.slides)
-      return null;
-    }
+    else return null;
   }
 
   render() {
