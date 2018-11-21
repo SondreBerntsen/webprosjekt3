@@ -18,10 +18,13 @@ class Review extends Component {
     this.getData();
   }
 
-  componentWillReceiveProps() {
-    this.getData();
-    this.setState(this.state);
+static getDerivedStateFromProps(nextProps, prevState){
+  if(nextProps.match.params.reviewId !== prevState.year){
+    console.log("hello BOISSSSS")
+    return {year: nextProps.match.params.reviewId};
   }
+  else return null;
+}
 
   getData = _ => {
     let year = this.props.match.params.reviewId;
