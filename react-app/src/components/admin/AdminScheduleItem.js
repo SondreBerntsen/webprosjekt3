@@ -134,7 +134,6 @@ class AdminScheduleItem extends Component {
                       ))
                     }
                     </select>
-                <span className="editIcon col-md-2" ref="venueIcon"></span>
               </div>
               <div className="form-group col-md-6">
                 <label>Price</label>
