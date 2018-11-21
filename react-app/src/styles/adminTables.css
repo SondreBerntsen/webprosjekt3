@@ -41,7 +41,7 @@
 
 .form-control {
     display: inline-block;
-    width: 90%;
+    width: 80%;
 }
 
 /**Schedule**/
@@ -51,6 +51,9 @@
 }
 .containerScheduleElements{
     margin-bottom: 60px;
+}
+#scheduleItemForm2 label {
+    display: block !important; 
 }
 /**Post and event**/
 .newsImgEdit, .eventImgEdit, .contactImgEdit{
