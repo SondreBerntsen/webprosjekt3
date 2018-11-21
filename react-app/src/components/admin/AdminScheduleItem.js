@@ -118,11 +118,11 @@ class AdminScheduleItem extends Component {
         </div>
 
         <div className="collapse editScheduleItem" id={"scheduleItemForm" + this.props.event.id}>
-          <form className="col-md-8 col-lg-8" onSubmit={this.handleSubmit}>
+          <form className="col-md-8 col-lg-6" onSubmit={this.handleSubmit}>
             <div className="form-row">
               <div className="form-group col-md-6">
                 <label>Address</label>
-                  <select name="venue" className="inputDropdown" onChange={this.handleChange}>
+                  <select name="venue" className="inputDropdown form-control" onChange={this.handleChange}>
                     {
                       this.props.venues.map((venue) => (
                         <option 
@@ -147,6 +147,7 @@ class AdminScheduleItem extends Component {
                 />
                 <span className="editIcon col-md-2" ref="priceIcon"></span>
               </div>
+
             </div>
             <div className="form-row">
               <div className="form-group col-md-6">
