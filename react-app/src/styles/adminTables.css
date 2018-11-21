@@ -35,6 +35,15 @@
     font-weight: bold;
 }
 
+.editIcon {
+    float: right;
+}
+
+.form-control {
+    display: inline-block;
+    width: 90%;
+}
+
 /**Schedule**/
 .dayDateTitleSchedule{
     margin-bottom: 20px;

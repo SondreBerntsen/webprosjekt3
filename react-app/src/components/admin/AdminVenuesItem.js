@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import swal from 'sweetalert-react'
 class AdminVenuesItem extends Component {
   state = {
@@ -8,12 +8,12 @@ class AdminVenuesItem extends Component {
     status: 'unchanged'
   }
 
-  componentDidMount(){
-    this.setState({...this.state} = this.props.venue)
+  componentDidMount() {
+    this.setState({ ...this.state } = this.props.venue)
     console.log(this.props.venue.id)
   }
   handleSubmit = (e) => {
-    e.preventDefault() 
+    e.preventDefault()
     let body = {
       id: this.state.id,
       address: this.state.address,
@@ -21,27 +21,27 @@ class AdminVenuesItem extends Component {
     }
     fetch(`http://localhost:5000/venues/update`, {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
     })
-    .then(_ => {
-      this.setState({status: 'edited'})
-      this.refs.address.innerHTML = this.state.address
-      this.refs.capacity.innerHTML = this.state.capacity
-      this.refs.addressIcon.innerHTML = ""
-      this.refs.capacityIcon.innerHTML = ""
-    })
-    .catch( err => console.log(err))
+      .then(_ => {
+        this.setState({ status: 'edited' })
+        this.refs.address.innerHTML = this.state.address
+        this.refs.capacity.innerHTML = this.state.capacity
+        this.refs.addressIcon.innerHTML = ""
+        this.refs.capacityIcon.innerHTML = ""
+      })
+      .catch(err => console.log(err))
   }
   handleChange = (e) => {
-    this.setState({status: 'editing'})
-    switch (e.target.name){
-      case 'address': 
-        this.setState({address: e.target.value})
-        this.refs.addressIcon.innerHTML = "&#9998;"	
+    this.setState({ status: 'editing' })
+    switch (e.target.name) {
+      case 'address':
+        this.setState({ address: e.target.value })
+        this.refs.addressIcon.innerHTML = "&#9998;"
         break;
       case 'capacity':
-        this.setState({capacity: e.target.value})
+        this.setState({ capacity: e.target.value })
         this.refs.capacityIcon.innerHTML = "&#9998;"
         break;
       default:
@@ -55,24 +55,24 @@ class AdminVenuesItem extends Component {
       buttons: true,
       dangerMode: true,
     })
-    .then((willDelete) => {
-      if (willDelete) {
-        /*
-        fetch(`http://localhost:5000/venues/delete`, {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({id: this.state.id})
-        })
-        .then(_ => {
-          // Somehow update parent list
-        })
-        .catch( err => console.log(err))
-        */
-        swal("Poof! Your imaginary file has been deleted!", {
-          icon: "success",
-        });
-      }
-    });
+      .then((willDelete) => {
+        if (willDelete) {
+          /*
+          fetch(`http://localhost:5000/venues/delete`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({id: this.state.id})
+          })
+          .then(_ => {
+            // Somehow update parent list
+          })
+          .catch( err => console.log(err))
+          */
+          swal("Poof! Your imaginary file has been deleted!", {
+            icon: "success",
+          });
+        }
+      });
   }
   checkCapacity = () => {
     if (this.props.venue.capacity === null) {
@@ -87,18 +87,18 @@ class AdminVenuesItem extends Component {
     }
   }
 
-  render(){
+  render() {
     return (
       <React.Fragment>
         <div className="elementCardAdmin row">
           <p className="col-lg-5">
-            <span className="smallHeading">Address: </span> 
+            <span className="smallHeading">Address: </span>
             <span ref="address" >{this.props.venue.address}</span>
           </p>
           {this.checkCapacity()}
           <div className="col-lg-3">
-            <button 
-              onClick={this.handleDelete} 
+            <button
+              onClick={this.handleDelete}
               className="btn btn-sm btn-danger btnInElementAdmin">
               Delete
             </button>
@@ -136,7 +136,7 @@ class AdminVenuesItem extends Component {
                 className="form-control"
                 defaultValue={this.props.venue.capacity}
                 onChange={this.handleChange}
-                
+
               />
               <span className="editIcon" ref="capacityIcon"></span>
             </div>
