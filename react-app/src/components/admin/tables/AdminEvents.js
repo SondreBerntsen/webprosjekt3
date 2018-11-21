@@ -7,19 +7,31 @@ class AdminEvents extends Component {
     events: [{ id: '', title: '', text: '', date: '2018-12-11T23:00:00.000Z', time: '', price: '', youtube_link: '', payment_link: '', livestream: '' }],
     years: [],
     venues: [{ id: '', address: '', capacity: '' }],
-    mostRecentYear: true
+    mostRecentYear: true,
+    year: ''
   };
   componentDidMount() {
     let path = this.props.match.params.year;
-    this.getEventList(path);
+    this.setState({ year: path })
+    this.getEventList();
     this.getEventYears();
     this.getVenues();
 
   }
-  componentWillUpdate() {
-    let path = this.props.match.params.year;
-    this.getEventList(path);
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.match.params.year !== prevState.year) {
+      return { year: nextProps.match.params.year };
+    }
+    else {
+      return null;
+    }
   }
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.year !== this.state.year) {
+      this.getEventList();
+    }
+  }
+
   getVenues = _ => {
     fetch(`http://localhost:5000/venues`)
       .then(response => response.json())
@@ -44,7 +56,8 @@ class AdminEvents extends Component {
       this.setState({ mostRecentYear: true })
     }
   }
-  getEventList = path => {
+  getEventList = _ => {
+    let path = this.props.match.params.year;
     if (isNaN(path)) {
       fetch(`http://localhost:5000/eventList`)
         .then(response => response.json())
@@ -60,7 +73,23 @@ class AdminEvents extends Component {
   formAfterSubmit = _ => {
     document.getElementById("eventForm").reset();
     document.getElementById('toggleFormBtn').click();
-    document.getElementById("alertDB").style.visibility = 'visible';
+    this.getEventList();
+  }
+  handleDelete = (id) => {
+    let body = {
+      id: id
+    }
+    if (window.confirm('Are you sure you wish to delete this item?')) {
+      fetch(`http://localhost:5000/event/delete`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      })
+        .then(_ => {
+          this.getEventList();
+        })
+        .catch(err => console.log(err))
+    }
   }
   handleSubmit = (e) => {
     e.preventDefault();
@@ -84,6 +113,9 @@ class AdminEvents extends Component {
         if (response.status >= 400) {
           throw alert('oh no');
         }
+      })
+      .then(_ => {
+        console.log('kommer du inn hit tro');
       })
       .then(_ => {
         this.formAfterSubmit();
@@ -253,7 +285,7 @@ class AdminEvents extends Component {
           </div>
           {this.state.events.map(event => (
             <div key={event.id}>
-              <AdminEventItem event={event} mostRecentYear={this.state.mostRecentYear} />
+              <AdminEventItem event={event} handleDelete={this.handleDelete} mostRecentYear={this.state.mostRecentYear} />
             </div>
           ))}
         </div>
