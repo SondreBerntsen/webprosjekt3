@@ -18,42 +18,42 @@ class AdminNav extends Component {
             </li>
             <li className="nav-item py-1">
               <NavLink className="linkTxt" to="/admin/events">
-                Events
+                Arrangement
               </NavLink>
             </li>
             <li className="nav-item py-1">
               <NavLink className="linkTxt" to="/admin/venues">
-                Venues
+                Adresser
               </NavLink>
             </li>
             <li className="nav-item py-1" >
               <NavLink className="linkTxt" to="/admin/schedule">
-                Schedule
+                Program
               </NavLink>
             </li>
             <li className="nav-item py-1">
               <NavLink className="linkTxt" to="/admin/posts">
-                Posts
+                Nyheter
               </NavLink>
             </li>
             <li className="nav-item py-1">
               <NavLink className="linkTxt" to="/admin/general">
-                General
+                Generelt
               </NavLink>
             </li>
             <li className="nav-item py-1">
               <NavLink className="linkTxt" to="/admin/users">
-                Users
+                Brukere
               </NavLink>
             </li>
             <li className="nav-item py-1">
               <NavLink className="linkTxt" to="/admin/review">
-                Review
+                Tilbakeblikk
               </NavLink>
             </li>
             <li className="nav-item py-1">
               <NavLink className="linkTxt" to="/admin/settings">
-                Settings
+                Innstillinger
               </NavLink>
             </li>
           </ul>

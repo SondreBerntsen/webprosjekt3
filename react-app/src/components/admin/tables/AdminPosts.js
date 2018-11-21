@@ -50,7 +50,7 @@ class AdminPosts extends Component {
               aria-expanded="false"
               aria-controls="newPostForm"
             >
-              Create new post
+              Legg til nyhet
             </button>
           </div>
           <div className="col-md-8">

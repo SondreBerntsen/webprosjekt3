@@ -6,14 +6,14 @@ const AdminPostItem = props => {
     <React.Fragment>
       <div className="elementCardAdmin row">
         <p className="col-lg-5">
-          <span className="smallHeading">Title: </span> {props.post.title}
+          <span className="smallHeading">Tittel: </span> {props.post.title}
         </p>
         <p className="col-lg-4">
-          <span className="smallHeading">Date: </span> {props.post.date}
+          <span className="smallHeading">Dato: </span> {props.post.date}
         </p>
         <div className="col-lg-3">
           <button className="btn btn-sm btn-danger btnInElementAdmin">
-            Delete
+            Slett
           </button>
           <button
             className="btn  btn-secondary btnInElementAdmin btn-sm"
@@ -30,7 +30,7 @@ const AdminPostItem = props => {
       <div className="editScheduleItem collapse" id={"post" + props.post.id}>
         <form className="col-md-8 col-lg-6">
           <div className="form-group">
-            <label>Title</label>
+            <label>Tittel</label>
             <input
               type="text"
               className="form-control"
@@ -38,7 +38,7 @@ const AdminPostItem = props => {
             />
           </div>
           <div className="form-group">
-            <label>Image</label>
+            <label>Bilde</label>
             <input type="file" className="form-control" />
           </div>
           {/*If postid is not set no not try to display images*/}
@@ -47,7 +47,7 @@ const AdminPostItem = props => {
               src={require('../../uploadedImg/postImg/' + props.post.id)}
               alt="newsImg" />) : null}
           <div className="form-group">
-            <label>News Text</label>
+            <label>Ny Tekst</label>
             <textarea
               id="textareaNews"
               className="form-control"
@@ -55,7 +55,7 @@ const AdminPostItem = props => {
             />
           </div>
           <button type="submit" className="btn btn-info btn-sm">
-            Edit
+            Rediger
           </button>
         </form>
       </div>
