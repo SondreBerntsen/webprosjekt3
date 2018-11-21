@@ -44,7 +44,7 @@ const AdminEventItem = props => {
 
             />
           </div>
-          {('../../uploadedImg/eventImg/' + props.event.id).exists ?
+          {props.event.id !== '' ?
             (<img className="eventImgEdit "
               src={require('../../uploadedImg/eventImg/' + props.event.id)}
               alt="eventImg" />) : null}

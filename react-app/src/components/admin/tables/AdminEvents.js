@@ -136,6 +136,7 @@ class AdminEvents extends Component {
                     name='title'
                     className="form-control"
                     ref="createEventTitle"
+                    required
                   />
                 </div>
                 <div className="form-group col-md-6">
@@ -182,6 +183,7 @@ class AdminEvents extends Component {
                     type="text"
                     className="form-control"
                     ref="createEventYoutube"
+                    pattern="https://www.youtube.com/watch?v="
                   />
                 </div>
               </div>
@@ -192,6 +194,7 @@ class AdminEvents extends Component {
                     type="file"
                     className="form-control"
                     ref="createEventImg"
+                    required
                   />
                 </div>
                 <div className="form-group col-md-6">

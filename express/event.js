@@ -20,7 +20,6 @@ event.get("/", (req, res) => {
 event.post("/add", (req, res) => {
     console.log('hallo add event express');
     let imgFile = req.files.img;
-
     const INSERT_QUERY = `
       INSERT INTO events (title, text, time, date, price, youtube_link, payment_link) 
       VALUES ('${req.body.title}', '${req.body.text}', '${req.body.time}', '${req.body.date}', ${req.body.price}, '${req.body.youtube_link}', '${req.body.payment_link}' )`

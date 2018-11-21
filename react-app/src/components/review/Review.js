@@ -52,22 +52,20 @@ class Review extends Component {
           <article>{this.state.reviewData.text}</article>
           <div className="container">
             <div className="row">
-                {this.state.year !== "" ? (
-                  <EventList year={this.state.year} />
-                ) : null}
+              {this.state.year !== "" ? (
+                <EventList year={this.state.year} />
+              ) : null}
             </div>
-            <div class="row">
+            <div className="row">
               <div className="col-lg">
                 <h3 className="recordingsTitle">Tidligere liveopptak</h3>
               </div>
             </div>
-            <div class="list-group">
+            <div className="list-group">
               {this.state.recordings.map(link => (
                 <React.Fragment key={link.id}>
-                    <a href={link.link} class="list-group-item list-group-item-action" role="button">{link.name}</a>
+                  <a href={link.link} className="list-group-item list-group-item-action" role="button">{link.name}</a>
                 </React.Fragment>
-
-
 
               ))}
             </div>
