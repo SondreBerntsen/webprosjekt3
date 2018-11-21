@@ -58,7 +58,7 @@
 .containerScheduleElements{
     margin-bottom: 60px;
 }
-#scheduleItemForm2 label {
+.editScheduleItem label {
     display: block !important; 
 }
 /**Post and event**/
