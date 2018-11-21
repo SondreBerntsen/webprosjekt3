@@ -151,7 +151,7 @@ class AdminScheduleItem extends Component {
                         </div>
                         <div className="form-row">
                             <div className="form-group col-md-6">
-                                <label>Tids</label>
+                                <label>Tid</label>
                                 <input
                                     type="text"
                                     name="time"
