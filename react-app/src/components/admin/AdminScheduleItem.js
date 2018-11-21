@@ -1,41 +1,41 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 
 class AdminScheduleItem extends Component {
   state = {
-    id: '', 
-    title: '', 
+    id: '',
+    title: '',
     venue: {
       id: '',
       address: ''
-    }, 
-    time: '', 
-    price: '', 
+    },
+    time: '',
+    price: '',
     date: '',
     status: 'unchanged'
   }
-  componentDidMount(){
-    this.setState({...this.state} = this.props.event)
+  componentDidMount() {
+    this.setState({ ...this.state } = this.props.event)
     //console.log(this.props.event)
-  } 
-  
+  }
+
   handleChange = (e) => {
-    this.setState({status: 'editing'})
-    switch (e.target.name){
-      case 'venue': 
+    this.setState({ status: 'editing' })
+    switch (e.target.name) {
+      case 'venue':
         let venue = e.target.value.split('&&&')
-        this.setState({venue: {id: venue[0], address: venue[1]}})
-        this.refs.venueIcon.innerHTML = "&#9998;"	
+        this.setState({ venue: { id: venue[0], address: venue[1] } })
+        this.refs.venueIcon.innerHTML = "&#9998;"
         break;
-      case 'time': 
-        this.setState({time: e.target.value})
-        this.refs.timeIcon.innerHTML = "&#9998;"	
+      case 'time':
+        this.setState({ time: e.target.value })
+        this.refs.timeIcon.innerHTML = "&#9998;"
         break;
       case 'price':
-        this.setState({price: e.target.value})
+        this.setState({ price: e.target.value })
         this.refs.priceIcon.innerHTML = "&#9998;"
         break;
       case 'date':
-        this.setState({date: e.target.value})
+        this.setState({ date: e.target.value })
         this.refs.dateIcon.innerHTML = "&#9998;"
         break;
       default:
@@ -54,29 +54,29 @@ class AdminScheduleItem extends Component {
       date: this.state.date //.replace(/[/]/g, ' ')
     }
     console.log(body)
-    
+
     fetch(`http://localhost:5000/programme/update`, {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
     })
-    .then((response) => {
-      response.json()
-      this.setState({status: 'edited'})
-      this.refs.title.innerHTML = this.state.title
-      this.refs.address.innerHTML = this.state.venue.address
-      this.refs.price.innerHTML = this.state.price
-      this.refs.time.innerHTML = this.state.time
-      this.refs.date.innerHTML = this.state.date
-      this.refs.venueIcon.innerHTML = ""
-      this.refs.timeIcon.innerHTML = ""
-      this.refs.priceIcon.innerHTML = ""
-      this.refs.dateIcon.innerHTML = ""
-      console.log(this.state)
-    })
-    .catch( err => console.log(err))
+      .then((response) => {
+        response.json()
+        this.setState({ status: 'edited' })
+        this.refs.title.innerHTML = this.state.title
+        this.refs.address.innerHTML = this.state.venue.address
+        this.refs.price.innerHTML = this.state.price
+        this.refs.time.innerHTML = this.state.time
+        this.refs.date.innerHTML = this.state.date
+        this.refs.venueIcon.innerHTML = ""
+        this.refs.timeIcon.innerHTML = ""
+        this.refs.priceIcon.innerHTML = ""
+        this.refs.dateIcon.innerHTML = ""
+        console.log(this.state)
+      })
+      .catch(err => console.log(err))
   }
-  render(){
+  render() {
     return (
       <React.Fragment>
         <div className="elementCardAdmin">
@@ -91,13 +91,13 @@ class AdminScheduleItem extends Component {
                 aria-expanded="false"
                 aria-controls={"scheduleItemForm" + this.props.event.id}
               >
-                Edit
+                Rediger
               </button>
             </div>
           </div>
           <div className="col-md-12 row">
             <p className="col-lg-12">
-              <span className="smallHeading">Address: </span> 
+              <span className="smallHeading">Adresse: </span>
               <span ref="address" >{this.props.event.venue}</span>
             </p>
           </div>
@@ -121,6 +121,7 @@ class AdminScheduleItem extends Component {
           <form className="col-md-8 col-lg-6" onSubmit={this.handleSubmit}>
             <div className="form-row">
               <div className="form-group col-md-6">
+<<<<<<< HEAD
                 <label>Address</label>
                   <select name="venue" className="inputDropdown form-control" onChange={this.handleChange}>
                     {
@@ -134,13 +135,29 @@ class AdminScheduleItem extends Component {
                       ))
                     }
                     </select>
+=======
+                <label>Adresse</label>
+                <select name="venue" className="inputDropdown form-control isEdited" onChange={this.handleChange}>
+                  {
+                    this.props.venues.map((venue) => (
+                      <option
+                        key={venue.id}
+                        value={venue.id + '&&&' + venue.address}
+                      >
+                        {venue.address}{!venue.capacity ? " (ute/offentlig sted)" : ` (plass til ca. ${venue.capacity})`}
+                      </option>
+                    ))
+                  }
+                </select>
+                <span className="editIcon col-md-2" ref="venueIcon"></span>
+>>>>>>> 956cd8084e739746269bfe92130466ed8b0cf305
               </div>
               <div className="form-group col-md-6">
-                <label>Price</label>
+                <label>Pris</label>
                 <input
                   type="number"
                   name="price"
-                  className="form-control"
+                  className="form-control isEdited"
                   defaultValue={this.props.event.price}
                   onChange={this.handleChange}
                 />
@@ -150,38 +167,38 @@ class AdminScheduleItem extends Component {
             </div>
             <div className="form-row">
               <div className="form-group col-md-6">
-                <label>Time (HH:MM)</label>
-                <input 
+                <label>Tid</label>
+                <input
                   type="text"
                   name="time"
-                  className="form-control" 
+                  className="form-control isEdited"
                   defaultValue={this.props.event.time}
                   onChange={this.handleChange}
                 />
                 <span className="editIcon col-md-2" ref="timeIcon"></span>
               </div>
               <div className="form-group col-md-6">
-                <label>Date (DD/MM/YY)</label>
-                <input 
+                <label>Dato</label>
+                <input
                   type="text"
                   name="date"
-                  className="form-control" 
+                  className="form-control isEdited"
                   defaultValue={this.props.event.date}
                   onChange={this.handleChange}
                 />
                 <span className="editIcon col-md-2" ref="dateIcon"></span>
               </div>
             </div>
-  
+
             <button type="submit" className="btn btn-info btn-sm">
-              Edit
+              Rediger
             </button>
           </form>
         </div>
       </React.Fragment>
     );
   }
-  
+
 }
 
 export default AdminScheduleItem;

@@ -39,9 +39,15 @@
     float: right;
 }
 
-.form-control {
+.isEdited {
     display: inline-block;
     width: 80%;
+}
+
+/***venue*/
+#venue1 label{
+    display: block;
+
 }
 
 /**Schedule**/
