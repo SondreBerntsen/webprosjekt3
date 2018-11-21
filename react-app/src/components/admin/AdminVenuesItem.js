@@ -76,11 +76,11 @@ class AdminVenuesItem extends Component {
   }
   checkCapacity = () => {
     if (this.props.venue.capacity === null) {
-      return <p className="col-lg-4">Unlimited/Public property </p>;
+      return <p className="col-lg-4">Ubegrenset/Offentlig eiendom </p>;
     } else {
       return (
         <p className="col-lg-4">
-          <span className="smallHeading">Capacity: </span>
+          <span className="smallHeading">Kapasitet: </span>
           <span ref="capacity" >{this.props.venue.capacity}</span>
         </p>
       );
@@ -92,7 +92,7 @@ class AdminVenuesItem extends Component {
       <React.Fragment>
         <div className="elementCardAdmin row">
           <p className="col-lg-5">
-            <span className="smallHeading">Address: </span>
+            <span className="smallHeading">Adresse: </span>
             <span ref="address" >{this.props.venue.address}</span>
           </p>
           {this.checkCapacity()}
@@ -100,7 +100,7 @@ class AdminVenuesItem extends Component {
             <button
               onClick={this.handleDelete}
               className="btn btn-sm btn-danger btnInElementAdmin">
-              Delete
+              Slett
             </button>
             <button
               className="btn btn-sm btnInElementAdmin btn-secondary"
@@ -110,7 +110,7 @@ class AdminVenuesItem extends Component {
               aria-expanded="false"
               aria-controls={"venue" + this.state.id}
             >
-              Edit
+              Rediger
             </button>
           </div>
         </div>
@@ -118,22 +118,22 @@ class AdminVenuesItem extends Component {
 
           <form className="col-md-6 col-lg-4" onSubmit={this.handleSubmit}>
             <div className="form-group">
-              <label>Address</label>
+              <label>Adresse</label>
               <input
                 type="text"
                 name="address"
-                className="form-control"
+                className="form-control isEdited"
                 defaultValue={this.props.venue.address}
                 onChange={this.handleChange}
               />
               <span className="editIcon" ref="addressIcon"></span>
             </div>
             <div className="form-group">
-              <label>Capacity</label>
+              <label>Kapasitet</label>
               <input
                 type="number"
                 name="capacity"
-                className="form-control"
+                className="form-control isEdited"
                 defaultValue={this.props.venue.capacity}
                 onChange={this.handleChange}
 
@@ -141,7 +141,7 @@ class AdminVenuesItem extends Component {
               <span className="editIcon" ref="capacityIcon"></span>
             </div>
             <button type="submit" className="btn btn-info btn-sm">
-              Edit
+              Rediger
             </button>
           </form>
         </div>
