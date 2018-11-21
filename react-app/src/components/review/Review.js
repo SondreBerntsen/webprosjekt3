@@ -43,24 +43,32 @@ class Review extends Component {
         <Navbar />
         <div className="container">
           <Slider slides={this.state.slides} />
-          <h1 className="yearHeading">{this.state.year}</h1>
+          <div className="row">
+            <div className="col-lg">
+              <h1 className="yearHeading">{this.state.year}</h1>
+            </div>
+          </div>
           {/*  fix We have to regex body output to add paragraphs/headers if we don't do add html tags during input */}
           <article>{this.state.reviewData.text}</article>
           <div className="container">
             <div className="row">
-              {this.state.year !== "" ? (
-                <EventList year={this.state.year} />
-              ) : null}
+                {this.state.year !== "" ? (
+                  <EventList year={this.state.year} />
+                ) : null}
             </div>
-            <h3 className="recordingsTitle">Tidligere liveopptak</h3>
-            <div id="recordingsList">
+            <div class="row">
+              <div className="col-lg">
+                <h3 className="recordingsTitle">Tidligere liveopptak</h3>
+              </div>
+            </div>
+            <div class="list-group">
               {this.state.recordings.map(link => (
                 <React.Fragment key={link.id}>
-                  <h5>{link.name}</h5>
-                  <a href={link.link} className="pTagRecordings">
-                    {link.link}
-                  </a>
+                    <a href={link.link} class="list-group-item list-group-item-action" role="button">{link.name}</a>
                 </React.Fragment>
+
+
+
               ))}
             </div>
           </div>
