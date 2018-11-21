@@ -6,20 +6,25 @@ class Slider extends Component{
   }
   componentDidMount = () => {
     this.setState(this.props)
-    console.log(this.state)
+    console.log(this.props)
   }
 
   static getDerivedStateFromProps(nextProps, prevState){
     if(nextProps.slides !== prevState.slides){
-      return {year: nextProps.year};
+      console.log("New props")
+      console.log(nextProps.slides)
+      return {slides: nextProps.slides};
     }
-    else return null;
+    else{
+      console.log("Props are the same?")
+      console.log(nextProps.slides)
+      return null;
+    }
   }
 
   render() {
     return ( 
       <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
-        {console.log(this.props.slides)}
         <ol className="carousel-indicators">
           {
             // Outputs indicator elements for each item in slides array
@@ -42,7 +47,6 @@ class Slider extends Component{
                   <img className="d-block w-100" src={require(`../../uploadedImg/sliderImg/${slide.id}`)} alt={slide.title} />
                   <div className="carousel-caption d-none d-md-block">
                     <h5>{slide.title}</h5>
-                    {console.log(slide.title)}
                     <p>{slide.caption}</p>
                   </div>
                 </div>)

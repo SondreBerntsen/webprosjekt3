@@ -20,7 +20,6 @@ class Review extends Component {
 
 static getDerivedStateFromProps(nextProps, prevState){
   if(nextProps.match.params.reviewId !== prevState.year){
-    console.log("hello BOISSSSS")
     return {year: nextProps.match.params.reviewId};
   }
   else return null;
