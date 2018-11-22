@@ -39,7 +39,7 @@ event.post("/add", (req, res) => {
     });
 });
 
-event.POST("/delete", (req, res) => {
+event.post("/delete", (req, res) => {
     const { id } = req.body
     console.log('hallo slett');
     const DELETE_QUERY = `DELETE FROM events WHERE id = ${id}`
