@@ -4,7 +4,7 @@ import Footer from "../Footer";
 import ListOfDays from "./ListOfDays";
 import ProgrammeSchedule from "./ProgrammeSchedule";
 import "../../styles/programme.css";
-import {fixTimeString} from '../Functions'
+import {fixDateString, fixTimeString} from '../Functions'
 
 class Programme extends Component {
   state = {
@@ -59,34 +59,10 @@ class Programme extends Component {
         //create date object and push it into days array
         let date = {};
         date.date = eventDate;
-        let weekDay = new Date(json[i].date).getDay(); //Creates a numeric value representing the week day of that date
 
-        //Sets weekDay to a string value based on its numeric value
-        switch (weekDay) {
-          case 0:
-            weekDay = "Søndag";
-            break;
-          case 1:
-            weekDay = "Mandag";
-            break;
-          case 2:
-            weekDay = "Tirsdag";
-            break;
-          case 3:
-            weekDay = "Onsdag";
-            break;
-          case 4:
-            weekDay = "Torsdag";
-            break;
-          case 5:
-            weekDay = "Fredag";
-            break;
-          case 6:
-            weekDay = "Lørdag";
-            break;
-          default:
-            weekDay = "";
-        }
+        // Returns the date's day, e.g. "Tirsdag" (see functions.js)
+        let weekDay = fixDateString(eventDate)
+      
         date.day = weekDay;
         date.events = [event];
         days.push(date);
