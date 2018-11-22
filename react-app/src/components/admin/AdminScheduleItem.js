@@ -15,7 +15,7 @@ class AdminScheduleItem extends Component {
     }
     componentDidMount() {
         this.setState({ ...this.state } = this.props.event)
-        //console.log(this.props.event)
+        console.log(this.props.event)
     }
 
     handleChange = (e) => {
@@ -44,7 +44,6 @@ class AdminScheduleItem extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        console.log(this.state)
         let body = {
             id: this.state.id,
             title: this.state.title,
@@ -124,9 +123,9 @@ class AdminScheduleItem extends Component {
                                 <label>Adresse</label>
                                 <select name="venue" className="inputDropdown form-control isEdited" onChange={this.handleChange}>
                                     {
-                                        this.props.venues.map((venue) => (
+                                        this.props.venues.map((venue, index) => (
                                             <option
-                                                key={venue.id}
+                                                key={index}
                                                 value={venue.id + '&&&' + venue.address}
                                             >
                                                 {venue.address}{!venue.capacity ? " (ute/offentlig sted)" : ` (plass til ca. ${venue.capacity})`}

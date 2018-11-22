@@ -28,11 +28,7 @@ class AdminSchedule extends Component {
     let date = new Date()
     let year = date.getFullYear()
     let body = {year: year}
-    fetch('http://localhost:5000/programme', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(body)
-    })
+    fetch('http://localhost:5000/programme?year=' + year)
     .then(response => response.json())
     .then((response) => {
       this.mapDays(response, venues);
@@ -54,9 +50,9 @@ class AdminSchedule extends Component {
       event.payment_link = json[i].payment_link
       event.time = fixTimeString(json[i].time) //Calls fixTimeString function and stores return value
       event.price = json[i].price
-      event.date = fixDateString(json[i].date)
+      event.date = json[i].date
 
-      let eventDate = fixDateString(json[i].date); //Calls fixDateString function and stores return value
+      let eventDate = json[i].date //Calls fixDateString function and stores return value
 
       //Check if date in json object already exists in days array
       let dateExists = false;
@@ -113,8 +109,8 @@ class AdminSchedule extends Component {
     return (
       <div className="container tablesAdmin col-md-9 col-lg-10">
         {
-          this.state.days.map(day => (
-            <div className="containerScheduleElements" key={day.date}>
+          this.state.days.map((day, index) => (
+            <div className="containerScheduleElements" key={index}>
               <h2 className="dayDateTitleSchedule">{day.day} {day.date}</h2>
               {
                 day.events.map(event => (
