@@ -16,26 +16,31 @@ class Review extends Component {
     this.getData();
   }
 
-  static getDerivedStateFromProps(nextProps, prevState){
-    if(nextProps.match.params.reviewId !== prevState.year){
-      return {year: nextProps.match.params.reviewId};
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.match.params.reviewId !== prevState.year) {
+      return { year: nextProps.match.params.reviewId };
     }
     else return null;
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.reviewId !== this.state.year) {
+      this.getData();
+    }
   }
 
   getData = _ => {
     let year = this.props.match.params.reviewId;
     fetch(`http://localhost:5000/review?year=` + year)
-    .then(response => response.json())
-    .then(response => {
-      let data = {};
-      data.year = year;
-      data.text = response.data.reviewData[0].text;
-      data.slides = response.data.slides;
-      data.recordings = response.data.recordings;
-      this.setState(data);
-    })
-    .catch(err => console.log(err));
+      .then(response => response.json())
+      .then(response => {
+        let data = {};
+        data.year = year;
+        data.text = response.data.reviewData[0].text;
+        data.slides = response.data.slides;
+        data.recordings = response.data.recordings;
+        this.setState(data);
+      })
+      .catch(err => console.log(err));
   };
 
 
@@ -45,11 +50,8 @@ class Review extends Component {
         <Navbar />
         <div className="container">
           <Slider slides={this.state.slides} />
-          <div className="row">
-            <div className="col-lg">
-              <h1 className="yearHeading">{this.state.year}</h1>
-            </div>
-          </div>
+          <h1 className="yearHeading">{this.state.year}</h1>
+
           {/*  fix We have to regex body output to add paragraphs/headers if we don't do add html tags during input */}
           <article>{this.state.text}</article>
           <div className="container">
@@ -68,7 +70,6 @@ class Review extends Component {
                 <React.Fragment key={link.id}>
                   <a href={link.link} className="list-group-item list-group-item-action" role="button">{link.name}</a>
                 </React.Fragment>
-
               ))}
             </div>
           </div>
