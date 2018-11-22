@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 class AdminEvents extends Component {
   state = {
-    events: [{ id: '', title: '', text: '', date: '2018-12-11T23:00:00.000Z', time: '', price: '', youtube_link: '', payment_link: '', livestream: '' }],
+    events: [{ id: '', title: '', text: '', date: '', time: '', price: '', youtube_link: '', payment_link: '', livestream: '' }],
     years: [],
     venues: [{ id: '', address: '', capacity: '' }],
     mostRecentYear: true,
@@ -103,6 +103,8 @@ class AdminEvents extends Component {
     data.append('youtube_link', this.refs.createEventYoutube.value);
     data.append('payment_link', this.refs.createEventPayment.value);
     data.append('img', this.refs.createEventImg.files[0]);
+    data.append('venue', this.refs.createEventVenue.value);
+    data.append('livestream', this.refs.createEventLivestream.value);
 
 
     fetch(`http://localhost:5000/event/add`, {
@@ -189,6 +191,7 @@ class AdminEvents extends Component {
                     type="date"
                     className="form-control"
                     ref="createEventDate"
+                    required
                   />
                 </div>
                 <div className="form-group col-md-6">
@@ -207,6 +210,8 @@ class AdminEvents extends Component {
                     type="number"
                     className="form-control"
                     ref="createEventPrice"
+                    min="0"
+                    defaultValue='0'
                   />
                 </div>
                 <div className="form-group col-md-6">
@@ -231,7 +236,7 @@ class AdminEvents extends Component {
                 </div>
                 <div className="form-group col-md-6">
                   <label>Adresse</label>
-                  <select className="form-control custom-select">
+                  <select className="form-control custom-select" ref="createEventVenue">
                     <option></option>
                     {this.state.venues.map(function (venue) {
                       return (
@@ -245,25 +250,25 @@ class AdminEvents extends Component {
               <div className="form-check form-check-inline">
                 <input
                   className="form-check-input"
+                  defaultChecked
+                  ref="createEventLivestream"
+                  name="livestreamradio"
                   type="radio"
-                  name="inlineRadioOptions"
-                  id="inlineRadio1"
-                  value="option1"
+                  value="1"
                 />
-                <label className="form-check-label" htmlFor="inlineRadio1">
+                <label className="form-check-label">
                   Planlagt Livestream
                 </label>
               </div>
               <div className="form-check form-check-inline">
                 <input
                   className="form-check-input"
-                  defaultChecked
+                  ref="createEventLivestream"
+                  name="livestreamradio"
                   type="radio"
-                  name="inlineRadioOptions"
-                  id="inlineRadio2"
-                  value="option2"
+                  value='0'
                 />
-                <label className="form-check-label" htmlFor="inlineRadio2">
+                <label className="form-check-label" >
                   Ingen planlagt livestream
                 </label>
               </div>
@@ -273,6 +278,7 @@ class AdminEvents extends Component {
                   type="text"
                   className="form-control"
                   ref="createEventText"
+                  required
                 />
               </div>
               <div className="alert alert-danger" id="alertDB" role="alert" hidden>
@@ -285,7 +291,7 @@ class AdminEvents extends Component {
           </div>
           {this.state.events.map(event => (
             <div key={event.id}>
-              <AdminEventItem event={event} handleDelete={this.handleDelete} mostRecentYear={this.state.mostRecentYear} />
+              <AdminEventItem event={event} venues={this.state.venues} handleDelete={this.handleDelete} mostRecentYear={this.state.mostRecentYear} />
             </div>
           ))}
         </div>

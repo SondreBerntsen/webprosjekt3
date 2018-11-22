@@ -8,7 +8,7 @@ eventList.get("/", (req, res) => {
     const { year } = req.query;
     let SELECT_ALL_EVENTS_QUERY;
     if (year) {
-        SELECT_ALL_EVENTS_QUERY = `SELECT * FROM events WHERE year(date)='${year}' ORDER BY id DESC`;
+        SELECT_ALL_EVENTS_QUERY = `SELECT *  FROM events WHERE year(date)='${year}' ORDER BY id DESC`;
     } else {
         SELECT_ALL_EVENTS_QUERY = `SELECT * FROM events WHERE year(date)=(SELECT MAX(year(date)) FROM events) ORDER BY id DESC`;
     }
