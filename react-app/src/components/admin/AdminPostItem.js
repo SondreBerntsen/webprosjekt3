@@ -12,7 +12,7 @@ const AdminPostItem = props => {
           <span className="smallHeading">Dato: </span> {props.post.date}
         </p>
         <div className="col-lg-3">
-          <button className="btn btn-sm btn-danger btnInElementAdmin">
+          <button className="btn btn-sm btn-danger btnInElementAdmin" onClick={() => { props.handleDelete(props.post.id) }}>
             Slett
           </button>
           <button
