@@ -4,7 +4,7 @@ import Footer from "../Footer";
 import ListOfDays from "./ListOfDays";
 import ProgrammeSchedule from "./ProgrammeSchedule";
 import "../../styles/programme.css";
-import {fixTimeString, fixDateString} from '../Functions'
+import {fixTimeString} from '../Functions'
 
 class Programme extends Component {
   state = {
@@ -18,12 +18,7 @@ class Programme extends Component {
   }
 
   getJson = year=> {
-    let body = {year: year}
-    fetch('http://localhost:5000/programme', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(body)
-    })
+    fetch('http://localhost:5000/programme?year=' + year)
     .then(response => response.json())
     .then((response) => {
       this.mapDays(response);
@@ -46,7 +41,7 @@ class Programme extends Component {
       event.time = fixTimeString(json[i].time); //Calls fixTimeString function and stores return value
       event.price = json[i].price;
 
-      let eventDate = fixDateString(json[i].date); //Calls fixDateString function and stores return value
+      let eventDate = json[i].date; //Calls fixDateString function and stores return value
 
       //Check if date in json object already exists in days array
       let dateExists = false;
