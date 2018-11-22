@@ -5,14 +5,25 @@ class AdminGeneral extends Component {
   state = {
     about: [],
     contactPersons: [],
-    reports: []
+    reports: [],
+    partners: [],
+    livestream: []
   };
 
   componentDidMount() {
     this.getContactList();
-    this.getGeneralData();
+    this.getAboutData();
     this.getReports();
+    this.getPartners();
+    this.getLivestreamID();
   }
+
+  getLivestreamID = _ => {
+    fetch(`http://localhost:5000/livestream`)
+      .then(response => response.json())
+      .then(response => this.setState({ livestream: response.data }))
+      .catch(err => console.log(err));
+  };
 
   getReports = _ => {
     fetch(`http://localhost:5000/festivalreports`)
@@ -20,7 +31,13 @@ class AdminGeneral extends Component {
       .then(response => this.setState({ reports: response.data }))
       .catch(err => console.log(err));
   };
-  getGeneralData = _ => {
+  getPartners = _ => {
+    fetch(`http://localhost:5000/partners`)
+      .then(response => response.json())
+      .then(response => this.setState({ partners: response.data }))
+      .catch(err => console.log(err));
+  };
+  getAboutData = _ => {
     fetch(`http://localhost:5000/about`)
       .then(response => response.json())
       .then(response => this.setState({ about: response.data }))
@@ -39,7 +56,6 @@ class AdminGeneral extends Component {
         <h2>Forside</h2>
         <div>
           <div className="elementCardAdmin row">
-
             <p className="col-md-10">
               <span className="smallHeading">Forsidetekst og festivaldato</span>
             </p>
@@ -49,29 +65,38 @@ class AdminGeneral extends Component {
                 className="btn btn-secondary btnInElementAdmin btn-sm"
                 type="button"
                 data-toggle="collapse"
-                data-target="#YTIDForm"
+                data-target="#frontPageForm"
                 aria-expanded="false"
-                aria-controls="YTIDForm"
+                aria-controls="frontPageForm"
               >
                 Rediger
-                </button>
+              </button>
             </div>
           </div>
-          <div className="collapse editScheduleItem" id="YTIDForm">
-            <form className="col-md-8 col-lg-6">
-              <div className="form-row">
-                <div className="form-group col-md-12">
-                  <label>YouTube kanal (ID)</label>
-                  <input
-                    className="form-control"
-                    defaultValue={this.state.about.channelId}
-                  />
+          <div className="collapse editScheduleItem" id="frontPageForm">
+            {this.state.about.map(about => (
+              <form key={about.id} className="col-md-8 col-lg-6">
+                <div className="form-row">
+                  <div className="form-group col-md-12">
+                    <label>Forsidetekst</label>
+                    <textarea
+                      className="form-control"
+                      defaultValue={about.pitch}
+                    />
+                  </div>
+                  <div className="form-group col-md-12">
+                    <label>Festivaldato</label>
+                    <input
+                      className="form-control"
+                      defaultValue={about.dateHeader_txt}
+                    />
+                  </div>
                 </div>
-              </div>
-              <button type="submit" className="btn btn-info btn-sm">
-                Lagre
+                <button type="submit" className="btn btn-info btn-sm">
+                  Lagre
                 </button>
-            </form>
+              </form>
+            ))}
           </div>
           <h2>Om oss</h2>
           <div>
@@ -79,7 +104,9 @@ class AdminGeneral extends Component {
               <div key={about.id}>
                 <div className="elementCardAdmin row">
                   <p className="col-lg-10">
-                    <span className="smallHeading">Visjon, organisasjon og kontaktadresse</span>
+                    <span className="smallHeading">
+                      Visjon, organisasjon og kontaktadresse
+                    </span>
                   </p>
                   <div className="col-lg-2">
                     <button
@@ -91,14 +118,17 @@ class AdminGeneral extends Component {
                       aria-controls="staticTextForm"
                     >
                       Rediger
-               </button>
+                    </button>
                   </div>
                 </div>
                 <div className="editScheduleItem collapse" id="staticTextForm">
                   <form className="col-md-8 col-lg-6">
                     <div className="form-group">
                       <label>Visjon</label>
-                      <textarea className="form-control" defaultValue={about.vision_txt} />
+                      <textarea
+                        className="form-control"
+                        defaultValue={about.vision_txt}
+                      />
                     </div>
                     <div className="form-group">
                       <label>Organisasjon</label>
@@ -109,15 +139,17 @@ class AdminGeneral extends Component {
                     </div>
                     <div className="form-group">
                       <label>Kontakt Adresse</label>
-                      <input className="form-control" defaultValue={about.address} />
+                      <input
+                        className="form-control"
+                        defaultValue={about.address}
+                      />
                     </div>
                     <button type="submit" className="btn btn-info btn-sm">
                       Lagre
-               </button>
+                    </button>
                   </form>
                 </div>
               </div>
-
             ))}
             <div className="elementCardAdmin row">
               <p className="col-md-10">
@@ -136,8 +168,8 @@ class AdminGeneral extends Component {
                 </button>
               </div>
             </div>
-            <div className="collapse reports" id="reportsForm">
-              <form className="row">
+            <div className="collapse reportsForm" id="reportsForm">
+              <form className="row addReport">
                 <div className="col-md-3">
                   <input
                     ref="createReportTitle"
@@ -154,21 +186,33 @@ class AdminGeneral extends Component {
                     placeholder="Link til rapport"
                   />
                 </div>
+
                 <div className="col-md-3">
-                  <input type="radio" id="no" name="language" value="no" />
-                  <label htmlFor="no">Norsk</label>
-                  <input type="radio" id="en" name="language" value="en" />
-                  <label htmlFor="en">Engelsk</label>
+                  <div className="col-md-4 float-left">
+                    <label>Språk:</label>
+                  </div>
+
+                  <div className="col-md-4 d-inline-block">
+                    <input type="radio" id="no" name="language" value="no" />
+                    <label htmlFor="no">Norsk</label>
+                  </div>
+                  <div className="col-md-4 float-right">
+                    <input type="radio" id="en" name="language" value="en" />
+                    <label htmlFor="en">Engelsk</label>
+                  </div>
                 </div>
                 <div className="col-md-3">
-                  <button type="submit" className="btn btn-info btn-sm">
+                  <button
+                    type="submit"
+                    className="btn btn-info btn-sm float-right"
+                  >
                     Legg til ny rapport
                   </button>
                 </div>
               </form>
-              <hr />
               {this.state.reports.map(report => (
-                <div key={report.id}>
+                <div key={report.id} className="listReports">
+                  <hr />
                   <p className="festivalReportTitle">{report.title}</p>
                   <button className="btn btn-sm btn-danger btnInElementAdmin">
                     Slett
@@ -183,21 +227,20 @@ class AdminGeneral extends Component {
                   >
                     Rediger
                   </button>
-                  <hr />
 
                   <div
-                    className="collapse editReports"
+                    className="collapse editReports col-md-8 offset-2"
                     id={"reportForm" + report.id}
                   >
                     <form className="row m-3">
-                      <div className="col-md-3">
+                      <div className="col-md-4">
                         <label>Tittel</label>
                         <input
                           className="form-control"
                           defaultValue={report.title}
                         />
                       </div>
-                      <div className="col-md-3">
+                      <div className="col-md-5">
                         <label>Link</label>
                         <input
                           className="form-control"
@@ -205,14 +248,32 @@ class AdminGeneral extends Component {
                         />
                       </div>
                       <div className="col-md-3">
-                        <label className="lanLabel">Språk</label>
-                        <input type="radio" id="no" name="language" value="no"
-                          defaultChecked />
-                        <label className="radiobtnLabel" htmlFor="no">Norsk</label>
-                        <input type="radio" id="en" name="language" value="en" />
-                        <label className="radiobtnLabel" htmlFor="en">Engelsk</label>
+                        <label className="lanLabel ">Språk</label>
+                        <div className="d-inline-block float-left">
+                          <input
+                            type="radio"
+                            id="no"
+                            name="language"
+                            value="no"
+                            defaultChecked
+                          />
+                          <label className="radiobtnLabel" htmlFor="no">
+                            Norsk
+                          </label>
+                        </div>
+                        <div className="d-inline-block float-right">
+                          <input
+                            type="radio"
+                            id="en"
+                            name="language"
+                            value="en"
+                          />
+                          <label className="radiobtnLabel" htmlFor="en">
+                            Engelsk
+                          </label>
+                        </div>
                       </div>
-                      <div className="col-md-3">
+                      <div className="col-md-12 float-left mt-3">
                         <button type="submit" className="btn btn-info btn-sm">
                           Lagre
                         </button>
@@ -224,119 +285,324 @@ class AdminGeneral extends Component {
             </div>
             <div className="elementCardAdmin row">
               <p className="col-md-10">
-                <span className="smallHeading">Lokale samarbeidspartnere</span>
+                <span className="smallHeading">Samarbeidspartnere</span>
               </p>
               <div className="col-md-2">
                 <button
                   className="btn btn-secondary btnInElementAdmin btn-sm"
                   type="button"
                   data-toggle="collapse"
-                  data-target="#visionTextForm"
+                  data-target="#partnersForm"
                   aria-expanded="false"
-                  aria-controls="visionTextForm"
+                  aria-controls="partnersForm"
                 >
                   Rediger
                 </button>
               </div>
             </div>
-            <div className="collapse editScheduleItem" id="visionTextForm">
-              <form className="col-md-8 col-lg-6">
-                <div className="form-row">
-                  <div className="form-group col-md-12">
-                    <label>Visjon</label>
-                    <textarea
-                      className="form-control"
-                      defaultValue={this.state.about.visionText}
-                    />
+            <div className="collapse reportsForm" id="partnersForm">
+              <form className="row addReport">
+                <div className="col-md-4">
+                  <input
+                    ref="createReportTitle"
+                    type="text"
+                    className="form-control"
+                    placeholder="Navn på samarbeidspartner"
+                  />
+                </div>
+
+                <div className="col-md-4">
+                  <div className="col-md-4 float-left">
+                    <label>Type partner:</label>
+                  </div>
+
+                  <div className="col-md-4 d-inline-block">
+                    <input type="radio" id="no" name="language" value="no" />
+                    <label htmlFor="no">Lokal</label>
+                  </div>
+                  <div className="col-md-4 float-right">
+                    <input type="radio" id="en" name="language" value="en" />
+                    <label htmlFor="en">Offentlig</label>
                   </div>
                 </div>
-                <button type="submit" className="btn btn-info btn-sm">
-                  Lagre
-                </button>
+                <div className="col-md-4">
+                  <button
+                    type="submit"
+                    className="btn btn-info btn-sm float-right"
+                  >
+                    Legg til ny samarbeidspartner
+                  </button>
+                </div>
               </form>
-            </div>
-            <div className="elementCardAdmin row">
-              <p className="col-md-10">
-                <span className="smallHeading">Offentlige samarbeidspartnere</span>
-              </p>
-              <div className="col-md-2">
+              <hr />
+
+              <div className="form-group col-md-12">
+                <h5 className="d-inline-block">
+                  Offentlige samarbeidspartnere
+                </h5>
                 <button
                   className="btn btn-secondary btnInElementAdmin btn-sm"
                   type="button"
                   data-toggle="collapse"
-                  data-target="#visionTextForm"
+                  data-target="#officialPartnerForm"
                   aria-expanded="false"
-                  aria-controls="visionTextForm"
+                  aria-controls="officialPartnerForm"
                 >
                   Rediger
                 </button>
-              </div>
-            </div>
-            <div className="collapse editScheduleItem" id="visionTextForm">
-              <form className="col-md-8 col-lg-6">
-                <div className="form-row">
-                  <div className="form-group col-md-12">
-                    <label>Visjon</label>
-                    <textarea
-                      className="form-control"
-                      defaultValue={this.state.about.visionText}
-                    />
-                  </div>
+                <div
+                  className="collapse officialPartnerForm col-md-10 mb-5"
+                  id="officialPartnerForm"
+                >
+                  {this.state.about.map(about => (
+                    <div className="form-group col-md-12 p-0 mb-5">
+                      <label>Om offentlige samarbeidspartnere</label>
+                      <textarea
+                        className="form-control"
+                        defaultValue={about.partner_txt_official}
+                      />
+                      <button
+                        type="submit"
+                        className="btn btn-info btn-sm mt-1"
+                      >
+                        Lagre
+                      </button>
+                    </div>
+                  ))}
+
+                  {this.state.partners.map(partner => (
+                    <div key={partner.id}>
+                      {partner.type === "official" ? (
+                        <div className="m-1">
+                          <hr />
+                          {partner.partner_name}
+                          <button className="btn btn-sm btn-danger btnInElementAdmin">
+                            Slett
+                          </button>
+                          <button
+                            className="btn btn-secondary btnInElementAdmin btn-sm"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target={"#officialPartnerForm" + partner.id}
+                            aria-expanded="false"
+                            aria-controls={"officialPartnerForm" + partner.id}
+                          >
+                            Rediger
+                          </button>
+                          <div
+                            id={"officialPartnerForm" + partner.id}
+                            className={
+                              "collapse col-md-10 offset-r-2 officialPartnerForm" +
+                              partner.id
+                            }
+                          >
+                            <form className="row m-3">
+                              <div className="col-md-5">
+                                <label>Navn på samarbeidspartner</label>
+                                <input
+                                  className="form-control"
+                                  defaultValue={partner.partner_name}
+                                />
+                              </div>
+                              <div className="col-md-7">
+                                <label className="col-md-7 d-block">
+                                  Type partner:
+                                </label>
+
+                                <div className="col-md-4 offset-l-2 d-inline-block">
+                                  <input
+                                    type="radio"
+                                    id="no"
+                                    name="language"
+                                    value="no"
+                                  />
+                                  <label htmlFor="no">Lokal</label>
+                                </div>
+                                <div className="col-md-4 offset-r-2 float-right">
+                                  <input
+                                    type="radio"
+                                    id="en"
+                                    name="language"
+                                    value="en"
+                                  />
+                                  <label htmlFor="en">Offentlig</label>
+                                </div>
+                              </div>
+                              <button
+                                type="submit"
+                                className="btn btn-info btn-sm ml-3 m-1"
+                              >
+                                Lagre
+                              </button>
+                            </form>
+                          </div>
+                        </div>
+                      ) : null}
+                    </div>
+                  ))}
                 </div>
-                <button type="submit" className="btn btn-info btn-sm">
-                  Lagre
+              </div>
+              <div className="form-group col-md-12">
+                <h5 className="d-inline-block">Lokale samarbeidspartnere</h5>
+                <button
+                  className="btn btn-secondary btnInElementAdmin btn-sm"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#localPartnerForm"
+                  aria-expanded="false"
+                  aria-controls="localPartnerForm"
+                >
+                  Rediger
                 </button>
-              </form>
+                <div
+                  className="collapse localPartnerForm col-md-10"
+                  id="localPartnerForm"
+                >
+                  {this.state.about.map(about => (
+                    <div className="form-group col-md-12 p-0">
+                      <label>Om lokale samarbeidspartnere</label>
+                      <textarea
+                        className="form-control"
+                        defaultValue={about.partner_txt_private}
+                      />
+                    </div>
+                  ))}
+
+                  <button type="submit" className="btn btn-info btn-sm">
+                    Lagre
+                  </button>
+                  {this.state.partners.map(partner => (
+                    <div key={partner.id}>
+                      {partner.type === "private" ? (
+                        <div className="m-1">
+                          <hr />
+                          {partner.partner_name}{" "}
+                          <button className="btn btn-sm btn-danger btnInElementAdmin">
+                            Slett
+                          </button>
+                          <button
+                            className="btn btn-secondary btnInElementAdmin btn-sm"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target={"#localPartnerForm" + partner.id}
+                            aria-expanded="false"
+                            aria-controls={"localPartnerForm" + partner.id}
+                          >
+                            Rediger
+                          </button>
+                          <div
+                            id={"localPartnerForm" + partner.id}
+                            className={
+                              "collapse col-md-10 offset-r-2 localPartnerForm" +
+                              partner.id
+                            }
+                          >
+                            <form className="row m-3">
+                              <div className="col-md-5">
+                                <label>Navn på samarbeidspartner</label>
+                                <input
+                                  className="form-control"
+                                  defaultValue={partner.partner_name}
+                                />
+                              </div>
+                              <div className="col-md-7">
+                                <label className="col-md-7 d-block">
+                                  Type partner:
+                                </label>
+
+                                <div className="col-md-4 offset-l-2 d-inline-block">
+                                  <input
+                                    type="radio"
+                                    id="no"
+                                    name="language"
+                                    value="no"
+                                  />
+                                  <label htmlFor="no">Lokal</label>
+                                </div>
+                                <div className="col-md-4 offset-r-2 float-right">
+                                  <input
+                                    type="radio"
+                                    id="en"
+                                    name="language"
+                                    value="en"
+                                  />
+                                  <label htmlFor="en">Offentlig</label>
+                                </div>
+                              </div>
+                              <button
+                                type="submit"
+                                className="btn btn-info btn-sm ml-3 m-1"
+                              >
+                                Lagre
+                              </button>
+                            </form>
+                          </div>
+                        </div>
+                      ) : null}
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
-          </div>
-          <div>
-            <h2>Kontaktpersoner</h2>
             <div>
-              {this.state.contactPersons.map(contact => (
-                <AdminContactPerson key={contact.id} contact={contact} />
-              ))}
-            </div>
-          </div>
-          <div>
-            <h2>Diverse</h2>
-            <div className="elementCardAdmin row">
-              <p className="col-md-10">
-                <span className="smallHeading">Live</span>
-              </p>
-
-              <div className="col-md-2">
-                <button
-                  className="btn btn-secondary btnInElementAdmin btn-sm"
-                  type="button"
-                  data-toggle="collapse"
-                  data-target="#YTIDForm"
-                  aria-expanded="false"
-                  aria-controls="YTIDForm"
-                >
-                  Rediger
-                </button>
+              <h2>Kontaktpersoner</h2>
+              <div>
+                {this.state.contactPersons.map(contact => (
+                  <AdminContactPerson key={contact.id} contact={contact} />
+                ))}
               </div>
             </div>
-            <div className="collapse editScheduleItem" id="YTIDForm">
-              <form className="col-md-8 col-lg-6">
-                <div className="form-row">
-                  <div className="form-group col-md-12">
-                    <label>YouTube kanal (ID)</label>
-                    <input
-                      className="form-control"
-                      defaultValue={this.state.about.channelId}
-                    />
-                  </div>
+            <div>
+              <h2>Diverse</h2>
+              <div className="elementCardAdmin row">
+                <p className="col-md-10">
+                  <span className="smallHeading">YouTube</span>
+                </p>
+
+                <div className="col-md-2">
+                  <button
+                    className="btn btn-secondary btnInElementAdmin btn-sm"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#YTIDForm"
+                    aria-expanded="false"
+                    aria-controls="YTIDForm"
+                  >
+                    Rediger
+                  </button>
                 </div>
-                <button type="submit" className="btn btn-info btn-sm">
-                  Lagre
-                </button>
-              </form>
+              </div>
+              <div className="collapse editScheduleItem" id="YTIDForm">
+                <form className="col-md-8 col-lg-6">
+                  {this.state.livestream.map(livestream => (
+                    <div key={livestream.id} className="form-row">
+                      <div className="form-group col-md-12">
+                        <label>Kanal (ID)</label>
+                        <input
+                          className="form-control"
+                          defaultValue={livestream.livestream_id}
+                        />
+                      </div>
+                      <div className="form-group col-md-12">
+                        <label>API nøkkel</label>
+                        <input
+                          className="form-control"
+                          defaultValue={livestream.YouTube_API_KEY}
+                        />
+                      </div>
+                    </div>
+                  ))}
+
+                  <button type="submit" className="btn btn-info btn-sm">
+                    Lagre
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
-      </div >
+      </div>
     );
   }
 }
