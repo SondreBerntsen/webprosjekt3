@@ -1,6 +1,7 @@
 import React from 'react';
 
 const listOfDays = (props) => {
+  console.log(props)
   return (
     <div className="container horizontal_days row">
       {

@@ -27,7 +27,6 @@ class AdminSchedule extends Component {
   getProgramme = (venues) => {
     let date = new Date()
     let year = date.getFullYear()
-    let body = {year: year}
     fetch('http://localhost:5000/programme?year=' + year)
     .then(response => response.json())
     .then((response) => {
