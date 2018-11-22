@@ -66,6 +66,22 @@
     max-height: 100px;
     margin-bottom: 20px;
 }
+
+
+/**general*/
+.festivalReportTitle, .radiobtnLabel{
+    display:inline-block;
+}
+
+#reportsForm button.btn-info {
+    float:right;
+}
+
+.lanLabel {
+    display: block;
+}
+
+
 /**Settings**/
 .settingsHeader{
     margin-bottom: 50px;
