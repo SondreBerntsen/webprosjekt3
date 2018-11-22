@@ -61,7 +61,6 @@ const AdminUser = props => {
           </div>
           <div className="form-group ">
             <label>Type</label>
-            {/*Lag funksjon her fix*/}
             <select className="form-control custom-select">
               <option defaultValue={type}>{type}</option>
               {type !== "admin" ?
