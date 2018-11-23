@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import AdminContactPerson from "../AdminContactPerson";
+import AdminAbout from "../AdminAbout";
 
 class AdminGeneral extends Component {
   state = {
@@ -7,7 +8,7 @@ class AdminGeneral extends Component {
     contactPersons: [],
     reports: [],
     partners: [],
-    livestream: []
+    livestream: [],
   };
 
   componentDidMount() {
@@ -50,6 +51,41 @@ class AdminGeneral extends Component {
       .catch(err => console.log(err));
   };
 
+  handleSubmit = (e) => {
+    e.preventDefault()
+    let body = {
+      pitch: this.state.about[0].pitch,
+      dateHeader_txt: this.state.about[0].dateHeader_txt
+    }
+    console.log("on submit: " + body.pitch + " " + body.dateHeader_txt);
+    /*fetch(`http://localhost:5000/about/frontpageUpdate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    })
+      .then(_ => {
+        this.refs.address.innerHTML = this.state.address
+        this.refs.capacity.innerHTML = this.state.capacity
+      })
+      .catch(err => console.log(err))*/
+  }
+
+  handleChange = (e) => {
+    switch (e.target.name) {
+      case 'pitch':
+        this.setState({ pitch: e.target.value })
+        //console.log(e.target.value);
+        console.log(this.state.pitch);
+        break;
+      case 'dateHeader_txt':
+        this.setState({ dateHeader_txt: e.target.value })
+        //console.log(e.target.value);
+        console.log(this.state.dateHeader_txt);
+        break;
+      default:
+    }
+  }
+
   render() {
     return (
       <div className="container tablesAdmin col-md-9 col-lg-10">
@@ -75,13 +111,15 @@ class AdminGeneral extends Component {
           </div>
           <div className="collapse editScheduleItem" id="frontPageForm">
             {this.state.about.map(about => (
-              <form key={about.id} className="col-md-8 col-lg-6">
+              <form key={about.id} className="col-md-8 col-lg-6" onSubmit={this.handleSubmit}>
                 <div className="form-row">
                   <div className="form-group col-md-12">
                     <label>Forsidetekst</label>
                     <textarea
                       className="form-control"
                       defaultValue={about.pitch}
+                      onChange={this.handleChange}
+                      name="pitch"
                     />
                   </div>
                   <div className="form-group col-md-12">
@@ -89,6 +127,8 @@ class AdminGeneral extends Component {
                     <input
                       className="form-control"
                       defaultValue={about.dateHeader_txt}
+                      onChange={this.handleChange}
+                      name="dateHeader_txt"
                     />
                   </div>
                 </div>
@@ -101,55 +141,7 @@ class AdminGeneral extends Component {
           <h2>Om oss</h2>
           <div>
             {this.state.about.map(about => (
-              <div key={about.id}>
-                <div className="elementCardAdmin row">
-                  <p className="col-lg-10">
-                    <span className="smallHeading">
-                      Visjon, organisasjon og kontaktadresse
-                    </span>
-                  </p>
-                  <div className="col-lg-2">
-                    <button
-                      className="btn  btn-secondary btnInElementAdmin btn-sm"
-                      type="button"
-                      data-toggle="collapse"
-                      data-target="#staticTextForm"
-                      aria-expanded="false"
-                      aria-controls="staticTextForm"
-                    >
-                      Rediger
-                    </button>
-                  </div>
-                </div>
-                <div className="editScheduleItem collapse" id="staticTextForm">
-                  <form className="col-md-8 col-lg-6">
-                    <div className="form-group">
-                      <label>Visjon</label>
-                      <textarea
-                        className="form-control"
-                        defaultValue={about.vision_txt}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Organisasjon</label>
-                      <textarea
-                        className="form-control"
-                        defaultValue={about.organization_txt}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Kontakt Adresse</label>
-                      <input
-                        className="form-control"
-                        defaultValue={about.address}
-                      />
-                    </div>
-                    <button type="submit" className="btn btn-info btn-sm">
-                      Lagre
-                    </button>
-                  </form>
-                </div>
-              </div>
+              <AdminAbout key={about.id} about={about}></AdminAbout>
             ))}
             <div className="elementCardAdmin row">
               <p className="col-md-10">
@@ -355,7 +347,7 @@ class AdminGeneral extends Component {
                   id="officialPartnerForm"
                 >
                   {this.state.about.map(about => (
-                    <div className="form-group col-md-12 p-0 mb-5">
+                    <div key={about.id} className="form-group col-md-12 p-0 mb-5">
                       <label>Om offentlige samarbeidspartnere</label>
                       <textarea
                         className="form-control"
@@ -459,7 +451,7 @@ class AdminGeneral extends Component {
                   id="localPartnerForm"
                 >
                   {this.state.about.map(about => (
-                    <div className="form-group col-md-12 p-0">
+                    <div key={about.id} className="form-group col-md-12 p-0">
                       <label>Om lokale samarbeidspartnere</label>
                       <textarea
                         className="form-control"
