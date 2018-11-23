@@ -17,7 +17,7 @@ class About extends Component {
   }
 
   getGeneralInfo = _ => {
-    fetch(`http://localhost:5000/about`)
+    fetch(`http://localhost:5000/general`)
       .then(response => response.json())
       .then(response => this.setState({ generalInfo: response.data[0] }))
       .catch(err => console.error(err));

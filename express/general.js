@@ -1,9 +1,9 @@
 // about.js
 const express = require("express");
 var db = require("./db");
-const about = express.Router();
+const general = express.Router();
 
-about.get("/", (req, res) => {
+general.get("/", (req, res) => {
   let SELECT_QUERY =
     "SELECT id, pitch, dateHeader_txt, address, vision_txt, partner_txt_official, partner_txt_private, organization_txt FROM general";
   db.query(SELECT_QUERY, (err, results) => {
@@ -17,7 +17,7 @@ about.get("/", (req, res) => {
   });
 });
 
-about.post("/frontpageUpdate", (req, res) => {
+general.post("/aboutUsUpdate", (req, res) => {
   let { vision_txt, organization_txt, address } = req.body;
   let UPDATE_QUERY = `
   UPDATE general
@@ -31,4 +31,17 @@ about.post("/frontpageUpdate", (req, res) => {
   });
 });
 
-module.exports = about;
+general.post("/frontpageUpdate", (req, res) => {
+  let { pitch, dateHeader_txt } = req.body;
+  let UPDATE_QUERY = `
+  UPDATE general
+  SET 
+    pitch = '${pitch}',
+    dateHeader_txt = '${dateHeader_txt}'`;
+  db.query(UPDATE_QUERY, (err, results) => {
+    if (err) res.send(err);
+    return res.json(results);
+  });
+});
+
+module.exports = general;

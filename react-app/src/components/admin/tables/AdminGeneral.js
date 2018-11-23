@@ -8,7 +8,7 @@ class AdminGeneral extends Component {
     contactPersons: [],
     reports: [],
     partners: [],
-    livestream: [],
+    livestream: []
   };
 
   componentDidMount() {
@@ -39,7 +39,7 @@ class AdminGeneral extends Component {
       .catch(err => console.log(err));
   };
   getAboutData = _ => {
-    fetch(`http://localhost:5000/about`)
+    fetch(`http://localhost:5000/general`)
       .then(response => response.json())
       .then(response => this.setState({ about: response.data }))
       .catch(err => console.log(err));
@@ -50,41 +50,6 @@ class AdminGeneral extends Component {
       .then(response => this.setState({ contactPersons: response.data }))
       .catch(err => console.log(err));
   };
-
-  handleSubmit = (e) => {
-    e.preventDefault()
-    let body = {
-      pitch: this.state.about[0].pitch,
-      dateHeader_txt: this.state.about[0].dateHeader_txt
-    }
-    console.log("on submit: " + body.pitch + " " + body.dateHeader_txt);
-    /*fetch(`http://localhost:5000/about/frontpageUpdate`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    })
-      .then(_ => {
-        this.refs.address.innerHTML = this.state.address
-        this.refs.capacity.innerHTML = this.state.capacity
-      })
-      .catch(err => console.log(err))*/
-  }
-
-  handleChange = (e) => {
-    switch (e.target.name) {
-      case 'pitch':
-        this.setState({ pitch: e.target.value })
-        //console.log(e.target.value);
-        console.log(this.state.pitch);
-        break;
-      case 'dateHeader_txt':
-        this.setState({ dateHeader_txt: e.target.value })
-        //console.log(e.target.value);
-        console.log(this.state.dateHeader_txt);
-        break;
-      default:
-    }
-  }
 
   render() {
     return (
@@ -111,7 +76,11 @@ class AdminGeneral extends Component {
           </div>
           <div className="collapse editScheduleItem" id="frontPageForm">
             {this.state.about.map(about => (
-              <form key={about.id} className="col-md-8 col-lg-6" onSubmit={this.handleSubmit}>
+              <form
+                key={about.id}
+                className="col-md-8 col-lg-6"
+                onSubmit={this.handleSubmit}
+              >
                 <div className="form-row">
                   <div className="form-group col-md-12">
                     <label>Forsidetekst</label>
@@ -141,7 +110,7 @@ class AdminGeneral extends Component {
           <h2>Om oss</h2>
           <div>
             {this.state.about.map(about => (
-              <AdminAbout key={about.id} about={about}></AdminAbout>
+              <AdminAbout key={about.id} about={about} />
             ))}
             <div className="elementCardAdmin row">
               <p className="col-md-10">
@@ -347,7 +316,10 @@ class AdminGeneral extends Component {
                   id="officialPartnerForm"
                 >
                   {this.state.about.map(about => (
-                    <div key={about.id} className="form-group col-md-12 p-0 mb-5">
+                    <div
+                      key={about.id}
+                      className="form-group col-md-12 p-0 mb-5"
+                    >
                       <label>Om offentlige samarbeidspartnere</label>
                       <textarea
                         className="form-control"

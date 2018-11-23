@@ -21,8 +21,8 @@ class AdminAbout extends Component {
       organization_txt: this.state.organization_txt,
       address: this.state.address
     };
-    // sends 'body'-object to about/frontpageUpdate to update the database
-    fetch(`http://localhost:5000/about/frontpageUpdate`, {
+    // sends 'body'-object to general/aboutUsUpdate to update the database
+    fetch(`http://localhost:5000/general/aboutUsUpdate`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body)

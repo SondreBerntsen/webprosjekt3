@@ -1,9 +1,9 @@
 const express = require("express");
 const cors = require("cors");
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 const app = express();
 app.use(cors());
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 var navbar = require("./navbar");
 var home = require("./home");
@@ -11,7 +11,7 @@ var programme = require("./programme");
 var events = require("./events");
 var partners = require("./partners");
 var festivalreports = require("./festivalreports");
-var about = require("./about");
+var general = require("./general");
 var review = require("./review");
 var contactPersons = require("./contactPersons");
 var event = require("./event");
@@ -37,7 +37,7 @@ app.use("/programme", programme);
 app.use("/events", events);
 app.use("/partners", partners);
 app.use("/festivalreports", festivalreports);
-app.use("/about", about);
+app.use("/general", general);
 app.use("/review", review);
 app.use("/contactPersons", contactPersons);
 app.use("/event", event);
