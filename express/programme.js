@@ -11,12 +11,12 @@ programme.get("/", (req, res) => {
       events.title, 
       events.time, 
       events.payment_link, 
-      DATE_FORMAT(events.date, '%d-%m-%y') AS date,
+      DATE_FORMAT(events.date, '%Y-%m-%d') as date,
       events.price, 
       events.v_id, 
       venues.address 
     FROM events, venues 
-    WHERE venues.id=events.v_id AND YEAR (events.date)=${year} ORDER BY events.date`;
+    WHERE venues.id = events.v_id AND YEAR(events.date) = ${year} ORDER BY events.date`;
 
   db.query(SELECT, (err, results) => {
     if (err) res.send(err);
@@ -32,7 +32,7 @@ programme.post('/update', (req, res) => {
     SET 
       title = '${title}', 
       time =  '${time}',
-      date= STR_TO_DATE('${date}', '%d/%m/%y'), 
+      date = '${date}', 
       price = ${price}, 
       v_id = ${venue}
     WHERE id = ${id}
@@ -44,14 +44,3 @@ programme.post('/update', (req, res) => {
 })
 
 module.exports = programme;
-
-/*
-UPDATE events
-    SET 
-      title = 'Waed blabla', 
-      time =  '16:00',
-      date= STR_TO_DATE('11/09/18', '%d/%m/%y'), 
-      price = 123123123, 
-      v_id = 6
-    WHERE id = 2
-*/
