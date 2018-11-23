@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AdminScheduleItem from '../AdminScheduleItem';
-import {fixTimeString, fixDateString} from '../../Functions'
+import {fixDateString} from '../../Functions'
 
 
 class AdminSchedule extends Component {
@@ -47,18 +47,17 @@ class AdminSchedule extends Component {
       event.title = json[i].title
       event.venue = json[i].address
       event.payment_link = json[i].payment_link
-      event.time = fixTimeString(json[i].time) //Calls fixTimeString function and stores return value
+      event.time = json[i].time
       event.price = json[i].price
       event.date = json[i].date
-
-      let eventDate = json[i].date //Calls fixDateString function and stores return value
 
       //Check if date in json object already exists in days array
       let dateExists = false;
       for (let j = 0; j < days.length; j++) {
-        if (eventDate === days[j].date) {
+        if (json[i].date === days[j].date) {
           // If date matches existing date
           //shove object with event data into that date's event array
+          
           days[j].events.push(event);
           dateExists = true;
           break;
@@ -68,7 +67,7 @@ class AdminSchedule extends Component {
         //If date does not exist in dates array
         //create date object and push it into days array
         let date = {};
-        date.date = eventDate;
+        date.date = json[i].date;
         let weekDay = new Date(json[i].date).getDay(); //Creates a numeric value representing the week day of that date
 
         //Sets weekDay to a string value based on its numeric value
@@ -110,7 +109,7 @@ class AdminSchedule extends Component {
         {
           this.state.days.map((day, index) => (
             <div className="containerScheduleElements" key={index}>
-              <h2 className="dayDateTitleSchedule">{day.day} {day.date}</h2>
+              <h2 className="dayDateTitleSchedule">{day.day} {fixDateString(day.date)}</h2>
               {
                 day.events.map(event => (
                   <AdminScheduleItem key={event.id} event={event} venues={this.state.venues} />

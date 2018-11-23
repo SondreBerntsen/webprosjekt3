@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import {fixDateString, fixTimeString} from '../Functions'
+
 
 class AdminScheduleItem extends Component {
   state = {
@@ -15,7 +17,6 @@ class AdminScheduleItem extends Component {
   }
   componentDidMount() {
     this.setState({ ...this.state } = this.props.event)
-    console.log(this.props.event)
   }
   handleDelete = _ => {
     let body = {
@@ -51,6 +52,7 @@ class AdminScheduleItem extends Component {
         break;
       case 'date':
         this.setState({ date: e.target.value })
+        console.log(this.state.date)
         this.refs.dateIcon.innerHTML = "&#9998;"
         break;
       default:
@@ -63,9 +65,9 @@ class AdminScheduleItem extends Component {
       id: this.state.id,
       title: this.state.title,
       venue: this.state.venue.id,
-      time: this.state.time + ':00',
+      time: this.state.time,
       price: this.state.price,
-      date: this.state.date //.replace(/[/]/g, ' ')
+      date: this.state.date
     }
     console.log(body)
 
@@ -118,11 +120,11 @@ class AdminScheduleItem extends Component {
           <div className="col-md-12 row">
             <p className="col-md-3">
               <span className="smallHeading">Tid: </span>
-              <span ref="time" >{this.props.event.time}</span>
+              <span ref="time" >{fixTimeString(this.props.event.time)}</span>
             </p>
             <p className="col-md-3">
               <span className="smallHeading">Dato: </span>
-              <span ref="date">{this.props.event.date}</span>
+              <span ref="date">{fixDateString(this.props.event.date)}</span>
             </p>
             <p className="col-md-6">
               <span className="smallHeading">Pris: </span>
@@ -167,7 +169,7 @@ class AdminScheduleItem extends Component {
               <div className="form-group col-md-6">
                 <label>Tid</label>
                 <input
-                  type="text"
+                  type="time"
                   name="time"
                   className="form-control isEdited"
                   defaultValue={this.props.event.time}
@@ -178,7 +180,7 @@ class AdminScheduleItem extends Component {
               <div className="form-group col-md-6">
                 <label>Dato</label>
                 <input
-                  type="text"
+                  type="date"
                   name="date"
                   className="form-control isEdited"
                   defaultValue={this.props.event.date}

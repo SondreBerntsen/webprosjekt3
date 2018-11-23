@@ -54,6 +54,8 @@ class Event extends Component {
     let givenDate = this.state.eventData[0].date;
     let currentDate = new Date();
     givenDate = new Date(givenDate);
+    console.log("given date " + givenDate);
+    console.log("current date" + currentDate);
     // if the date of the event has passed or is today..
     if (givenDate > currentDate || givenDate === currentDate) {
       // ..we output the ScheduleItem component for the event.
@@ -81,18 +83,18 @@ class Event extends Component {
         </div>
       </div>
     ) : (
-      <div className="errorDiv container">
-        <div className="vh-85">
-          <h1 className="sadSmilyError">&#x2639;</h1>
-          <h1 className="txt404">404</h1>
-          <h3>Page not found</h3>
-          <p>
-            The page you are looking for doesn't exist or an other error
-            occured.
+        <div className="errorDiv container">
+          <div className="vh-85">
+            <h1 className="sadSmilyError">&#x2639;</h1>
+            <h1 className="txt404">404</h1>
+            <h3>Page not found</h3>
+            <p>
+              The page you are looking for doesn't exist or an other error
+              occured.
           </p>
+          </div>
         </div>
-      </div>
-    );
+      );
     return (
       <div>
         <Navbar />
