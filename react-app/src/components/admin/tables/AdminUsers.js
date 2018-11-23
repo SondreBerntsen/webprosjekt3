@@ -14,12 +14,29 @@ class AdminUsers extends Component {
       .then(response => this.setState({ users: response }))
       .catch(err => console.log(err));
   };
+  handleDelete = (id) => {
+    let body = {
+      id: id
+    }
+    console.log(body);
+    if (window.confirm('Are you sure you wish to delete this user?')) {
+      fetch(`http://localhost:5000/adminUsers/delete`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      })
+        .then(_ => {
+          this.getUserList();
+        })
+        .catch(err => console.log(err))
+    }
+  }
   handleSubmit = (e) => {
     e.preventDefault()
     let body = {
       name: this.refs.createUserName.value,
-      email: this.refs.createUserPassword.value,
-      password: this.refs.createUserMail.value,
+      password: this.refs.createUserPassword.value,
+      email: this.refs.createUserMail.value,
       type: this.refs.createUserType.value,
     }
     console.log(body)
@@ -28,6 +45,11 @@ class AdminUsers extends Component {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
     })
+      .then(function (response) {
+        if (response.status >= 400) {
+          throw alert('oh no');
+        }
+      })
       .then(_ => {
         this.getUserList();
       })
@@ -46,7 +68,7 @@ class AdminUsers extends Component {
       <div className="container tablesAdmin col-md-9 col-lg-10">
         <button className="createNewBtn btn btn-sm btn-info" type="button" data-toggle="collapse" data-target='#newUserForm' aria-expanded="false" aria-controls='newUserForm'>Create new user</button>
         <div className="collapseForm col-12 collapse" id="newUserForm">
-          <form className="col-md-6 col-lg-3">
+          <form onSubmit={this.handleSubmit} className="col-md-6 col-lg-3">
             <div className="form-group ">
               <label>Brukernavn</label>
               <input type="text" className="form-control" ref="createUserName" required />
@@ -79,7 +101,7 @@ class AdminUsers extends Component {
               <label>Type</label>
               <select className="form-control custom-select" ref="createUserType">
                 <option value="admin">admin</option>
-                <option value="journalist">journalist</option>
+                <option value="publisher">journalist</option>
               </select>
             </div>
             <button id="submitUser" type="submit" className="btn btn-info btn-sm">Submit</button>
@@ -87,7 +109,7 @@ class AdminUsers extends Component {
         </div>
         {
           this.state.users.map(user => (
-            <AdminUser key={user.id} user={user} />
+            <AdminUser key={user.id} user={user} handleDelete={this.handleDelete} />
           ))
         }
       </div>

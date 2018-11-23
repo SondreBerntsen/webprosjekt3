@@ -12,7 +12,7 @@ const AdminUser = props => {
             <span className="smallHeading">{name}</span>
           </p>
           <div className="col-md-2">
-            <button className="btn btn-sm btn-danger btnInElementAdmin">
+            <button className="btn btn-sm btn-danger btnInElementAdmin" onClick={() => { props.handleDelete(id) }}>
               Slett
             </button>
             <button

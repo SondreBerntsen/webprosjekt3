@@ -20,7 +20,6 @@ event.get("/", (req, res) => {
 
 event.post("/add", (req, res) => {
     console.log('hallo add event express');
-    console.log(req.body.livestream);
     let imgFile = req.files.img;
     const INSERT_QUERY = `
       INSERT INTO events (title, text, time, date, price, youtube_link, payment_link, v_id, livestream) 
@@ -45,6 +44,7 @@ event.post("/add", (req, res) => {
 event.post("/delete", (req, res) => {
     console.log('hallo delete event');
     const { id } = req.body
+
     const DELETE_QUERY = `DELETE FROM events WHERE id = ${id}`
     db.query(DELETE_QUERY, (err, results) => {
         if (err) {
