@@ -3,6 +3,7 @@ import AdminContactPerson from "../AdminContactPerson";
 import AdminAbout from "../AdminAbout";
 import AdminFrontpage from "../AdminFrontpage";
 import AdminYouTube from "../AdminYouTube";
+import AdminFestivalReport from "../AdminFestivalReport";
 
 class AdminGeneral extends Component {
   state = {
@@ -10,7 +11,8 @@ class AdminGeneral extends Component {
     contactPersons: [],
     reports: [],
     partners: [],
-    livestream: []
+    livestream: [],
+    reportLanguage: []
   };
 
   componentDidMount() {
@@ -51,6 +53,36 @@ class AdminGeneral extends Component {
       .then(response => response.json())
       .then(response => this.setState({ contactPersons: response.data }))
       .catch(err => console.log(err));
+  };
+
+  addFestivalReport = e => {
+    e.preventDefault();
+    // saves the new data in object 'body'
+    let body = {
+      title: this.refs.createReportTitle.value,
+      link: this.refs.createReportLink.value,
+      language: this.state.reportLanguage
+    };
+    /* sends 'body'-object to festivalreports/add to 
+       add new festivalreport to the database     */
+    fetch(`http://localhost:5000/festivalreports/add`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    }).catch(err => console.log(err));
+  };
+
+  // function for when fields have been changed
+  handleReportChange = e => {
+    // checks name of target
+    switch (e.target.name) {
+      //if name equals 'language'..
+      case "language":
+        // .. it sets the value of target in state
+        this.setState({ reportLanguage: e.target.value });
+        break;
+      default:
+    }
   };
 
   render() {
@@ -104,21 +136,21 @@ class AdminGeneral extends Component {
               </div>
             </div>
             <div className="collapse reportsForm" id="reportsForm">
-              <form className="row addReport">
+              <form className="row addReport" onSubmit={this.addFestivalReport}>
                 <div className="col-md-3">
                   <input
-                    ref="createReportTitle"
                     type="text"
                     className="form-control"
                     placeholder="Navn på rapport"
+                    ref="createReportTitle"
                   />
                 </div>
                 <div className="col-md-3">
                   <input
-                    ref="createVenueCapacity"
                     type="text"
                     className="form-control"
                     placeholder="Link til rapport"
+                    ref="createReportLink"
                   />
                 </div>
 
@@ -128,11 +160,26 @@ class AdminGeneral extends Component {
                   </div>
 
                   <div className="col-md-4 d-inline-block">
-                    <input type="radio" id="no" name="language" value="no" />
+                    <input
+                      type="radio"
+                      id="no"
+                      value="no"
+                      name="language"
+                      ref="createReportNo"
+                      defaultChecked
+                      onChange={this.handleReportChange}
+                    />
                     <label htmlFor="no">Norsk</label>
                   </div>
                   <div className="col-md-4 float-right">
-                    <input type="radio" id="en" name="language" value="en" />
+                    <input
+                      type="radio"
+                      id="en"
+                      name="language"
+                      value="en"
+                      ref="createReportEn"
+                      onChange={this.handleReportChange}
+                    />
                     <label htmlFor="en">Engelsk</label>
                   </div>
                 </div>
@@ -146,76 +193,7 @@ class AdminGeneral extends Component {
                 </div>
               </form>
               {this.state.reports.map(report => (
-                <div key={report.id} className="listReports">
-                  <hr />
-                  <p className="festivalReportTitle">{report.title}</p>
-                  <button className="btn btn-sm btn-danger btnInElementAdmin">
-                    Slett
-                  </button>
-                  <button
-                    className="btn btn-secondary btnInElementAdmin btn-sm"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target={"#reportForm" + report.id}
-                    aria-expanded="false"
-                    aria-controls={"reportForm" + report.id}
-                  >
-                    Rediger
-                  </button>
-
-                  <div
-                    className="collapse editReports col-md-8 offset-2"
-                    id={"reportForm" + report.id}
-                  >
-                    <form className="row m-3">
-                      <div className="col-md-4">
-                        <label>Tittel</label>
-                        <input
-                          className="form-control"
-                          defaultValue={report.title}
-                        />
-                      </div>
-                      <div className="col-md-5">
-                        <label>Link</label>
-                        <input
-                          className="form-control"
-                          defaultValue={report.link}
-                        />
-                      </div>
-                      <div className="col-md-3">
-                        <label className="lanLabel ">Språk</label>
-                        <div className="d-inline-block float-left">
-                          <input
-                            type="radio"
-                            id="no"
-                            name="language"
-                            value="no"
-                            defaultChecked
-                          />
-                          <label className="radiobtnLabel" htmlFor="no">
-                            Norsk
-                          </label>
-                        </div>
-                        <div className="d-inline-block float-right">
-                          <input
-                            type="radio"
-                            id="en"
-                            name="language"
-                            value="en"
-                          />
-                          <label className="radiobtnLabel" htmlFor="en">
-                            Engelsk
-                          </label>
-                        </div>
-                      </div>
-                      <div className="col-md-12 float-left mt-3">
-                        <button type="submit" className="btn btn-info btn-sm">
-                          Lagre
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
+                <AdminFestivalReport key={report.id} report={report} />
               ))}
             </div>
             <div className="elementCardAdmin row">
@@ -239,7 +217,7 @@ class AdminGeneral extends Component {
               <form className="row addReport">
                 <div className="col-md-4">
                   <input
-                    ref="createReportTitle"
+                    ref="createPartnerName"
                     type="text"
                     className="form-control"
                     placeholder="Navn på samarbeidspartner"
