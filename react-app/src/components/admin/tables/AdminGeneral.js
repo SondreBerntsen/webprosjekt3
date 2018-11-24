@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import AdminContactPerson from "../AdminContactPerson";
 import AdminAbout from "../AdminAbout";
+import AdminFrontpage from "../AdminFrontpage";
+import AdminYouTube from "../AdminYouTube";
 
 class AdminGeneral extends Component {
   state = {
@@ -76,35 +78,7 @@ class AdminGeneral extends Component {
           </div>
           <div className="collapse editScheduleItem" id="frontPageForm">
             {this.state.about.map(about => (
-              <form
-                key={about.id}
-                className="col-md-8 col-lg-6"
-                onSubmit={this.handleSubmit}
-              >
-                <div className="form-row">
-                  <div className="form-group col-md-12">
-                    <label>Forsidetekst</label>
-                    <textarea
-                      className="form-control"
-                      defaultValue={about.pitch}
-                      onChange={this.handleChange}
-                      name="pitch"
-                    />
-                  </div>
-                  <div className="form-group col-md-12">
-                    <label>Festivaldato</label>
-                    <input
-                      className="form-control"
-                      defaultValue={about.dateHeader_txt}
-                      onChange={this.handleChange}
-                      name="dateHeader_txt"
-                    />
-                  </div>
-                </div>
-                <button type="submit" className="btn btn-info btn-sm">
-                  Lagre
-                </button>
-              </form>
+              <AdminFrontpage key={about.id} about={about} />
             ))}
           </div>
           <h2>Om oss</h2>
@@ -538,30 +512,9 @@ class AdminGeneral extends Component {
                 </div>
               </div>
               <div className="collapse editScheduleItem" id="YTIDForm">
-                <form className="col-md-8 col-lg-6">
-                  {this.state.livestream.map(livestream => (
-                    <div key={livestream.id} className="form-row">
-                      <div className="form-group col-md-12">
-                        <label>Kanal (ID)</label>
-                        <input
-                          className="form-control"
-                          defaultValue={livestream.livestream_id}
-                        />
-                      </div>
-                      <div className="form-group col-md-12">
-                        <label>API nøkkel</label>
-                        <input
-                          className="form-control"
-                          defaultValue={livestream.YouTube_API_KEY}
-                        />
-                      </div>
-                    </div>
-                  ))}
-
-                  <button type="submit" className="btn btn-info btn-sm">
-                    Lagre
-                  </button>
-                </form>
+                {this.state.livestream.map(livestream => (
+                  <AdminYouTube key={livestream.id} livestream={livestream} />
+                ))}
               </div>
             </div>
           </div>
