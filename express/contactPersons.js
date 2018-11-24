@@ -2,10 +2,9 @@ const express = require("express");
 var db = require("./db");
 const contactPersons = express.Router();
 
-const SELECT_ALL_CONTACT_PERSONS_QUERY = "SELECT * FROM contact_persons";
-
 contactPersons.get("/", (req, res) => {
-  db.query(SELECT_ALL_CONTACT_PERSONS_QUERY, (err, results) => {
+  const SELECT_QUERY = "SELECT * FROM contact_persons";
+  db.query(SELECT_QUERY, (err, results) => {
     if (err) {
       return res.send(err);
     } else {
@@ -13,6 +12,23 @@ contactPersons.get("/", (req, res) => {
         data: results
       });
     }
+  });
+});
+
+contactPersons.post("/update", (req, res) => {
+  let { id, name, email, role, phone } = req.body;
+  let UPDATE_QUERY = `UPDATE contact_persons 
+    SET 
+      name = '${name}',
+      email='${email}',
+      role='${role}',
+      phone='${phone}'
+    WHERE
+      id = '${id}'
+  `;
+  db.query(UPDATE_QUERY, (err, results) => {
+    if (err) res.send(err);
+    return res.json(results);
   });
 });
 

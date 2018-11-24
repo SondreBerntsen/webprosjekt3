@@ -485,11 +485,9 @@ class AdminGeneral extends Component {
 
             <div>
               <h2>Kontaktpersoner</h2>
-              <div>
-                {this.state.contactPersons.map(contact => (
-                  <AdminContactPerson key={contact.id} contact={contact} />
-                ))}
-              </div>
+              {this.state.contactPersons.map(contact => (
+                <AdminContactPerson key={contact.id} contact={contact} />
+              ))}
             </div>
             <div>
               <h2>Diverse</h2>
