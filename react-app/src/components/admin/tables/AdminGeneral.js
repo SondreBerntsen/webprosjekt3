@@ -4,6 +4,7 @@ import AdminAbout from "../AdminAbout";
 import AdminFrontpage from "../AdminFrontpage";
 import AdminYouTube from "../AdminYouTube";
 import AdminFestivalReport from "../AdminFestivalReport";
+import AdminPartner from "../AdminPartner";
 
 class AdminGeneral extends Component {
   state = {
@@ -12,7 +13,10 @@ class AdminGeneral extends Component {
     reports: [],
     partners: [],
     livestream: [],
-    reportLanguage: []
+    reportLanguage: [],
+    partnerType: [],
+    partnerOfficialText: [],
+    partnerPrivateText: []
   };
 
   componentDidMount() {
@@ -72,14 +76,67 @@ class AdminGeneral extends Component {
     }).catch(err => console.log(err));
   };
 
+  addPartner = e => {
+    e.preventDefault();
+    // saves the new data in object 'body'
+    let body = {
+      partner_name: this.refs.createPartnerName.value,
+      type: this.state.partnerType
+    };
+    /* sends 'body'-object to festivalreports/add to 
+       add new festivalreport to the database     */
+    fetch(`http://localhost:5000/partners/add`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    }).catch(err => console.log(err));
+  };
+
+  updatePartnerPrivateText = e => {
+    e.preventDefault();
+    // saves the new changes in object 'body'
+    let body = {
+      partner_txt_private: this.state.partnerPrivateText
+    };
+    // sends 'body'-object to general/frontpageUpdate to update the database
+    fetch(`http://localhost:5000/partners/updatePrivatePartnerText`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    }).catch(err => console.log(err));
+  };
+
+  updatePartnerOfficialText = e => {
+    e.preventDefault();
+    // saves the new changes in object 'body'
+    let body = {
+      partner_txt_official: this.state.partnerOfficialText
+    };
+    // sends 'body'-object to general/frontpageUpdate to update the database
+    fetch(`http://localhost:5000/partners/updateOfficialPartnerText`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    }).catch(err => console.log(err));
+  };
+
   // function for when fields have been changed
-  handleReportChange = e => {
+  handleChange = e => {
     // checks name of target
     switch (e.target.name) {
       //if name equals 'language'..
       case "language":
         // .. it sets the value of target in state
         this.setState({ reportLanguage: e.target.value });
+        break;
+      case "partnerType":
+        this.setState({ partnerType: e.target.value });
+        break;
+      case "partnerOfficialText":
+        this.setState({ partnerOfficialText: e.target.value });
+        break;
+      case "partnerPrivateText":
+        this.setState({ partnerPrivateText: e.target.value });
         break;
       default:
     }
@@ -167,7 +224,7 @@ class AdminGeneral extends Component {
                       name="language"
                       ref="createReportNo"
                       defaultChecked
-                      onChange={this.handleReportChange}
+                      onChange={this.handleChange}
                     />
                     <label htmlFor="no">Norsk</label>
                   </div>
@@ -178,7 +235,7 @@ class AdminGeneral extends Component {
                       name="language"
                       value="en"
                       ref="createReportEn"
-                      onChange={this.handleReportChange}
+                      onChange={this.handleChange}
                     />
                     <label htmlFor="en">Engelsk</label>
                   </div>
@@ -214,7 +271,7 @@ class AdminGeneral extends Component {
               </div>
             </div>
             <div className="collapse reportsForm" id="partnersForm">
-              <form className="row addReport">
+              <form className="row addReport" onSubmit={this.addPartner}>
                 <div className="col-md-4">
                   <input
                     ref="createPartnerName"
@@ -230,11 +287,23 @@ class AdminGeneral extends Component {
                   </div>
 
                   <div className="col-md-4 d-inline-block">
-                    <input type="radio" id="no" name="language" value="no" />
+                    <input
+                      type="radio"
+                      id="private"
+                      name="partnerType"
+                      onChange={this.handleChange}
+                      value="private"
+                    />
                     <label htmlFor="no">Lokal</label>
                   </div>
                   <div className="col-md-4 float-right">
-                    <input type="radio" id="en" name="language" value="en" />
+                    <input
+                      type="radio"
+                      id="official"
+                      name="partnerType"
+                      onChange={this.handleChange}
+                      value="official"
+                    />
                     <label htmlFor="en">Offentlig</label>
                   </div>
                 </div>
@@ -272,87 +341,28 @@ class AdminGeneral extends Component {
                       key={about.id}
                       className="form-group col-md-12 p-0 mb-5"
                     >
-                      <label>Om offentlige samarbeidspartnere</label>
-                      <textarea
-                        className="form-control"
-                        defaultValue={about.partner_txt_official}
-                      />
-                      <button
-                        type="submit"
-                        className="btn btn-info btn-sm mt-1"
-                      >
-                        Lagre
-                      </button>
+                      <form onSubmit={this.updatePartnerOfficialText}>
+                        <label>Om offentlige samarbeidspartnere</label>
+                        <textarea
+                          className="form-control"
+                          name="partnerOfficialText"
+                          defaultValue={about.partner_txt_official}
+                          onChange={this.handleChange}
+                        />
+                        <button
+                          type="submit"
+                          className="btn btn-info btn-sm mt-1"
+                        >
+                          Lagre
+                        </button>
+                      </form>
                     </div>
                   ))}
 
                   {this.state.partners.map(partner => (
                     <div key={partner.id}>
                       {partner.type === "official" ? (
-                        <div className="m-1">
-                          <hr />
-                          {partner.partner_name}
-                          <button className="btn btn-sm btn-danger btnInElementAdmin">
-                            Slett
-                          </button>
-                          <button
-                            className="btn btn-secondary btnInElementAdmin btn-sm"
-                            type="button"
-                            data-toggle="collapse"
-                            data-target={"#officialPartnerForm" + partner.id}
-                            aria-expanded="false"
-                            aria-controls={"officialPartnerForm" + partner.id}
-                          >
-                            Rediger
-                          </button>
-                          <div
-                            id={"officialPartnerForm" + partner.id}
-                            className={
-                              "collapse col-md-10 offset-r-2 officialPartnerForm" +
-                              partner.id
-                            }
-                          >
-                            <form className="row m-3">
-                              <div className="col-md-5">
-                                <label>Navn på samarbeidspartner</label>
-                                <input
-                                  className="form-control"
-                                  defaultValue={partner.partner_name}
-                                />
-                              </div>
-                              <div className="col-md-7">
-                                <label className="col-md-7 d-block">
-                                  Type partner:
-                                </label>
-
-                                <div className="col-md-4 offset-l-2 d-inline-block">
-                                  <input
-                                    type="radio"
-                                    id="no"
-                                    name="language"
-                                    value="no"
-                                  />
-                                  <label htmlFor="no">Lokal</label>
-                                </div>
-                                <div className="col-md-4 offset-r-2 float-right">
-                                  <input
-                                    type="radio"
-                                    id="en"
-                                    name="language"
-                                    value="en"
-                                  />
-                                  <label htmlFor="en">Offentlig</label>
-                                </div>
-                              </div>
-                              <button
-                                type="submit"
-                                className="btn btn-info btn-sm ml-3 m-1"
-                              >
-                                Lagre
-                              </button>
-                            </form>
-                          </div>
-                        </div>
+                        <AdminPartner partner={partner} />
                       ) : null}
                     </div>
                   ))}
@@ -376,84 +386,28 @@ class AdminGeneral extends Component {
                 >
                   {this.state.about.map(about => (
                     <div key={about.id} className="form-group col-md-12 p-0">
-                      <label>Om lokale samarbeidspartnere</label>
-                      <textarea
-                        className="form-control"
-                        defaultValue={about.partner_txt_private}
-                      />
+                      <form onSubmit={this.updatePartnerPrivateText}>
+                        <label>Om lokale samarbeidspartnere</label>
+                        <textarea
+                          className="form-control"
+                          name="partnerPrivateText"
+                          defaultValue={about.partner_txt_private}
+                          onChange={this.handleChange}
+                        />
+                        <button
+                          type="submit"
+                          className="btn btn-info btn-sm mt-1"
+                        >
+                          Lagre
+                        </button>
+                      </form>
                     </div>
                   ))}
 
-                  <button type="submit" className="btn btn-info btn-sm">
-                    Lagre
-                  </button>
                   {this.state.partners.map(partner => (
                     <div key={partner.id}>
                       {partner.type === "private" ? (
-                        <div className="m-1">
-                          <hr />
-                          {partner.partner_name}{" "}
-                          <button className="btn btn-sm btn-danger btnInElementAdmin">
-                            Slett
-                          </button>
-                          <button
-                            className="btn btn-secondary btnInElementAdmin btn-sm"
-                            type="button"
-                            data-toggle="collapse"
-                            data-target={"#localPartnerForm" + partner.id}
-                            aria-expanded="false"
-                            aria-controls={"localPartnerForm" + partner.id}
-                          >
-                            Rediger
-                          </button>
-                          <div
-                            id={"localPartnerForm" + partner.id}
-                            className={
-                              "collapse col-md-10 offset-r-2 localPartnerForm" +
-                              partner.id
-                            }
-                          >
-                            <form className="row m-3">
-                              <div className="col-md-5">
-                                <label>Navn på samarbeidspartner</label>
-                                <input
-                                  className="form-control"
-                                  defaultValue={partner.partner_name}
-                                />
-                              </div>
-                              <div className="col-md-7">
-                                <label className="col-md-7 d-block">
-                                  Type partner:
-                                </label>
-
-                                <div className="col-md-4 offset-l-2 d-inline-block">
-                                  <input
-                                    type="radio"
-                                    id="no"
-                                    name="language"
-                                    value="no"
-                                  />
-                                  <label htmlFor="no">Lokal</label>
-                                </div>
-                                <div className="col-md-4 offset-r-2 float-right">
-                                  <input
-                                    type="radio"
-                                    id="en"
-                                    name="language"
-                                    value="en"
-                                  />
-                                  <label htmlFor="en">Offentlig</label>
-                                </div>
-                              </div>
-                              <button
-                                type="submit"
-                                className="btn btn-info btn-sm ml-3 m-1"
-                              >
-                                Lagre
-                              </button>
-                            </form>
-                          </div>
-                        </div>
+                        <AdminPartner partner={partner} />
                       ) : null}
                     </div>
                   ))}
