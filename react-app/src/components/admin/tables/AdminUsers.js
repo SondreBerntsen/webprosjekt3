@@ -14,6 +14,10 @@ class AdminUsers extends Component {
       .then(response => this.setState({ users: response }))
       .catch(err => console.log(err));
   };
+  formAfterSubmit = _ => {
+    document.getElementById("createUserForm").reset();
+    document.getElementById('toggleCreateUserForm').click();
+  }
   handleDelete = (id) => {
     let body = {
       id: id
@@ -25,6 +29,7 @@ class AdminUsers extends Component {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body)
       })
+
         .then(_ => {
           this.getUserList();
         })
@@ -39,7 +44,6 @@ class AdminUsers extends Component {
       email: this.refs.createUserMail.value,
       type: this.refs.createUserType.value,
     }
-    console.log(body)
     fetch(`http://localhost:5000/adminUsers/add`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -49,6 +53,9 @@ class AdminUsers extends Component {
         if (response.status >= 400) {
           throw alert('oh no');
         }
+      })
+      .then(_ => {
+        this.formAfterSubmit();
       })
       .then(_ => {
         this.getUserList();
@@ -66,9 +73,18 @@ class AdminUsers extends Component {
   render() {
     return (
       <div className="container tablesAdmin col-md-9 col-lg-10">
-        <button className="createNewBtn btn btn-sm btn-info" type="button" data-toggle="collapse" data-target='#newUserForm' aria-expanded="false" aria-controls='newUserForm'>Create new user</button>
+        <button
+          className="createNewBtn btn btn-sm btn-info"
+          id="toggleCreateUserForm"
+          type="button"
+          data-toggle="collapse"
+          data-target='#newUserForm'
+          aria-expanded="false"
+          aria-controls='newUserForm'>
+          Create new user
+        </button>
         <div className="collapseForm col-12 collapse" id="newUserForm">
-          <form onSubmit={this.handleSubmit} className="col-md-6 col-lg-3">
+          <form onSubmit={this.handleSubmit} className="col-md-6 col-lg-4" id="createUserForm">
             <div className="form-group ">
               <label>Brukernavn</label>
               <input type="text" className="form-control" ref="createUserName" required />
@@ -104,7 +120,7 @@ class AdminUsers extends Component {
                 <option value="publisher">journalist</option>
               </select>
             </div>
-            <button id="submitUser" type="submit" className="btn btn-info btn-sm">Submit</button>
+            <button id="submitUser" type="submit" className="btn btn-info btn-sm ">Submit</button>
           </form>
         </div>
         {

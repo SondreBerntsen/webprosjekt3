@@ -4,16 +4,29 @@ import NewsCard from "./NewsCard.js";
 
 class NewsCards extends Component {
   state = {
-    newsData: []
+    newsData: [],
+    year: ''
   };
   componentDidMount() {
-    let path = window.location.pathname.split("/").pop();
+    let path = this.props.year
+    this.setState({ year: path })
     this.getNewsList(path);
   }
-  componentWillUpdate() {
-    let path = window.location.pathname.split("/").pop();
-    this.getNewsList(path);
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.year !== prevState.year) {
+      return { year: nextProps.year };
+    }
+    else {
+      return null;
+    }
   }
+  componentDidUpdate(prevProps) {
+    if (prevProps.year !== this.state.year) {
+      this.getNewsList(this.state.year);
+    }
+  }
+
   getNewsList = path => {
     if (isNaN(path)) {
       fetch(`http://localhost:5000/posts`)

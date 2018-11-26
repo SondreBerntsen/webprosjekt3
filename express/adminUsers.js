@@ -58,6 +58,30 @@ adminUsers.post("/update", (req, res) => {
     });
 
 });
+//Updates password of the user
+adminUsers.post("/updatepwd", (req, res) => {
+    const { id } = req.body
+    bcrypt.genSalt(10, function (err, salt) {//hash the password
+        bcrypt.hash(req.body.password, salt, (err, hash) => {//hash the password
+            const password = hash;
+            const UPDATE_QUERY = `UPDATE users SET password = '${password}' WHERE id = ${id}`
+            db.query(UPDATE_QUERY, (err, results) => {//sends information to database
+                if (err) {
+                    return res.status(400).send("Database not updated");
+                } else {
+                    return res.json(results);
+                }
+            });
+            if (err) {
+                return res.status(400).send("Database not updated");
+            }
+        });
+        if (err) {
+            return res.status(400).send("Database not updated");
+        }
+    });
+
+});
 //Deletes a user from the system FIX. 
 adminUsers.post("/delete", (req, res) => {
     const { id } = req.body

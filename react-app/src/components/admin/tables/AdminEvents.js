@@ -236,7 +236,7 @@ class AdminEvents extends Component {
                 </div>
                 <div className="form-group col-md-6">
                   <label>Adresse</label>
-                  <select className="form-control custom-select" ref="createEventVenue">
+                  <select className="form-control custom-select" ref="createEventVenue" required>
                     <option></option>
                     {this.state.venues.map(function (venue) {
                       return (

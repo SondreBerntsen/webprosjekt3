@@ -6,10 +6,26 @@ import { Link } from "react-router-dom";
 import "../../styles/news.css";
 class News extends Component {
   state = {
-    years: []
+    years: [],
+    year: ''
   };
   componentDidMount() {
     this.getYearList();
+    let year = this.props.match.params.year;
+    this.setState({ year: year })
+  }
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.match.params.year !== prevState.year) {
+      return { year: nextProps.match.params.year };
+    }
+    else {
+      return null;
+    }
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.year !== this.state.year) {
+      this.getYearList();
+    }
   }
   getYearList = _ => {
     fetch(`http://localhost:5000/newsYearList`)
@@ -28,7 +44,8 @@ class News extends Component {
                 <h2 className="pageTitle">Nyheter</h2>
                 <hr className="hrHeight" />
                 <div className="newsYearLinks">
-                  {this.state.years.map(function(year) {
+                  {console.log(this.state.year)}
+                  {this.state.years.map(function (year) {
                     return (
                       <Link
                         className="btn newsYearLink"
@@ -41,7 +58,7 @@ class News extends Component {
                   })}
                 </div>
                 <div className="row ">
-                  <NewsCards />
+                  <NewsCards year={this.state.year} />
                 </div>
               </div>
             </div>
