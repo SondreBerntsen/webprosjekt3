@@ -21,14 +21,13 @@
 .headerText, .dateHeader{
     color:white;
     text-align: center;
-    margin-top:60px;
+    margin-top:30px;
     font-size: 18px;
 }
 .dateHeader{
-    font-family: Myriad-pro, sans-serif;
-    font-weight: 600;
+    font-family: balboa, sans-serif;
     font-style: normal;
-    font-size: 2.3rem;
+    font-size: 1.5rem;
 }
 .btnHeader{
     background-color:  #822a40;
