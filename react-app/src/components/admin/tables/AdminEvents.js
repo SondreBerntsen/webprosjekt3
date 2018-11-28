@@ -79,7 +79,7 @@ class AdminEvents extends Component {
     let body = {
       id: id
     }
-    if (window.confirm('Are you sure you wish to delete this item?')) {
+    if (window.confirm('Er du sikker på at du vil slette dette arranementet?')) {
       fetch(`http://localhost:5000/event/delete`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

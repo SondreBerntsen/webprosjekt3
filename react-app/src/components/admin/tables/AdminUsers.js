@@ -23,13 +23,18 @@ class AdminUsers extends Component {
       id: id
     }
     console.log(body);
+    console.log(body);
     if (window.confirm('Are you sure you wish to delete this user?')) {
       fetch(`http://localhost:5000/adminUsers/delete`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body)
       })
-
+        .then(function (response) {
+          if (response.status >= 400) {
+            throw alert('oh no');
+          }
+        })
         .then(_ => {
           this.getUserList();
         })

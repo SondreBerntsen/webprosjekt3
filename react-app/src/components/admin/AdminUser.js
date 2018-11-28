@@ -64,7 +64,7 @@ class AdminUser extends Component {
               <span className="smallHeading">{this.props.user.name}</span>
             </p>
             <div className="col-md-2">
-              <button className="btn btn-sm btn-danger btnInElementAdmin" onClick={() => { this.props.user.handleDelete(this.props.id) }}>
+              <button className="btn btn-sm btn-danger btnInElementAdmin" onClick={() => { this.props.handleDelete(this.props.user.id) }}>
                 Slett
             </button>
               <button

@@ -88,7 +88,7 @@ adminUsers.post("/delete", (req, res) => {
     const DELETE_QUERY = `DELETE FROM users WHERE id = ${id}`
     db.query(DELETE_QUERY, (err, results) => {
         if (err) {
-            return res.send(err);
+            return res.status(400).send("Database not updated");
         } else {
             return res.json(results);
         }
