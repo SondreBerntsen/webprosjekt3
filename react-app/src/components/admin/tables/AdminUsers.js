@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import AdminUser from "../AdminUser";
-import swal from 'sweetalert-react';
+import swal from 'sweetalert';
 
 class AdminUsers extends Component {
   state = {
@@ -76,7 +76,7 @@ class AdminUsers extends Component {
   }
   render() {
     return (
-      <div className="container tablesAdmin col-md-9 col-lg-10">
+      <div className="container tablesAdmin col-md-9 col-lg-10" >
         <button
           className="createNewBtn btn btn-sm btn-info"
           id="toggleCreateUserForm"
@@ -87,6 +87,7 @@ class AdminUsers extends Component {
           aria-controls='newUserForm'>
           Create new user
         </button>
+
         <div className="collapseForm col-12 collapse" id="newUserForm">
           <form onSubmit={this.handleSubmit} className="col-md-6 col-lg-4" id="createUserForm">
             <div className="form-group ">
@@ -126,6 +127,7 @@ class AdminUsers extends Component {
             </div>
             <button id="submitUser" type="submit" className="btn btn-info btn-sm ">Submit</button>
           </form>
+
         </div>
         {
           this.state.users.map(user => (
