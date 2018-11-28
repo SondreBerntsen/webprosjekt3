@@ -56,7 +56,7 @@ class Home extends Component{
         <div className="headerImage">
           <div className="container-fluid contentHeader  col-12 col-sm-10 col-lg-8 col-md-8 col-xl-6 ">
             <img className="logoImg  col-8 col-sm-6 col-md-6 col-lg-6 col-xl-5" src={require('../../img/logo.png')} alt="logo" />
-            {/* <p className="headerText">{this.state.content.pitch}</p>*/}
+            {<p className="headerText pitch">{this.state.content.pitch}</p>}
             <p className="dateHeader">{this.state.content.date}</p>
             {this.checkAnniversary()}
             <div className="row col-md-8 btnHeaderDiv">

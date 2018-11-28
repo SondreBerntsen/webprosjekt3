@@ -27,7 +27,7 @@
 .dateHeader{
     font-family: balboa, sans-serif;
     font-style: normal;
-    font-size: 1.5rem;
+    font-size: 3rem;
 }
 .btnHeader{
     background-color:  #822a40;
@@ -46,7 +46,7 @@
 .btnHeaderDiv{
     text-align: center; 
     margin: auto;
-    margin-top:10%;
+    margin-top:6%;
     /**bottom: 20%;
     left:0;
     right:0;
@@ -92,4 +92,28 @@
     font-size: 20px;
     font-weight: bold;
   }
+
+  /* Pitch frontpage, i have no idea how to make this look good */
   
+  .pitch {
+      font-size: 1.2rem;
+      background-color: #7a3100b9;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border-radius: 10px;
+      width: 70%;
+      margin: 0 auto;
+      margin-top: 40px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .pitch {
+        display: none;
+    }
+
+    .dateHeader {
+        font-size: 2.5rem;
+    }
+}
