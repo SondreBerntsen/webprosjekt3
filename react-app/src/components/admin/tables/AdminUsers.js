@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import AdminUser from "../AdminUser";
+import swal from 'sweetalert-react';
 
 class AdminUsers extends Component {
   state = {
@@ -22,8 +23,6 @@ class AdminUsers extends Component {
     let body = {
       id: id
     }
-    console.log(body);
-    console.log(body);
     if (window.confirm('Are you sure you wish to delete this user?')) {
       fetch(`http://localhost:5000/adminUsers/delete`, {
         method: 'POST',

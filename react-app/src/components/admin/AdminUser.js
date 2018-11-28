@@ -1,7 +1,11 @@
 
 import React, { Component } from "react";
 
+
 class AdminUser extends Component {
+  state = {
+    show: false
+  }
   handleUpdateSubmit = (e) => {
     e.preventDefault()
     let body = {
@@ -17,11 +21,11 @@ class AdminUser extends Component {
     })
       .then(function (response) {
         if (response.status >= 400) {
-          throw alert('oh no');
+          throw alert('Databasen ble ikke oppdatert');
         }
       })
       .then(_ => {
-        alert('yey det gikk')
+        document.getElementById('toggleEditUser' + this.props.user.id).click();//toggle form back
       })
       .catch(err => console.log(err))
   }
@@ -39,7 +43,7 @@ class AdminUser extends Component {
     })
       .then(function (response) {
         if (response.status >= 400) {
-          throw alert('oh no');
+          throw alert('Noe gikk galt');
         }
       })
       .then(_ => {
@@ -47,12 +51,12 @@ class AdminUser extends Component {
       })
       .catch(err => console.log(err))
   }
-  check_pass = _ => {
-    if (document.getElementById('updatePassword').value ===
-      document.getElementById('password_repeat').value) {
-      document.getElementById('submitPassword').disabled = false;
+  check_pass = id => {
+    if (document.getElementById('updatePassword' + id).value ===
+      document.getElementById('password_repeat' + id).value) {
+      document.getElementById('submitPassword' + id).disabled = false;
     } else {
-      document.getElementById('submitPassword').disabled = true;
+      document.getElementById('submitPassword' + id).disabled = true;
     }
   }
   render() {
@@ -64,6 +68,7 @@ class AdminUser extends Component {
               <span className="smallHeading">{this.props.user.name}</span>
             </p>
             <div className="col-md-2">
+
               <button className="btn btn-sm btn-danger btnInElementAdmin" onClick={() => { this.props.handleDelete(this.props.user.id) }}>
                 Slett
             </button>
@@ -74,6 +79,7 @@ class AdminUser extends Component {
                 data-target={"#userForm" + this.props.user.id}
                 aria-expanded="false"
                 aria-controls={"userForm" + this.props.user.id}
+                id={'toggleEditUser' + this.props.user.id}
               >
                 Rediger
             </button>
@@ -123,8 +129,8 @@ class AdminUser extends Component {
                   type="password"
                   className="form-control"
                   ref="updateUserPassword"
-                  id="updatePassword"
-                  onChange={() => { this.check_pass() }}
+                  id={"updatePassword" + this.props.user.id}
+                  onChange={() => { this.check_pass(this.props.user.id) }}
                 />
               </div>
               <div className="form-group ">
@@ -132,11 +138,11 @@ class AdminUser extends Component {
                 <input
                   type="password"
                   className="form-control"
-                  id="password_repeat"
-                  onChange={() => { this.check_pass() }}
+                  id={"password_repeat" + this.props.user.id}
+                  onChange={() => { this.check_pass(this.props.user.id) }}
                 />
               </div>
-              <button type="submit " className="btn btn-info btn-sm " id="submitPassword">
+              <button type="submit " className="btn btn-info btn-sm " id={"submitPassword" + this.props.user.id}>
                 Rediger passord
               </button>
             </form>
