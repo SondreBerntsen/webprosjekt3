@@ -52,41 +52,84 @@ class AdminReviewItem extends Component {
     }
     */
   }
-
-  handleSubmit = (e) => {
-    /*
-    e.preventDefault()
+  handleEdit = (e) => {
     let body = {
-      id: this.state.id,
-      title: this.state.title,
-      venue: this.state.venue.id,
-      time: this.state.time,
-      price: this.state.price,
-      date: this.state.date
+      id: '',
+      year: '',
+      text: ''
     }
-    console.log(body)
-
-    fetch(`http://localhost:5000/programme/update`, {
+    fetch(`http://localhost:5000/review/update`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
     })
-      .then((response) => {
-        response.json()
-        this.setState({ status: 'edited' })
-        this.refs.title.innerHTML = this.state.title
-        this.refs.address.innerHTML = this.state.venue.address
-        this.refs.price.innerHTML = this.state.price
-        this.refs.time.innerHTML = this.state.time
-        this.refs.date.innerHTML = this.state.date
-        this.refs.venueIcon.innerHTML = ""
-        this.refs.timeIcon.innerHTML = ""
-        this.refs.priceIcon.innerHTML = ""
-        this.refs.dateIcon.innerHTML = ""
-        console.log(this.state)
+    .then((response) => {
+      response.json()
+      //idkwat.
+    })
+    .catch(err => console.log(err))
+
+
+  }
+  handleSubmitRecording = (e) => {
+    e.preventDefault()
+    let body ={
+      //get some dank values from somewhere
+    }
+    fetch(`http://localhost:5000/review/newRecording`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    })
+    .then((response) => {
+      response.json()
+      //idkwat. probably don't even need response, unless checking for big faulty dick
+    })
+    .catch(err => console.log(err))
+  }
+  handleSubmitImage = (e) => {
+    e.preventDefault()
+    let body ={
+      //get some dank values from somewhere RAGNHILD HOW
+    }
+    fetch(`http://localhost:5000/review/newImage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    })
+    .then((response) => {
+      response.json()
+      //idkwat. probably don't even need response, unless checking for big faulty dick
+    })
+    .catch(err => console.log(err))
+  }
+  handleDeleteRecording = (id) => {
+    let body = {id: id}
+    if (window.confirm('Are you sure you wish to delete this item?')) {
+      fetch('http://localhost:5000/review/deleteRecording', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
       })
-      .catch(err => console.log(err))
-    */
+        .then(_ => {
+          console.log("No idea what to do now, but item was deleted I guess")
+        })
+        .catch(err => console.log(err))
+    }
+  }
+  handleDeleteImage = (id) => {
+    let body = {id: id}
+    if (window.confirm('Are you sure you wish to delete this item?')) {
+      fetch('http://localhost:5000/review/deleteImage', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      })
+        .then(_ => {
+          console.log("No idea what to do now, but item was deleted I guess")
+        })
+        .catch(err => console.log(err))
+    }
   }
   render() {
     return (
@@ -99,9 +142,9 @@ class AdminReviewItem extends Component {
                 className="btn  btn-secondary btnInElementAdmin btn-sm  "
                 type="button"
                 data-toggle="collapse"
-                data-target={"#scheduleItemForm" + this.props.year.id}
+                data-target={"#reviewItemForm" + this.props.year.id}
                 aria-expanded="false"
-                aria-controls={"scheduleItemForm" + this.props.year.id}
+                aria-controls={"reviewItemForm" + this.props.year.id}
               >
                 Rediger
               </button>
@@ -109,74 +152,167 @@ class AdminReviewItem extends Component {
           </div>
         </div>
 
-        <div className="collapse editScheduleItem" id={"scheduleItemForm" + this.props.year.id}>
-          <form className="col-md-12" >
-            <div className="form-row">
+        <div className="collapse" id={"reviewItemForm" + this.props.year.id}>
+          <div className="adminEditItem">
+            <form className="col-md-12" >
               <div className="form-row">
                 <div className="form-group col-md-2">
-                    <label>Year</label>
+                    <label>År</label>
                     <input
                       type="number"
                       className="form-control"
                       defaultValue={this.props.year.year}
                     ></input>
                 </div>
+              </div>
+              <div className="form-row">
                 <div className="form-group col-md-12">
-                    <label>Text</label>
-                    <textarea
-                      type="text-area"
-                      className="form-control"
-                      defaultValue={this.props.year.text}
-                    ></textarea>
+                  <label>Text</label>
+                  <textarea
+                    type="text-area"
+                    className="form-control"
+                    defaultValue={this.props.year.text}
+                  ></textarea>
                 </div>
-                <div className="form-group col-md-12">
-                  <label>Recordings</label>
-                  <div className="col-md-6">
-                    {
-                      this.props.year.recordings.map((link, index) => {
-                        return(
-                          <div key={index} className="colorandmarginchangeFIX subElement">
-                            <div className="row">
-                              <p className="col-md-9">{link.name}</p>
-                              <button 
-                                className="btn btn-secondary btnInElementAdmin btn-sm col-md-2" 
-                                type="button">Delete</button>
-                            </div>
-                            <p>{link.link}</p>
-                          </div>
-                        )
-                      })
-                    }
+                <button type="submit" className="btn btn-info btn-sm">
+                  Rediger
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div className="row adminEditItem">
+            <label className="labelNonBlock col-md-9">Opptak</label>
+            <button
+              className="btn btn-secondary btnInElementAdmin btn-sm col-md-2"
+              type="button"
+              data-toggle="collapse"
+              data-target={"#recordingsList" + this.props.year.id}
+              aria-expanded="false"
+              aria-controls={"recordingsList" + this.props.year.id}
+            >
+              Vis liste
+            </button>
+            <div className="collapse col-md-7 subElementLeft" id={"recordingsList" + this.props.year.id}>
+              {
+                this.props.year.recordings.map((link, index) => {
+                  return(
+                    <div key={index} className="colorandmarginchangeFIX subElement">
+                      <div className="row">
+                        <p className="col-md-9">{link.name}</p>
+                        <button 
+                          className="btn btn-secondary btnInElementAdmin btn-sm col-md-2" 
+                          type="button">Delete</button>
+                      </div>
+                      <p>{link.link}</p>
+                    </div>
+                  )
+                })
+              }
+            </div>
+            <div className="col-md-4">
+              <h5>Legg til nytt opptak</h5>
+              <form>
+                <div className="form-row">
+                  <div className="form-group col-md-12">
+                    <label>Tittel</label>
+                    <input
+                      type="text"
+                      className="form-control col-md-12"
+                    ></input>
                   </div>
                 </div>
-              </div>
-              <div className="form-group col-md-12">
-                <label>Images</label>
-                <div className="row subDropdown">
-                  <button className="btn btn-secondary btnInElementAdmin btn-sm col-md-2" type="button">Legg til nytt bilde</button>
-                  {
-                    this.props.year.slides.map((slide, index) => {
-                      try {
-                        return (
-                          <img 
-                            className="eventImgEdit col-md-4"
-                            src={require('../../uploadedImg/sliderImg/' + slide.id)}
-                            alt={this.props.year.year + '_slide_' + index} 
-                          />
-                        )
-                      }
-                      catch (err) {
-                        return null
-                      }
-                    })
-                  }
+                <div className="form-row">
+                  <div className="form-group col-md-12">
+                    <label>Link</label>
+                    <input
+                      type="text"
+                      className="form-control col-md-12"
+                    ></input>
+                  </div>
                 </div>
-              </div>
+                <button type="submit" className="btn btn-info btn-sm">
+                  Legg til
+                </button>
+              </form>
             </div>
-            <button type="submit" className="btn btn-info btn-sm">
-              Rediger
+          </div>
+                
+          <div className="row adminEditItem">
+            <label className="col-md-9">Images</label>
+            <button
+              className="btn btn-secondary btnInElementAdmin btn-sm col-md-2"
+              type="button"
+              data-toggle="collapse"
+              data-target={"#imgList" + this.props.year.id}
+              aria-expanded="false"
+              aria-controls={"imgList" + this.props.year.id}
+              >
+                Vis liste
             </button>
-          </form>
+            <div className="collapse col-md-7 subElementLeft" id={"imgList" + this.props.year.id}>
+              {
+                this.props.year.slides.map((slide, index) => {
+                  try {
+                    return (
+                      <div className="row subElement">
+                        <img 
+                          className="eventImgEdit col-md-6"
+                          src={require('../../uploadedImg/sliderImg/' + slide.id)}
+                          alt={this.props.year.year + '_slide_' + index} 
+                        />
+                        <div className="col-md-6">
+                          <h5>Title: </h5><p>{slide.title}</p>
+                          <h5>Caption: </h5><p>{slide.caption}</p>
+                          <button className="btn btn-secondary btnInElementAdmin btn-sm">
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    )
+                  }
+                  catch (err) {
+                    return null
+                  }
+                })
+              }
+            </div>
+            <div className="col-md-4">
+              <h5>Last opp nytt bilde</h5>
+              <form>
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Tittel</label>
+                    <input
+                      type="text"
+                      className="form-control col-md-12"
+                    ></input>
+                  </div>
+                </div>
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Caption</label>
+                    <input
+                      type="text"
+                      className="form-control col-md-12"
+                    ></input>
+                  </div>
+                </div>
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Bilde</label>
+                    <input
+                      type="file"
+                      className="marginBottom10"
+                    />
+                  </div>
+                  <button type="submit" className="btn btn-info btn-sm">
+                    Legg til
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       </React.Fragment>
     );

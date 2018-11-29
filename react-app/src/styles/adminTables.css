@@ -4,7 +4,8 @@
   float: right;
   margin-top: 75px;
 }
-.editScheduleItem {
+.editScheduleItem,
+.adminEditItem {
   background-color: #f4f4f4;
   padding: 20px;
   margin-top: 0;
@@ -29,8 +30,12 @@
 }
 .subElement{
   background-color: lightgrey;
+  box-sizing: border-box;
   padding: 10px;
   margin-top: 5px;
+}
+.subElementLeft{
+  margin-right: 5px;
 }
 .btnInElementAdmin {
   float: right;
@@ -92,7 +97,9 @@
   margin-right: 20px;
   margin-bottom: 20px;
 }
-
+.marginBottom10 {
+  margin-bottom: 10px;
+}
 .addReport {
   margin-bottom: 25px;
 }
@@ -100,7 +107,9 @@
 .lanLabel {
   display: block;
 }
-
+.labelNonBlock {
+  display: inline;
+}
 /**Settings**/
 .settingsHeader {
   margin-bottom: 50px;

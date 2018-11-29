@@ -48,6 +48,69 @@ review.get("/", (req, res) => {
     })
   }
   review_query()
-});
+})
+
+review.post('/update', (req, res) => {
+  const {id, year, text} = req.body
+  let QUERY = `
+    UPDATE events
+    SET 
+      year = '${year}', 
+      text =  '${text}'
+    WHERE id = ${id}
+  `
+  db.query(QUERY, (err, results) => {
+    if (err) res.send(err);
+    return res.json(results);
+  });
+})
+
+review.post("/newRecording", (req, res) => {
+  const {id, link, name, r_id} = req.body
+  let QUERY = `
+    INSERT INTO 'video_links' (id, link, name, r_id)
+    VALUES (${id}, ${link}, ${name}, ${r_id})
+  `
+  db.query(QUERY, (err, results) => {
+    if (err) res.send(err);
+    return res.json(results);
+  });
+})
+
+review.post("/newImage", (req, res) => {
+  const {id, title, caption, r_id} = req.body
+  let QUERY = `
+    INSERT INTO images (id, title, caption, r_id) 
+    VALUES (${id}, ${title}, ${caption}, ${r_id})
+  `
+  db.query(QUERY, (err, results) => {
+    if (err) res.send(err);
+    return res.json(results);
+  });
+})
+
+review.post("/deleteRecording", (req, res) => {
+  const {id} = req.body
+  let QUERY = `
+    DELETE FROM 'video_links'
+    WHERE id = ${id}
+  `
+  db.query(QUERY, (err, results) => {
+    if (err) res.send(err);
+    return res.json(results);
+  });
+})
+
+review.post("/deleteImage", (req, res) => {
+  const {id} = req.body
+  let QUERY = `
+    DELETE FROM 'images'
+    WHERE id = ${id}
+  `
+  db.query(QUERY, (err, results) => {
+    if (err) res.send(err);
+    return res.json(results);
+  });
+})
 
 module.exports = review
