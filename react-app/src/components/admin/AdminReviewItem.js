@@ -135,7 +135,7 @@ class AdminReviewItem extends Component {
                     {
                       this.props.year.recordings.map((link, index) => {
                         return(
-                          <div key={index} className="colorandmarginchangeFIX subDropdown">
+                          <div key={index} className="colorandmarginchangeFIX subElement">
                             <div className="row">
                               <p className="col-md-9">{link.name}</p>
                               <button 
