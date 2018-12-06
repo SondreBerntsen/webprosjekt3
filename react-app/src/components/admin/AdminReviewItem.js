@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {fixDateString, fixTimeString} from '../Functions'
+import { fixDateString, fixTimeString } from '../Functions'
 
 
 class AdminReviewItem extends Component {
@@ -63,17 +63,17 @@ class AdminReviewItem extends Component {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
     })
-    .then((response) => {
-      response.json()
-      //idkwat.
-    })
-    .catch(err => console.log(err))
+      .then((response) => {
+        response.json()
+        //idkwat.
+      })
+      .catch(err => console.log(err))
 
 
   }
   handleSubmitRecording = (e) => {
     e.preventDefault()
-    let body ={
+    let body = {
       //get some dank values from somewhere
     }
     fetch(`http://localhost:5000/review/newRecording`, {
@@ -81,15 +81,15 @@ class AdminReviewItem extends Component {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
     })
-    .then((response) => {
-      response.json()
-      //idkwat. probably don't even need response, unless checking for big faulty dick
-    })
-    .catch(err => console.log(err))
+      .then((response) => {
+        response.json()
+        //idkwat. probably don't even need response, unless checking for big faulty dick
+      })
+      .catch(err => console.log(err))
   }
   handleSubmitImage = (e) => {
     e.preventDefault()
-    let body ={
+    let body = {
       //get some dank values from somewhere RAGNHILD HOW
     }
     fetch(`http://localhost:5000/review/newImage`, {
@@ -97,14 +97,14 @@ class AdminReviewItem extends Component {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
     })
-    .then((response) => {
-      response.json()
-      //idkwat. probably don't even need response, unless checking for big faulty dick
-    })
-    .catch(err => console.log(err))
+      .then((response) => {
+        response.json()
+        //idkwat. probably don't even need response, unless checking for big faulty dick
+      })
+      .catch(err => console.log(err))
   }
   handleDeleteRecording = (id) => {
-    let body = {id: id}
+    let body = { id: id }
     if (window.confirm('Are you sure you wish to delete this item?')) {
       fetch('http://localhost:5000/review/deleteRecording', {
         method: 'POST',
@@ -118,7 +118,7 @@ class AdminReviewItem extends Component {
     }
   }
   handleDeleteImage = (id) => {
-    let body = {id: id}
+    let body = { id: id }
     if (window.confirm('Are you sure you wish to delete this item?')) {
       fetch('http://localhost:5000/review/deleteImage', {
         method: 'POST',
@@ -157,17 +157,17 @@ class AdminReviewItem extends Component {
             <form className="col-md-12" >
               <div className="form-row">
                 <div className="form-group col-md-2">
-                    <label>År</label>
-                    <input
-                      type="number"
-                      className="form-control"
-                      defaultValue={this.props.year.year}
-                    ></input>
+                  <label>År</label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    defaultValue={this.props.year.year}
+                  ></input>
                 </div>
               </div>
               <div className="form-row">
                 <div className="form-group col-md-12">
-                  <label>Text</label>
+                  <label>Tekst</label>
                   <textarea
                     type="text-area"
                     className="form-control"
@@ -196,13 +196,13 @@ class AdminReviewItem extends Component {
             <div className="collapse col-md-7 subElementLeft" id={"recordingsList" + this.props.year.id}>
               {
                 this.props.year.recordings.map((link, index) => {
-                  return(
+                  return (
                     <div key={index} className="colorandmarginchangeFIX subElement">
                       <div className="row">
                         <p className="col-md-9">{link.name}</p>
-                        <button 
-                          className="btn btn-secondary btnInElementAdmin btn-sm col-md-2" 
-                          type="button">Delete</button>
+                        <button
+                          className="btn btn-secondary btnInElementAdmin btn-sm col-md-2"
+                          type="button">Slett</button>
                       </div>
                       <p>{link.link}</p>
                     </div>
@@ -237,9 +237,9 @@ class AdminReviewItem extends Component {
               </form>
             </div>
           </div>
-                
+
           <div className="row adminEditItem">
-            <label className="col-md-9">Images</label>
+            <label className="col-md-9">Bilder</label>
             <button
               className="btn btn-secondary btnInElementAdmin btn-sm col-md-2"
               type="button"
@@ -247,8 +247,8 @@ class AdminReviewItem extends Component {
               data-target={"#imgList" + this.props.year.id}
               aria-expanded="false"
               aria-controls={"imgList" + this.props.year.id}
-              >
-                Vis liste
+            >
+              Vis liste
             </button>
             <div className="collapse col-md-7 subElementLeft" id={"imgList" + this.props.year.id}>
               {
@@ -256,16 +256,16 @@ class AdminReviewItem extends Component {
                   try {
                     return (
                       <div className="row subElement">
-                        <img 
+                        <img
                           className="eventImgEdit col-md-6"
                           src={require('../../uploadedImg/sliderImg/' + slide.id)}
-                          alt={this.props.year.year + '_slide_' + index} 
+                          alt={this.props.year.year + '_slide_' + index}
                         />
                         <div className="col-md-6">
-                          <h5>Title: </h5><p>{slide.title}</p>
-                          <h5>Caption: </h5><p>{slide.caption}</p>
+                          <h5>Tittel: </h5><p>{slide.title}</p>
+                          <h5>Bildetekst: </h5><p>{slide.caption}</p>
                           <button className="btn btn-secondary btnInElementAdmin btn-sm">
-                            Delete
+                            Slett
                           </button>
                         </div>
                       </div>
@@ -291,7 +291,7 @@ class AdminReviewItem extends Component {
                 </div>
                 <div className="form-row">
                   <div className="form-group">
-                    <label>Caption</label>
+                    <label>Bildetekst</label>
                     <input
                       type="text"
                       className="form-control col-md-12"

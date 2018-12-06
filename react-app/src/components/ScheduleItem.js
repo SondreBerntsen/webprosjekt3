@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { fixTimeString } from './Functions'
 
 const ScheduleItem = props => {
   // Outputs "More info" div only if the user is on Programme page
@@ -17,7 +18,7 @@ const ScheduleItem = props => {
                 <span role="img" aria-label="icon">
                   &#128337;
                 </span>{" "}
-                {props.event.time}
+                {fixTimeString(props.event.time)}
               </p>
               {checkPrice()}
               <div className="col-md-3 buttonDiv">

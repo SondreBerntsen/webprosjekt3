@@ -40,7 +40,7 @@ class Event extends Component {
   };
 
   getYTID() {
-    if (this.state.eventData[0].youtube_link !== null) {
+    if (this.state.eventData[0].youtube_link !== null && this.state.eventData[0].youtube_link !== "") {
       let yt_link = this.state.eventData[0].youtube_link;
       var regex = new RegExp("(?<=v=)()(.*$)");
       var yt_vid = regex.exec(yt_link)[0];

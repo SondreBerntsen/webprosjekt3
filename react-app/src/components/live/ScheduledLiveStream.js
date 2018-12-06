@@ -1,6 +1,7 @@
 //ScheduledLiveStream component
 import React from "react";
 import "../../styles/live.css";
+import { fixDateString, fixTimeString } from '../Functions'
 
 const ScheduledLiveStream = props => {
   const nextLiveStream = props.ScheduledLiveStreams.map(nextLive => {
@@ -10,10 +11,10 @@ const ScheduledLiveStream = props => {
           <h5 className="upcomingStreamTitle">{nextLive.title}</h5>
         </div>
         <div className="col-sm-6 col-md-3">
-          <span>{nextLive.date}</span>
+          <span>Dato: {fixDateString(nextLive.date)}</span>
         </div>
         <div className="col-sm-6 col-md-3">
-          <span>{nextLive.time}</span>
+          <span>Kl.: {fixTimeString(nextLive.time)}</span>
         </div>
       </div>
     );

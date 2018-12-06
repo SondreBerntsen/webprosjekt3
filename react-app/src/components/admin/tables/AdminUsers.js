@@ -85,7 +85,7 @@ class AdminUsers extends Component {
           data-target='#newUserForm'
           aria-expanded="false"
           aria-controls='newUserForm'>
-          Create new user
+          Legg til bruker
         </button>
 
         <div className="collapseForm col-12 collapse" id="newUserForm">
@@ -125,7 +125,7 @@ class AdminUsers extends Component {
                 <option value="publisher">journalist</option>
               </select>
             </div>
-            <button id="submitUser" type="submit" className="btn btn-info btn-sm ">Submit</button>
+            <button id="submitUser" type="submit" className="btn btn-info btn-sm ">Send</button>
           </form>
 
         </div>

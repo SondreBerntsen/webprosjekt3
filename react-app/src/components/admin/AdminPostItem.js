@@ -23,7 +23,7 @@ const AdminPostItem = props => {
             aria-expanded="false"
             aria-controls={"post" + props.post.id}
           >
-            Edit
+            Rediger
           </button>
         </div>
       </div>
