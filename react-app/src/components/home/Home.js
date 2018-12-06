@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import EventList from "../EventList";
+import Timeline from "../anniversary/Timeline";
 import "../../styles/home.css";
 import "../../styles/anniversary.css"
 import { Link } from "react-router-dom";
@@ -68,20 +69,7 @@ class Home extends Component{
             <div className="row "><EventList year={this.state.year} /></div>
           </div>
 
-          <div className="timeline">
-            <div className="containerTimeline leftTimeline">
-              <div class="contentTimeline">
-                <h2>2017</h2>
-                <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
-              </div>
-            </div>
-            <div className="containerTimeline rightTimeline">
-              <div className="contentTimeline">
-                <h2>2016</h2>
-                <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
-              </div>
-            </div>
-          </div>
+          {<Timeline />}
         </div>
 
 
