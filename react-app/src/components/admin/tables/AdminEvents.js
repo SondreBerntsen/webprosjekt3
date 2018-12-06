@@ -104,7 +104,7 @@ class AdminEvents extends Component {
     data.append('payment_link', this.refs.createEventPayment.value);
     data.append('img', this.refs.createEventImg.files[0]);
     data.append('venue', this.refs.createEventVenue.value);
-    data.append('livestream', this.refs.createEventLivestream.value);
+    data.append('livestream', this.state.livestream);
 
 
     fetch(`http://localhost:5000/event/add`, {
@@ -117,14 +117,25 @@ class AdminEvents extends Component {
         }
       })
       .then(_ => {
-        console.log('kommer du inn hit tro');
-      })
-      .then(_ => {
         this.formAfterSubmit();
       })
       .catch(err => console.log(err))
   }
+
+  handleChange = e => {
+    // checks name of target
+    switch (e.target.name) {
+      //if name equals 'language'..
+      case "livestreamradio":
+        // .. it sets the value of target in state
+        this.setState({ livestream: e.target.value });
+        break;
+
+      default:
+    }
+  };
   render() {
+    //console.log(this.refs.createEventLivestream.value);
 
     return (
       <React.Fragment>
@@ -250,11 +261,11 @@ class AdminEvents extends Component {
               <div className="form-check form-check-inline">
                 <input
                   className="form-check-input"
-                  defaultChecked
                   ref="createEventLivestream"
                   name="livestreamradio"
                   type="radio"
                   value="1"
+                  onChange={this.handleChange}
                 />
                 <label className="form-check-label">
                   Planlagt Livestream
@@ -267,6 +278,7 @@ class AdminEvents extends Component {
                   name="livestreamradio"
                   type="radio"
                   value='0'
+                  onChange={this.handleChange}
                 />
                 <label className="form-check-label" >
                   Ingen planlagt livestream
