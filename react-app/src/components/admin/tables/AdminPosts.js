@@ -135,7 +135,7 @@ class AdminPosts extends Component {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Enter title"
+                placeholder="Legg til tittel"
                 ref="createVenueTitle"
                 required
               />
@@ -145,7 +145,6 @@ class AdminPosts extends Component {
               <input
                 type="file"
                 className="form-control"
-                placeholder="Enter title"
                 ref="createVenueImg"
               />
             </div>

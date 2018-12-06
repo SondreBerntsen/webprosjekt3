@@ -5,10 +5,10 @@ class AdminSettings extends Component {
   render() {
     return (
       <div className="container tablesAdmin col-md-9 col-lg-10">
-        <h2 className="settingsHeader">Page settings</h2>
+        <h2 className="settingsHeader">Innstillinger for websiden</h2>
         <div className="col-lg-6 row">
           <div className="col-md-6">
-            <span className="settingTxt">Festival season</span>
+            <span className="settingTxt">Festivalsesong</span>
           </div>
           {/**fix this has to be a form. On of the buttons has to be active.. **/}
           <div className="col-lg-6">
@@ -21,7 +21,7 @@ class AdminSettings extends Component {
                   autoComplete="off"
                   aria-describedby="helptext"
                 />{" "}
-                Active
+                Aktiv
               </label>
               <label className="btn btn-secondary">
                 <input
@@ -30,15 +30,15 @@ class AdminSettings extends Component {
                   id="option2"
                   autoComplete="off"
                 />{" "}
-                Inactive
+                Inaktiv
               </label>
             </div>
             <small id="helptext" className="form-text text-muted">
-              This text will explain what the buttons do
+              Her skal vi forklare hva knappene gjør
             </small>
           </div>
           <div className="col-md-6">
-            <span className="settingTxt">Anniversary</span>
+            <span className="settingTxt">Jubileum</span>
           </div>
           {/**fix this has to be a form. On of the buttons has to be active..  name has to change**/}
           <div className="col-lg-6">
@@ -51,7 +51,7 @@ class AdminSettings extends Component {
                   autoComplete="off"
                   aria-describedby="helptext"
                 />{" "}
-                Active
+                Aktiv
               </label>
               <label className="btn btn-secondary">
                 <input
@@ -60,11 +60,11 @@ class AdminSettings extends Component {
                   id="option2"
                   autoComplete="off"
                 />{" "}
-                Inactive
+                Inaktiv
               </label>
             </div>
             <small id="helptext" className="form-text text-muted">
-              This text will explain what the buttons do
+              Her skal vi forklare hva knappene gjør
             </small>
           </div>
         </div>

@@ -2,9 +2,9 @@ import React, { Component } from "react"
 import AdminReviewItem from '../AdminReviewItem'
 
 class AdminReview extends Component {
-  state = {years: []};
+  state = { years: [] };
 
-  componentDidMount(){
+  componentDidMount() {
     this.getData()
   }
   getData = () => {
@@ -12,25 +12,25 @@ class AdminReview extends Component {
       .then(response => response.json())
       .then(response => this.structureData(response.data))
       .catch(err => console.log(err))
-      console.log(this.state)
+    console.log(this.state)
   }
 
   structureData = (data) => {
     let years = []
-    for(let i = 0; i < data.reviewData.length; i++){
+    for (let i = 0; i < data.reviewData.length; i++) {
       let year = data.reviewData[i]
       year.slides = []
       year.recordings = []
-      for(let j = 0; j < data.slides.length; j++){
-        if(data.slides[j].r_id === year.id) year.slides.push(data.slides[j])
+      for (let j = 0; j < data.slides.length; j++) {
+        if (data.slides[j].r_id === year.id) year.slides.push(data.slides[j])
       }
-      for(let j = 0; j < data.recordings.length; j++){
-        if(data.recordings[j].r_id === year.id) year.recordings.push(data.recordings[j])
+      for (let j = 0; j < data.recordings.length; j++) {
+        if (data.recordings[j].r_id === year.id) year.recordings.push(data.recordings[j])
       }
 
       years.push(year)
     }
-    this.setState({years: years})
+    this.setState({ years: years })
   }
   render() {
     return (
@@ -44,36 +44,35 @@ class AdminReview extends Component {
             aria-expanded="false"
             aria-controls="newReviewForm"
           >
-            Create new year in review
+            Legg til nytt år i tilbakeblikk
           </button>
           <div className="collapseForm col-12 collapse" id="newReviewForm">
             <form className="col-md-8 col-lg-6">
               <div className="form-row">
-                <label>Year</label>
+                <label>År</label>
                 <input
                   type="number"
                   className="form-control"
-                  placeholder="Enter year"
+                  placeholder="Legg til år"
                 />
               </div>
               <div className="form-row">
-                <label>Image</label>
+                <label>Bilde</label>
                 <input
                   type="file"
                   className="form-control"
-                  placeholder="Enter title"
                 />
               </div>
               <div className="form-group">
-                <label>Year in review text</label>
+                <label>Tekst</label>
                 <textarea type="text" className="form-control" />
               </div>
               <button type="submit" className="btn btn-info btn-sm">
-                Submit
+                Send
               </button>
             </form>
           </div>
-          { this.state.years.map((year, index) => (
+          {this.state.years.map((year, index) => (
             <AdminReviewItem key={index} year={year} />
           ))}
         </div>
