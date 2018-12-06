@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import EventList from "../EventList";
+import Timeline from "../anniversary/Timeline";
 import "../../styles/home.css";
 import "../../styles/anniversary.css"
 import { Link } from "react-router-dom";
@@ -43,7 +44,7 @@ class Home extends Component {
     if (this.state.content.anniversary === true) {
       return (
         <div className="row col-md-8 btnHeaderDiv">
-          <Link to="/tilbakeblikk/10ar" className="btnHeader btn col-sm-12 col-md-10 col-lg-5">De siste 10 årene!</Link>
+          <Link to="/jubileum" className="btnHeader btn col-sm-12 col-md-10 col-lg-5">10-års jubileum!</Link>
         </div>
       )
     }

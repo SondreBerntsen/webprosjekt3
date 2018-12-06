@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { fixDateString, fixTimeString } from '../Functions'
 
 
 class AdminReviewItem extends Component {
