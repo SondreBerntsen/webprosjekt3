@@ -34,7 +34,7 @@ class App extends Component {
           <Route exact path="/nyheter" component={News} />
           <Route path="/nyheter/:year" component={News} />
           <Route path="/tilbakeblikk/:reviewId" component={Review} />
-          <Route path="/anniversary" component={Anniversary} />
+          <Route path="/jubileum" component={Anniversary} />
           <Route path="/kontakt" component={Contact} />
           <Route path="/program" component={Programme} />
           <Route path="/live" component={Live} />
