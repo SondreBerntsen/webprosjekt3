@@ -6,6 +6,7 @@ import Programme from "./components/programme/Programme";
 import About from "./components/about/About";
 import News from "./components/news/News";
 import Review from "./components/review/Review";
+import Anniversary from "./components/anniversary/Anniversary";
 import Contact from "./components/contact/Contact";
 import Live from "./components/live/Live";
 import Event from "./components/event/Event";
@@ -33,6 +34,7 @@ class App extends Component {
           <Route exact path="/nyheter" component={News} />
           <Route path="/nyheter/:year" component={News} />
           <Route path="/tilbakeblikk/:reviewId" component={Review} />
+          <Route path="/anniversary" component={Anniversary} />
           <Route path="/kontakt" component={Contact} />
           <Route path="/program" component={Programme} />
           <Route path="/live" component={Live} />

@@ -13,6 +13,7 @@ var partners = require("./partners");
 var festivalreports = require("./festivalreports");
 var general = require("./general");
 var review = require("./review");
+var anniversary = require("./anniversary")
 var contactPersons = require("./contactPersons");
 var event = require("./event");
 var posts = require("./posts");
@@ -39,6 +40,7 @@ app.use("/partners", partners);
 app.use("/festivalreports", festivalreports);
 app.use("/general", general);
 app.use("/review", review);
+app.use("/anniversary", anniversary);
 app.use("/contactPersons", contactPersons);
 app.use("/event", event);
 app.use("/posts", posts);
