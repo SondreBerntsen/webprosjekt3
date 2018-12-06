@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import EventList from "../EventList";
@@ -6,7 +6,7 @@ import "../../styles/home.css";
 import "../../styles/anniversary.css"
 import { Link } from "react-router-dom";
 
-class Home extends Component{
+class Home extends Component {
   state = {
     year: '',
     content: {}
@@ -27,21 +27,21 @@ class Home extends Component{
     let content = {}
     //content for no anniversary
     content.anniversary = (data.anniversary === "on" ? true : false)
-    if(data.status === "active"){
+    if (data.status === "active") {
       content.pitch = data.pitch
       content.date = data.dateHeader_txt
     }
-    else{
+    else {
       content.pitch = data.pitch
       content.inactive = data.inactiveHeader_txt
     }
     let date = new Date();
     let year = date.getFullYear();
-    this.setState({year: year, content: content})
+    this.setState({ year: year, content: content })
   }
   checkAnniversary = () => {
-    if(this.state.content.anniversary === true){
-      return(
+    if (this.state.content.anniversary === true) {
+      return (
         <div className="row col-md-8 btnHeaderDiv">
           <Link to="/tilbakeblikk/10ar" className="btnHeader btn col-sm-12 col-md-10 col-lg-5">De siste 10 årene!</Link>
         </div>
@@ -49,13 +49,13 @@ class Home extends Component{
     }
   }
 
-  render(){
+  render() {
     return (
       <React.Fragment>
         <Navbar />
         <div className="headerImage">
           <div className="container-fluid contentHeader  col-12 col-sm-10 col-lg-8 col-md-8 col-xl-6 ">
-            <img className="logoImg  col-8 col-sm-6 col-md-6 col-lg-6 col-xl-5" src={require('../../img/logo.png')} alt="logo" />
+            <img className="logoImg  col-sm-12 col-md-5 " src={require('../../img/logo.png')} alt="logo" />
             {<p className="headerText pitch">{this.state.content.pitch}</p>}
             <p className="dateHeader">{this.state.content.date}</p>
             {this.checkAnniversary()}
