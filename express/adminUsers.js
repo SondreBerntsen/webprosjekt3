@@ -82,7 +82,7 @@ adminUsers.post("/updatepwd", (req, res) => {
     });
 
 });
-//Deletes a user from the system FIX. 
+//Deletes a user from the system FIX-alle brukere kan ikke bli slettet. 
 adminUsers.post("/delete", (req, res) => {
     const { id } = req.body
     const DELETE_QUERY = `DELETE FROM users WHERE id = ${id}`
