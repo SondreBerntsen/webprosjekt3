@@ -63,11 +63,11 @@ class AdminSettings extends Component {
             <span className="settingTxt">Festivalsesong</span>
           </div>
           {this.state.settings.status === "active" ? (
-            <div className="col-lg-6">
+            <div className="col-lg-6 mb-4">
               <div className="btn-group btn-group-toggle" data-toggle="buttons">
                 <input
                   onClick={this.updateStatus}
-                  className="btn btn-primary"
+                  className="btn btn-selected"
                   name="status"
                   value="Aktiv"
                   type="submit"
@@ -80,12 +80,12 @@ class AdminSettings extends Component {
                   type="submit"
                 />
               </div>
-              <small id="helptext" className="form-text text-muted">
-                Her skal vi forklare hva knappene gjør
+              <small id="helptext" className="form-text text-muted mb-2">
+                Velg 'inaktiv' om festivalsesongen er over for i år!
               </small>
             </div>
           ) : (
-            <div className="col-lg-6">
+            <div className="col-lg-6 mb-4">
               <div className="btn-group btn-group-toggle" data-toggle="buttons">
                 <input
                   type="submit"
@@ -99,11 +99,11 @@ class AdminSettings extends Component {
                   name="status"
                   value="Inaktiv"
                   onClick={this.updateStatus}
-                  className="btn btn-primary"
+                  className="btn btn-selected"
                 />
               </div>
               <small id="helptext" className="form-text text-muted">
-                Her skal vi forklare hva knappene gjør
+                Velg 'inaktiv' om festivalsesongen er over for i år!
               </small>
             </div>
           )}
@@ -115,7 +115,7 @@ class AdminSettings extends Component {
             <div className="col-lg-6">
               <div className="btn-group btn-group-toggle" data-toggle="buttons">
                 <input
-                  className="btn btn-primary"
+                  className="btn btn-selected"
                   type="submit"
                   name="anniversary"
                   value="Aktiv"
@@ -130,7 +130,7 @@ class AdminSettings extends Component {
                 />
               </div>
               <small id="helptext" className="form-text text-muted">
-                Her skal vi forklare hva knappene gjør
+                Velg 'aktiv' om festivalen har jubileum!
               </small>
             </div>
           ) : (
@@ -144,7 +144,7 @@ class AdminSettings extends Component {
                   onClick={this.updateAnniversary}
                 />
                 <input
-                  className="btn btn-primary"
+                  className="btn btn-selected"
                   type="submit"
                   name="anniversary"
                   value="Inaktiv"
@@ -152,7 +152,7 @@ class AdminSettings extends Component {
                 />
               </div>
               <small id="helptext" className="form-text text-muted">
-                Her skal vi forklare hva knappene gjør
+                Velg 'aktiv' om festivalen har jubileum!
               </small>
             </div>
           )}
