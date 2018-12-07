@@ -2,12 +2,20 @@ import React, { Component } from "react";
 
 class AdminSettings extends Component {
   state = {
-    settings: []
+    settings: [{ status: "", anniversary: "" }]
   };
 
-  componentDidMount = () => {
+  componentDidMount() {
     this.getSettings();
-  };
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.settings !== prevState.settings) {
+      //console.log(prevState.settings);
+      //console.log(this.state.settings);
+      this.getSettings();
+    }
+  }
 
   getSettings = _ => {
     fetch(`http://localhost:5000/settings`)
@@ -54,7 +62,6 @@ class AdminSettings extends Component {
           <div className="col-md-6">
             <span className="settingTxt">Festivalsesong</span>
           </div>
-          {/**fix this has to be a form. On of the buttons has to be active.. **/}
           {this.state.settings.status === "active" ? (
             <div className="col-lg-6">
               <div className="btn-group btn-group-toggle" data-toggle="buttons">
@@ -104,7 +111,6 @@ class AdminSettings extends Component {
           <div className="col-md-6">
             <span className="settingTxt">Jubileum</span>
           </div>
-          {/**fix this has to be a form. On of the buttons has to be active..  name has to change**/}
           {this.state.settings.anniversary === "on" ? (
             <div className="col-lg-6">
               <div className="btn-group btn-group-toggle" data-toggle="buttons">
