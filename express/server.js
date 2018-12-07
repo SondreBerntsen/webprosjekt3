@@ -13,7 +13,7 @@ var partners = require("./partners");
 var festivalreports = require("./festivalreports");
 var general = require("./general");
 var review = require("./review");
-var anniversary = require("./anniversary")
+var anniversary = require("./anniversary");
 var contactPersons = require("./contactPersons");
 var event = require("./event");
 var posts = require("./posts");
@@ -26,6 +26,7 @@ var eventList = require("./eventList");
 var eventYearList = require("./eventYearList");
 var adminUsers = require("./adminUsers");
 var livestream = require("./livestream");
+var settings = require("./settings");
 
 app.get("/", (req, res) => {
   /*fix*/
@@ -53,6 +54,7 @@ app.use("/eventList", eventList);
 app.use("/eventYearList", eventYearList);
 app.use("/adminUsers", adminUsers);
 app.use("/livestream", livestream);
+app.use("/settings", settings);
 
 const port = 5000;
 
