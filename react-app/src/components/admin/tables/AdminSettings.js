@@ -17,6 +17,7 @@ class AdminSettings extends Component {
     }
   }
 
+  // function for getting the current settings for status and anniversary from database
   getSettings = _ => {
     fetch(`http://localhost:5000/settings`)
       .then(response => response.json())
@@ -24,6 +25,7 @@ class AdminSettings extends Component {
       .catch(err => console.log(err));
   };
 
+  // function for updating anniversary to database
   updateAnniversary = e => {
     e.preventDefault();
     let body = {};
@@ -39,6 +41,7 @@ class AdminSettings extends Component {
     }).catch(err => console.log(err));
   };
 
+  // function for updating status to database
   updateStatus = e => {
     e.preventDefault();
     let body = {};
@@ -62,6 +65,7 @@ class AdminSettings extends Component {
           <div className="col-md-6">
             <span className="settingTxt">Festivalsesong</span>
           </div>
+          {/* This condition checks if status is set as active*/}
           {this.state.settings.status === "active" ? (
             <div className="col-lg-6 mb-4">
               <div className="btn-group btn-group-toggle" data-toggle="buttons">
