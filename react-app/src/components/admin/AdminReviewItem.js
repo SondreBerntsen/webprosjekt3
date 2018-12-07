@@ -254,7 +254,7 @@ class AdminReviewItem extends Component {
                 this.props.year.slides.map((slide, index) => {
                   try {
                     return (
-                      <div className="row subElement">
+                      <div key={index} className="row subElement">
                         <img
                           className="eventImgEdit col-md-6"
                           src={require('../../uploadedImg/sliderImg/' + slide.id)}

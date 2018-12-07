@@ -10,7 +10,7 @@ review.get("/", (req, res) => {
   const review_query = _ => {
     let QUERY = `SELECT id, year, text FROM review`
     let specificYear = ` WHERE year = ${year}`
-    req.query !== 'all' && (QUERY = QUERY.concat(specificYear))
+    year !== 'all' && (QUERY = QUERY.concat(specificYear))
 
     db.query(QUERY, (err, results) => {
       if (err) {
@@ -24,7 +24,7 @@ review.get("/", (req, res) => {
   const slider_query = _ => {
     let QUERY = `SELECT * FROM images`
     let specificYear = ` WHERE r_id = (SELECT id FROM review WHERE year = '${year}')`
-    req.query !== 'all' && (QUERY = QUERY.concat(specificYear))
+    year !== 'all' && (QUERY = QUERY.concat(specificYear))
     db.query(QUERY, (err, results2) => {
       if (err) {
         return res.send(err)
@@ -37,7 +37,7 @@ review.get("/", (req, res) => {
   const recordings_query = _ => {
     let QUERY = `SELECT * FROM video_links`
     let specificYear = ` WHERE r_id = (SELECT id FROM review WHERE year = '${year}')`
-    req.query !== 'all' && (QUERY = QUERY.concat(specificYear))
+    year !== 'all' && (QUERY = QUERY.concat(specificYear))
     db.query(QUERY, (err, results3) => {
       if (err) {
         return res.send(err)
