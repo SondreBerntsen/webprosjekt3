@@ -7,6 +7,7 @@ class AdminReviewItem extends Component {
   }
   componentDidMount() {
     this.setState({ ...this.state } = this.props.year)
+    console.log(this.props.year)
   }
   handleDelete = _ => {
     /*
@@ -42,10 +43,11 @@ class AdminReviewItem extends Component {
   }
   handleEdit = (e) => {
     let body = {
-      id: '',
-      year: '',
-      text: ''
+      id: e.target.value,
+      year: this.state.year,
+      text: this.state.text
     }
+    console.log(body)
     fetch(`http://localhost:5000/review/update`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -53,17 +55,20 @@ class AdminReviewItem extends Component {
     })
       .then((response) => {
         response.json()
-        //idkwat.
+        console.log(response)
       })
       .catch(err => console.log(err))
-
 
   }
   handleSubmitRecording = (e) => {
     e.preventDefault()
     let body = {
-      //get some dank values from somewhere
+      link: this.refs.newRecordingLink.value,
+      name: this.refs.newRecordingTitle.value,
+      r_id: this.state.id
     }
+    console.log(body)
+    
     fetch(`http://localhost:5000/review/newRecording`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -71,14 +76,17 @@ class AdminReviewItem extends Component {
     })
       .then((response) => {
         response.json()
-        //idkwat. probably don't even need response, unless checking for big faulty dick
       })
+      .then(_ => this.updateRecordingsList)
       .catch(err => console.log(err))
+  
   }
   handleSubmitImage = (e) => {
     e.preventDefault()
     let body = {
-      //get some dank values from somewhere RAGNHILD HOW
+      title: '',
+      caption: '',
+      r_id: this.state.id
     }
     fetch(`http://localhost:5000/review/newImage`, {
       method: 'POST',
@@ -88,6 +96,7 @@ class AdminReviewItem extends Component {
       .then((response) => {
         response.json()
         //idkwat. probably don't even need response, unless checking for big faulty dick
+        //also store image on disc :::::: |
       })
       .catch(err => console.log(err))
   }
@@ -118,6 +127,19 @@ class AdminReviewItem extends Component {
         })
         .catch(err => console.log(err))
     }
+  }
+  updateRecordingsList = () => {
+    fetch('http://localhost:5000/review/recordings?id=' + this.state.id)
+    .then(response => response.json())
+    .then(response => {
+      this.setState({recordings: response})  
+    })
+    .then(_ => console.log(this.state))
+    .catch(err => console.log(err))
+  }
+
+  updateImagesList = () => {
+
   }
   render() {
     return (
@@ -166,7 +188,7 @@ class AdminReviewItem extends Component {
                     onChange={this.handleChange}
                   ></textarea>
                 </div>
-                <button type="submit" className="btn btn-info btn-sm">
+                <button value={this.props.year.id} type="button" onClick={this.handleEdit} className="btn btn-info btn-sm">
                   Rediger
                 </button>
               </div>
@@ -204,12 +226,14 @@ class AdminReviewItem extends Component {
             </div>
             <div className="col-md-4">
               <h5>Legg til nytt opptak</h5>
-              <form>
+              <form onSubmit={this.handleSubmitRecording}>
                 <div className="form-row">
                   <div className="form-group col-md-12">
                     <label>Tittel</label>
                     <input
                       type="text"
+                      name="newRecordingTitle"
+                      ref="newRecordingTitle"
                       className="form-control col-md-12"
                     ></input>
                   </div>
@@ -219,6 +243,8 @@ class AdminReviewItem extends Component {
                     <label>Link</label>
                     <input
                       type="text"
+                      name="newRecordingLink"
+                      ref="newRecordingLink"
                       className="form-control col-md-12"
                     ></input>
                   </div>
@@ -277,6 +303,7 @@ class AdminReviewItem extends Component {
                     <label>Tittel</label>
                     <input
                       type="text"
+                      name="newImageTitle"
                       className="form-control col-md-12"
                     ></input>
                   </div>
@@ -286,6 +313,7 @@ class AdminReviewItem extends Component {
                     <label>Bildetekst</label>
                     <input
                       type="text"
+                      name="newImageCaption"
                       className="form-control col-md-12"
                     ></input>
                   </div>
@@ -295,6 +323,7 @@ class AdminReviewItem extends Component {
                     <label>Bilde</label>
                     <input
                       type="file"
+                      name="newImageFile"
                       className="marginBottom10"
                     />
                   </div>

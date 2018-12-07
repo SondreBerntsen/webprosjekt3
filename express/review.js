@@ -50,10 +50,19 @@ review.get("/", (req, res) => {
   review_query()
 })
 
+review.get('/recordings', (req, res) => {
+  let {id} = req.query
+  let QUERY = `SELECT * FROM video_links WHERE r_id = ${id}`
+  db.query(QUERY, (err, results) => {
+    if (err) return res.send(err)
+    return res.json(results)
+    
+  })
+})
 review.post('/update', (req, res) => {
   const {id, year, text} = req.body
   let QUERY = `
-    UPDATE events
+    UPDATE review
     SET 
       year = '${year}', 
       text =  '${text}'
@@ -66,10 +75,10 @@ review.post('/update', (req, res) => {
 })
 
 review.post("/newRecording", (req, res) => {
-  const {id, link, name, r_id} = req.body
+  const {link, name, r_id} = req.body
   let QUERY = `
-    INSERT INTO 'video_links' (id, link, name, r_id)
-    VALUES (${id}, ${link}, ${name}, ${r_id})
+    INSERT INTO video_links (link, name, r_id)
+    VALUES ('${link}', '${name}', ${r_id})
   `
   db.query(QUERY, (err, results) => {
     if (err) res.send(err);
@@ -78,10 +87,10 @@ review.post("/newRecording", (req, res) => {
 })
 
 review.post("/newImage", (req, res) => {
-  const {id, title, caption, r_id} = req.body
+  const {title, caption, r_id} = req.body
   let QUERY = `
-    INSERT INTO images (id, title, caption, r_id) 
-    VALUES (${id}, ${title}, ${caption}, ${r_id})
+    INSERT INTO images (title, caption, r_id) 
+    VALUES ('${title}', '${caption}', ${r_id})
   `
   db.query(QUERY, (err, results) => {
     if (err) res.send(err);
