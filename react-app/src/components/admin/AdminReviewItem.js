@@ -2,10 +2,11 @@ import React, { Component } from "react";
 
 
 class AdminReviewItem extends Component {
-  state = {}
+  state = {
+    status: 'unchanged'
+  }
   componentDidMount() {
-    this.setState(this.props.year)
-    console.log(this.props.year)
+    this.setState({ ...this.state } = this.props.year)
   }
   handleDelete = _ => {
     /*
@@ -26,30 +27,18 @@ class AdminReviewItem extends Component {
     */
   }
   handleChange = (e) => {
-    /*
     this.setState({ status: 'editing' })
     switch (e.target.name) {
-      case 'venue':
-        let venue = e.target.value.split('&&&')
-        this.setState({ venue: { id: venue[0], address: venue[1] } })
-        this.refs.venueIcon.innerHTML = "&#9998;"
+      case 'year':
+        this.setState({ year: e.target.value})
+        //this.refs.venueIcon.innerHTML = "&#9998;"
         break;
-      case 'time':
-        this.setState({ time: e.target.value })
-        this.refs.timeIcon.innerHTML = "&#9998;"
-        break;
-      case 'price':
-        this.setState({ price: e.target.value })
-        this.refs.priceIcon.innerHTML = "&#9998;"
-        break;
-      case 'date':
-        this.setState({ date: e.target.value })
-        console.log(this.state.date)
-        this.refs.dateIcon.innerHTML = "&#9998;"
+      case 'text':
+        this.setState({ text: e.target.value })
+        //this.refs.timeIcon.innerHTML = "&#9998;"
         break;
       default:
     }
-    */
   }
   handleEdit = (e) => {
     let body = {
@@ -159,8 +148,10 @@ class AdminReviewItem extends Component {
                   <label>År</label>
                   <input
                     type="number"
+                    name="year"
                     className="form-control"
                     defaultValue={this.props.year.year}
+                    onChange={this.handleChange}
                   ></input>
                 </div>
               </div>
@@ -169,8 +160,10 @@ class AdminReviewItem extends Component {
                   <label>Tekst</label>
                   <textarea
                     type="text-area"
+                    name="text"
                     className="form-control"
                     defaultValue={this.props.year.text}
+                    onChange={this.handleChange}
                   ></textarea>
                 </div>
                 <button type="submit" className="btn btn-info btn-sm">

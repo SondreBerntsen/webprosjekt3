@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import NewsCards from "../NewsCards";
-import { Link, NavLink } from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import "../../styles/news.css";
 class News extends Component {
   state = {

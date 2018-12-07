@@ -12,7 +12,6 @@ class AdminReview extends Component {
       .then(response => response.json())
       .then(response => this.structureData(response.data))
       .catch(err => console.log(err))
-    console.log(this.state)
   }
 
   structureData = (data) => {
