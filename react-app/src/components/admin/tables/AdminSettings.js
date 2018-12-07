@@ -67,6 +67,7 @@ class AdminSettings extends Component {
           </div>
           {/* This condition checks if status is set as active*/}
           {this.state.settings.status === "active" ? (
+            /* outputs this if status equals active*/
             <div className="col-lg-6 mb-4">
               <div className="btn-group btn-group-toggle" data-toggle="buttons">
                 <input
@@ -89,6 +90,7 @@ class AdminSettings extends Component {
               </small>
             </div>
           ) : (
+            /* outputs this if status does not equal active (inactive)*/
             <div className="col-lg-6 mb-4">
               <div className="btn-group btn-group-toggle" data-toggle="buttons">
                 <input
@@ -115,7 +117,9 @@ class AdminSettings extends Component {
           <div className="col-md-6">
             <span className="settingTxt">Jubileum</span>
           </div>
+          {/* This condition checks if anniversary is set as 'on' */}
           {this.state.settings.anniversary === "on" ? (
+            /* outputs this if anniversary is equal to 'on' */
             <div className="col-lg-6">
               <div className="btn-group btn-group-toggle" data-toggle="buttons">
                 <input
@@ -138,6 +142,7 @@ class AdminSettings extends Component {
               </small>
             </div>
           ) : (
+            /* outputs this if anniversary does not equal 'on' (off)*/
             <div className="col-lg-6">
               <div className="btn-group btn-group-toggle" data-toggle="buttons">
                 <input
