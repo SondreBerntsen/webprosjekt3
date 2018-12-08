@@ -27,6 +27,7 @@ var eventYearList = require("./eventYearList");
 var adminUsers = require("./adminUsers");
 var livestream = require("./livestream");
 var settings = require("./settings");
+var adminLogin = require("./adminLogin");
 
 app.get("/", (req, res) => {
   /*fix*/
@@ -55,6 +56,7 @@ app.use("/eventYearList", eventYearList);
 app.use("/adminUsers", adminUsers);
 app.use("/livestream", livestream);
 app.use("/settings", settings);
+app.use("/adminLogin", adminLogin);
 
 const port = 5000;
 
