@@ -101,7 +101,7 @@ review.post("/newImage", (req, res) => {
 review.post("/deleteRecording", (req, res) => {
   const {id} = req.body
   let QUERY = `
-    DELETE FROM 'video_links'
+    DELETE FROM video_links
     WHERE id = ${id}
   `
   db.query(QUERY, (err, results) => {
@@ -113,7 +113,7 @@ review.post("/deleteRecording", (req, res) => {
 review.post("/deleteImage", (req, res) => {
   const {id} = req.body
   let QUERY = `
-    DELETE FROM 'images'
+    DELETE FROM images
     WHERE id = ${id}
   `
   db.query(QUERY, (err, results) => {
