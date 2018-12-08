@@ -34,7 +34,7 @@ adminLogin.post("/", (req, res) => {
                             expiresIn: '2h'
                         });
                     console.log(JWTToken);
-                    res.json({ success: false, message: 'Authentication failed. User not found.' });
+                    res.send({ token: JWTToken });
                 }
             });
         }
