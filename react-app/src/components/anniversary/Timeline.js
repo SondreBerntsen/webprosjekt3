@@ -6,7 +6,7 @@ class Timeline extends Component {
   componentDidMount(){
     fetch('http://localhost:5000/anniversary/timeline')
     .then(response => response.json())
-    .then(response => {
+    .then((response) => {
       this.setState({years: response.data})
     }) 
   }
@@ -20,26 +20,36 @@ class Timeline extends Component {
           if(left === true){ 
             left = false
             return(
-              <a key={index} href={"/tilbakeblikk/" + year.year}>
-                <div className="containerTimeline leftTimeline">
+              <div key={index} className="containerTimeline leftTimeline">
+                <a href={"/tilbakeblikk/" + year.year}>
+                  <img
+                    className="timelineImg"
+                    src={require('../../uploadedImg/sliderImg/' + year.image_id)}
+                    alt={'anniversary_image_' + year.year}
+                  />
                   <div className="contentTimeline">
                     <h2>{year.year}</h2>
                     <p>{year.text.substr(0, 200) + "..."}</p>
                   </div>
-                </div>
-              </a>
+                </a>
+              </div>
             )
           }else{
             left = true
             return(
-              <a key={index} href={"/tilbakeblikk/" + year.year}>
-                <div className="containerTimeline rightTimeline">
+              <div key={index} className="containerTimeline rightTimeline">
+                <a href={"/tilbakeblikk/" + year.year}>
+                  <img
+                    className="timelineImg"
+                    src={require('../../uploadedImg/sliderImg/' + year.image_id)}
+                    alt={'anniversary_image_' + year.year}
+                  />
                   <div className="contentTimeline">
                     <h2>{year.year}</h2>
                     <p>{year.text.substr(0, 200) + "..."}</p>
                   </div>
-                </div>
-              </a>
+                </a>
+              </div>
             )
           }
         })

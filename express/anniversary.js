@@ -17,8 +17,12 @@ anniversary.get("/", (req, res) => {
 });
 
 anniversary.get("/timeline", (req, res) => {
-  let QUERY = `SELECT * FROM review`;
-
+  let QUERY = `
+    SELECT review.id, review.year, review.text, images.id as image_id 
+    FROM review, images 
+    WHERE images.r_id = review.id 
+    GROUP BY review.year
+  `
   db.query(QUERY, (err, results) => {
     if (err) {
       return res.send(err);

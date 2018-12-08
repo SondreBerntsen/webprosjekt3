@@ -3,14 +3,17 @@ import React, { Component } from "react";
 
 class AdminReviewItem extends Component {
   state = {
-    status: 'unchanged'
+    status: 'unchanged',
+    recordings: [],
+    images: []
   }
   componentDidMount() {
     this.setState({ ...this.state } = this.props.year)
-    console.log(this.props.year)
   }
   handleDelete = _ => {
     /*
+    THIS THING GOES IN PARENT
+
     let body = {
       id: this.state.id
     }
@@ -77,7 +80,7 @@ class AdminReviewItem extends Component {
       .then((response) => {
         response.json()
       })
-      .then(_ => this.updateRecordingsList)
+      .then(_ => this.updateRecordingsList())
       .catch(err => console.log(err))
   
   }
@@ -100,17 +103,15 @@ class AdminReviewItem extends Component {
       })
       .catch(err => console.log(err))
   }
-  handleDeleteRecording = (id) => {
-    let body = { id: id }
+  handleDeleteRecording = (e) => {
+    let body = { id: e.target.value }
     if (window.confirm('Are you sure you wish to delete this item?')) {
       fetch('http://localhost:5000/review/deleteRecording', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body)
       })
-        .then(_ => {
-          console.log("No idea what to do now, but item was deleted I guess")
-        })
+        .then(_ => this.updateRecordingsList())
         .catch(err => console.log(err))
     }
   }
@@ -122,13 +123,12 @@ class AdminReviewItem extends Component {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body)
       })
-        .then(_ => {
-          console.log("No idea what to do now, but item was deleted I guess")
-        })
+        .then(_ => this.updateImagesList())
         .catch(err => console.log(err))
     }
   }
   updateRecordingsList = () => {
+    console.log('update called')
     fetch('http://localhost:5000/review/recordings?id=' + this.state.id)
     .then(response => response.json())
     .then(response => {
@@ -209,13 +209,15 @@ class AdminReviewItem extends Component {
             </button>
             <div className="collapse col-md-7 subElementLeft" id={"recordingsList" + this.props.year.id}>
               {
-                this.props.year.recordings.map((link, index) => {
+                this.state.recordings.map((link, index) => {
                   return (
                     <div key={index} className="colorandmarginchangeFIX subElement">
                       <div className="row">
                         <p className="col-md-9">{link.name}</p>
                         <button
                           className="btn btn-secondary btnInElementAdmin btn-sm col-md-2"
+                          value={link.id}
+                          onClick={this.handleDeleteRecording}
                           type="button">Slett</button>
                       </div>
                       <p>{link.link}</p>
