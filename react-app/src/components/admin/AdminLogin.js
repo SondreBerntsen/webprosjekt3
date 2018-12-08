@@ -18,7 +18,7 @@ class AdminLogin extends Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
         })
-            .then(response => response.status >= 400 ? this.setState({ errorMsg: 'true' }) : null)
+            .then(response => response.status >= 400 ? this.setState({ errorMsg: 'true' }) : console.log('rett ' + response))
             .catch(err => console.log(err))
     }
     render() {

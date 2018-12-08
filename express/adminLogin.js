@@ -4,6 +4,7 @@ const express = require('express');
 var db = require('./db');
 const adminLogin = express.Router();
 var bcrypt = require('bcryptjs');
+var jwt = require('jsonwebtoken');
 
 //Function that tries to log in the user
 adminLogin.post("/", (req, res) => {
@@ -14,7 +15,6 @@ adminLogin.post("/", (req, res) => {
         if (err) {
             return res.status(400).send("error in user login");//if error
         } else if (results.length == 0) {
-            console.log(results.length);
             return res.status(400).send("user does not exist");//If user does not exists
         } else {
             bcrypt.compare(password, results[0].password, function (error, result) {//Check if password is correct
@@ -24,7 +24,17 @@ adminLogin.post("/", (req, res) => {
                     console.log(result);
                     return res.status(400).send("passwords do not match");//If passwords do not match
                 } else {
-                    console.log(result);
+                    console.log('logg inn fungerer');
+                    const JWTToken = jwt.sign({
+                        email: results[0].email,
+                        id: results[0].id
+                    },
+                        'secret',
+                        {
+                            expiresIn: '2h'
+                        });
+                    console.log(JWTToken);
+                    res.json({ success: false, message: 'Authentication failed. User not found.' });
                 }
             });
         }
