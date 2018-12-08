@@ -59,6 +59,18 @@ review.get('/recordings', (req, res) => {
     
   })
 })
+
+review.post('/newReview', (req, res) => {
+  const {year, text} = req.body
+  let QUERY = `
+    INSERT INTO review (year, text)
+    VALUES (${year}, '${text}')
+  `
+  db.query(QUERY, (err, results) => {
+    if (err) res.send(err)
+    return res.json(results)
+  })
+})
 review.post('/update', (req, res) => {
   const {id, year, text} = req.body
   let QUERY = `
