@@ -10,26 +10,6 @@ class AdminReviewItem extends Component {
   componentDidMount() {
     this.setState({ ...this.state } = this.props.year)
   }
-  handleDelete = _ => {
-    /*
-    THIS THING GOES IN PARENT
-
-    let body = {
-      id: this.state.id
-    }
-    if (window.confirm('Are you sure you wish to delete this item?')) {
-      fetch('http://localhost:5000/event/delete', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body)
-      })
-        .then(_ => {
-          this.getEventList();
-        })
-        .catch(err => console.log(err))
-    }
-    */
-  }
   handleChange = (e) => {
     this.setState({ status: 'editing' })
     switch (e.target.name) {
@@ -84,22 +64,20 @@ class AdminReviewItem extends Component {
       .catch(err => console.log(err))
   
   }
-  handleSubmitImage = (e) => {
-    e.preventDefault()
-    let body = {
-      title: '',
-      caption: '',
-      r_id: this.state.id
-    }
+  handleSubmitImage = _ => {
+    let body = new FormData();
+    body.append('title', this.refs.newImgTitle.value)
+    body.append('caption', this.refs.newImgCaption.value)
+    body.append('r_id', this.state.id)
+    body.append('img', this.refs.newImgFile.files[0])
+
     fetch(`http://localhost:5000/review/newImage`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
+      body: body
     })
       .then((response) => {
         response.json()
-        //idkwat. probably don't even need response, unless checking for big faulty dick
-        //also store image on disc :::::: |
+        console.log(response)
       })
       .catch(err => console.log(err))
   }
@@ -285,7 +263,7 @@ class AdminReviewItem extends Component {
                     <label>Tittel</label>
                     <input
                       type="text"
-                      name="newImageTitle"
+                      ref="newImgTitle"
                       className="form-control col-md-12"
                     ></input>
                   </div>
@@ -295,24 +273,23 @@ class AdminReviewItem extends Component {
                     <label>Bildetekst</label>
                     <input
                       type="text"
-                      name="newImageCaption"
+                      ref="newImgCaption"
                       className="form-control col-md-12"
                     ></input>
                   </div>
                 </div>
                 <div className="form-row">
                   <div className="form-group">
-                    <label>Bilde</label>
                     <input
                       type="file"
-                      name="newImageFile"
+                      ref="newImgFile"
                       className="marginBottom10"
                     />
                   </div>
-                  <button type="submit" className="btn btn-info btn-sm">
+                </div>
+                <button type="button" onClick={this.handleSubmitImage} className="btn btn-info btn-sm">
                     Legg til
                   </button>
-                </div>
               </form>
             </div>
           </div>

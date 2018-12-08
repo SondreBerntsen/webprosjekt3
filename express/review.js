@@ -100,13 +100,21 @@ review.post("/newRecording", (req, res) => {
 
 review.post("/newImage", (req, res) => {
   const {title, caption, r_id} = req.body
+  const imgFile = req.files.img
   let QUERY = `
     INSERT INTO images (title, caption, r_id) 
     VALUES ('${title}', '${caption}', ${r_id})
   `
   db.query(QUERY, (err, results) => {
-    if (err) res.send(err);
-    return res.json(results);
+    if (err) res.send(err)
+    else{
+      imgFile.mv(`${__dirname}/../react-app/src/uploadedImg/sliderImg/${results.insertId}`, function (err) {
+        if (err) {
+          return res.status(500).send(err);
+        }
+        return res.json(results);
+      });
+    }
   });
 })
 
