@@ -13,7 +13,10 @@
   margin-right: 20px;
   margin-bottom: 20px;
 }
-
+.scrollableDiv {
+  overflow-y: auto;
+  height: 325px;
+}
 .collapseForm {
   background-color: #d5e0e2;
   margin-bottom: 20px;

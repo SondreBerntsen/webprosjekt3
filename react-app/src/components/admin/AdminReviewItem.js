@@ -197,17 +197,7 @@ class AdminReviewItem extends Component {
 
           <div className="row adminEditItem">
             <label className="labelNonBlock col-md-9">Opptak</label>
-            <button
-              className="btn btn-secondary btnInElementAdmin btn-sm col-md-2"
-              type="button"
-              data-toggle="collapse"
-              data-target={"#recordingsList" + this.props.year.id}
-              aria-expanded="false"
-              aria-controls={"recordingsList" + this.props.year.id}
-            >
-              Vis liste
-            </button>
-            <div className="collapse col-md-7 subElementLeft" id={"recordingsList" + this.props.year.id}>
+            <div className="scrollableDiv col-md-7 subElementLeft" id={"recordingsList" + this.props.year.id}>
               {
                 this.state.recordings.map((link, index) => {
                   return (
@@ -260,17 +250,7 @@ class AdminReviewItem extends Component {
 
           <div className="row adminEditItem">
             <label className="col-md-9">Bilder</label>
-            <button
-              className="btn btn-secondary btnInElementAdmin btn-sm col-md-2"
-              type="button"
-              data-toggle="collapse"
-              data-target={"#imgList" + this.props.year.id}
-              aria-expanded="false"
-              aria-controls={"imgList" + this.props.year.id}
-            >
-              Vis liste
-            </button>
-            <div className="collapse col-md-7 subElementLeft" id={"imgList" + this.props.year.id}>
+            <div className="scrollableDiv col-md-7 subElementLeft" id={"imgList" + this.props.year.id}>
               {
                 this.props.year.slides.map((slide, index) => {
                   try {
