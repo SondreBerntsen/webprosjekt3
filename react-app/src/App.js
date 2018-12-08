@@ -60,7 +60,7 @@ class App extends Component {
 }
 let jwt = localStorage.getItem('login-jwt');
 
-const AdminRoute = ({ component: Component, ...rest }) => (
+const AdminRoute = ({ component: Component, ...rest }) => (//redirect user to loginpage if he is not logged in
   <Route {...rest} render={(props) => (
     jwt
       ? <Component {...props} />
