@@ -22,7 +22,7 @@ class AdminContactPerson extends Component {
         this.setState({ src: reader.result })
       );
       reader.readAsDataURL(e.target.files[0]);
-      console.log(e.target.files[0]);
+      // console.log(e.target.files[0]);
     }
   };
 
@@ -36,7 +36,7 @@ class AdminContactPerson extends Component {
       this.setState({
         crop: { ...crop, height: null }
       });
-      console.log(this.state.crop);
+      //console.log(this.state.crop);
     } else {
       this.makeClientCrop(crop, pixelCrop);
     }
@@ -79,7 +79,7 @@ class AdminContactPerson extends Component {
       pixelCrop.height
     );
 
-    console.log(ctx.canvas);
+    //console.log(ctx.canvas);
 
     //console.log(base64Image);
     this.setState({ ctx });
@@ -109,7 +109,7 @@ class AdminContactPerson extends Component {
   render() {
     const { crop, croppedImageUrl, src } = this.state;
     const { props } = this;
-    console.log(this.state.ctx);
+    //console.log(this.state.ctx);
 
     return (
       <div>

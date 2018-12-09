@@ -71,7 +71,9 @@ const EventVideo = props => {
           data-height="720"
         >
           <div className="Video-wrap js-videoWrap">
-            <a className="Video-title">{props.title} </a>
+            <a className="Video-title" href="url">
+              {props.title}{" "}
+            </a>
 
             {props.imgpath !== "" ? (
               <img
