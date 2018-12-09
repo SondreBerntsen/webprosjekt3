@@ -14,7 +14,10 @@ review.get("/", (req, res) => {
   const review_query = _ => {
     let QUERY = `SELECT id, year, text FROM review`
     let specificYear = ` WHERE year = ${year}`
-    year !== 'all' && (QUERY = QUERY.concat(specificYear))
+    let allYears = ' ORDER BY year DESC'
+    year !== 'all' 
+      ? QUERY = QUERY.concat(specificYear)
+      : QUERY = QUERY.concat(allYears)
 
     db.query(QUERY, (err, results) => {
       if (err) {
