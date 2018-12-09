@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 19. Nov, 2018 16:03 PM
--- Server-versjon: 10.1.29-MariaDB
--- PHP Version: 7.2.0
+-- Generation Time: 08. Des, 2018 23:46 PM
+-- Server-versjon: 10.1.26-MariaDB
+-- PHP Version: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -41,7 +41,7 @@ CREATE TABLE `contact_persons` (
 --
 
 INSERT INTO `contact_persons` (`id`, `name`, `email`, `role`, `phone`) VALUES
-(1, 'Ivar Flaten', 'director@drammensacred.no', ' Produsent og festival-gründer', '415 45 849'),
+(1, 'Ivar Flaten', 'director@drammensacred.no', ' Produsent og festival-gründer', '41545849'),
 (2, 'Reidun Svabø', 'director@drammensacred.no', 'Styreleder og festivalkoordinator', '932 94 512');
 
 -- --------------------------------------------------------
@@ -69,7 +69,7 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `title`, `text`, `time`, `date`, `price`, `youtube_link`, `payment_link`, `livestream`, `u_id`, `v_id`) VALUES
-(1, 'Intimkonsert med Beharie', 'Med sitt utspring fra Soul og R&B-sjangeren, formidler Christian Beharie’s karakteristiske stemme popmelodikk i et spennende landskap, flytende mellom det organiske og elektroniske.\r\n\r\nVåren 2018 har Beharie jobbet med sin debut-EP som skal gis ut til høsten.\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '15:00:00', '2019-09-10', 200, NULL, 'https://www.ticketmaster.com/', 1, 1, 1),
+(1, 'Intimkonsert med Beharie', 'Med sitt utspring fra Soul og R&B-sjangeren, formidler Christian Beharie’s karakteristiske stemme popmelodikk i et spennende landskap, flytende mellom det organiske og elektroniske.\r\n\r\nVåren 2018 har Beharie jobbet med sin debut-EP som skal gis ut til høsten.\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '15:00:00', '2018-12-12', 200, NULL, 'https://www.ticketmaster.com/', 1, 1, 1),
 (2, 'Waed Bouhassoun', 'Waed Bouhassoun reiser aldri uten sin lutt og noen dikt fra den syriske poeten, Adonis. Konsertene hennes er en hyllest til Sufi – tradisjonen.\r\n\r\nWaed Bouhassoun har vokst opp med Oum Khalthoum og Farid-al-Atrache, ikoner i den arabiske verden, som veivisere. Under sine studier på Musikkhøgskole i Damas, utviklet hun en unik og personlig stil dypt forankret i klassiske arabiske musikktradisjoner.\r\n\r\nÅrets åpningskonsert for Drammen Sacred Music Festival er en sjelden opplevelse for sjelen!\r\n\r\nErik Hillestad innleder konserten med en kort presentasjon.\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ', '10:00:00', '2018-09-10', 120, 'https://www.youtube.com/watch?v=O9BFsFNqBvk', 'https://www.ticketmaster.com/', 0, 1, 4),
 (3, 'Vintermåne', 'Vintermåne er ei gruppe som starta sitt samarbeid i 1997. De var da alle studenter på rytmisk linje ved Musikkonservatoriet i Kristiansand. Siden den gang har de holdt sammen og hatt et høyt aktivitetsnivå med konserter, eventer og skoleturneer.\r\n\r\nVintermåne tolker folkemusikk fra Telemark. Musikken tar utgangspunkt i tradisjonelle toner fra eldre lydopptak. I arrangementene forsøker de å legge til rette for det melodiøse og det tekstlige samtidig som de har frie rammer og åpne ører til hverandre musikalske krumspring.\r\n\r\nEtter 20 år på veien og med tre plateutgivelser i ryggen, markerer Vintermåne nå 20- årsjubileet med ei rykende fersk plate. På konserten i Fjell kirke blir det feiring av plateslipp og premiere på nytt repertoar fra innspillingen.\r\nFrøydis Grorud – sax og fløyter.\r\nFrøydis er kjent for mange av oss som saxofonist i tv-programmet Beat for Beat. Frøydis er en allsidig musiker med et særegent melodiøst uttrykk. Hun har gitt ut flere plater – som solist og i samarbeid med blant andre Bugge Wesseltoft , Torun Eriksen, Trond Lien og en rekke andre musikere. Frøydis spiller bl a med Trio de Janeiro, Torun Eriksen, Gaute Ormåsen, Christian Ingebrigtsen og Truse Kristin Klæbo. Hun har også sin egen jazzkvartett med egetskrevet materiale.\r\n\r\nTorjus Vierli – tangenter av ulike slag. Torjus er en flittig benyttet musiker både som livemusiker og studiomusiker. Hans spill er elegant og særegent rytmisk leikent. Han spiller bl a med Odd Nordstoga, Sissel K, Sigvart Dagsland og Morten Abel. Torjus er en tekniker av rang, og bruker også mye tid som produsent og arrangør i sitt studio i Grimstad. Han er også fast musiker og produsent i gruppen Garness.\r\n\r\nAnne Gravir Klykken – sang. Anne jobber både som kvedar og som formidler av annen sang innenfor rytmiske sjangre. Hun samarbeider bl a med Iver Kleive, Bugge Wesseltoft, Aasmund Nordstoga, Mattis Kleppen og Knut Buen. Anne har gitt ut to soloplater og vært med på en rekke innspillinger med andre artister.', '15:00:00', '2018-09-11', 180, 'https://www.youtube.com/watch?v=Y35gfvw-mI8', 'https://www.ticketmaster.com/', 0, 1, 5),
 (4, 'Bokbad – Tro på tvers', 'Bushra Ishaq og Sunniva Gylver – to etablerte og sterke samfunnsrøster – har skrevet boken Tro på tvers hvor utforsker hverandres og sin egen tro. Boka er en utradisjonell dialog, der religiøse refleksjoner fra ulike tradisjoner stilles side om side.\r\n\r\nDet handler om hverdagstroen, slik den kan arte seg for en kristen og for en muslim. På tross av alt vi vet om hverandre, kjenner vi sjelden til den spiritualiteten som skjuler seg bak den andres religion. Hva tror du egentlig på? Hva er viktig for deg?\r\n\r\nGylver og Ishaq ønsker å lære av hverandre, og med det lar de også oss få lære. Ivar Flaten, dialogprest i Drammen, snakker med de to om boken og deres erfaringer som dialogmennesker.\r\n\r\nKNELENDE OG OPPREIST\r\nIdeen kom under en av våre lange samtaler i sofaen. Sunniva fortalte om da hun uka før fant\r\nen liten diktbok i en bokhandel i København. Midt i kassakøen oppdaget hun et nydelig dikt\r\nav poeten Helle Søtrup: «Knelende blir allting større. Også jeg selv.» Bushra husket en\r\nmuslimsk parallell: «Den som kneler for Allah, kan stå oppreist for hvem som helst.»\r\nVi opplever begge at troen vår gir oss et perspektiv på livet, verden og oss selv som er\r\ngodt og frigjørende. Samtidig erfarer vi fordommer mot både kristendom og særlig islam, og\r\nat kunnskapen om muslimsk og kristen hverdagstro er liten. Ekstreme, ødeleggende, eller\r\neksotiske versjoner av begge religioner er det som får plass i offentligheten. Hvordan kan vi\r\nnå ut med noe annet?\r\n\r\nNoen prosjekter er mer spennende enn andre, mer risikofylte, krevende, lærerike.\r\nDette er ett av dem. Vi ble kjent for over ti år siden, gjennom en nasjonal dialoggruppe\r\nunder navnet Kontaktgruppen mellom Islamsk Råd Norge og Mellomkirkelig Råd for Den\r\nnorske kirke. Gruppen reiste til Sarajevo, Mostar og Srebrenica, og vi to hadde store\r\nsamtaler på veien, om tro, tilgivelse, menneskesyn, håp, det onde. Vi er temmelig forskjellige\r\ndamer, men vi ble gode venninner.\r\n\r\nVi møtes ute, hjemme, på kafé, og skravler om store og små ting. Ofte handler det\r\nom tro. Mange vi kjenner forbinder religionsdialog med bare rent politiske og etiske\r\nspørsmål, mens vi selv opplever at noen av våre fineste samtaler handler om hva vi synes er det beste og det vanskeligste ved vår egen hverdagstro: om trosvaner, gudsbilde, åndelige\r\nerfaringer, språk på tro, åndelig veiledning, trosfloker. Mange vi møter, som ikke har nære\r\nvenner av annen tro, vet ofte lite om disse sidene ved andres trospraksis, mens nettopp den\r\ntype samtaler har bundet oss sterkt sammen og lært oss mest.\r\nIdeen fra samtalen sofaen var at vi ville forsøke å lage en slik bok sammen. En slags\r\nandaktsbok for både kristne og muslimer. Ved at andaktene står mellom samme permer\r\nhåper vi at leseren vil få med seg tekster han kanskje i utgangspunktet ikke ville funnet fram\r\ntil (selv om man også kan velge å lese kun Bushras tekster eller kun Sunnivas).\r\nAndakt som konsept finnes ikke, så vidt vi vet, i islam. Sånn sett er dette et lite\r\npionerarbeid fra Bushras side. Vi har forsøkt å nærme oss en slags felles sjanger, samtidig som vi har valgt å beholde hver vår tydelige stemme. Bushra er lege, forsker og samfunnsdebattant og hennes tekster og perspektiver preges av det. Sunniva er prest og skribent og har vært trosformidler på fulltid i en årrekke.\r\n\r\n«Mener dere at dere tror på den samme Gud?» Det er et av spørsmålene vi har fått\r\nflere ganger i løpet av arbeidet med denne boka, fulgt av en bekymring for religionsblanding.\r\nSvaret på spørsmålet er like enkelt og komplekst som dialogen selv er. Ja, vi tror på samme\r\nGud. Fordi vi begge bekjenner én Gud, himmelens og jordens skaper, dommer og frelser,\r\nsom kjenner og elsker oss alle. Nei, vi tror ikke på samme Gud. Fordi Sunniva tror på en\r\ntreenig Gud som ble menneske, korsfestet og reist opp – det gjør ikke Bushra. Og slik kunne\r\nvi svart på mange spørsmål knyttet til denne bokens temaer. Vi underslår ikke forskjellene\r\nmellom muslimsk og kristen tro og teologi, men for det første er verken kristendom eller\r\nislam enhetlige størrelser, og for det andre finner vi det mer fruktbart å utforske egen og\r\nhverandres tro utfra en overbevisning om at min tro ikke blir mindre sann eller viktig når den\r\nstår ved siden av din.\r\n\r\nDette har vært et spennende kapittel i vår personlige dialog. Vi har begge erfart at\r\ndialogen får oss til å se den andres tro og tradisjon litt mer innenfra, og vår egen litt mer\r\nutenfra. Og at vi inspirerer og utfordrer hverandre til å få troen enda mer ned i kroppen og\r\nut i hverdagen.\r\n\r\nVårt ønske med denne boka er å dele vår hverdagstro og bidra til at flere utforsker\r\nbåde egen og andres tro. Vår erfaring er at mange mangler språk for sin tro. Det kan være\r\nvanskelig å koble tro, teologi, hverdag og erfaringer tett nok sammen, og dele det med\r\nandre. Hvis denne boka kan bidra til at det blir litt enklere for flere, da er vi storfornøyde!\r\n\r\nGuds fred og maxbless\r\nBushra Ishaq og Sunniva Gylver', '19:00:00', '2018-09-12', 0, NULL, NULL, 0, 1, 4),
@@ -77,7 +77,7 @@ INSERT INTO `events` (`id`, `title`, `text`, `time`, `date`, `price`, `youtube_l
 (6, 'Under regnbuen – Jakobsmesse V', 'Ny messe – skapt i takknemlighet over mangfoldet av religioner.\r\n\r\nTekstene til ”Messe under regnbuen” er skrevet av Erik Hillestad, musikk av Øyvind Kristiansen. I messen blir hver av de store verdensreligionene speilet gjennom takkebønner. ”I en tid der motsetninger mellom religionene dyrkes og fremheves er det en kjærlighetsgjerning å feire denne messen”, hevder opphavsmennene.\r\n\r\n”Messe under regnbuen” som har nye ord og toner bygger på den tradisjonelle messestrukturen. Den bruker regnbuen som symbol for fred og mangfold. De som har skapt den hevder at de ønsker å fremheve andre religioners bidrag til å vekke til live gudsbildet i hvert enkelt menneske og deres bidrag til humanitet, fred og sameksistens i respekt for forskjeller.\r\n\r\nSiste dag av årets festival inviterer vi til Messe under regnbuen med lokale prester og musikere i Strømsø kirke.\r\n\r\nMedvirkende:\r\nKaroline Faber og Ivar Flaten (liturger) / forsangergruppe / kapellmester Audun Reknes (klaver), Andrea Louise Horstad (sang), Andreas Haga (bass), Jonas Kilmork Vemøy (trompet), Kim Andre Vian Bjerkestrand (trommer) og vokalgruppen Doremix (forsangere/solister).\r\n\r\nGudstjenesten er et samarbeid mellom Strømsø menighet, Bykirken Strømsø, Kirkens Bymisjon og Kirkelig dialogsenter Drammen.', '12:00:00', '2018-09-13', 0, NULL, NULL, 0, 1, 5),
 (7, 'Sammen for Norge', 'Sammen for Norge er et nytt dialogprosjekt for ungdom og unge voksne i regi av Forandringshuset med utgangspunkt i en metode fra konseptet «Tillsammans för Sverige» som Fryshuset i Sverge har gjennomført i en årrekke med stor suksess.\r\n\r\nGjennom dialogprosjekt og foredrag av ungdom med personlige fortellinger har Sammen for Norge som mål å motvirke radikalisering, xenofobi og fremmedfrykt. Vårt mål er å bygge forståelse og toleranse for det som er annerledes med et særlig fokus på religion og hvilken rolle religion spiller i samfunnet.\r\n\r\nDet blir en presentasjon fra dialogprest Maria Kjellsdotter-Rydinger som har vært med å utvikle konseptet i Sverige og Kim Andre Vian Bjerkestrand som er ansvarlig for lanseringen av konseptet i Norge.  \r\n\r\nMedvirkende:\r\nMaria Kjellsdotter Rydinger og Liam Sallamander (Fryshuset)\r\nKim Andre Vian Bjerkestrand (Forandringsuhset)\r\nRagnhild Laird Iversen (USN)\r\nIvar Flaten (Kirkelig Dialogsenter)', '09:00:00', '2018-09-14', 0, NULL, 'https://ticketmaster.com', 0, 1, 4),
 (8, 'Yoga for hjertet', 'Velkommen til chanting av Mahamrityunjaya Mantra – et gammelt helende mantra og sang meditasjon. Lyd påvirker kropp og sinn og det bruker vi også i yoga for å roe ned, åpne opp og være tilstede her og nå.\r\n\r\nMax. 30 plasser.\r\n\r\nGratis, men legg gjerne igjen en donasjon.', '12:00:00', '2018-09-15', 0, NULL, 'https://ticketmaster.com', 0, 1, 2),
-(9, 'Støttekonsert til TV-aksjon', 'TV-aksjonen NRK Kirkens Bymisjon skal skape et varmere og mer inkluderende samfunn.\r\n\r\nI Norge i dag er det altfor mange som står utenfor. Noen mangler en seng i sove i, andre har ingen å snakke med.\r\n\r\nÅrets TV-aksjon skal åpne dører og invitere flere inn i varmen. Fordi ett møte kan endre et liv – og flere møter kan endre et helt samfunn.\r\n\r\nPengene som samles inn skal gå til å skape 700.000 nye menneskemøter.', '13:00:00', '2018-09-16', 200, NULL, 'ticketmaster.com', 0, 1, 5),
+(9, 'Støttekonsert til TV-aksjon', 'TV-aksjonen NRK Kirkens Bymisjon skal skape et varmere og mer inkluderende samfunn.\r\n\r\nI Norge i dag er det altfor mange som står utenfor. Noen mangler en seng i sove i, andre har ingen å snakke med.\r\n\r\nÅrets TV-aksjon skal åpne dører og invitere flere inn i varmen. Fordi ett møte kan endre et liv – og flere møter kan endre et helt samfunn.\r\n\r\nPengene som samles inn skal gå til å skape 700.000 nye menneskemøter.', '13:00:00', '2018-09-16', 200, NULL, 'ticketmaster.com', 1, 1, 5),
 (10, 'Guitar Man', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '14:00:00', '2017-09-17', 50, NULL, NULL, 0, 1, 8),
 (11, 'Dance dance', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '09:00:00', '2017-09-12', 0, NULL, NULL, 1, 1, 2),
 (12, 'Banjo man', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '15:00:00', '2017-09-06', 100, NULL, NULL, 0, 1, 4),
@@ -300,8 +300,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `type`) VALUES
-(1, 'Admin', 'admin@ntnu.no', 'admin', 'admin'),
-(2, 'publisher', 'publicher@ntnu.no', 'publisher', 'publisher');
+(1, 'Admin', 'admin@ntnu.no', '$2a$10$Hs3nkUWSR37Jd/jy5EFP7.6MXYvn1Iy98XnDlZ20sOJn..eH9BUoO', 'admin'),
+(2, 'publisher', 'publisher@ntnu.no', '$2a$10$nxu.DvUW91RKo8rx27oAneXLYq1lRk8MPBGm2FiTMeg7xCN0bKgGi', 'publisher'),
+(9, 'testeeeeee', 'ffff@hhh.no', '$2a$10$EDfa2/CMWs9M6d4oTX3lTeWaivRC/FyQSVtTIjaFiaFqcIAJ2bMj2', 'publisher'),
+(10, 'Jallakkkkf', 'dddd@fff.bg', '$2a$10$8BMI0GQbgNWMOReCoCYdWuo8ccPK/d2TXgJ7r7FX3Cys7Q8QCHpWW', 'admin');
 
 -- --------------------------------------------------------
 
@@ -327,7 +329,11 @@ INSERT INTO `venues` (`id`, `address`, `capacity`) VALUES
 (5, 'Fjell kirke', 300),
 (6, ' Union Scene, Multisal 1', 200),
 (7, 'Filadelfia', NULL),
-(8, 'Hovedscenen, Union Scene', 1000);
+(8, 'Hovedscenen, Union Scene', 1000),
+(9, 'ates', 123),
+(10, 'bla', 1230),
+(11, 'dfgh', 67),
+(12, 'ttt', 444);
 
 -- --------------------------------------------------------
 
@@ -353,7 +359,8 @@ INSERT INTO `video_links` (`id`, `link`, `name`, `r_id`) VALUES
 (4, 'https://www.youtube.com/watch?v=TKHLf6d9x-w', 'video name 1', 2),
 (5, 'https://www.youtube.com/watch?v=TKHLf6d9x-w', 'video name 2', 2),
 (6, 'https://www.youtube.com/watch?v=TKHLf6d9x-w', 'video name 3', 2),
-(7, 'https://www.youtube.com/watch?v=TKHLf6d9x-w', 'video name 4', 1);
+(7, 'https://www.youtube.com/watch?v=TKHLf6d9x-w', 'video name 4', 1),
+(8, 'https://medium.com/@Keithweaver_/building-a-log-in-system-for-a-mern-stack-39411e9513bd', 'hallo', 1);
 
 --
 -- Indexes for dumped tables
@@ -452,7 +459,7 @@ ALTER TABLE `contact_persons`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `festival_reports`
@@ -464,7 +471,7 @@ ALTER TABLE `festival_reports`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `partners`
@@ -488,19 +495,19 @@ ALTER TABLE `review`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `venues`
 --
 ALTER TABLE `venues`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `video_links`
 --
 ALTER TABLE `video_links`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Begrensninger for dumpede tabeller
