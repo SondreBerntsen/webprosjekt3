@@ -5,6 +5,8 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import ScheduleItem from "../ScheduleItem";
 import EventVideo from "./EventVideo";
+import {fixLineBreaks} from "../Functions"
+import {FacebookShareButton, FacebookIcon} from 'react-share'
 import "../../styles/event.css";
 
 class Event extends Component {
@@ -14,7 +16,7 @@ class Event extends Component {
       {
         id: "",
         title: "",
-        text: "",
+        text: [],
         img_path: "",
         date: "",
         youtube_link: "",
@@ -26,6 +28,7 @@ class Event extends Component {
     yt_vid: []
   };
   componentDidMount() {
+    console.log(window.location.href)
     let id = this.props.match.params.eventId;
     this.getEventData(id);
     window.scrollTo(0, 0);
@@ -34,7 +37,11 @@ class Event extends Component {
   getEventData = id => {
     fetch(`http://localhost:5000/event?id=` + id)
       .then(response => response.json())
-      .then(response => this.setState({ eventData: response }))
+      .then(response => {
+        response[0].text = fixLineBreaks(response[0].text)
+        this.setState({ eventData: response })
+        console.log(response[0])
+      })
       .then(response => this.getYTID(response))
       .catch(err => console.log(err));
   };
@@ -87,7 +94,23 @@ class Event extends Component {
             imgpath={this.state.eventData[0].img_path}
             id={this.state.eventData[0].id}
           />
-          <p className="event-text">{this.state.eventData[0].text}</p>
+          <article>
+            {
+              this.state.eventData[0].text.map((paragraph, index) => (
+                <p key={index} className="event-text">{paragraph}</p>
+              ))
+            }
+          </article>
+          <div className="centerShareButton">
+            <FacebookShareButton
+              url={window.location.href}
+              >
+              <FacebookIcon
+                url={window.location.href}
+                size={60}
+                round={true} />
+            </FacebookShareButton>
+          </div>
         </div>
       </div>
     ) : (

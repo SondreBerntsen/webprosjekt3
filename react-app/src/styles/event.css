@@ -35,6 +35,9 @@ hr.event-hr {
   margin-bottom: 10px;
   background-color: #6d6d6d0f;
 }
+.centerShareButton{
+  margin: auto;
+}
 
 /****EVENT VIDEO*******/
 .Video {

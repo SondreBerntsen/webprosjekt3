@@ -15,7 +15,7 @@ const fixLineBreaks = string => {
   string = string.split('\n')
   let textArray = []
   for(let i = 0; i < string.length; i++){
-    if(string[i].length !== 0) textArray.push(string[i])
+    if((string[i].length !== 0) && (string[i].length !== 1)) textArray.push(string[i])
   }
   return textArray
 }
