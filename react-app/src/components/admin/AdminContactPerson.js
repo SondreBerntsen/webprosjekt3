@@ -1,6 +1,8 @@
 // AdminContactPerson.js
 import React, { Component } from "react";
 
+const Croppie = require("react-croppie");
+
 class AdminContactPerson extends Component {
   state = {};
   handleChange = e => {
@@ -62,6 +64,7 @@ class AdminContactPerson extends Component {
 
   render() {
     const { props } = this;
+
     return (
       <div>
         <div className="elementCardAdmin row">
@@ -142,6 +145,7 @@ class AdminContactPerson extends Component {
                   src={require("../../uploadedImg/contactPersonImg/" +
                     props.contact.id)}
                   alt="contactpersonImg"
+                  id="contactpersonImg"
                 />
               ) : null}
             </div>
