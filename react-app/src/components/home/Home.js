@@ -26,27 +26,26 @@ class Home extends Component {
   }
   checkStatus = (data) => {
     let content = {}
-    //content for no anniversary
-    content.anniversary = (data.anniversary === "on" ? true : false)
-    if (data.status === "active") {
-      content.pitch = data.pitch
-      content.date = data.dateHeader_txt
-    }
-    else {
-      content.pitch = data.pitch
-      content.inactive = data.inactiveHeader_txt
-    }
     let date = new Date();
     let year = date.getFullYear();
-    this.setState({ year: year, content: content })
-  }
-  checkAnniversary = () => {
-    if (this.state.content.anniversary === true) {
-      return (
-        <div className="row col-md-8 btnHeaderDiv">
-          <Link to="/jubileum" className="btnHeader btn col-sm-12 col-md-10 col-lg-5">10-års jubileum!</Link>
-        </div>
-      )
+
+    //content for no anniversary
+    content.anniversary = (data.anniversary === "on" ? true : false)
+    content.pitch = data.pitch
+    if (data.status === "active") {
+      content.status = "active"
+      content.date = data.dateHeader_txt
+      this.setState({ year: year, content: content })
+    }
+    else {
+      content.status = "inactive"
+      fetch('http://localhost:5000/home/latestReview')
+        .then(response => response.json())
+        .then(response => {
+          content.latestReview = response[0].year
+          this.setState({ year: year, content: content })
+        })
+
     }
   }
 
@@ -57,18 +56,44 @@ class Home extends Component {
         <div className="headerImage">
           <div className="container-fluid contentHeader  col-12 col-sm-10 col-lg-8 col-md-8 col-xl-6 ">
             <img className="logoImg  col-sm-12 col-md-5 " src={require('../../img/logo.png')} alt="logo" />
-            {<p className="headerText pitch">{this.state.content.pitch}</p>}
-            <p className="dateHeader">{this.state.content.date}</p>
-            {this.checkAnniversary()}
-            <div className="row col-md-8 btnHeaderDiv">
-              <Link to="/program" className="btnHeader btn col-sm-12 col-md-10 col-lg-5">Program</Link>
-              <a href="#eventsHome" className="btnHeader btn col-sm-12 col-md-10 col-lg-5">Lineup</a>
-            </div>
+            <p className="headerText pitch">{this.state.content.pitch}</p>
+            {
+              this.state.content.status === "active" 
+              ? 
+              <p className="dateHeader">{this.state.content.date}</p>
+              :
+              <>
+                <h1 className="bigHeaderHome">Takk for i år!</h1>
+              </>
+            }
+
+            {
+              this.state.content.anniversary === true && (
+                <div className="row col-md-8 btnHeaderDiv">
+                  <Link to="/jubileum" className="btnHeader btn col-sm-12 col-md-10 col-lg-5">10-års jubileum!</Link>
+                </div>
+              )
+            }
+            {
+              this.state.content.status === "active" 
+              ?
+              <div className="row col-md-8 btnHeaderDiv">
+                <Link to="/program" className="btnHeader btn col-sm-12 col-md-10 col-lg-5">Program</Link>
+                <a href="#eventsHome" className="btnHeader btn col-sm-12 col-md-10 col-lg-5">Lineup</a>
+              </div>
+              :
+              <div className="row col-md-8 btnHeaderDiv">
+                <Link to={"/tilbakeblikk/" + this.state.content.latestReview} className="btnHeader btn col-sm-12 col-md-10 col-lg-5">Tilbakeblikk!</Link>
+              </div>
+            }
           </div>
           <div className="container mx-auto" id="eventsHome">
-            <div className="row "><EventList year={this.state.year} /></div>
+            {
+              // Display event cards if the page has active status 
+              this.state.content.status === "active" && <div className="row "><EventList year={this.state.year} /></div>
+            }
           </div>
-          <Timeline />
+          {this.state.content.anniversary === "on" && <Timeline />}
           <Footer />
         </div>
       </React.Fragment>

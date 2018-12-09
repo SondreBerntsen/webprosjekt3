@@ -23,7 +23,12 @@
     color:white;
     text-align: center;
     font-size: 18px;
-    
+}
+.bigHeaderHome {
+    color: white;
+    text-align: center;
+    font-size: 3em;
+    margin-top: 25px;
 }
 .dateHeader{
     font-family: balboa, sans-serif;
