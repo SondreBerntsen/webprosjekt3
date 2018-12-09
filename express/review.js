@@ -1,6 +1,10 @@
 const express = require('express')
 var db = require('./db')
 const review = express.Router()
+const fileUpload = require('express-fileupload');
+var fs = require('fs');
+
+review.use(fileUpload());
 
 
 review.get("/", (req, res) => {
@@ -43,7 +47,7 @@ review.get("/", (req, res) => {
         return res.send(err)
       } else {
         json.recordings = results3
-        return res.send({data: json})
+        return res.send({ data: json })
       }
     })
   }
@@ -51,16 +55,28 @@ review.get("/", (req, res) => {
 })
 
 review.get('/recordings', (req, res) => {
-  let {id} = req.query
+  let { id } = req.query
   let QUERY = `SELECT * FROM video_links WHERE r_id = ${id}`
   db.query(QUERY, (err, results) => {
     if (err) return res.send(err)
     return res.json(results)
-    
+
+  })
+})
+
+review.post('/newReview', (req, res) => {
+  const { year, text } = req.body
+  let QUERY = `
+    INSERT INTO review (year, text)
+    VALUES (${year}, '${text}')
+  `
+  db.query(QUERY, (err, results) => {
+    if (err) res.send(err)
+    return res.json(results)
   })
 })
 review.post('/update', (req, res) => {
-  const {id, year, text} = req.body
+  const { id, year, text } = req.body
   let QUERY = `
     UPDATE review
     SET 
@@ -75,7 +91,7 @@ review.post('/update', (req, res) => {
 })
 
 review.post("/newRecording", (req, res) => {
-  const {link, name, r_id} = req.body
+  const { link, name, r_id } = req.body
   let QUERY = `
     INSERT INTO video_links (link, name, r_id)
     VALUES ('${link}', '${name}', ${r_id})
@@ -87,19 +103,27 @@ review.post("/newRecording", (req, res) => {
 })
 
 review.post("/newImage", (req, res) => {
-  const {title, caption, r_id} = req.body
+  const { title, caption, r_id } = req.body
+  const imgFile = req.files.img
   let QUERY = `
     INSERT INTO images (title, caption, r_id) 
     VALUES ('${title}', '${caption}', ${r_id})
   `
   db.query(QUERY, (err, results) => {
-    if (err) res.send(err);
-    return res.json(results);
+    if (err) res.send(err)
+    else {
+      imgFile.mv(`${__dirname}/../react-app/src/uploadedImg/sliderImg/${results.insertId}`, function (err) {
+        if (err) {
+          return res.status(500).send(err);
+        }
+        return res.json(results);
+      });
+    }
   });
 })
 
 review.post("/deleteRecording", (req, res) => {
-  const {id} = req.body
+  const { id } = req.body
   let QUERY = `
     DELETE FROM video_links
     WHERE id = ${id}
@@ -111,7 +135,7 @@ review.post("/deleteRecording", (req, res) => {
 })
 
 review.post("/deleteImage", (req, res) => {
-  const {id} = req.body
+  const { id } = req.body
   let QUERY = `
     DELETE FROM images
     WHERE id = ${id}

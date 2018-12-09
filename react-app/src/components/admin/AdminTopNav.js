@@ -1,8 +1,15 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { withRouter } from 'react-router-dom'
 
 
-const AdminTopNav = () => {
+const AdminTopNav = (props) => {
+    function loggout() {
+        localStorage.removeItem('login-jwt');
+        //withRouter(({ history }) => (history.push('/admin')))
+        window.location.href = '/admin';
+
+    }
     return (
         <nav className="navbar navbar-expand-lg fixed-top navTopAdmin navbar-dark">
             <div className="container-fluid">
@@ -10,9 +17,9 @@ const AdminTopNav = () => {
                 <div id="navbarNavAdmin">
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="/admin/events">
-                                Login
-                            </NavLink>
+                            <button onClick={loggout}>
+                                Logg ut
+                            </button>
                         </li>
                     </ul>
                 </div>

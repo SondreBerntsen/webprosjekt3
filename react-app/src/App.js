@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 //import Navbar from "./components/Navbar";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import Home from "./components/home/Home";
 import Programme from "./components/programme/Programme";
 import About from "./components/about/About";
@@ -25,6 +25,7 @@ import AdminSettings from "./components/admin/tables/AdminSettings";
 
 
 class App extends Component {
+
   render() {
     return (
       <BrowserRouter>
@@ -42,20 +43,28 @@ class App extends Component {
           <Route path="/artikkel/:newsId" component={NewsArticle} />
 
           <Route path="/admin" component={Admin} />
-          <Route exact path="/admin/events" component={AdminEvents} />
-          <Route path="/admin/events/:year" component={AdminEvents} />
-          <Route exact path="/admin/posts" component={AdminPosts} />
-          <Route path="/admin/posts/:year" component={AdminPosts} />
-          <Route path="/admin/schedule" component={AdminSchedule} />
-          <Route path="/admin/venues" component={AdminVenues} />
-          <Route path="/admin/general" component={AdminGeneral} />
-          <Route path="/admin/users" component={AdminUsers} />
-          <Route path="/admin/review" component={AdminReview} />
-          <Route path="/admin/settings" component={AdminSettings} />
+          <AdminRoute exact path="/admin/events" component={AdminEvents} />
+          <AdminRoute path="/admin/events/:year" component={AdminEvents} />
+          <AdminRoute exact path="/admin/posts" component={AdminPosts} />
+          <AdminRoute path="/admin/posts/:year" component={AdminPosts} />
+          <AdminRoute path="/admin/schedule" component={AdminSchedule} />
+          <AdminRoute path="/admin/venues" component={AdminVenues} />
+          <AdminRoute path="/admin/general" component={AdminGeneral} />
+          <AdminRoute path="/admin/users" component={AdminUsers} />
+          <AdminRoute path="/admin/review" component={AdminReview} />
+          <AdminRoute path="/admin/settings" component={AdminSettings} />
         </div>
       </BrowserRouter>
     );
   }
 }
+let jwt = localStorage.getItem('login-jwt');
 
+const AdminRoute = ({ component: Component, ...rest }) => (//redirect user to loginpage if he is not logged in
+  <Route {...rest} render={(props) => (
+    jwt
+      ? <Component {...props} />
+      : <Redirect to='/admin' />
+  )} />
+)
 export default App;

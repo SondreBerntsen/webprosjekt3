@@ -8,7 +8,16 @@ import "../../styles/adminLogin.css";
 
 class Admin extends Component {
   state = {
-    loggedIn: true //fix
+    loggedIn: false //fix
+  }
+  componentDidMount() {
+    let jwt = localStorage.getItem('login-jwt');
+    if (jwt) {
+      this.setState({ loggedIn: true })
+    } else {
+      this.setState({ loggedIn: false })
+    }
+
   }
   render() {
     return (

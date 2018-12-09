@@ -18,7 +18,9 @@ class AdminLogin extends Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
         })
-            .then(response => response.status >= 400 ? this.setState({ errorMsg: 'true' }) : null)
+            .then(response => response.status >= 400 ?
+                this.setState({ errorMsg: 'true' }) : response.json().then((token) =>
+                    localStorage.setItem('login-jwt', token.token)).then(window.location.href = '/admin/events'))//lagrer token i local storage
             .catch(err => console.log(err))
     }
     render() {
