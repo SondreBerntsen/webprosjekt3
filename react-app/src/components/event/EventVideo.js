@@ -4,8 +4,6 @@
 import React from "react";
 
 const EventVideo = props => {
-  const url = props.vidurl;
-
   const videoElements = document.querySelectorAll(".js-video");
   const activeClass = "is-active";
   const loadingClass = "is-loading";
@@ -57,13 +55,12 @@ const EventVideo = props => {
   function fullUrl() {
     const fullUrl = `https://www.youtube.com/embed/${
       props.vidurl
-    }?feature=oembed&autoplay=1&hd=1`;
+    }?feature=oembed&&hd=1`;
     return fullUrl;
   }
-
   /*checks if event has youtube link or not*/
   const hasVideo =
-    url !== "" ? (
+    props.vidurl !== "" ? (
       /*if event has youtube link*/
       <div>
         <div
@@ -74,9 +71,7 @@ const EventVideo = props => {
           data-height="720"
         >
           <div className="Video-wrap js-videoWrap">
-            <a className="Video-title" href="full-url-goes-here">
-              {props.title}
-            </a>
+            <a className="Video-title">{props.title} </a>
 
             {props.imgpath !== "" ? (
               <img
@@ -99,18 +94,13 @@ const EventVideo = props => {
       </div>
     ) : (
       /*if the event has no youtube link*/
-      <div>
-        <div data-width="1280" data-height="720">
-          <div className="Video-wrap js-videoWrap">
-            {props.imgpath !== "" ? (
-              <img
-                src={require(`../../uploadedImg/eventImg/${props.id}`)}
-                alt="img"
-                className="Video-placeholder js-videoPlaceholder"
-              />
-            ) : null}
-          </div>
-        </div>
+      <div className="eventNoVideo">
+        {props.imgpath !== "" ? (
+          <img
+            src={require(`../../uploadedImg/eventImg/${props.id}`)}
+            alt="img"
+          />
+        ) : null}
       </div>
     );
 
