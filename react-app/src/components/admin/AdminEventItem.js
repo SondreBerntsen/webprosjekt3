@@ -18,6 +18,33 @@ class AdminEventItem extends Component {
   componentDidMount() {
     this.setState(({ ...this.state } = this.props.event));
   }
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    const data = new FormData();
+    data.append("id", this.props.event.id);
+    data.append("youtube_link", this.refs.editEventYoutubeLink.value);
+    data.append("title", this.refs.editEventTitle.value);
+    data.append("date", this.refs.editEventDate.value);
+    data.append("img", this.refs.editEventImg.files[0]);
+    data.append("price", this.refs.editEventPrice.value);
+    data.append("time", this.refs.editEventTime.value);
+    data.append("payment_link", this.refs.editEventPaymentLink.value);
+    data.append("livestream", this.props.event.livestream);
+    data.append("text", this.refs.editEventDescription.value);
+    data.append("v_id", this.refs.editEventAddress.value);
+    fetch(`http://localhost:5000/event/update`, {
+      method: "POST",
+      body: data
+    })
+      .then(_ => {
+        // displays the new changes without refreshing the page
+        this.props.getEventList();
+      })
+      .catch(err => console.log(err));
+  };
+
   getImage = id => {
     try {
       return (
@@ -36,19 +63,12 @@ class AdminEventItem extends Component {
       //if name equals 'livestreamradio'..
       case "livestreamradio":
         // .. it sets the value of target in state
-        this.setState({ livestream: e.target.value });
+        this.props.event.livestream = e.target.value;
         break;
       default:
     }
   };
 
-  handleEdit = e => {
-    e.preventDefault();
-
-    const data = new FormData();
-    data.append("livestream", this.state.livestream);
-    console.log(this.state.livestream);
-  };
   render() {
     return (
       <React.Fragment>
@@ -63,14 +83,14 @@ class AdminEventItem extends Component {
           <div className="col-lg-3">
             <button
               className="btn btn-sm btn-danger btnInElementAdmin"
-              onClick={() => {
-                this.props.handleDelete(this.props.event.id);
+              onClick={e => {
+                this.props.handleDelete(e, this.props.event.id);
               }}
             >
               Slett
             </button>
             <button
-              className="btn  btn-secondary btnInElementAdmin btn-sm"
+              className="btn btn-secondary btnInElementAdmin btn-sm"
               type="button"
               data-toggle="collapse"
               data-target={"#event" + this.props.event.id}
@@ -85,7 +105,7 @@ class AdminEventItem extends Component {
           className="editScheduleItem collapse"
           id={"event" + this.props.event.id}
         >
-          <form className="col-md-8 col-lg-6" onSubmit={this.handleEdit}>
+          <form className="col-md-8 col-lg-6" onSubmit={this.handleSubmit}>
             <div className="form-row">
               <div className="form-group col-md-6">
                 <label>Tittel</label>
@@ -93,6 +113,7 @@ class AdminEventItem extends Component {
                   type="text"
                   className="form-control"
                   defaultValue={this.props.event.title}
+                  ref="editEventTitle"
                 />
               </div>
               <div className="form-group col-md-6">
@@ -101,6 +122,7 @@ class AdminEventItem extends Component {
                   type="text"
                   className="form-control"
                   defaultValue={this.props.event.payment_link}
+                  ref="editEventPaymentLink"
                 />
               </div>
             </div>
@@ -108,9 +130,9 @@ class AdminEventItem extends Component {
               <div className="form-group col-md-6">
                 <label>Dato </label>
                 <input
-                  type="date"
                   className="form-control"
-                  defaultValue={this.props.event.date} //fix
+                  defaultValue={this.props.event.date}
+                  ref="editEventDate"
                 />
               </div>
               <div className="form-group col-md-6">
@@ -119,6 +141,7 @@ class AdminEventItem extends Component {
                   type="time"
                   className="form-control"
                   defaultValue={this.props.event.time}
+                  ref="editEventTime"
                 />
               </div>
             </div>
@@ -130,6 +153,7 @@ class AdminEventItem extends Component {
                   className="form-control"
                   defaultValue={this.props.event.price}
                   min="0"
+                  ref="editEventPrice"
                 />
               </div>
               <div className="form-group col-md-6">
@@ -138,13 +162,18 @@ class AdminEventItem extends Component {
                   type="text"
                   className="form-control"
                   defaultValue={this.props.event.youtube_link}
+                  ref="editEventYoutubeLink"
                 />
               </div>
             </div>
             <div className="form-row">
               <div className="form-group col-md-6">
                 <label>Bilde</label>
-                <input type="file" className="form-control" />
+                <input
+                  type="file"
+                  className="form-control"
+                  ref="editEventImg"
+                />
                 <div className="imgMargin">
                   {this.getImage(this.props.event.id)}
                 </div>
@@ -152,7 +181,7 @@ class AdminEventItem extends Component {
               <div className="form-group col-md-6">
                 <label>Adresse</label>
                 <select className="form-control custom-select">
-                  <option value={this.props.event.v_id}>
+                  <option ref="editEventAddress" value={this.props.event.v_id}>
                     {this.props.event.v_id}
                   </option>
                   {this.props.venues.map(function(venue) {
@@ -172,6 +201,7 @@ class AdminEventItem extends Component {
                 id="textareaNews"
                 className="form-control"
                 defaultValue={this.props.event.text}
+                ref="editEventDescription"
               />
             </div>
             {/* checks the value of the livestream*/}
