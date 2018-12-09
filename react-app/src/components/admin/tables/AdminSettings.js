@@ -9,14 +9,6 @@ class AdminSettings extends Component {
     this.getSettings();
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.settings !== prevState.settings) {
-      //console.log(prevState.settings);
-      //console.log(this.state.settings);
-      this.getSettings();
-    }
-  }
-
   // function for getting the current settings for status and anniversary from database
   getSettings = _ => {
     fetch(`http://localhost:5000/settings`)
@@ -38,7 +30,11 @@ class AdminSettings extends Component {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body)
-    }).catch(err => console.log(err));
+    })
+      .then(_ => {
+        this.getSettings();
+      })
+      .catch(err => console.log(err));
   };
 
   // function for updating status to database
@@ -54,7 +50,11 @@ class AdminSettings extends Component {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body)
-    }).catch(err => console.log(err));
+    })
+      .then(_ => {
+        this.getSettings();
+      })
+      .catch(err => console.log(err));
   };
 
   render() {
@@ -108,7 +108,7 @@ class AdminSettings extends Component {
                   className="btn btn-selected"
                 />
               </div>
-              <small id="helptext" className="form-text text-muted">
+              <small id="helptext" className="form-text text-muted mb-2">
                 Velg 'inaktiv' om festivalsesongen er over for i år!
               </small>
             </div>
