@@ -1,8 +1,6 @@
 // AdminContactPerson.js
 import React, { Component } from "react";
 
-const Croppie = require("react-croppie");
-
 class AdminContactPerson extends Component {
   state = {};
   handleChange = e => {
@@ -149,6 +147,7 @@ class AdminContactPerson extends Component {
                 />
               ) : null}
             </div>
+
             <button type="submit" className="btn btn-info btn-sm">
               Lagre
             </button>
