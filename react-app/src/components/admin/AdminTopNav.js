@@ -17,9 +17,7 @@ const AdminTopNav = (props) => {
                 <div id="navbarNavAdmin">
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <button onClick={loggout}>
-                                Logg ut
-                            </button>
+                            {localStorage.getItem('login-jwt') ? <button className="btn btn-outline-light" onClick={loggout}>Logg ut</button> : null}
                         </li>
                     </ul>
                 </div>
