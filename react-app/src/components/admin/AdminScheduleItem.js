@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {fixDateString, fixTimeString} from '../Functions'
+import { fixDateString, fixTimeString } from '../Functions'
 
 
 class AdminScheduleItem extends Component {
@@ -95,10 +95,27 @@ class AdminScheduleItem extends Component {
   render() {
     return (
       <React.Fragment>
+        <h4 className="col-md-10 col-sm-10 eventTitleProgramme" ref="title">{this.props.event.title}</h4>
         <div className="elementCardAdmin">
+
           <div className="row">
-            <h3 className="col-md-10 col-sm-10" ref="title">{this.props.event.title}</h3>
-            <div className="col-md-2 col-sm-2">
+            <p className="col-sm-12 col-md-6 col-lg-4">
+              <span className="smallHeading">Adresse: </span>
+              <span ref="address" >{this.props.event.venue}</span>
+            </p>
+            <p className="col-lg-2 col-md-6">
+              <span className="smallHeading">Tid: </span>
+              <span ref="time" >{fixTimeString(this.props.event.time)}</span>
+            </p>
+            <p className="col-lg-2 col-md-6">
+              <span className="smallHeading">Dato: </span>
+              <span ref="date">{fixDateString(this.props.event.date)}</span>
+            </p>
+            <p className="col-lg-2 col-md-6">
+              <span className="smallHeading">Pris: </span>
+              <span ref="price" >kr. {this.props.event.price}.-</span>
+            </p>
+            <div className="col-lg-2 ">
               <button
                 className="btn  btn-secondary btnInElementAdmin btn-sm  "
                 type="button"
@@ -111,27 +128,11 @@ class AdminScheduleItem extends Component {
               </button>
             </div>
           </div>
-          <div className="col-md-12 row">
-            <p className="col-lg-12">
-              <span className="smallHeading">Adresse: </span>
-              <span ref="address" >{this.props.event.venue}</span>
-            </p>
-          </div>
-          <div className="col-md-12 row">
-            <p className="col-md-3">
-              <span className="smallHeading">Tid: </span>
-              <span ref="time" >{fixTimeString(this.props.event.time)}</span>
-            </p>
-            <p className="col-md-3">
-              <span className="smallHeading">Dato: </span>
-              <span ref="date">{fixDateString(this.props.event.date)}</span>
-            </p>
-            <p className="col-md-6">
-              <span className="smallHeading">Pris: </span>
-              <span ref="price" >kr. {this.props.event.price}.-</span>
-            </p>
-          </div>
+
         </div>
+
+
+
 
         <div className="collapse editScheduleItem" id={"scheduleItemForm" + this.props.event.id}>
           <form className="col-md-8 col-lg-6" onSubmit={this.handleSubmit}>

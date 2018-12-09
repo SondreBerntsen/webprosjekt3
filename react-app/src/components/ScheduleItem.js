@@ -66,7 +66,7 @@ const ScheduleItem = props => {
           <div className="col-md-3 buttonDiv">
             <a
               href={props.event.payment_link}
-              className="btn btn-outline-success buy_ticketBtn col-sm-12 col-md-10"
+              className="btn btn-outline-success buy_ticketBtn col-sm-12 col-md-12"
               target="_blank"
               rel="noopener noreferrer"
             >

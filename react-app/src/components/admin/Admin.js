@@ -16,6 +16,7 @@ class Admin extends Component {
       this.setState({ loggedIn: true })
     } else {
       this.setState({ loggedIn: false })
+
     }
 
   }

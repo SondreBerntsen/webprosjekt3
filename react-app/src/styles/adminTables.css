@@ -78,6 +78,10 @@
 .editScheduleItem label {
   display: block !important;
 }
+.eventTitleProgramme{
+  padding:0px;
+  
+}
 /**Post and event**/
 .newsImgEdit,
 .eventImgEdit,
