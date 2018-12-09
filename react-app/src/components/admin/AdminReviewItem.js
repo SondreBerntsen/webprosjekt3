@@ -93,15 +93,18 @@ class AdminReviewItem extends Component {
         .catch(err => console.log(err))
     }
   }
-  handleDeleteImage = (id) => {
-    let body = { id: id }
+  handleDeleteImage = (e) => {
+    let body = { id: e.target.value }
     if (window.confirm('Are you sure you wish to delete this item?')) {
       fetch('http://localhost:5000/review/deleteImage', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body)
       })
-        .then(_ => this.updateImagesList())
+        .then(_ => {
+          //in an ideal world, unlinking the images wouldn't result in page refresh
+          this.updateImagesList()
+        })
         .catch(err => console.log(err))
     }
   }
@@ -125,9 +128,9 @@ class AdminReviewItem extends Component {
         <div className="elementCardAdmin">
           <div className="row">
             <h3 className="col-md-10 col-sm-10" ref="title">{this.props.year.year}</h3>
-            <div className="col-md-2 col-sm-2">
+            <div className="col-md-1 col-sm-1">
               <button
-                className="btn  btn-secondary btnInElementAdmin btn-sm  "
+                className="btn btn-secondary btnInElementAdmin btn-sm"
                 type="button"
                 data-toggle="collapse"
                 data-target={"#reviewItemForm" + this.props.year.id}
@@ -136,6 +139,17 @@ class AdminReviewItem extends Component {
               >
                 Rediger
               </button>
+            </div>
+            <div className="col-md-1 col-sm-1">
+              <button 
+                className="btn btn-secondary btnInElementAdmin btn-sm" 
+                type="button"
+                value={this.props.year.id}
+                onClick={() => {
+                  this.props.handleDelete(this.props.year.id, this.props.year.slides);
+                }}>
+                  Slett
+                </button>
             </div>
           </div>
         </div>
@@ -242,7 +256,7 @@ class AdminReviewItem extends Component {
                         <div className="col-md-6">
                           <h5>Tittel: </h5><p>{slide.title}</p>
                           <h5>Bildetekst: </h5><p>{slide.caption}</p>
-                          <button className="btn btn-secondary btnInElementAdmin btn-sm">
+                          <button value={slide.id} onClick={this.handleDeleteImage} className="btn btn-secondary btnInElementAdmin btn-sm">
                             Slett
                           </button>
                         </div>

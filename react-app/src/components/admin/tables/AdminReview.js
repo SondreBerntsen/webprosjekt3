@@ -53,6 +53,25 @@ class AdminReview extends Component {
     })
     .catch(err => console.log(err))
   }
+
+  handleDelete = (id, slides) => {
+    let body = {id: id, slides: slides}
+    console.log(body)
+    if (window.confirm('Are you sure you wish to delete this item?')){
+      fetch('http://localhost:5000/review/deleteReview', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(body)
+      })
+      .then(response => {
+        console.log(response)
+        this.getData()
+      })
+      .catch(err => console.log(err))
+    }
+  }
+
+
   render() {
     return (
       <>
@@ -96,7 +115,7 @@ class AdminReview extends Component {
 
           {/* Lists all existing review elements */}
           {this.state.years.map((year, index) => (
-            <AdminReviewItem key={index} year={year} />
+            <AdminReviewItem key={index} year={year} handleDelete={this.handleDelete} />
           ))}
         </div>
       </>
