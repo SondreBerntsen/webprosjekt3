@@ -75,6 +75,31 @@ review.post('/newReview', (req, res) => {
     return res.json(results)
   })
 })
+
+review.post('/deleteReview', (req, res) => {
+  const {id, slides} = req.body
+
+  let QUERY = `
+    DELETE FROM review
+    WHERE id = ${id}
+  `
+  db.query(QUERY, (err, results) => {
+    if (err) res.send(err);
+    else{
+      slides.forEach((image) => {
+        fs.unlink('../react-app/src/uploadedImg/sliderImg/' + image.id, (err) => {
+          if (err) {
+            console.log('image was not deleted');
+          } else {
+            console.log('image was deleted');
+          }
+        });
+      })
+      return res.json(results);
+    }
+  });
+})
+
 review.post('/update', (req, res) => {
   const { id, year, text } = req.body
   let QUERY = `
@@ -141,8 +166,18 @@ review.post("/deleteImage", (req, res) => {
     WHERE id = ${id}
   `
   db.query(QUERY, (err, results) => {
-    if (err) res.send(err);
-    return res.json(results);
+    if (err) {
+        return res.send(err);
+    } else {//delete the image from the folder
+      fs.unlink('../react-app/src/uploadedImg/sliderImg/' + req.body.id, (err) => {
+        if (err) {
+          console.log('image was not deleted');
+        } else {
+          console.log('image was deleted');
+        }
+      });
+      return res.json(results);
+    }
   });
 })
 
