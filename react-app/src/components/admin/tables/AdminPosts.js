@@ -53,6 +53,7 @@ class AdminPosts extends Component {
     this.getPostList();
   }
   handleDelete = (id) => {
+
     let body = {
       id: id
     }
@@ -152,7 +153,7 @@ class AdminPosts extends Component {
               <label>Nyhetstekst</label>
               <textarea
                 type="text"
-                className="form-control"
+                className="form-control textNewPost"
                 ref="createVenueText"
                 required />
             </div>
@@ -163,7 +164,7 @@ class AdminPosts extends Component {
         </div>
         {this.state.posts.map(post => (
           <div key={post.id}>
-            <AdminPostItem post={post} handleDelete={this.handleDelete} />
+            <AdminPostItem post={post} handleDelete={this.handleDelete} getPostList={this.getPostList} />
           </div>
         ))}
       </div>

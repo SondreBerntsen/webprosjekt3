@@ -85,7 +85,12 @@
   max-height: 100px;
   margin-bottom: 20px;
 }
-
+.textareaNews{
+  min-height: 300px !important;
+}
+.textNewPost{
+  min-height: 300px !important;
+}
 /**general*/
 .festivalReportTitle,
 .radiobtnLabel {

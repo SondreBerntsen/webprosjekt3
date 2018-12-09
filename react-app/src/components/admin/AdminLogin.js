@@ -26,7 +26,6 @@ class AdminLogin extends Component {
     render() {
         return (
             <React.Fragment>
-                {console.log(this.state.errorMsg)}
                 <div className="loginForm col-md-6 col-lg-4">
                     <div className="card loginFormCard ">
                         <div className="card-header text-center loginHeader">
