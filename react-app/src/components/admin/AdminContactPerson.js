@@ -2,62 +2,24 @@
 import React, { Component } from "react";
 
 class AdminContactPerson extends Component {
-  state = {};
-  handleChange = e => {
-    e.preventDefault();
-    switch (e.target.name) {
-      // editing contact persons
-      case "editContactPersonName":
-        this.setState({ editContactPersonName: e.target.value });
-        break;
-      case "editContactPersonRole":
-        this.setState({ editContactPersonRole: e.target.value });
-        break;
-      case "editContactPersonPhone":
-        this.setState({ editContactPersonPhone: e.target.value });
-        break;
-      case "editContactPersonEmail":
-        this.setState({ editContactPersonEmail: e.target.value });
-        break;
-      default:
-    }
-  };
+  // function for submitting the changes
   handleSubmit = e => {
     e.preventDefault();
     const data = new FormData();
-
-    if (this.refs.contactImg.files[0] !== undefined) {
-      data.append("id", this.props.contact.id);
-      data.append("img", this.refs.contactImg.files[0]);
-      data.append("name", this.refs.editContactPersonName.value);
-      data.append("role", this.refs.editContactPersonRole.value);
-      data.append("phone", this.refs.editContactPersonPhone.value);
-      data.append("email", this.refs.editContactPersonEmail.value);
-      // sends 'body'-object to general/frontpageUpdate to update the database
-      fetch(`http://localhost:5000/contactPersons/updateWithPicture`, {
-        method: "POST",
-        body: data
+    data.append("id", this.props.contact.id);
+    data.append("name", this.refs.editContactPersonName.value);
+    data.append("role", this.refs.editContactPersonRole.value);
+    data.append("phone", this.refs.editContactPersonPhone.value);
+    data.append("email", this.refs.editContactPersonEmail.value);
+    fetch(`http://localhost:5000/contactPersons/update`, {
+      method: "POST",
+      body: data
+    })
+      .then(_ => {
+        // displays the new changes without refreshing the page
+        this.props.getContactList();
       })
-        .then(_ => {
-          this.props.getContactList();
-        })
-        .catch(err => console.log(err));
-    } else {
-      data.append("id", this.props.contact.id);
-      data.append("name", this.refs.editContactPersonName.value);
-      data.append("role", this.refs.editContactPersonRole.value);
-      data.append("phone", this.refs.editContactPersonPhone.value);
-      data.append("email", this.refs.editContactPersonEmail.value);
-      // sends 'body'-object to general/frontpageUpdate to update the database
-      fetch(`http://localhost:5000/contactPersons/updateWithoutPicture`, {
-        method: "POST",
-        body: data
-      })
-        .then(_ => {
-          this.props.getContactList();
-        })
-        .catch(err => console.log(err));
-    }
+      .catch(err => console.log(err));
   };
 
   render() {
