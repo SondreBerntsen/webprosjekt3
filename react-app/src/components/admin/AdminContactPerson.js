@@ -1,7 +1,90 @@
 // AdminContactPerson.js
 import React, { Component } from "react";
+import ReactCrop from "react-image-crop";
+import "react-image-crop/dist/ReactCrop.css";
 
 class AdminContactPerson extends Component {
+  state = {
+    src: null,
+    crop: {
+      aspect: 0.9,
+      width: 50,
+      height: 70,
+      x: 0,
+      y: 0
+    }
+  };
+
+  onSelectFile = e => {
+    if (e.target.files && e.target.files.length > 0) {
+      const reader = new FileReader();
+      reader.addEventListener("load", () =>
+        this.setState({ src: reader.result })
+      );
+      reader.readAsDataURL(e.target.files[0]);
+      console.log(e.target.files[0]);
+    }
+  };
+
+  onImageLoaded = (image, pixelCrop) => {
+    this.imageRef = image;
+
+    // Make the library regenerate aspect crops if loading new images.
+    const { crop } = this.state;
+
+    if (crop.aspect && crop.height && crop.width) {
+      this.setState({
+        crop: { ...crop, height: null }
+      });
+      console.log(this.state.crop);
+    } else {
+      this.makeClientCrop(crop, pixelCrop);
+    }
+  };
+
+  onCropComplete = (crop, pixelCrop) => {
+    this.makeClientCrop(crop, pixelCrop);
+  };
+
+  onCropChange = crop => {
+    this.setState({ crop });
+  };
+
+  async makeClientCrop(crop, pixelCrop) {
+    if (this.imageRef && crop.width && crop.height) {
+      const croppedImageUrl = await this.getCroppedImg(
+        this.imageRef,
+        pixelCrop,
+        "newFile.jpeg"
+      );
+      this.setState({ croppedImageUrl });
+    }
+  }
+
+  getCroppedImg(image, pixelCrop, fileName) {
+    const canvas = document.createElement("canvas");
+    canvas.width = pixelCrop.width;
+    canvas.height = pixelCrop.height;
+    const ctx = canvas.getContext("2d");
+
+    ctx.drawImage(
+      image,
+      pixelCrop.x,
+      pixelCrop.y,
+      pixelCrop.width,
+      pixelCrop.height,
+      0,
+      0,
+      pixelCrop.width,
+      pixelCrop.height
+    );
+
+    console.log(ctx.canvas);
+
+    //console.log(base64Image);
+    this.setState({ ctx });
+  }
+
   // function for submitting the changes
   handleSubmit = e => {
     e.preventDefault();
@@ -11,6 +94,7 @@ class AdminContactPerson extends Component {
     data.append("role", this.refs.editContactPersonRole.value);
     data.append("phone", this.refs.editContactPersonPhone.value);
     data.append("email", this.refs.editContactPersonEmail.value);
+    data.append("img", this.state.ctx);
     fetch(`http://localhost:5000/contactPersons/update`, {
       method: "POST",
       body: data
@@ -23,7 +107,9 @@ class AdminContactPerson extends Component {
   };
 
   render() {
+    const { crop, croppedImageUrl, src } = this.state;
     const { props } = this;
+    console.log(this.state.ctx);
 
     return (
       <div>
@@ -95,10 +181,6 @@ class AdminContactPerson extends Component {
               </div>
             </div>
             <div className="form-row">
-              <div className="form-group col-md-12 pl-0">
-                <label> Bilde</label>
-                <input type="file" ref="contactImg" className="form-control" />
-              </div>
               {props.contact.id !== "" ? (
                 <img
                   className="contactImgEdit"
@@ -108,6 +190,22 @@ class AdminContactPerson extends Component {
                   id="contactpersonImg"
                 />
               ) : null}
+            </div>
+            <div className="form-group col-md-12 pl-0">
+              <label> Bilde</label>
+              <div>
+                <input type="file" onChange={this.onSelectFile} />
+              </div>
+              {src && (
+                <ReactCrop
+                  src={src}
+                  crop={crop}
+                  onImageLoaded={this.onImageLoaded}
+                  onComplete={this.onCropComplete}
+                  onChange={this.onCropChange}
+                />
+              )}
+              {/*{croppedImageUrl && <img alt="Crop" src={croppedImageUrl} />}*/}
             </div>
 
             <button type="submit" className="btn btn-info btn-sm">
