@@ -246,7 +246,7 @@ class AdminEvents extends Component {
                     type="text"
                     className="form-control"
                     ref="createEventYoutube"
-                    pattern="https://www.youtube.com/watch?v="
+                    placeholder="https://www.youtube.com/watch?v={video-id}"
                   />
                 </div>
               </div>
