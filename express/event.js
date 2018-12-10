@@ -82,8 +82,8 @@ event.post("/update", (req, res) => {
     v_id
   } = req.body;
   //if event image is updated
-  if (req.files !== null) {
-    let imgFile = req.files.img;
+  if (req.body.img !== null) {
+    let imgFile = req.body.img;
 
     let UPDATE_QUERY = `UPDATE events 
     SET 
@@ -104,13 +104,17 @@ event.post("/update", (req, res) => {
         console.log(err);
         return res.status(400).send("Database not updated");
       } else {
-        imgFile.mv(
+        var buf = Buffer.from(imgFile.substring(23), "base64"); // Ta-da imgFile.mv(
+
+        fs.writeFile(
           `${__dirname}/../react-app/src/uploadedImg/eventImg/${id}`,
+          buf,
           function(err) {
             if (err) {
-              return res.status(500).send(err);
+              return console.log(err);
             }
-            return res.json(results);
+
+            console.log("The file was saved!");
           }
         );
       }

@@ -4,6 +4,7 @@ import ReactCrop from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
 
 class AdminContactPerson extends Component {
+  // Cropping: https://codesandbox.io/s/72py4jlll6
   state = {
     src: null,
     crop: {
@@ -52,14 +53,7 @@ class AdminContactPerson extends Component {
 
   async makeClientCrop(crop, pixelCrop) {
     if (this.imageRef && crop.width && crop.height) {
-      const croppedImageUrl = await this.getCroppedImg(
-        this.imageRef,
-        pixelCrop,
-        "newFile.jpeg"
-      );
-
-      this.setState({ croppedImageUrl });
-
+      await this.getCroppedImg(this.imageRef, pixelCrop, "newFile.jpeg");
     }
   }
 
@@ -82,24 +76,8 @@ class AdminContactPerson extends Component {
     );
 
     // As Base64 string
-    const base64Image = canvas.toDataURL('image/jpeg');
-    console.log(base64Image);
+    const base64Image = canvas.toDataURL("image/jpeg");
     this.setState({ base64Image });
-
-
-
-    // as blob
-    return new Promise((resolve, reject) => {
-      canvas.toBlob(blob => {
-        blob.name = fileName;
-        window.URL.revokeObjectURL(this.fileUrl);
-        this.fileUrl = window.URL.createObjectURL(blob);
-        resolve(this.fileUrl);
-      }, 'image/jpeg');
-    });
-
-
-
   }
 
   // function for submitting the changes
@@ -124,10 +102,8 @@ class AdminContactPerson extends Component {
   };
 
   render() {
-    const { crop, croppedImageUrl, src } = this.state;
+    const { crop, src } = this.state;
     const { props } = this;
-    console.log(croppedImageUrl);
-    console.log(this.state.base64Image);
 
     return (
       <div>
@@ -202,11 +178,10 @@ class AdminContactPerson extends Component {
               {props.contact.id !== "" ? (
                 <img
                   className="contactImgEdit"
-                  src={require("../../uploadedImg/contactPersonImg/" + props.contact.id)}
+                  src={require("../../uploadedImg/contactPersonImg/" +
+                    props.contact.id)}
                   alt="contactpersonImg"
                   id="contactpersonImg"
-
-
                 />
               ) : null}
             </div>
@@ -224,15 +199,14 @@ class AdminContactPerson extends Component {
                   onChange={this.onCropChange}
                 />
               )}
-              {/*{croppedImageUrl && <img alt="Crop" src={croppedImageUrl} />}*/}
-            </div >
+            </div>
 
             <button type="submit" className="btn btn-info btn-sm">
               Lagre
             </button>
-          </form >
-        </div >
-      </div >
+          </form>
+        </div>
+      </div>
     );
   }
 }
