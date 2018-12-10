@@ -202,11 +202,10 @@ class AdminContactPerson extends Component {
               {props.contact.id !== "" ? (
                 <img
                   className="contactImgEdit"
-                  src={require("../../uploadedImg/contactPersonImg/" +
-                    props.contact.id) + ".jpeg"}
+                  src={require("../../uploadedImg/contactPersonImg/" + props.contact.id)}
                   alt="contactpersonImg"
                   id="contactpersonImg"
-                  type="jpeg"
+
 
                 />
               ) : null}
