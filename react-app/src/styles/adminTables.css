@@ -78,9 +78,8 @@
 .editScheduleItem label {
   display: block !important;
 }
-.eventTitleProgramme{
-  padding:0px;
-  
+.eventTitleProgramme {
+  padding: 0px;
 }
 /**Post and event**/
 .newsImgEdit,
@@ -89,10 +88,10 @@
   max-height: 100px;
   margin-bottom: 20px;
 }
-.textareaNews{
+.textareaNews {
   min-height: 300px !important;
 }
-.textNewPost{
+.textNewPost {
   min-height: 300px !important;
 }
 /**general*/
