@@ -3,6 +3,7 @@ const express = require("express");
 var db = require("./db");
 const contactPersons = express.Router();
 const fileUpload = require("express-fileupload");
+const fs = require('fs');
 
 contactPersons.use(fileUpload());
 
@@ -15,6 +16,7 @@ contactPersons.get("/", (req, res) => {
     } else {
       return res.json({
         data: results
+
       });
     }
   });
@@ -41,15 +43,25 @@ contactPersons.post("/update", (req, res) => {
         console.log(err);
         return res.status(400).send("Database not updated");
       } else {
-        imgFile.mv(
-          `${__dirname}/../react-app/src/uploadedImg/contactPersonImg/${id}`,
-          function(err) {
-            if (err) {
-              return res.status(500).send(err);
-            }
-            return res.json(results);
+
+        var buf = Buffer.from(imgFile.substring(23), 'base64'); // Ta-da imgFile.mv(
+        console.log(buf);
+
+        fs.writeFile(`${__dirname}/../react-app/src/uploadedImg/contactPersonImg/${id}.png`, buf, function (err) {
+          if (err) {
+            return console.log(err);
           }
-        );
+          console.log(`${__dirname}/../react-app/src/uploadedImg/contactPersonImg/${id}.png`);
+          console.log("The file was saved!");
+        });
+        /*   `${__dirname}/../react-app/src/uploadedImg/contactPersonImg/${id}`,
+           function(err) {
+             if (err) {
+               return res.status(500).send(err);
+             }
+             return res.json(results);
+           }
+         );*/
       }
     });
   } else {

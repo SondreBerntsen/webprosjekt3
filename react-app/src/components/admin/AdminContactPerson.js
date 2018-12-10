@@ -57,7 +57,9 @@ class AdminContactPerson extends Component {
         pixelCrop,
         "newFile.jpeg"
       );
+
       this.setState({ croppedImageUrl });
+
     }
   }
 
@@ -79,10 +81,25 @@ class AdminContactPerson extends Component {
       pixelCrop.height
     );
 
-    //console.log(ctx.canvas);
+    // As Base64 string
+    const base64Image = canvas.toDataURL('image/jpeg');
+    console.log(base64Image);
+    this.setState({ base64Image });
 
-    //console.log(base64Image);
-    this.setState({ ctx });
+
+
+    // as blob
+    return new Promise((resolve, reject) => {
+      canvas.toBlob(blob => {
+        blob.name = fileName;
+        window.URL.revokeObjectURL(this.fileUrl);
+        this.fileUrl = window.URL.createObjectURL(blob);
+        resolve(this.fileUrl);
+      }, 'image/jpeg');
+    });
+
+
+
   }
 
   // function for submitting the changes
@@ -94,7 +111,7 @@ class AdminContactPerson extends Component {
     data.append("role", this.refs.editContactPersonRole.value);
     data.append("phone", this.refs.editContactPersonPhone.value);
     data.append("email", this.refs.editContactPersonEmail.value);
-    data.append("img", this.state.ctx);
+    data.append("img", this.state.base64Image);
     fetch(`http://localhost:5000/contactPersons/update`, {
       method: "POST",
       body: data
@@ -109,7 +126,8 @@ class AdminContactPerson extends Component {
   render() {
     const { crop, croppedImageUrl, src } = this.state;
     const { props } = this;
-    //console.log(this.state.ctx);
+    console.log(croppedImageUrl);
+    console.log(this.state.base64Image);
 
     return (
       <div>
@@ -185,9 +203,11 @@ class AdminContactPerson extends Component {
                 <img
                   className="contactImgEdit"
                   src={require("../../uploadedImg/contactPersonImg/" +
-                    props.contact.id)}
+                    props.contact.id) + ".jpeg"}
                   alt="contactpersonImg"
                   id="contactpersonImg"
+                  type="jpeg"
+
                 />
               ) : null}
             </div>
@@ -206,14 +226,14 @@ class AdminContactPerson extends Component {
                 />
               )}
               {/*{croppedImageUrl && <img alt="Crop" src={croppedImageUrl} />}*/}
-            </div>
+            </div >
 
             <button type="submit" className="btn btn-info btn-sm">
               Lagre
             </button>
-          </form>
-        </div>
-      </div>
+          </form >
+        </div >
+      </div >
     );
   }
 }
