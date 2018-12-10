@@ -58,6 +58,7 @@ posts.post("/add", (req, res) => {
 //Updates the post
 posts.post("/update", (req, res) => {
   const { id, title, text } = req.body;
+  console.log(req.body.img);
 
   const UPDATE_QUERY = `
       UPDATE posts
@@ -68,7 +69,7 @@ posts.post("/update", (req, res) => {
     if (err) {
       return res.status(400).send("Database not updated");
     } else {
-      if (req.body.img !== null) {
+      if (req.body.img !== "undefined") {
         let imgFile = req.body.img;
         let buf = Buffer.from(imgFile.substring(23), "base64");
         fs.writeFile(
@@ -82,6 +83,8 @@ posts.post("/update", (req, res) => {
             console.log("The file was saved!");
           }
         );
+      } else {
+        console.log("there is no image");
       }
     }
   });

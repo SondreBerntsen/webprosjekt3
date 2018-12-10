@@ -39,7 +39,7 @@ contactPersons.post("/update", (req, res) => {
       console.log(err);
       return res.status(400).send("Database not updated");
     } else {
-      if (req.body.img !== null) {
+      if (req.body.img !== "undefined") {
         let imgFile = req.body.img;
         let buf = Buffer.from(imgFile.substring(23), "base64"); // Ta-da imgFile.mv(
 
