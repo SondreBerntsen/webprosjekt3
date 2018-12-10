@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import AdminEventItem from "../AdminEventItem";
 import { Link } from "react-router-dom";
+import ReactCrop from "react-image-crop";
+import "react-image-crop/dist/ReactCrop.css";
 
 class AdminEvents extends Component {
   state = {
@@ -20,7 +22,15 @@ class AdminEvents extends Component {
     years: [],
     venues: [{ id: "", address: "", capacity: "" }],
     mostRecentYear: true,
-    year: ""
+    year: "",
+    src: null,
+    crop: {
+      aspect: 1.5,
+      width: 50,
+      height: 70,
+      x: 0,
+      y: 0
+    }
   };
   componentDidMount() {
     let path = this.props.match.params.year;
@@ -117,7 +127,7 @@ class AdminEvents extends Component {
     data.append("price", this.refs.createEventPrice.value);
     data.append("youtube_link", this.refs.createEventYoutube.value);
     data.append("payment_link", this.refs.createEventPayment.value);
-    data.append("img", this.refs.createEventImg.files[0]);
+    data.append("img", this.state.base64Image);
     data.append("venue", this.refs.createEventVenue.value);
     data.append("livestream", this.state.livestream);
 
@@ -148,7 +158,73 @@ class AdminEvents extends Component {
       default:
     }
   };
+
+  onSelectFile = e => {
+    if (e.target.files && e.target.files.length > 0) {
+      const reader = new FileReader();
+      reader.addEventListener("load", () =>
+        this.setState({ src: reader.result })
+      );
+      reader.readAsDataURL(e.target.files[0]);
+      // console.log(e.target.files[0]);
+    }
+  };
+
+  onImageLoaded = (image, pixelCrop) => {
+    this.imageRef = image;
+
+    // Make the library regenerate aspect crops if loading new images.
+    const { crop } = this.state;
+
+    if (crop.aspect && crop.height && crop.width) {
+      this.setState({
+        crop: { ...crop, height: null }
+      });
+      //console.log(this.state.crop);
+    } else {
+      this.makeClientCrop(crop, pixelCrop);
+    }
+  };
+
+  onCropComplete = (crop, pixelCrop) => {
+    this.makeClientCrop(crop, pixelCrop);
+  };
+
+  onCropChange = crop => {
+    this.setState({ crop });
+  };
+
+  async makeClientCrop(crop, pixelCrop) {
+    if (this.imageRef && crop.width && crop.height) {
+      await this.getCroppedImg(this.imageRef, pixelCrop, "newFile.jpeg");
+    }
+  }
+
+  getCroppedImg(image, pixelCrop, fileName) {
+    const canvas = document.createElement("canvas");
+    canvas.width = pixelCrop.width;
+    canvas.height = pixelCrop.height;
+    const ctx = canvas.getContext("2d");
+
+    ctx.drawImage(
+      image,
+      pixelCrop.x,
+      pixelCrop.y,
+      pixelCrop.width,
+      pixelCrop.height,
+      0,
+      0,
+      pixelCrop.width,
+      pixelCrop.height
+    );
+
+    // As Base64 string
+    const base64Image = canvas.toDataURL("image/jpeg");
+    this.setState({ base64Image });
+  }
+
   render() {
+    const { crop, src } = this.state;
     return (
       <React.Fragment>
         <div className="container tablesAdmin col-md-9 col-lg-10">
@@ -253,12 +329,18 @@ class AdminEvents extends Component {
               <div className="form-row">
                 <div className="form-group col-md-6">
                   <label>Bilde</label>
-                  <input
-                    type="file"
-                    className="form-control"
-                    ref="createEventImg"
-                    required
-                  />
+                  <div>
+                    <input type="file" onChange={this.onSelectFile} />
+                  </div>
+                  {src && (
+                    <ReactCrop
+                      src={src}
+                      crop={crop}
+                      onImageLoaded={this.onImageLoaded}
+                      onComplete={this.onCropComplete}
+                      onChange={this.onCropChange}
+                    />
+                  )}
                 </div>
                 <div className="form-group col-md-6">
                   <label>Adresse</label>
