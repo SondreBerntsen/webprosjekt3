@@ -40,20 +40,15 @@ class Contact extends Component {
         <div className="contact row mx-0">
           <div className="container">
             <div className="vh-85">
-              <div className="contact-title col-sm-12 col-lg-7 d-inline-block">
-                <h2>Ta gjerne kontakt med oss om du lurer på noe</h2>
-                <hr />
-              </div>
-              <ContactForm />
+              <h2 className="center pageTitle mb-5">Kontakt</h2>
+
               <ContactPersons contactpersons={contactPersons} />
+
+              <ContactForm />
             </div>
-            <div className="col-sm-12 col-lg-12">
-              <div className="contact-adress">
-                <div className="px-3 text-dark ">
-                  <i className="fa fa-map-marker d-inline-block float-md-none " />
-                  <p>{contactAddress}</p>
-                </div>
-              </div>
+            <div className="contact-address px-4 text-dark mt-5 mb-5">
+              <i className="fa fa-map-marker d-inline-block float-left pr-2 " />
+              <p>{contactAddress}</p>
             </div>
           </div>
         </div>
